@@ -278,6 +278,7 @@ body {
     padding: 1rem 2rem;
     background-color: rgba(34, 34, 34, 0.95);
     position: fixed;
+    height:5rem;
     width: 100%;
     top: 0;
     z-index: 1000;
@@ -287,6 +288,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
+    margin-left: 7rem;
 }
 
 .lang-switch {
@@ -366,6 +368,10 @@ body {
     animation: pointAndWave 3s infinite;
 }
 
+.logo img{
+    width: 12rem;
+    margin-top: 2rem;
+}
 .pointing-arrow svg {
     width: 24px;
     height: 24px;
@@ -1263,4 +1269,108 @@ footer {
 .card:hover::after, .service-card:hover::after, .project-card:hover::after,
 .career-card:hover::after, .blog-post:hover::after {
     left: 100%;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Classes d'animation */
+.animate {
+    opacity: 0;
+}
+
+.animate.fade-in-up {
+    animation: fadeInUp 1s ease forwards;
+}
+
+.animate.slide-in-left {
+    animation: slideInLeft 1s ease forwards;
+}
+
+.animate.slide-in-right {
+    animation: slideInRight 1s ease forwards;
+}
+
+.animate.scale-in {
+    animation: scaleIn 1s ease forwards;
+}
+
+/* Délais d'animation */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }
+
+/* Animation du texte hero */
+.hero-content h1 {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 300ms;
+}
+
+.hero-content p {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 600ms;
+}
+
+.hero-content .cta-button {
+    opacity: 0;
+    animation: fadeInUp 1s ease forwards;
+    animation-delay: 900ms;
+}
+
+/* Animation des sections */
+.section-animate {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.section-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
 }

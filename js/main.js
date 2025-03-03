@@ -272,3 +272,31 @@ document.addEventListener('DOMContentLoaded', function() {
         statsObserver.observe(statsSection);
     }
 });
+
+// Animation des sections au scroll
+function initSectionAnimations() {
+    const sections = document.querySelectorAll('.section-animate');
+    const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+    };
+
+    const sectionObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, options);
+
+    sections.forEach(section => {
+        sectionObserver.observe(section);
+    });
+}
+
+// Initialisation des animations au chargement
+document.addEventListener('DOMContentLoaded', function() {
+    initSectionAnimations();
+});
