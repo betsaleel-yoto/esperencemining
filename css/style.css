@@ -1374,3 +1374,35 @@ footer {
     opacity: 1;
     transform: translateY(0);
 }
+
+/* Prevent horizontal scroll */
+html, body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+@media (max-width: 768px) {
+    .stats-container,
+    .services-grid,
+    .projects-grid,
+    .partners-grid,
+    .blog-grid,
+    .footer-content {
+        width: 100%;
+        padding: 0 1rem;
+        margin: 0 auto;
+    }
+    
+    .hero-content,
+    .about-content,
+    .contact-container {
+        width: 100%;
+        padding: 0 1rem;
+    }
+}
