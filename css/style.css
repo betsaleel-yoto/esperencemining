@@ -288,7 +288,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-left: 7rem;
+    /* margin-left: 7rem; */
 }
 
 .lang-switch {
