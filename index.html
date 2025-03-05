@@ -29,7 +29,12 @@
                         <rect width="80" height="8" x="10" y="67" rx="4"></rect>
                     </svg>
                 </div>
-                <button class="lang-switch" onclick="toggleLanguage()">FR</button>
+                <div class="lang-buttons">
+                    <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
+                    <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
+                    <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
+                    <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+                </div>
             </div>
             <div class="nav-links" style="margin-top: 2.5rem;">
                 <div class="close-icon">
@@ -37,14 +42,14 @@
                         <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
                     </svg>
                 </div>
-                <a href="#home" class="active">Accueil</a>
-                <a href="#services">Nos Services</a>
-                <a href="#about">À Propos</a>
-                <a href="#projects">Réalisations</a>
-                <a href="#partners">Partenaires</a>
-                <a href="#contact">Contact</a>
-                <a href="#blog">Actualités</a>
-                <a href="#careers">Recrutement</a>
+                <a href="#home" class="active" data-translate="nav.home">Accueil</a>
+                <a href="#services" data-translate="nav.services">Nos Services</a>
+                <a href="#about" data-translate="nav.about">À Propos</a>
+                <a href="#projects" data-translate="nav.projects">Réalisations</a>
+                <a href="#partners" data-translate="nav.partners">Partenaires</a>
+                <a href="#contact" data-translate="nav.contact">Contact</a>
+                <a href="#blog" data-translate="nav.news">Actualités</a>
+                <a href="#careers" data-translate="nav.careers">Recrutement</a>
             </div>
         </nav>
     </header>
@@ -52,9 +57,9 @@
     <main>
         <section id="hero" class="hero section-animate">
             <div class="hero-content animate fade-in-up">
-                <h1>From Earth to Prosperity: Elevating Mining Operations Worldwide</h1>
-                <p>Leading mining contractor in East Africa, delivering excellence across six nations</p>
-                <a href="#contact" class="cta-button animate slide-in-right delay-200">Get Started</a>
+                <h1 data-translate="hero.title">From Earth to Prosperity: Elevating Mining Operations Worldwide</h1>
+                <p data-translate="hero.subtitle">Leading mining contractor in East Africa, delivering excellence across six nations</p>
+                <a href="#contact" class="cta-button animate slide-in-right delay-200" data-translate="hero.cta">Get Started</a>
             </div>
         </section>
 
@@ -62,89 +67,87 @@
             <div class="stats-container">
                 <div class="stat-item animate scale-in delay-100">
                     <span class="counter-number" data-target="10" data-suffix="+">0+</span>
-                    <p class="stat-label">Years Experience</p>
+                    <p class="stat-label" data-translate="stats.years">Years Experience</p>
                 </div>
                 <div class="stat-item animate scale-in delay-200">
                     <span class="counter-number" data-target="6">0</span>
-                    <p class="stat-label">Countries</p>
+                    <p class="stat-label" data-translate="stats.countries">Countries</p>
                 </div>
                 <div class="stat-item animate scale-in delay-300">
                     <span class="counter-number" data-target="3000" data-suffix="+">0+</span>
-                    <p class="stat-label">Projects Completed</p>
+                    <p class="stat-label" data-translate="stats.projects">Projects Completed</p>
                 </div>
                 <div class="stat-item animate scale-in delay-400">
                     <span class="counter-number" data-target="17" data-suffix="+">0+</span>
-                    <p class="stat-label">Mining Partners</p>
+                    <p class="stat-label" data-translate="stats.partners">Mining Partners</p>
                 </div>
             </div>
         </section>
 
         <section id="services" class="services section-animate">
-            <h2 class="animate fade-in-up">Our Premium Services</h2>
+            <h2 class="animate fade-in-up" data-translate="services.title">Our Premium Services</h2>
             <div class="services-grid">
                 <div class="service-card animate slide-in-left delay-200">
                     <i class="fas fa-truck-moving"></i>
-                    <h3>Logistics</h3>
-                    <p>Comprehensive management and transportation of mining equipment</p>
+                    <h3 data-translate="services.logistics.title">Logistics</h3>
+                    <p data-translate="services.logistics.description">Comprehensive management and transportation of mining equipment</p>
                 </div>
                 <div class="service-card animate slide-in-left delay-300">
                     <i class="fas fa-users"></i>
-                    <h3>Man Power</h3>
-                    <p>Expert recruitment for underground mining operations</p>
+                    <h3 data-translate="services.manpower.title">Man Power</h3>
+                    <p data-translate="services.manpower.description">Expert recruitment for underground mining operations</p>
                 </div>
                 <div class="service-card animate slide-in-left delay-400">
                     <i class="fas fa-gas-pump"></i>
-                    <h3>Fuel Supply</h3>
-                    <p>Premium 50 PPM diesel supply for mining operations</p>
+                    <h3 data-translate="services.fuel.title">Fuel Supply</h3>
+                    <p data-translate="services.fuel.description">Premium 50 PPM diesel supply for mining operations</p>
                 </div>
                 <div class="service-card animate slide-in-left delay-500">
                     <i class="fas fa-handshake"></i>
-                    <h3>Mining Partnerships</h3>
-                    <p>Strategic collaborations for mining finance and operations</p>
+                    <h3 data-translate="services.partnerships.title">Mining Partnerships</h3>
+                    <p data-translate="services.partnerships.description">Strategic collaborations for mining finance and operations</p>
                 </div>
             </div>
         </section>
 
         <section id="about" class="about section-animate">
-            <h2 class="animate fade-in-up">À Propos d'Espérence Mining</h2>
+            <h2 class="animate fade-in-up" data-translate="about.title">À Propos d'Espérence Mining</h2>
             <div class="about-content animate slide-in-right delay-200">
                 <div class="about-text">
-                    <p>Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
-                    <p>Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
+                    <p data-translate="about.description">Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
+                    <p data-translate="about.expertise">Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
                 </div>
             </div>
         </section>
 
         <section id="projects" class="projects section-animate">
-            <h2 class="animate fade-in-up">Nos Réalisations</h2>
+            <h2 class="animate fade-in-up" data-translate="projects.title">Nos Réalisations</h2>
             <div class="projects-grid">
                 <div class="project-card animate slide-in-right delay-200">
                     <img src="https://www.festanks.com.au/wp-content/uploads/2019/07/Syama-resolute-mining.jpg" alt="Exploitation Minière RDC" class="project-image">
-                    <h3>Exploitation Minière RDC</h3>
-                    <p>Projet majeur d'extraction avec équipement de pointe</p>
+                    <h3 data-translate="projects.project1.title">Exploitation Minière RDC</h3>
+                    <p data-translate="projects.project1.description">Projet majeur d'extraction avec équipement de pointe</p>
                 </div>
                 <div class="project-card animate slide-in-right delay-300">
                     <img src="https://images.squarespace-cdn.com/content/v1/5f71d110704fd32c33582494/08feca8d-2c63-45a2-a53d-0631cf0c0f4a/mining.png" alt="Logistique Tanzanie" class="project-image">
-                    <h3>Logistique Tanzanie</h3>
-                    <p>Transport et gestion d'équipements miniers</p>
+                    <h3 data-translate="projects.project2.title">Logistique Tanzanie</h3>
+                    <p data-translate="projects.project2.description">Transport et gestion d'équipements miniers</p>
                 </div>
             </div>
         </section>
 
         <section id="partners" class="partners section-animate">
-            <div class="section-title animate fade-in-up">
-                <h2>Nos Partenaires et Clients</h2>
-            </div>
+            <div class="section-title animate fade-in-up" data-translate="partners.title">Nos Partenaires et Clients</div>
             <div class="partners-grid">
                 <div class="partner-card animate slide-in-left delay-200">
                     <div class="partner-logo">
                         <i class="fas fa-industry"></i>
                     </div>
-                    <h3>MineTech Solutions</h3>
-                    <p>Leader en équipements miniers de haute précision</p>
+                    <h3 data-translate="partners.partner1.title">MineTech Solutions</h3>
+                    <p data-translate="partners.partner1.description">Leader en équipements miniers de haute précision</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2018</span>
-                        <span class="partnership-type">Fournisseur Stratégique</span>
+                        <span class="partnership-duration" data-translate="partners.partner1.duration">Partenaire depuis 2018</span>
+                        <span class="partnership-type" data-translate="partners.partner1.type">Fournisseur Stratégique</span>
                     </div>
                 </div>
 
@@ -152,11 +155,11 @@
                     <div class="partner-logo">
                         <i class="fas fa-truck-loading"></i>
                     </div>
-                    <h3>Global Mining Corp</h3>
-                    <p>Exploitation minière internationale et expertise en extraction</p>
+                    <h3 data-translate="partners.partner2.title">Global Mining Corp</h3>
+                    <p data-translate="partners.partner2.description">Exploitation minière internationale et expertise en extraction</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2019</span>
-                        <span class="partnership-type">Client Principal</span>
+                        <span class="partnership-duration" data-translate="partners.partner2.duration">Partenaire depuis 2019</span>
+                        <span class="partnership-type" data-translate="partners.partner2.type">Client Principal</span>
                     </div>
                 </div>
 
@@ -164,11 +167,11 @@
                     <div class="partner-logo">
                         <i class="fas fa-tools"></i>
                     </div>
-                    <h3>AfriMine Equipment</h3>
-                    <p>Spécialiste en maintenance d'équipements miniers</p>
+                    <h3 data-translate="partners.partner3.title">AfriMine Equipment</h3>
+                    <p data-translate="partners.partner3.description">Spécialiste en maintenance d'équipements miniers</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2020</span>
-                        <span class="partnership-type">Partenaire Technique</span>
+                        <span class="partnership-duration" data-translate="partners.partner3.duration">Partenaire depuis 2020</span>
+                        <span class="partnership-type" data-translate="partners.partner3.type">Partenaire Technique</span>
                     </div>
                 </div>
 
@@ -176,11 +179,11 @@
                     <div class="partner-logo">
                         <i class="fas fa-shield-alt"></i>
                     </div>
-                    <h3>SafetyFirst Mining</h3>
-                    <p>Solutions de sécurité pour sites miniers</p>
+                    <h3 data-translate="partners.partner4.title">SafetyFirst Mining</h3>
+                    <p data-translate="partners.partner4.description">Solutions de sécurité pour sites miniers</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2021</span>
-                        <span class="partnership-type">Consultant Sécurité</span>
+                        <span class="partnership-duration" data-translate="partners.partner4.duration">Partenaire depuis 2021</span>
+                        <span class="partnership-type" data-translate="partners.partner4.type">Consultant Sécurité</span>
                     </div>
                 </div>
 
@@ -188,11 +191,11 @@
                     <div class="partner-logo">
                         <i class="fas fa-chart-line"></i>
                     </div>
-                    <h3>EcoMine Analytics</h3>
-                    <p>Expertise en analyse et optimisation minière</p>
+                    <h3 data-translate="partners.partner5.title">EcoMine Analytics</h3>
+                    <p data-translate="partners.partner5.description">Expertise en analyse et optimisation minière</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2022</span>
-                        <span class="partnership-type">Consultant Stratégique</span>
+                        <span class="partnership-duration" data-translate="partners.partner5.duration">Partenaire depuis 2022</span>
+                        <span class="partnership-type" data-translate="partners.partner5.type">Consultant Stratégique</span>
                     </div>
                 </div>
 
@@ -200,23 +203,23 @@
                     <div class="partner-logo">
                         <i class="fas fa-leaf"></i>
                     </div>
-                    <h3>GreenMining Solutions</h3>
-                    <p>Solutions écologiques pour l'industrie minière</p>
+                    <h3 data-translate="partners.partner6.title">GreenMining Solutions</h3>
+                    <p data-translate="partners.partner6.description">Solutions écologiques pour l'industrie minière</p>
                     <div class="partner-details">
-                        <span class="partnership-duration">Partenaire depuis 2023</span>
-                        <span class="partnership-type">Partenaire Environnemental</span>
+                        <span class="partnership-duration" data-translate="partners.partner6.duration">Partenaire depuis 2023</span>
+                        <span class="partnership-type" data-translate="partners.partner6.type">Partenaire Environnemental</span>
                     </div>
                 </div>
             </div>
             <div class="partnership-cta animate slide-in-right delay-200">
-                <h3>Devenez Notre Partenaire</h3>
-                <p>Rejoignez notre réseau d'excellence dans l'industrie minière</p>
-                <button class="cta-button">Contactez-nous</button>
+                <h3 data-translate="partners.becomePartner.title">Devenez Notre Partenaire</h3>
+                <p data-translate="partners.becomePartner.description">Rejoignez notre réseau d'excellence dans l'industrie minière</p>
+                <button class="cta-button" data-translate="partners.becomePartner.cta">Contactez-nous</button>
             </div>
         </section>
 
         <section id="contact" class="contact section-animate">
-            <h2 class="animate fade-in-up">Start Your Mining Project</h2>
+            <h2 class="animate fade-in-up" data-translate="contact.title">Start Your Mining Project</h2>
             <div class="contact-container animate slide-in-right delay-200">
                 <form id="contact-form">
                     <div class="form-group">
@@ -237,31 +240,31 @@
                     <div class="form-group">
                         <textarea placeholder="Your Message" required></textarea>
                     </div>
-                    <button type="submit" class="submit-btn animate slide-in-right delay-300">Send Message</button>
+                    <button type="submit" class="submit-btn animate slide-in-right delay-300" data-translate="contact.send">Send Message</button>
                 </form>
             </div>
         </section>
 
         <section id="blog" class="blog section-animate">
-            <h2 class="animate fade-in-up">Actualités Minières</h2>
+            <h2 class="animate fade-in-up" data-translate="news.title">Actualités Minières</h2>
             <div class="blog-grid">
                 <article class="blog-post animate slide-in-left delay-200">
                     <img src="https://www.csm.tech/storage/uploads/news/65deeb8373b121709108099Thumb.jpg" alt="Mining News" class="blog-image">
-                    <h3>Innovations dans l'Exploitation Minière</h3>
-                    <p>Les dernières avancées technologiques dans le secteur minier...</p>
-                    <a href="#" class="read-more animate slide-in-right delay-300">Lire la suite</a>
+                    <h3 data-translate="news.post1.title">Innovations dans l'Exploitation Minière</h3>
+                    <p data-translate="news.post1.description">Les dernières avancées technologiques dans le secteur minier...</p>
+                    <a href="#" class="read-more animate slide-in-right delay-300" data-translate="news.readMore">Lire la suite</a>
                 </article>
             </div>
         </section>
 
         <section id="careers" class="careers section-animate">
-            <h2 class="animate fade-in-up">Rejoignez Notre Équipe</h2>
+            <h2 class="animate fade-in-up" data-translate="careers.title">Rejoignez Notre Équipe</h2>
             <div class="careers-content animate slide-in-right delay-200">
                 <div class="job-listings">
                     <div class="job-card animate slide-in-left delay-200">
-                        <h3>Ingénieur Minier Senior</h3>
-                        <p>Nous recherchons un ingénieur expérimenté pour superviser nos opérations...</p>
-                        <a href="./candidature.html" class="apply-btn animate slide-in-right delay-300">Postuler</a>
+                        <h3 data-translate="careers.positions.engineer">Ingénieur Minier Senior</h3>
+                        <p data-translate="careers.positions.description">Nous recherchons un ingénieur expérimenté pour superviser nos opérations...</p>
+                        <a href="./candidature.html" class="apply-btn animate slide-in-right delay-300" data-translate="careers.positions.apply">Postuler</a>
                     </div>
                 </div>
             </div>
@@ -271,7 +274,7 @@
     <footer>
         <div class="footer-content">
             <div class="footer-section animate slide-in-left delay-200">
-                <h4>Contact Us</h4>
+                <h4 data-translate="contact.title">Contact Us</h4>
                 <p>Email: info@esperencemining.com</p>
                 <p>Phone: +243 999 541 920</p>
             </div>
@@ -281,7 +284,7 @@
                 <p>Tanzania | Rwanda | Kenya</p>
             </div>
             <div class="footer-section animate slide-in-left delay-400">
-                <h4>Follow Us</h4>
+                <h4 data-translate="social.title">Follow Us</h4>
                 <div class="social-icons">
                     <a href="#" class="social-link animate slide-in-right delay-200">
                         <svg class="social-icon" viewBox="0 0 24 24">

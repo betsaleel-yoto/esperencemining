@@ -312,6 +312,29 @@ body {
     box-shadow: 0 6px 20px rgba(198, 163, 0, 0.4);
 }
 
+.lang-buttons {
+    display: flex;
+    gap: 0.5rem;
+    margin-left: 1rem;
+}
+
+.lang-btn {
+    padding: 0.5rem;
+    background: transparent;
+    border: 1px solid #C6A300;
+    color: #C6A300;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    min-width: 40px;
+}
+
+.lang-btn:hover {
+    background: #C6A300;
+    color: white;
+}
+
 .menu-icon, .close-icon {
     cursor: pointer;
     width: 40px;
@@ -1571,4 +1594,16 @@ html, body {
     .application-hero {
         height: 40vh;
     }
+}
+
+/* Style pour le texte en arabe */
+[lang="ar"] {
+    direction: rtl;
+    text-align: right;
+    font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+/* Style pour le texte en chinois */
+[lang="zh"] {
+    font-family: 'Noto Sans SC', sans-serif;
 }
