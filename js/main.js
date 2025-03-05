@@ -68,40 +68,34 @@ const translations = {
         partners: {
             title: "Our Partners and Clients",
             partner1: {
-                title: "MineTech Solutions",
-                description: "Leader in high-precision mining equipment",
-                duration: "Partner since 2018",
-                type: "Strategic Supplier"
+                title: "Concordia Petroleum Global",
+                description: "Diesel Partner",
+                type: "Fuel Supplier"
             },
             partner2: {
-                title: "Global Mining Corp",
-                description: "International mining operations and extraction expertise",
-                duration: "Partner since 2019",
-                type: "Main Client"
+                title: "SANY",
+                description: "Mining Equipment Partner",
+                type: "Equipment Supplier"
             },
             partner3: {
-                title: "African Logistics",
-                description: "Specialized in mining equipment transportation",
-                duration: "Partner since 2020",
-                type: "Logistics Partner"
+                title: "AGL",
+                description: "Logistics Partner",
+                type: "Logistics Services"
             },
             partner4: {
-                title: "Mining Safety Pro",
-                description: "Mining safety equipment and training",
-                duration: "Partner since 2021",
-                type: "Safety Solutions"
+                title: "Kamoa Copper S.A",
+                description: "Man Power Partner",
+                type: "Mining Client"
             },
             partner5: {
-                title: "EcoMine Solutions",
-                description: "Environmental mining solutions",
-                duration: "Partner since 2020",
-                type: "Environmental Partner"
+                title: "KCC",
+                description: "Man Power Partner",
+                type: "Mining Client"
             },
             partner6: {
-                title: "Tech Mining Services",
-                description: "Advanced mining technology solutions",
-                duration: "Partner since 2019",
-                type: "Technology Partner"
+                title: "Kipushi Corporation S.A (KICO)",
+                description: "Man Power Partner",
+                type: "Mining Client"
             },
             becomePartner: {
                 title: "Become Our Partner",
@@ -227,40 +221,34 @@ const translations = {
         partners: {
             title: "Nos Partenaires et Clients",
             partner1: {
-                title: "MineTech Solutions",
-                description: "Leader en équipements miniers de haute précision",
-                duration: "Partenaire depuis 2018",
-                type: "Fournisseur Stratégique"
+                title: "Concordia Petroleum Global",
+                description: "Partenaire Diesel",
+                type: "Fournisseur de carburant"
             },
             partner2: {
-                title: "Global Mining Corp",
-                description: "Expertise en exploitation minière internationale",
-                duration: "Partenaire depuis 2019",
-                type: "Client Principal"
+                title: "SANY",
+                description: "Partenaire équipements miniers",
+                type: "Fournisseur d'équipements"
             },
             partner3: {
-                title: "African Logistics",
-                description: "Spécialisé dans le transport d'équipements miniers",
-                duration: "Partenaire depuis 2020",
-                type: "Partenaire Logistique"
+                title: "AGL",
+                description: "Partenaire logistique",
+                type: "Services logistiques"
             },
             partner4: {
-                title: "Mining Safety Pro",
-                description: "Équipements et formation en sécurité minière",
-                duration: "Partenaire depuis 2021",
-                type: "Solutions de Sécurité"
+                title: "Kamoa Copper S.A",
+                description: "Partenaire Man Power",
+                type: "Client minier"
             },
             partner5: {
-                title: "EcoMine Solutions",
-                description: "Solutions minières environnementales",
-                duration: "Partenaire depuis 2020",
-                type: "Partenaire Environnemental"
+                title: "KCC",
+                description: "Partenaire Man Power",
+                type: "Client minier"
             },
             partner6: {
-                title: "Tech Mining Services",
-                description: "Solutions technologiques minières avancées",
-                duration: "Partenaire depuis 2019",
-                type: "Partenaire Technologique"
+                title: "Kipushi Corporation S.A (KICO)",
+                description: "Partenaire Man Power",
+                type: "Client minier"
             },
             becomePartner: {
                 title: "Devenez Notre Partenaire",
@@ -391,40 +379,34 @@ const translations = {
         partners: {
             title: "شركاؤنا وعملاؤنا",
             partner1: {
-                title: "MineTech Solutions",
-                description: "رائد في معدات التعدين عالية الدقة",
-                duration: "شريك منذ 2018",
-                type: "مورد استراتيجي"
+                title: "كونكورديا بتروليوم جلوبال",
+                description: "شريك الديزل",
+                type: "مورد الوقود"
             },
             partner2: {
-                title: "Global Mining Corp",
-                description: "خبرة في عمليات التعدين الدولية",
-                duration: "شريك منذ 2019",
-                type: "عميل رئيسي"
+                title: "ساني",
+                description: "شريك معدات التعدين",
+                type: "مورد المعدات"
             },
             partner3: {
-                title: "African Logistics",
-                description: "متخصص في نقل معدات التعدين",
-                duration: "شريك منذ 2020",
-                type: "شريك لوجستي"
+                title: "إيه جي إل",
+                description: "شريك الخدمات اللوجستية",
+                type: "خدمات لوجستية"
             },
             partner4: {
-                title: "Mining Safety Pro",
-                description: "معدات وتدريب السلامة في التعدين",
-                duration: "شريك منذ 2021",
-                type: "حلول السلامة"
+                title: "كاموا كوبر",
+                description: "شريك القوى العاملة",
+                type: "عميل تعدين"
             },
             partner5: {
-                title: "EcoMine Solutions",
-                description: "حلول التعدين البيئية",
-                duration: "شريك منذ 2020",
-                type: "شريك بيئي"
+                title: "كي سي سي",
+                description: "شريك القوى العاملة",
+                type: "عميل تعدين"
             },
             partner6: {
-                title: "Tech Mining Services",
-                description: "حلول تكنولوجيا التعدين المتقدمة",
-                duration: "شريك منذ 2019",
-                type: "شريك تكنولوجي"
+                title: "كيبوشي كوربوريشن",
+                description: "شريك القوى العاملة",
+                type: "عميل تعدين"
             },
             becomePartner: {
                 title: "كن شريكنا",
@@ -565,40 +547,34 @@ const translations = {
         partners: {
             title: "我们的合作伙伴和客户",
             partner1: {
-                title: "MineTech Solutions",
-                description: "高精度采矿设备的领导者",
-                duration: "自2018年起的合作伙伴",
-                type: "战略供应商"
+                title: "康科迪亚石油全球",
+                description: "柴油合作伙伴",
+                type: "燃料供应商"
             },
             partner2: {
-                title: "Global Mining Corp",
-                description: "国际采矿业务和专业知识",
-                duration: "自2019年起的合作伙伴",
-                type: "主要客户"
+                title: "三一重工",
+                description: "采矿设备合作伙伴",
+                type: "设备供应商"
             },
             partner3: {
-                title: "African Logistics",
-                description: "专业的采矿设备运输",
-                duration: "自2020年起的合作伙伴",
-                type: "物流合作伙伴"
+                title: "AGL",
+                description: "物流合作伙伴",
+                type: "物流服务"
             },
             partner4: {
-                title: "Mining Safety Pro",
-                description: "采矿安全设备和培训",
-                duration: "自2021年起的合作伙伴",
-                type: "安全解决方案"
+                title: "卡莫阿铜业",
+                description: "人力资源合作伙伴",
+                type: "采矿客户"
             },
             partner5: {
-                title: "EcoMine Solutions",
-                description: "环保采矿解决方案",
-                duration: "自2020年起的合作伙伴",
-                type: "环保合作伙伴"
+                title: "KCC",
+                description: "人力资源合作伙伴",
+                type: "采矿客户"
             },
             partner6: {
-                title: "Tech Mining Services",
-                description: "先进采矿技术解决方案",
-                duration: "自2019年起的合作伙伴",
-                type: "技术合作伙伴"
+                title: "基普什公司",
+                description: "人力资源合作伙伴",
+                type: "采矿客户"
             },
             becomePartner: {
                 title: "成为我们的合作伙伴",
