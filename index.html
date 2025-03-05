@@ -30,10 +30,18 @@
                     </svg>
                 </div>
                 <div class="lang-buttons">
-                    <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
-                    <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
-                    <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
-                    <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+                    <select class="lang-select" onchange="switchLanguage(this.value)">
+                        <option value="fr">FR</option>
+                        <option value="en">EN</option>
+                        <option value="ar">عر</option>
+                        <option value="zh">中</option>
+                    </select>
+                    <div class="lang-btns-desktop">
+                        <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
+                        <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
+                        <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
+                        <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+                    </div>
                 </div>
             </div>
             <div class="nav-links" style="margin-top: 2.5rem;">
@@ -111,11 +119,11 @@
         </section>
 
         <section id="about" class="about section-animate">
-            <h2 class="animate fade-in-up" data-translate="about.title">À Propos d'Espérence Mining</h2>
+            <h2 class="about-title animate fade-in-up" data-translate="about.title">À Propos d'Espérence Mining</h2>
             <div class="about-content animate slide-in-right delay-200">
                 <div class="about-text">
-                    <p data-translate="about.description">Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
-                    <p data-translate="about.expertise">Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
+                    <p class="about-description" data-translate="about.description">Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
+                    <p class="about-expertise" data-translate="about.expertise">Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
                 </div>
             </div>
         </section>

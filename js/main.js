@@ -37,13 +37,18 @@ const translations = {
         },
         blog: {
             title: "Mining News",
-            news: {
+            post1: {
                 title: "Mining Operation Innovations",
-                description: "Latest technological advances in the mining sector...",
-                readMore: "Read more"
-            }
+                description: "Latest technological advances in the mining sector..."
+            },
+            readMore: "Read More"
         },
-        careers: "Careers",
+        careers: {
+            title: "Join Our Team",
+            position: "Senior Mining Engineer",
+            description: "We are looking for an experienced engineer to oversee our operations...",
+            apply: "Apply Now"
+        },
         hero: {
             title: "From Earth to Prosperity: Elevating Mining Operations Worldwide",
             subtitle: "Leading mining contractor in East Africa, delivering excellence across six nations",
@@ -104,12 +109,6 @@ const translations = {
                 cta: "Contact Us"
             }
         },
-        careers: {
-            title: "Join Our Team",
-            position: "Senior Mining Engineer",
-            description: "We are looking for an experienced engineer to oversee our operations...",
-            apply: "Apply Now"
-        },
         stats: {
             experience: 'Years Experience',
             countries: 'Countries',
@@ -117,16 +116,18 @@ const translations = {
             partners: 'Mining Partners'
         },
         intro: {
-            title: "A leader in the East African mining sector, Espérence Mining SARL operates in six major countries: DRC, Uganda, Burundi, Tanzania, Rwanda and Kenya.",
-            description: "Our expertise ranges from mining logistics to specialized recruitment, fuel supply and strategic partnerships."
+            text1: "A leader in the East African mining sector, Espérence Mining SARL operates in six major countries: DRC, Uganda, Burundi, Tanzania, Rwanda and Kenya.",
+            text2: "Our expertise ranges from mining logistics to specialized recruitment, fuel supply and strategic partnerships."
         },
-        news: {
-            title: "Mining News",
-            post1: {
-                title: "Mining Operation Innovations",
-                description: "Latest technological advances in the mining sector..."
-            },
-            readMore: "Read more"
+        nav: {
+            home: "Home",
+            services: "Our Services",
+            about: "About",
+            projects: "Projects",
+            partners: "Partners",
+            contact: "Contact",
+            news: "News",
+            careers: "Careers"
         }
     },
     fr: {
@@ -166,13 +167,18 @@ const translations = {
         },
         blog: {
             title: "Actualités Minières",
-            news: {
+            post1: {
                 title: "Innovations dans l'Exploitation Minière",
-                description: "Les dernières avancées technologiques dans le secteur minier...",
-                readMore: "Lire la suite"
-            }
+                description: "Les dernières avancées technologiques dans le secteur minier..."
+            },
+            readMore: "Lire la suite"
         },
-        careers: "Recrutement",
+        careers: {
+            title: "Rejoignez Notre Équipe",
+            position: "Ingénieur Minier Senior",
+            description: "Nous recherchons un ingénieur expérimenté pour superviser nos opérations...",
+            apply: "Postuler"
+        },
         hero: {
             title: "De la Terre à la Prospérité : Élever les Opérations Minières Mondiales",
             subtitle: "Leader des entrepreneurs miniers en Afrique de l'Est, offrant l'excellence dans six pays",
@@ -250,16 +256,18 @@ const translations = {
             partners: 'Partenaires Miniers'
         },
         intro: {
-            title: "Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.",
-            description: "Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques."
+            text1: "Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.",
+            text2: "Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques."
         },
-        news: {
-            title: "Actualités Minières",
-            post1: {
-                title: "Innovations dans l'Exploitation Minière",
-                description: "Les dernières avancées technologiques dans le secteur minier..."
-            },
-            readMore: "Lire la suite"
+        nav: {
+            home: "Accueil",
+            services: "Nos Services",
+            about: "À Propos",
+            projects: "Réalisations",
+            partners: "Partenaires",
+            contact: "Contact",
+            news: "Actualités",
+            careers: "Recrutement"
         }
     },
     ar: {
@@ -299,17 +307,27 @@ const translations = {
         },
         blog: {
             title: "أخبار التعدين",
-            news: {
+            post1: {
                 title: "ابتكارات في عمليات التعدين",
-                description: "أحدث التطورات التكنولوجية في قطاع التعدين...",
-                readMore: "اقرأ المزيد"
-            }
+                description: "أحدث التطورات التكنولوجية في قطاع التعدين..."
+            },
+            readMore: "اقرأ المزيد"
         },
-        careers: "الوظائف",
+        careers: {
+            title: "انضم إلى فريقنا",
+            position: "مهندس تعدين أول",
+            description: "نبحث عن مهندس ذو خبرة للإشراف على عملياتنا...",
+            apply: "تقدم الآن"
+        },
         hero: {
             title: "من الأرض إلى الرخاء: تعزيز عمليات التعدين العالمية",
             subtitle: "شركة التعدين الرائدة في شرق إفريقيا، تقدم التميز في ست دول",
             cta: "ابدا"
+        },
+        about: {
+            title: "من نحن",
+            text1: "شركة التعدين الرائدة في شرق إفريقيا، تعمل في ستة بلدان رئيسية: جمهورية الكونغو الديمقراطية، أوغندا، بوروندي، تنزانيا، رواندا وكينيا.",
+            text2: "تتمثل خبرتنا في خدمات النقل والاستشارات الفنية والشراكات الاستراتيجية."
         },
         projects: {
             title: "مشاريعنا",
@@ -383,16 +401,18 @@ const translations = {
             partners: 'شركاء التعدين'
         },
         intro: {
-            title: "كشركة رائدة في قطاع التعدين في شرق إفريقيا، تعمل شركة إسبيرانس للتعدين في ستة بلدان رئيسية: جمهورية الكونغو الديمقراطية، أوغندا، بوروندي، تنزانيا، رواندا وكينيا.",
-            description: "تمتد خبرتنا من الخدمات اللوجستية للتعدين إلى التوظيف المتخصص، وتوريد الوقود والشراكات الاستراتيجية."
+            text1: "كشركة رائدة في قطاع التعدين في شرق إفريقيا، تعمل شركة إسبيرانس للتعدين في ستة بلدان رئيسية: جمهورية الكونغو الديمقراطية، أوغندا، بوروندي، تنزانيا، رواندا وكينيا.",
+            text2: "تمتد خبرتنا من الخدمات اللوجستية للتعدين إلى التوظيف المتخصص، وتوريد الوقود والشراكات الاستراتيجية."
         },
-        news: {
-            title: "أخبار التعدين",
-            post1: {
-                title: "ابتكارات في عمليات التعدين",
-                description: "أحدث التطورات التكنولوجية في قطاع التعدين..."
-            },
-            readMore: "اقرأ المزيد"
+        nav: {
+            home: "الرئيسية",
+            services: "خدماتنا",
+            about: "من نحن",
+            projects: "المشاريع",
+            partners: "الشركاء",
+            contact: "اتصل بنا",
+            news: "الأخبار",
+            careers: "التوظيف"
         }
     },
     zh: {
@@ -432,17 +452,27 @@ const translations = {
         },
         blog: {
             title: "矿业新闻",
-            news: {
+            post1: {
                 title: "采矿作业创新",
-                description: "矿业领域的最新技术进展...",
-                readMore: "阅读更多"
-            }
+                description: "矿业领域的最新技术进展..."
+            },
+            readMore: "阅读更多"
         },
-        careers: "招聘",
+        careers: {
+            title: "加入我们的团队",
+            position: "高级矿业工程师",
+            description: "我们正在寻找一位经验丰富的工程师来监督我们的运营...",
+            apply: "申请"
+        },
         hero: {
             title: "从地球到繁荣：提升全球矿业运营",
             subtitle: "东非领先的矿业公司，在六个国家提供卓越服务",
             cta: "开始"
+        },
+        about: {
+            title: "关于我们",
+            text1: "东非领先的矿业公司，我们在六个主要国家运营：刚果民主共和国、乌干达、布隆迪、坦桑尼亚、卢旺达和肯尼亚。",
+            text2: "我们的专业知识涵盖矿业物流、专业招聘、燃料供应和战略合作伙伴关系等方面。"
         },
         projects: {
             title: "我们的项目",
@@ -516,16 +546,18 @@ const translations = {
             partners: '个矿业合作伙伴'
         },
         intro: {
-            title: "作为东非采矿业的领导者，Espérence Mining SARL在六个主要国家开展业务：刚果民主共和国、乌干达、布隆迪、坦桑尼亚、卢旺达和肯尼亚。",
-            description: "我们的专业知识涵盖采矿物流、专业招聘、燃料供应和战略合作伙伴关系。"
+            text1: "作为东非采矿业的领导者，Espérence Mining SARL在六个主要国家开展业务：刚果民主共和国、乌干达、布隆迪、坦桑尼亚、卢旺达和肯尼亚。",
+            text2: "我们的专业知识涵盖采矿物流、专业招聘、燃料供应和战略合作伙伴关系。"
         },
-        news: {
-            title: "矿业新闻",
-            post1: {
-                title: "采矿作业创新",
-                description: "矿业领域的最新技术进展..."
-            },
-            readMore: "阅读更多"
+        nav: {
+            home: "首页",
+            services: "服务",
+            about: "关于我们",
+            projects: "项目",
+            partners: "合作伙伴",
+            contact: "联系我们",
+            news: "新闻",
+            careers: "招聘"
         }
     }
 };
@@ -701,16 +733,6 @@ function updateContent() {
         }
     }
 
-    // Mise à jour de l'introduction
-    const introSection = document.querySelector('.intro-section');
-    if (introSection) {
-        const title = introSection.querySelector('.intro-title');
-        const description = introSection.querySelector('.intro-description');
-        
-        if (title) title.textContent = getTranslation('intro.title');
-        if (description) description.textContent = getTranslation('intro.description');
-    }
-
     // Mise à jour des services
     const servicesSection = document.querySelector('#services');
     if (servicesSection) {
@@ -742,6 +764,18 @@ function updateContent() {
         });
     }
 
+    // Mise à jour de la section d'introduction
+    const aboutSection = document.querySelector('#about');
+    if (aboutSection) {
+        const title = aboutSection.querySelector('[data-translate="about.title"]');
+        const description = aboutSection.querySelector('[data-translate="about.description"]');
+        const expertise = aboutSection.querySelector('[data-translate="about.expertise"]');
+        
+        if (title) title.textContent = getTranslation('about.title');
+        if (description) description.textContent = getTranslation('about.description');
+        if (expertise) expertise.textContent = getTranslation('about.expertise');
+    }
+
     // Mise à jour de la section blog
     const blogSection = document.querySelector('#blog');
     if (blogSection) {
@@ -750,23 +784,52 @@ function updateContent() {
         const postDesc = blogSection.querySelector('p');
         const readMore = blogSection.querySelector('.read-more');
         
-        if (title) title.textContent = getTranslation('news.title');
-        if (postTitle) postTitle.textContent = getTranslation('news.post1.title');
-        if (postDesc) postDesc.textContent = getTranslation('news.post1.description');
-        if (readMore) readMore.textContent = getTranslation('news.readMore');
+        if (title) title.textContent = getTranslation('blog.title');
+        if (postTitle) postTitle.textContent = getTranslation('blog.post1.title');
+        if (postDesc) postDesc.textContent = getTranslation('blog.post1.description');
+        if (readMore) readMore.textContent = getTranslation('blog.readMore');
     }
+
+    // Mise à jour de la section carrières
+    const careersSection = document.querySelector('#careers');
+    if (careersSection) {
+        const title = careersSection.querySelector('h2');
+        const position = careersSection.querySelector('.job-card h3');
+        const description = careersSection.querySelector('.job-card p');
+        const applyBtn = careersSection.querySelector('.apply-btn');
+        
+        if (title) title.textContent = getTranslation('careers.title');
+        if (position) position.textContent = getTranslation('careers.position');
+        if (description) description.textContent = getTranslation('careers.description');
+        if (applyBtn) applyBtn.textContent = getTranslation('careers.apply');
+    }
+
+    // Mise à jour des liens de navigation
+    const navLinks = document.querySelectorAll('.nav-links a[data-translate^="nav."]');
+    navLinks.forEach(link => {
+        const key = link.getAttribute('data-translate');
+        const translation = getTranslation(key);
+        if (translation) link.textContent = translation;
+    });
 }
 
 // Fonction pour obtenir une traduction
 function getTranslation(key) {
     const keys = key.split('.');
     let translation = translations[currentLang];
+    
+    // Trouver l'élément avec l'attribut data-translate correspondant à la clé
+    const element = document.querySelector(`[data-translate="${key}"]`);
+    const originalText = element ? element.textContent : '';
+    
+    // Parcourir l'objet de traduction
     for (const k of keys) {
         if (translation && translation[k]) {
             translation = translation[k];
         } else {
-            return null;
+            // Si la traduction n'est pas trouvée, retourner le texte original
+            return originalText;
         }
     }
-    return translation;
+    return translation || originalText;
 }
