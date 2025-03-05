@@ -128,6 +128,35 @@ const translations = {
             contact: "Contact",
             news: "News",
             careers: "Careers"
+        },
+        application: {
+            title: "Join Our Team",
+            subtitle: "Let's build the future of the mining industry in Africa together",
+            formTitle: "Application Form",
+            firstName: "First Name",
+            lastName: "Last Name",
+            email: "Email",
+            phone: "Phone",
+            position: "Desired Position",
+            selectPosition: "Select a position",
+            experience: "Years of Experience",
+            selectExperience: "Select your experience",
+            education: "Education",
+            motivation: "Cover Letter",
+            cv: "CV (PDF, DOC, DOCX)",
+            noFile: "No file chosen",
+            chooseFile: "Choose file",
+            consent: "I agree that my data will be processed for my application",
+            submit: "Submit Application"
+        },
+        footer: {
+            contact: "Contact",
+            email: "Email: info@esperencemining.com",
+            phone: "Phone: +243 999 541 920",
+            locations: "Locations",
+            locations1: "DRC | Uganda | Burundi",
+            locations2: "Tanzania | Rwanda | Kenya",
+            copyright: " 2024 Espérence Mining SARL. All rights reserved."
         }
     },
     fr: {
@@ -239,16 +268,6 @@ const translations = {
                 cta: "Contactez-nous"
             }
         },
-        blog: {
-            title: "Actualités Minières",
-            readMore: "Lire la suite"
-        },
-        careers: {
-            title: "Rejoignez Notre Équipe",
-            position: "Ingénieur Minier Senior",
-            description: "Nous recherchons un ingénieur expérimenté pour superviser nos opérations...",
-            apply: "Postuler"
-        },
         stats: {
             experience: 'Années d\'Expérience',
             countries: 'Pays',
@@ -268,6 +287,35 @@ const translations = {
             contact: "Contact",
             news: "Actualités",
             careers: "Recrutement"
+        },
+        application: {
+            title: "Rejoignez Notre Équipe",
+            subtitle: "Construisons ensemble l'avenir de l'industrie minière en Afrique",
+            formTitle: "Formulaire de Candidature",
+            firstName: "Prénom",
+            lastName: "Nom",
+            email: "Email",
+            phone: "Téléphone",
+            position: "Poste Souhaité",
+            selectPosition: "Sélectionnez un poste",
+            experience: "Années d'Expérience",
+            selectExperience: "Sélectionnez votre expérience",
+            education: "Formation",
+            motivation: "Lettre de Motivation",
+            cv: "CV (PDF, DOC, DOCX)",
+            noFile: "Aucun fichier choisi",
+            chooseFile: "Choisir un fichier",
+            consent: "J'accepte que mes données soient traitées pour ma candidature",
+            submit: "Envoyer ma Candidature"
+        },
+        footer: {
+            contact: "Contact",
+            email: "Email: info@esperencemining.com",
+            phone: "Phone: +243 999 541 920",
+            locations: "Locations",
+            locations1: "DRC | Uganda | Burundi",
+            locations2: "Tanzania | Rwanda | Kenya",
+            copyright: " 2024 Espérence Mining SARL. Tous droits réservés."
         }
     },
     ar: {
@@ -413,6 +461,35 @@ const translations = {
             contact: "اتصل بنا",
             news: "الأخبار",
             careers: "التوظيف"
+        },
+        application: {
+            title: "انضم إلى فريقنا",
+            subtitle: "لنبني معاً مستقبل صناعة التعدين في أفريقيا",
+            formTitle: "نموذج التقديم",
+            firstName: "الاسم الأول",
+            lastName: "اسم العائلة",
+            email: "البريد الإلكتروني",
+            phone: "الهاتف",
+            position: "المنصب المطلوب",
+            selectPosition: "اختر منصباً",
+            experience: "سنوات الخبرة",
+            selectExperience: "اختر خبرتك",
+            education: "التعليم",
+            motivation: "خطاب التغطية",
+            cv: "السيرة الذاتية (PDF, DOC, DOCX)",
+            noFile: "لم يتم اختيار ملف",
+            chooseFile: "اختر ملفاً",
+            consent: "أوافق على معالجة بياناتي لطلب التوظيف",
+            submit: "إرسال الطلب"
+        },
+        footer: {
+            contact: "اتصل بنا",
+            email: "البريد الإلكتروني: info@esperencemining.com",
+            phone: "الهاتف: +243 999 541 920",
+            locations: "المواقع",
+            locations1: "جمهورية الكونغو | أوغندا | بوروندي",
+            locations2: "تنزانيا | رواندا | كينيا",
+            copyright: " 2024 إسبيرانس للتعدين. جميع الحقوق محفوظة."
         }
     },
     zh: {
@@ -558,6 +635,35 @@ const translations = {
             contact: "联系我们",
             news: "新闻",
             careers: "招聘"
+        },
+        application: {
+            title: "加入我们的团队",
+            subtitle: "让我们共同建设非洲采矿业的未来",
+            formTitle: "申请表",
+            firstName: "名字",
+            lastName: "姓氏",
+            email: "电子邮件",
+            phone: "电话",
+            position: "期望职位",
+            selectPosition: "选择职位",
+            experience: "工作经验",
+            selectExperience: "选择工作经验",
+            education: "教育背景",
+            motivation: "求职信",
+            cv: "简历 (PDF, DOC, DOCX)",
+            noFile: "未选择文件",
+            chooseFile: "选择文件",
+            consent: "我同意处理我的申请数据",
+            submit: "提交申请"
+        },
+        footer: {
+            contact: "联系方式",
+            email: "电子邮件: info@esperencemining.com",
+            phone: "电话: +243 999 541 920",
+            locations: "地点",
+            locations1: "刚果民主共和国 | 乌干达 | 布隆迪",
+            locations2: "坦桑尼亚 | 卢旺达 | 肯尼亚",
+            copyright: " 2024 Espérence Mining SARL. 保留所有权利。"
         }
     }
 };
@@ -802,6 +908,34 @@ function updateContent() {
         if (position) position.textContent = getTranslation('careers.position');
         if (description) description.textContent = getTranslation('careers.description');
         if (applyBtn) applyBtn.textContent = getTranslation('careers.apply');
+    }
+
+    // Mise à jour du formulaire de candidature
+    const applicationSection = document.querySelector('.application-section');
+    if (applicationSection) {
+        const elements = applicationSection.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            const translation = getTranslation(key);
+            if (translation) {
+                if (element.tagName === 'INPUT' && element.type === 'placeholder') {
+                    element.placeholder = translation;
+                } else {
+                    element.textContent = translation;
+                }
+            }
+        });
+    }
+
+    // Mise à jour du footer
+    const footer = document.querySelector('footer');
+    if (footer) {
+        const elements = footer.querySelectorAll('[data-translate]');
+        elements.forEach(element => {
+            const key = element.getAttribute('data-translate');
+            const translation = getTranslation(key);
+            if (translation) element.textContent = translation;
+        });
     }
 
     // Mise à jour des liens de navigation
