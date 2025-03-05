@@ -300,3 +300,46 @@ function initSectionAnimations() {
 document.addEventListener('DOMContentLoaded', function() {
     initSectionAnimations();
 });
+
+// Gestion du formulaire de candidature
+document.addEventListener('DOMContentLoaded', function() {
+    const applicationForm = document.getElementById('application-form');
+    if (applicationForm) {
+        const fileInput = document.getElementById('cv');
+        const fileLabel = document.querySelector('.file-input-label');
+
+        // Mise à jour du label du fichier
+        fileInput.addEventListener('change', function() {
+            const fileName = this.files[0]?.name;
+            if (fileName) {
+                fileLabel.innerHTML = `<i class="fas fa-file-alt"></i> ${fileName}`;
+            } else {
+                fileLabel.innerHTML = `<i class="fas fa-upload"></i> Choisir un fichier`;
+            }
+        });
+
+        // Soumission du formulaire
+        applicationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Simulation d'envoi
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Envoi en cours...`;
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                submitBtn.innerHTML = `<i class="fas fa-check"></i> Candidature envoyée !`;
+                submitBtn.style.background = 'linear-gradient(135deg, #28a745, #34ce57)';
+                
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    applicationForm.reset();
+                    fileLabel.innerHTML = `<i class="fas fa-upload"></i> Choisir un fichier`;
+                }, 3000);
+            }, 2000);
+        });
+    }
+});

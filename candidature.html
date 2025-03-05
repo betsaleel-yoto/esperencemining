@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidature - Espérence Mining SARL</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="./images/IMG-20250303-WA0005~2.jpg" type="image/x-icon">
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/IMG-20250303-WA0005_2-removebg-preview.png" alt="Espérence Mining Logo">
+            </div>
+            <div class="nav-controls">
+                <div class="menu-icon">
+                    <svg viewBox="0 0 24 24" class="hamburger">
+                        <rect y="2" width="24" height="2"></rect>
+                        <rect y="11" width="24" height="2"></rect>
+                        <rect y="20" width="24" height="2"></rect>
+                    </svg>
+                </div>
+                <button class="lang-switch" onclick="toggleLanguage()">FR</button>
+            </div>
+            <div class="nav-links" style="margin-top: 2.5rem;">
+                <div class="close-icon">
+                    <svg viewBox="0 0 24 24" class="icon">
+                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                    </svg>
+                </div>
+                <a href="index.html">Accueil</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#about">À Propos</a>
+                <a href="index.html#projects">Projets</a>
+                <a href="index.html#partners">Partenaires</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="index.html#blog">Actualités</a>
+                <a href="index.html#careers">Recrutement</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="application-hero">
+            <div class="hero-content">
+                <h1>Rejoignez Notre Équipe</h1>
+                <p>Construisons ensemble l'avenir de l'industrie minière en Afrique</p>
+            </div>
+        </section>
+
+        <section class="application-form">
+            <div class="form-container">
+                <h2>Formulaire de Candidature</h2>
+                <form id="application-form" class="premium-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="firstName">Prénom</label>
+                            <input type="text" id="firstName" name="firstName" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Nom</label>
+                            <input type="text" id="lastName" name="lastName" required>
+                        </div>
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="position">Poste Souhaité</label>
+                        <select id="position" name="position" required>
+                            <option value="">Sélectionnez un poste</option>
+                            <option value="mining-engineer">Ingénieur Minier</option>
+                            <option value="geologist">Géologue</option>
+                            <option value="project-manager">Chef de Projet</option>
+                            <option value="technician">Technicien</option>
+                            <option value="logistics">Responsable Logistique</option>
+                            <option value="other">Autre</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="experience">Années d'Expérience</label>
+                        <select id="experience" name="experience" required>
+                            <option value="">Sélectionnez votre expérience</option>
+                            <option value="0-2">0-2 ans</option>
+                            <option value="3-5">3-5 ans</option>
+                            <option value="5-10">5-10 ans</option>
+                            <option value="10+">10+ ans</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="education">Formation</label>
+                        <input type="text" id="education" name="education" placeholder="Ex: Master en Géologie" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Lettre de Motivation</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <div class="form-group file-upload">
+                        <label for="cv">CV (PDF, DOC, DOCX)</label>
+                        <div class="file-input-container">
+                            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                            <span class="file-input-label">
+                                <i class="fas fa-upload"></i>
+                                Choisir un fichier
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkmark"></span>
+                            J'accepte que mes données soient traitées pour ma candidature
+                        </label>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i>
+                        Envoyer ma Candidature
+                    </button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <p>Email: info@esperencemining.com</p>
+                <p>Phone: +243 999 541 920</p>
+            </div>
+            <div class="footer-section">
+                <h4>Locations</h4>
+                <p>DRC | Uganda | Burundi</p>
+                <p>Tanzania | Rwanda | Kenya</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Espérence Mining SARL. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
