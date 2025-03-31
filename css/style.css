@@ -19,14 +19,22 @@
 }
 
 .partner-logo {
-    width: 80px;
-    height: 80px;
+    width: 160px;
+    height: 160px;
     margin: 0 auto 1.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #C6A300, #dab94c);
-    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.partner-logo_kamoto {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
 }
 

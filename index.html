@@ -17,12 +17,6 @@
             </div>
             <div class="nav-controls">
                 <div class="menu-icon">
-                    <div class="pointing-arrow">
-                        <span>Cliquez ici</span>
-                        <svg viewBox="0 0 24 24" class="icon">
-                            <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
-                        </svg>
-                    </div>
                     <svg class="hamburger" viewBox="0 0 100 100">
                         <rect width="80" height="8" x="10" y="25" rx="4"></rect>
                         <rect width="80" height="8" x="10" y="46" rx="4"></rect>
@@ -35,12 +29,16 @@
                         <option value="en">EN</option>
                         <option value="ar">عر</option>
                         <option value="zh">中</option>
+                        <option value="sw">SW</option>
+                        <option value="kin">KIN</option>
                     </select>
                     <div class="lang-btns-desktop">
                         <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
                         <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
                         <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
                         <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+                        <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
+                        <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
                     </div>
                 </div>
             </div>
@@ -149,7 +147,7 @@
             <div class="partners-grid">
                 <div class="partner-card animate slide-in-left delay-200">
                     <div class="partner-logo">
-                        <i class="fas fa-gas-pump"></i>
+                        <img src="https://concordiaplglobal.com/images/180/13348149/ConcordiaGlobalLogo2025.png" alt="partner-logoenaire" class="partner-logo">
                     </div>
                     <h3 data-translate="partners.partner1.title">Concordia Petroleum Global</h3>
                     <p data-translate="partners.partner1.description">Partenaire Diesel</p>
@@ -160,7 +158,7 @@
 
                 <div class="partner-card animate slide-in-left delay-300">
                     <div class="partner-logo">
-                        <i class="fas fa-truck-loading"></i>
+                        <img src="data:image/png;base64,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" alt="partner-logoenaire" class="partner-logo">
                     </div>
                     <h3 data-translate="partners.partner2.title">SANY</h3>
                     <p data-translate="partners.partner2.description">Partenaire équipements miniers</p>
@@ -171,7 +169,7 @@
 
                 <div class="partner-card animate slide-in-left delay-400">
                     <div class="partner-logo">
-                        <i class="fas fa-shipping-fast"></i>
+                        <img src="https://www.aglgroup.com/app/uploads/2023/02/agl_bleu.svg" alt="partner-logoenaire" class="partner-logo">
                     </div>
                     <h3 data-translate="partners.partner3.title">AGL</h3>
                     <p data-translate="partners.partner3.description">Partenaire logistique</p>
@@ -182,7 +180,7 @@
 
                 <div class="partner-card animate slide-in-left delay-500">
                     <div class="partner-logo">
-                        <i class="fas fa-users"></i>
+                        <img src="https://www.kamoacopper.com/wp-content/uploads/2024/06/Kamoa-logo-with-shape-red.png" alt="partner-logoenaire" class="partner-logo">
                     </div>
                     <h3 data-translate="partners.partner4.title">Kamoa Copper S.A</h3>
                     <p data-translate="partners.partner4.description">Partenaire Man Power</p>
@@ -193,7 +191,7 @@
 
                 <div class="partner-card animate slide-in-left delay-600">
                     <div class="partner-logo">
-                        <i class="fas fa-users"></i>
+                        <img src="https://www.kamotocoppercompany.com/dam/jcr:8707c276-9037-4329-93f9-c3936ebfc32a/logo138px-01.svg" alt="partner-logoenaire" class="partner-logo_kamoto">
                     </div>
                     <h3 data-translate="partners.partner5.title">KCC</h3>
                     <p data-translate="partners.partner5.description">Partenaire Man Power</p>
@@ -204,7 +202,7 @@
 
                 <div class="partner-card animate slide-in-left delay-700">
                     <div class="partner-logo">
-                        <i class="fas fa-users"></i>
+                        <img src="https://www.kipushicorp.com/img/KICO.png" alt="partner-logoenaire" class="partner-logo">
                     </div>
                     <h3 data-translate="partners.partner6.title">Kipushi Corporation S.A (KICO)</h3>
                     <p data-translate="partners.partner6.description">Partenaire Man Power</p>

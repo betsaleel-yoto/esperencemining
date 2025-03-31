@@ -641,6 +641,306 @@ const translations = {
             locations2: "坦桑尼亚 | 卢旺达 | 肯尼亚",
             copyright: " 2024 Espérence Mining SARL. 保留所有权利。"
         }
+    },
+    sw: {
+        "home": "Nyumbani",
+        "services": {
+            "title": "Huduma Zetu",
+            "logistics": {
+                "title": "Usafirishaji",
+                "description": "Usimamizi wa kina na usafirishaji wa vifaa vya uchimbaji madini"
+            },
+            "manpower": {
+                "title": "Nguvukazi",
+                "description": "Uajiri wa wataalamu kwa shughuli za uchimbaji chini ya ardhi"
+            },
+            "fuel": {
+                "title": "Ugavi wa Mafuta",
+                "description": "Ugavi wa dizeli ya 50 PPM kwa shughuli za uchimbaji madini"
+            },
+            "partnerships": {
+                "title": "Ushirikiano wa Madini",
+                "description": "Ushirikiano wa kimkakati kwa ufadhili na shughuli za uchimbaji"
+            }
+        },
+        "about": {
+            "title": "Kuhusu Espérence Mining",
+            "description": "Kiongozi katika sekta ya uchimbaji madini Afrika Mashariki, Espérence Mining SARL inafanya kazi katika nchi sita kuu: DRC, Uganda, Burundi, Tanzania, Rwanda na Kenya.",
+            "expertise": "Utaalamu wetu unahusisha usafirishaji wa madini, uajiri wa wataalamu, ugavi wa mafuta, na ushirikiano wa kimkakati."
+        },
+        "projects": "Miradi",
+        "partners": "Washirika",
+        "contact": {
+            "title": "Wasiliana Nasi",
+            "name": "Jina",
+            "email": "Barua pepe",
+            "message": "Ujumbe",
+            "submit": "Tuma"
+        },
+        "blog": {
+            "title": "Habari za Madini",
+            "post1": {
+                "title": "Ubunifu katika Shughuli za Uchimbaji Madini",
+                "description": "Maendeleo ya hivi karibuni ya kiteknolojia katika sekta ya madini..."
+            },
+            "readMore": "Soma Zaidi"
+        },
+        "careers": {
+            "title": "Jiunge na Timu Yetu",
+            "position": "Mhandisi Mkuu wa Madini",
+            "description": "Tunatafuta mhandisi mwenye uzoefu kusimamia shughuli zetu...",
+            "apply": "Tuma Maombi"
+        },
+        "hero": {
+            "title": "Kutoka Ardhi hadi Ustawi: Kuboresha Shughuli za Uchimbaji Duniani",
+            "subtitle": "Mkandarasi bora wa uchimbaji madini Afrika Mashariki, akihudumu katika mataifa sita",
+            "cta": "Anza Sasa"
+        },
+        "projects": {
+            "title": "Miradi Yetu",
+            "project1": {
+                "title": "Shughuli za Madini DRC",
+                "description": "Mradi mkubwa wa uchimbaji na vifaa vya kisasa"
+            },
+            "project2": {
+                "title": "Usafirishaji Tanzania",
+                "description": "Usafirishaji na usimamizi wa vifaa vya uchimbaji madini"
+            }
+        },
+        "partners": {
+            "title": "Washirika na Wateja Wetu",
+            "partner1": {
+                "title": "Concordia Petroleum Global",
+                "description": "Mshirika wa Mafuta",
+                "type": "Msambazaji wa Mafuta"
+            },
+            "partner2": {
+                "title": "SANY",
+                "description": "Mshirika wa Vifaa vya Uchimbaji",
+                "type": "Msambazaji wa Vifaa"
+            },
+            "partner3": {
+                "title": "AGL",
+                "description": "Mshirika wa Usafirishaji",
+                "type": "Huduma za Usafirishaji"
+            },
+            "partner4": {
+                "title": "Kamoa Copper S.A",
+                "description": "Mshirika wa Nguvukazi",
+                "type": "Mteja wa Uchimbaji Madini"
+            },
+            "partner5": {
+                "title": "KCC",
+                "description": "Mshirika wa Nguvukazi",
+                "type": "Mteja wa Uchimbaji Madini"
+            },
+            "partner6": {
+                "title": "Kipushi Corporation S.A (KICO)",
+                "description": "Mshirika wa Nguvukazi",
+                "type": "Mteja wa Uchimbaji Madini"
+            },
+            "becomePartner": {
+                "title": "Kuwa Mshirika Wetu",
+                "description": "Jiunge na mtandao wetu wa ubora katika sekta ya uchimbaji madini",
+                "cta": "Wasiliana Nasi"
+            }
+        },
+        "stats": {
+            "experience": "Miaka ya Uzoefu",
+            "countries": "Nchi",
+            "projects": "Miradi Iliyokamilishwa",
+            "partners": "Washirika wa Madini"
+        },
+        "intro": {
+            "text1": "Kiongozi katika sekta ya uchimbaji madini Afrika Mashariki, Espérence Mining SARL inafanya kazi katika nchi sita kuu: DRC, Uganda, Burundi, Tanzania, Rwanda na Kenya.",
+            "text2": "Utaalamu wetu unahusisha usafirishaji wa madini, uajiri wa wataalamu, ugavi wa mafuta, na ushirikiano wa kimkakati."
+        },
+        "nav": {
+            "home": "Nyumbani",
+            "services": "Huduma Zetu",
+            "about": "Kuhusu",
+            "projects": "Miradi",
+            "partners": "Washirika",
+            "contact": "Wasiliana Nasi",
+            "news": "Habari",
+            "careers": "Ajira"
+        },
+        "application": {
+            "title": "Jiunge na Timu Yetu",
+            "subtitle": "Tujenge mustakabali wa sekta ya uchimbaji madini Afrika pamoja",
+            "formTitle": "Fomu ya Maombi",
+            "firstName": "Jina la Kwanza",
+            "lastName": "Jina la Mwisho",
+            "email": "Barua pepe",
+            "phone": "Simu",
+            "position": "Nafasi Unayotaka",
+            "selectPosition": "Chagua nafasi",
+            "experience": "Miaka ya Uzoefu",
+            "selectExperience": "Chagua uzoefu wako",
+            "education": "Elimu",
+            "motivation": "Barua ya Maombi",
+            "cv": "CV (PDF, DOC, DOCX)",
+            "noFile": "Hakuna faili iliyochaguliwa",
+            "chooseFile": "Chagua faili",
+            "consent": "Nakubali kuwa data yangu itachakatwa kwa maombi yangu",
+            "submit": "Tuma Maombi"
+        },
+        "footer": {
+            "contact": "Wasiliana Nasi",
+            "email": "Barua pepe: info@esperencemining.com",
+            "phone": "Simu: +243 999 541 920",
+            "locations": "Maeneo",
+            "locations1": "DRC | Uganda | Burundi",
+            "locations2": "Tanzania | Rwanda | Kenya",
+            "copyright": " 2024 Espérence Mining SARL. Haki zote zimehifadhiwa."
+        }
+    },
+    kin: {
+        home: "Ahabanza",
+        services: {
+            title: "Serivisi Zacu",
+            logistics: {
+                title: "Ubwikorezi",
+                description: "Gucunga no gutwara ibikoresho byo gucukura amabuye y'agaciro"
+            },
+            manpower: {
+                title: "Abakozi",
+                description: "Gushaka abakozi b'inzobere mu bucukuzi bw'amabuye y'agaciro"
+            },
+            fuel: {
+                title: "Itangwa rya Lisansi",
+                description: "Itangwa rya lisansi ya 50 PPM ku bikorwa by'ubucukuzi"
+            },
+            partnerships: {
+                title: "Ubufatanye mu Bucukuzi",
+                description: "Ubufatanye bw'ingenzi mu gutera inkunga no gutunganya ubucukuzi"
+            }
+        },
+        about: {
+            title: "Ibyerekeye Espérence Mining",
+            description: "Ubuyobozi bukuru mu rwego rw'ubucukuzi muri Afurika y'Iburasirazuba, Espérence Mining SARL ikorera mu bihugu bitandatu: RDC, Uganda, Uburundi, Tanzania, Rwanda na Kenya.",
+            expertise: "Ubumenyi bwacu bujyana n'ubwikorezi bw'ubucukuzi, gushaka abakozi b'inzobere, itangwa rya lisansi no gufatanya mu bikorwa by'ubucukuzi."
+        },
+        projects: {
+            title: "Imishinga Yacu",
+            project1: {
+                title: "Ibikorwa by'Ubucukuzi muri RDC",
+                description: "Umushinga munini wo gucukura amabuye y'agaciro hifashishijwe ibikoresho bigezweho"
+            },
+            project2: {
+                title: "Ubwikorezi muri Tanzania",
+                description: "Gutwara no gucunga ibikoresho by'ubucukuzi"
+            }
+        },
+        partners: {
+            title: "Abafatanyabikorwa n'Abakiliya Bacu",
+            partner1: {
+                title: "Concordia Petroleum Global",
+                description: "Umutangabuhinzi wa Lisansi",
+                type: "Utanga Lisansi"
+            },
+            partner2: {
+                title: "SANY",
+                description: "Umutangabuhinzi w'Ibikoresho by'Ubucukuzi",
+                type: "Utanga Ibikoresho"
+            },
+            partner3: {
+                title: "AGL",
+                description: "Umutangabuhinzi w'Ubwikorezi",
+                type: "Serivisi z'Ubwikorezi"
+            },
+            partner4: {
+                title: "Kamoa Copper S.A",
+                description: "Umutangabuhinzi w'Abakozi",
+                type: "Umukiliya w'Ubucukuzi"
+            },
+            partner5: {
+                title: "KCC",
+                description: "Umutangabuhinzi w'Abakozi",
+                type: "Umukiliya w'Ubucukuzi"
+            },
+            partner6: {
+                title: "Kipushi Corporation S.A (KICO)",
+                description: "Umutangabuhinzi w'Abakozi",
+                type: "Umukiliya w'Ubucukuzi"
+            },
+            becomePartner: {
+                title: "Ba Umufatanyabikorwa Wacu",
+                description: "Jya mu itsinda ry'ubudashyikirwa mu rwego rw'ubucukuzi",
+                cta: "Twandikire"
+            }
+        },
+        stats: {
+            experience: "Imyaka y'Ubunararibonye",
+            countries: "Ibihugu",
+            projects: "Imishinga Igiye kurangira",
+            partners: "Abafatanyabikorwa b'Ubucukuzi"
+        },
+        contact: {
+            title: "Twandikire",
+            name: "Izina",
+            email: "Imeyili",
+            message: "Ubutumwa",
+            submit: "Ohereza"
+        },
+        blog: {
+            title: "Amakuru y'Ubucukuzi",
+            post1: {
+                title: "Udushya mu Bucukuzi",
+                description: "Iterambere rishya mu ikoranabuhanga ry'ubucukuzi..."
+            },
+            readMore: "Soma Byinshi"
+        },
+        careers: {
+            title: "Jya mu Ikipe Yacu",
+            position: "Injeniyeri Mukuru w'Ubucukuzi",
+            description: "Turashaka injeniyeri w'inzobere mu kuyobora ibikorwa byacu...",
+            apply: "Saba Ubu"
+        },
+        hero: {
+            title: "Kuva mu Butaka Kugera ku Bukire: Kuzamura Ubucukuzi ku Isi Hose",
+            subtitle: "Sosiyete iyobora ubucukuzi muri Afurika y'Iburasirazuba, ikorera mu bihugu bitandatu",
+            cta: "Tangira Ubu"
+        },
+        nav: {
+            home: "Ahabanza",
+            services: "Serivisi Zacu",
+            about: "Ibyerekeye",
+            projects: "Imishinga",
+            partners: "Abafatanyabikorwa",
+            contact: "Twandikire",
+            news: "Amakuru",
+            careers: "Imirimo"
+        },
+        application: {
+            title: "Jya mu Ikipe Yacu",
+            subtitle: "Tuzamure ahazaza h'ubucukuzi muri Afurika hamwe",
+            formTitle: "Ifishi yo Gusaba Akazi",
+            firstName: "Izina rya Mbere",
+            lastName: "Izina ry'Irangamuntu",
+            email: "Imeyili",
+            phone: "Telefone",
+            position: "Umwanya ushaka",
+            selectPosition: "Hitamo umwanya",
+            experience: "Imyaka y'Ubunararibonye",
+            selectExperience: "Hitamo ubunararibonye bwawe",
+            education: "Amashuri",
+            motivation: "Ibaruwa y'Ubwiyemezi",
+            cv: "CV (PDF, DOC, DOCX)",
+            noFile: "Nta faili wahisemo",
+            chooseFile: "Hitamo faili",
+            consent: "Nemeza ko amakuru yanjye azakoreshwa mu gusaba akazi",
+            submit: "Ohereza Gusaba Akazi"
+        },
+        footer: {
+            contact: "Twandikire",
+            email: "Imeyili: info@esperencemining.com",
+            phone: "Telefone: +243 999 541 920",
+            locations: "Aho Duhari",
+            locations1: "RDC | Uganda | Uburundi",
+            locations2: "Tanzania | Rwanda | Kenya",
+            copyright: "© 2024 Espérence Mining SARL. Uburenganzira bwose burabitswe."
+        }
     }
 };
 
