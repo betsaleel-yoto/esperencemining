@@ -221,15 +221,16 @@
         <section id="contact" class="contact section-animate">
             <h2 class="animate fade-in-up" data-translate="contact.title">Start Your Mining Project</h2>
             <div class="contact-container animate slide-in-right delay-200">
-                <form id="contact-form">
+                <form id="contact-form" action="https://formspree.io/f/xzzejbpv"
+                method="POST">
                     <div class="form-group">
-                        <input type="text" placeholder="Your Name" required>
+                        <input type="text" placeholder="Your Name" name="Name" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" placeholder="Your Email" required>
+                        <input type="email" placeholder="Your Email" name="email" required>
                     </div>
                     <div class="form-group">
-                        <select required>
+                        <select name="service" required>
                             <option value="">Select Service</option>
                             <option value="logistics">Logistics</option>
                             <option value="manpower">Man Power</option>
@@ -238,7 +239,7 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <textarea placeholder="Your Message" required></textarea>
+                        <textarea placeholder="Your Message" name="message" required></textarea>
                     </div>
                     <button type="submit" class="submit-btn animate slide-in-right delay-300" data-translate="contact.send">Send Message</button>
                 </form>

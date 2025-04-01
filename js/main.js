@@ -989,13 +989,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Gestion du formulaire de contact
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert(currentLang === 'en' ? 'Thank you for your message. We will contact you soon!' : 'Merci pour votre message. Nous vous contacterons bientôt !');
-        });
-    }
+    
 
     // Animation des sections au scroll
     const sections = document.querySelectorAll('.section-animate');
