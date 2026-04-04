@@ -4,180 +4,784 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Candidature - Espérence Mining SARL</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="shortcut icon" href="./images/IMG-20250303-WA0005~2.jpg" type="image/x-icon">
+    <style>
+        /* ===== VARIABLES (identique à la page d'accueil) ===== */
+        :root {
+            --gold: #C6A300;
+            --gold-light: #E8C84A;
+            --gold-pale: #f5e99a;
+            --copper: #B87333;
+            --obsidian: #FEFEF7;
+            --dark: #F8F6F0;
+            --dark-2: #FFFFFF;
+            --dark-3: #F0EEE9;
+            --stone: #E5E2DA;
+            --ash: #5F5F5F;
+            --silver: #6F6F6F;
+            --light: #1A1A1A;
+            --white: #000000;
+            --red-deep: #8B0000;
+            --border-light: rgba(0,0,0,0.08);
+            --shadow-sm: 0 4px 20px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.05);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: var(--font-body);
+            background: var(--obsidian);
+            color: var(--light);
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        /* Cursor personnalisé (identique) */
+        .cursor { 
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px; 
+            background: var(--gold); border-radius: 50%; pointer-events: none; 
+            z-index: 99999; transform: translate(-50%, -50%); 
+            transition: width 0.2s, height 0.2s, background 0.2s; 
+            mix-blend-mode: difference; 
+        }
+        .cursor-ring { 
+            position: fixed; top: 0; left: 0; width: 40px; height: 40px; 
+            border: 1px solid rgba(198,163,0,0.4); border-radius: 50%; 
+            pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); 
+            transition: all 0.15s ease; 
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--stone); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+        /* Bruit de fond subtil */
+        body::after { 
+            content: ''; position: fixed; inset: 0; 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E"); 
+            pointer-events: none; z-index: 99990; opacity: 0.2; 
+        }
+
+        /* ===== NAVBAR (identique à l'accueil) ===== */
+        .navbar { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 9000; 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 4rem; height: 80px; transition: all 0.5s ease; 
+            background: rgba(254,254,247,0.92); backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .navbar.scrolled { 
+            background: rgba(254,254,247,0.98); 
+            backdrop-filter: blur(20px); 
+            height: 64px;
+            box-shadow: var(--shadow-sm);
+        }
+        .logo { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 48px; width: auto; filter: brightness(0.95); }
+
+        /* navigation mobile / desktop – on garde les mêmes classes que l'accueil pour cohérence */
+        .nav-controls { display: flex; align-items: center; gap: 1rem; }
+        .menu-icon { display: none; cursor: pointer; position: relative; }
+        .pointing-arrow { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.05); padding: 6px 12px; border-radius: 30px; }
+        .pointing-arrow span { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); }
+        .pointing-arrow svg { width: 18px; fill: var(--gold); }
+        .hamburger { width: 32px; cursor: pointer; }
+        .hamburger rect { fill: var(--gold); transition: all 0.3s; }
+        .lang-buttons { display: flex; gap: 8px; align-items: center; }
+        .lang-select { display: none; background: #fff; border: 1px solid rgba(0,0,0,0.1); padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; font-family: var(--font-body); }
+        .lang-btns-desktop { display: flex; gap: 4px; }
+        .lang-btn { 
+            background: transparent; border: 1px solid rgba(0,0,0,0.15); 
+            color: rgba(26,26,26,0.7); padding: 4px 10px; border-radius: 2px; 
+            font-size: 0.65rem; letter-spacing: 0.1em; cursor: pointer; 
+            transition: all 0.3s; font-family: var(--font-body); 
+        }
+        .lang-btn:hover, .lang-btn.active { background: var(--gold); border-color: var(--gold); color: #fff; }
+        .nav-links { 
+            position: fixed; inset: 0; background: rgba(254,254,247,0.98); backdrop-filter: blur(30px); 
+            z-index: 8000; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 2rem; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); 
+        }
+        .nav-links.open { transform: translateX(0); }
+        .close-icon { position: absolute; top: 2rem; right: 2rem; cursor: pointer; }
+        .close-icon svg { width: 32px; fill: var(--gold); }
+        .nav-links a { 
+            font-family: var(--font-display); font-size: 3rem; color: var(--light); 
+            text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; 
+            opacity: 0; transform: translateX(30px); 
+        }
+        .nav-links.open a { opacity: 1; transform: translateX(0); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .nav-links a:hover { color: var(--gold); }
+
+        /* Hero section */
+        .application-hero {
+            position: relative;
+            height: 50vh;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/60008/brown-coal-energy-garzweiler-bucket-wheel-excavators-60008.jpeg') center/cover no-repeat;
+            margin-top: 80px;
+        }
+        .application-hero .hero-content h1 {
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 5rem);
+            letter-spacing: 0.05em;
+            color: #fff;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            margin-bottom: 1rem;
+        }
+        .application-hero .hero-content p {
+            font-size: 1rem;
+            color: rgba(255,255,255,0.9);
+            font-weight: 400;
+            letter-spacing: 0.02em;
+        }
+
+        /* Formulaire */
+        .application-form {
+            padding: 5rem 4rem;
+            background: var(--obsidian);
+        }
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 3rem;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-light);
+        }
+        .form-container h2 {
+            font-family: var(--font-display);
+            font-size: 2.5rem;
+            letter-spacing: 0.05em;
+            color: #000;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .premium-form .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.1);
+            color: #000;
+            padding: 14px 16px;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 0;
+        }
+        .form-group input:focus, 
+        .form-group select:focus, 
+        .form-group textarea:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 1px rgba(198,163,0,0.1);
+        }
+        .file-upload .file-input-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 0.1px;
+            height: 0.1px;
+        }
+        .file-input-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--dark);
+            border: 1px solid rgba(0,0,0,0.1);
+            padding: 12px 24px;
+            cursor: pointer;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--ash);
+            transition: all 0.3s;
+        }
+        .file-input-label:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+        .checkbox-group {
+            margin: 2rem 0;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--ash);
+        }
+        .checkbox-container input {
+            width: auto;
+            margin-right: 8px;
+            transform: scale(1.1);
+        }
+        .submit-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: var(--gold);
+            color: #000;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            padding: 16px 32px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.4s;
+            clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+            position: relative;
+            overflow: hidden;
+        }
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(255,255,200,0.4);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .submit-btn:hover::before {
+            transform: translateX(0);
+        }
+        .submit-btn i, .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Footer (identique accueil) */
+        footer {
+            background: #fff;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            margin-top: 2rem;
+        }
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 3rem 4rem;
+        }
+        .contact-info h3, .footer-section h4 {
+            font-family: var(--font-display);
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            color: var(--gold);
+            margin-bottom: 1rem;
+        }
+        .contact-info p, .footer-section p {
+            font-size: 0.8rem;
+            color: var(--ash);
+            line-height: 1.6;
+        }
+        .footer-bottom {
+            padding: 1.5rem 4rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.4);
+        }
+
+        /* Loader */
+        #loader { 
+            position: fixed; inset: 0; background: #fff; z-index: 99999; 
+            display: flex; align-items: center; justify-content: center; 
+            flex-direction: column; gap: 2rem; transition: opacity 0.8s ease, visibility 0.8s; 
+        }
+        #loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; }
+        .loader-bar-wrap { width: 200px; height: 1px; background: rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+        .loader-bar { position: absolute; top: 0; left: 0; bottom: 0; background: var(--gold); width: 0%; animation: loadBar 1.8s ease forwards; }
+        @keyframes loadBar { 0% { width: 0%; } 60% { width: 80%; } 100% { width: 100%; } }
+        .loader-num { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.3em; color: rgba(0,0,0,0.3); }
+
+        /* Responsive */
+        @media (max-width: 900px) {
+            .navbar { padding: 0 1.5rem; }
+            .lang-btns-desktop { display: none; }
+            .lang-select { display: block; }
+            .menu-icon { display: flex; align-items: center; gap: 12px; }
+            .pointing-arrow { display: flex; }
+            .application-form { padding: 3rem 1.5rem; }
+            .form-container { padding: 2rem; }
+            .premium-form .form-grid { grid-template-columns: 1fr; }
+            .footer-content { padding: 2rem 1.5rem; }
+            .footer-bottom { padding: 1rem 1.5rem; }
+        }
+        @media (max-width: 600px) {
+            .pointing-arrow span { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="./images/IMG-20250303-WA0005_2-removebg-preview.png" alt="Espérence Mining Logo">
-            </div>
-            <div class="nav-controls">
-                <div class="menu-icon">
-                    <div class="pointing-arrow">
-                        <span>Cliquez ici</span>
-                        <svg viewBox="0 0 24 24" class="icon">
-                            <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
-                        </svg>
-                    </div>
-                    <svg class="hamburger" viewBox="0 0 100 100">
-                        <rect width="80" height="8" x="10" y="25" rx="4"></rect>
-                        <rect width="80" height="8" x="10" y="46" rx="4"></rect>
-                        <rect width="80" height="8" x="10" y="67" rx="4"></rect>
-                    </svg>
-                </div>
-                <div class="lang-buttons">
-                    <select class="lang-select" onchange="switchLanguage(this.value)">
-                        <option value="fr">FR</option>
-                        <option value="en">EN</option>
-                        <option value="ar">عر</option>
-                        <option value="zh">中</option>
-                    </select>
-                    <div class="lang-btns-desktop">
-                        <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
-                        <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
-                        <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
-                        <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-links">
-                <div class="close-icon">
+
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-logo">Espérence Mining</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <div class="loader-num" id="loader-num">0%</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<header>
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <img src="./images/IMG-20250303-WA0005_2-removebg-preview.png" alt="Espérence Mining Logo">
+        </div>
+        <div class="nav-controls">
+            <div class="menu-icon">
+                <div class="pointing-arrow">
+                    <span>Cliquez ici</span>
                     <svg viewBox="0 0 24 24" class="icon">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                        <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
                     </svg>
                 </div>
-                <a href="index.html#home" data-translate="nav.home">Accueil</a>
-                <a href="index.html#services" data-translate="nav.services">Nos Services</a>
-                <a href="index.html#about" data-translate="nav.about">À Propos</a>
-                <a href="index.html#projects" data-translate="nav.projects">Réalisations</a>
-                <a href="index.html#partners" data-translate="nav.partners">Partenaires</a>
-                <a href="index.html#contact" data-translate="nav.contact">Contact</a>
-                <a href="index.html#blog" data-translate="nav.news">Actualités</a>
-                <a href="index.html#careers" data-translate="nav.careers">Recrutement</a>
+                <svg class="hamburger" viewBox="0 0 100 100">
+                    <rect width="80" height="8" x="10" y="25" rx="4"></rect>
+                    <rect width="80" height="8" x="10" y="46" rx="4"></rect>
+                    <rect width="80" height="8" x="10" y="67" rx="4"></rect>
+                </svg>
             </div>
-        </nav>
-    </header>
-
-    <main>
-        <section class="application-hero">
-            <div class="hero-content">
-                <h1 data-translate="careers.title">Rejoignez Notre Équipe</h1>
-                <p data-translate="careers.positions.description">Construisons ensemble l'avenir de l'industrie minière en Afrique</p>
-            </div>
-        </section>
-
-        <section class="application-form">
-            <div class="form-container">
-                <h2 data-translate="application.title">Formulaire de Candidature</h2>
-                <form id="application-form" class="premium-form">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="firstName" data-translate="application.firstName">Prénom</label>
-                            <input type="text" id="firstName" name="firstName" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="lastName" data-translate="application.lastName">Nom</label>
-                            <input type="text" id="lastName" name="lastName" required>
-                        </div>
-                    </div>
-
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="email" data-translate="application.email">Email</label>
-                            <input type="email" id="email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone" data-translate="application.phone">Téléphone</label>
-                            <input type="tel" id="phone" name="phone" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="position" data-translate="application.position">Poste Souhaité</label>
-                        <select id="position" name="position" required>
-                            <option value="" data-translate="application.selectPosition">Sélectionnez un poste</option>
-                            <option value="mining-engineer" data-translate="application.positions.miningEngineer">Ingénieur Minier</option>
-                            <option value="geologist" data-translate="application.positions.geologist">Géologue</option>
-                            <option value="project-manager" data-translate="application.positions.projectManager">Chef de Projet</option>
-                            <option value="technician" data-translate="application.positions.technician">Technicien</option>
-                            <option value="logistics" data-translate="application.positions.logistics">Responsable Logistique</option>
-                            <option value="other" data-translate="application.positions.other">Autre</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="experience" data-translate="application.experience">Années d'Expérience</label>
-                        <select id="experience" name="experience" required>
-                            <option value="" data-translate="application.selectExperience">Sélectionnez votre expérience</option>
-                            <option value="0-2" data-translate="application.experienceRanges.0-2">0-2 ans</option>
-                            <option value="3-5" data-translate="application.experienceRanges.3-5">3-5 ans</option>
-                            <option value="5-10" data-translate="application.experienceRanges.5-10">5-10 ans</option>
-                            <option value="10+" data-translate="application.experienceRanges.10+">10+ ans</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="education" data-translate="application.education">Formation</label>
-                        <input type="text" id="education" name="education" data-translate="application.educationPlaceholder" placeholder="Ex: Master en Géologie" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message" data-translate="application.motivation">Lettre de Motivation</label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                    </div>
-
-                    <div class="form-group file-upload">
-                        <label for="cv" data-translate="application.cv">CV (PDF, DOC, DOCX)</label>
-                        <div class="file-input-container">
-                            <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
-                            <span class="file-input-label">
-                                <i class="fas fa-upload"></i>
-                                <span data-translate="application.chooseFile">Choisir un fichier</span>
-                            </span>
-                        </div>
-                    </div>
-
-                    <div class="form-group checkbox-group">
-                        <label class="checkbox-container">
-                            <input type="checkbox" required>
-                            <span class="checkmark"></span>
-                            <span data-translate="application.consent">J'accepte que mes données soient traitées pour ma candidature</span>
-                        </label>
-                    </div>
-
-                    <button type="submit" class="submit-btn">
-                        <i class="fas fa-paper-plane"></i>
-                        <span data-translate="application.submit">Envoyer ma Candidature</span>
-                    </button>
-                </form>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3 data-translate="footer.contact">Contact</h3>
-                <p>Email: esperencesarl@gmail.com</p>
-                <p data-translate="footer.phone">Phone: +243 999 541 920</p>
-            </div>
-            <div class="footer-section">
-                <h4>Locations</h4>
-                <p>DRC | Uganda | Burundi</p>
-                <p>Tanzania | Rwanda | Kenya</p>
+            <div class="lang-buttons">
+                <select class="lang-select" onchange="switchLanguage(this.value)">
+                    <option value="fr">FR</option>
+                    <option value="en">EN</option>
+                    <option value="ar">عر</option>
+                    <option value="zh">中</option>
+                    <option value="sw">SW</option>
+                    <option value="kin">KIN</option>
+                </select>
+                <div class="lang-btns-desktop">
+                    <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
+                    <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
+                    <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
+                    <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+                    <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
+                    <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
+                </div>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Espérence Mining SARL. All rights reserved.</p>
+        <div class="nav-links" id="navLinks">
+            <div class="close-icon" id="closeNav">
+                <svg viewBox="0 0 24 24" class="icon">
+                    <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                </svg>
+            </div>
+            <a href="index.html#home" data-translate="nav.home">Accueil</a>
+            <a href="index.html#services" data-translate="nav.services">Nos Services</a>
+            <a href="index.html#about" data-translate="nav.about">À Propos</a>
+            <a href="index.html#projects" data-translate="nav.projects">Réalisations</a>
+            <a href="index.html#partners" data-translate="nav.partners">Partenaires</a>
+            <a href="index.html#contact" data-translate="nav.contact">Contact</a>
+            <a href="index.html#blog" data-translate="nav.news">Actualités</a>
+            <a href="index.html#careers" data-translate="nav.careers">Recrutement</a>
         </div>
-    </footer>
+    </nav>
+</header>
 
-    <script src="js/main.js"></script>
+<main>
+    <section class="application-hero">
+        <div class="hero-content">
+            <h1 data-translate="careers.title">Rejoignez Notre Équipe</h1>
+            <p data-translate="careers.positions.description">Construisons ensemble l'avenir de l'industrie minière en Afrique</p>
+        </div>
+    </section>
+
+    <section class="application-form">
+        <div class="form-container">
+            <h2 data-translate="application.title">Formulaire de Candidature</h2>
+            <form id="application-form" class="premium-form" action="https://formspree.io/f/xzzejbpv" method="POST" enctype="multipart/form-data">
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="firstName" data-translate="application.firstName">Prénom</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" data-translate="application.lastName">Nom</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="email" data-translate="application.email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" data-translate="application.phone">Téléphone</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="position" data-translate="application.position">Poste Souhaité</label>
+                    <select id="position" name="position" required>
+                        <option value="" data-translate="application.selectPosition">Sélectionnez un poste</option>
+                        <option value="mining-engineer" data-translate="application.positions.miningEngineer">Ingénieur Minier</option>
+                        <option value="geologist" data-translate="application.positions.geologist">Géologue</option>
+                        <option value="project-manager" data-translate="application.positions.projectManager">Chef de Projet</option>
+                        <option value="technician" data-translate="application.positions.technician">Technicien</option>
+                        <option value="logistics" data-translate="application.positions.logistics">Responsable Logistique</option>
+                        <option value="other" data-translate="application.positions.other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience" data-translate="application.experience">Années d'Expérience</label>
+                    <select id="experience" name="experience" required>
+                        <option value="" data-translate="application.selectExperience">Sélectionnez votre expérience</option>
+                        <option value="0-2" data-translate="application.experienceRanges.0-2">0-2 ans</option>
+                        <option value="3-5" data-translate="application.experienceRanges.3-5">3-5 ans</option>
+                        <option value="5-10" data-translate="application.experienceRanges.5-10">5-10 ans</option>
+                        <option value="10+" data-translate="application.experienceRanges.10+">10+ ans</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="education" data-translate="application.education">Formation</label>
+                    <input type="text" id="education" name="education" data-translate="application.educationPlaceholder" placeholder="Ex: Master en Géologie" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" data-translate="application.motivation">Lettre de Motivation</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+
+                <div class="form-group file-upload">
+                    <label for="cv" data-translate="application.cv">CV (PDF, DOC, DOCX)</label>
+                    <div class="file-input-container">
+                        <input type="file" id="cv" name="cv" accept=".pdf,.doc,.docx" required>
+                        <span class="file-input-label">
+                            <i class="fas fa-upload"></i>
+                            <span data-translate="application.chooseFile">Choisir un fichier</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-container">
+                        <input type="checkbox" required>
+                        <span class="checkmark"></span>
+                        <span data-translate="application.consent">J'accepte que mes données soient traitées pour ma candidature</span>
+                    </label>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i>
+                    <span data-translate="application.submit">Envoyer ma Candidature</span>
+                </button>
+            </form>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="contact-info">
+            <h3 data-translate="footer.contact">Contact</h3>
+            <p>Email: esperencesarl@gmail.com</p>
+            <p data-translate="footer.phone">Phone: +243 999 541 920</p>
+        </div>
+        <div class="footer-section">
+            <h4>Locations</h4>
+            <p>DRC | Uganda | Burundi</p>
+            <p>Tanzania | Rwanda | Kenya</p>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Espérence Mining SARL. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    /* === TRANSLATIONS (reprise de l'accueil + ajout des clés spécifiques) === */
+const translations = {
+    fr: {
+        "nav.home": "Accueil", "nav.services": "Nos Services", "nav.about": "À Propos", "nav.projects": "Réalisations",
+        "nav.partners": "Partenaires", "nav.contact": "Contact", "nav.news": "Actualités", "nav.careers": "Recrutement",
+        "careers.title": "Rejoignez Notre Équipe", "careers.positions.description": "Construisons ensemble l'avenir de l'industrie minière en Afrique",
+        "application.title": "Formulaire de Candidature", "application.firstName": "Prénom", "application.lastName": "Nom",
+        "application.email": "Email", "application.phone": "Téléphone", "application.position": "Poste Souhaité",
+        "application.selectPosition": "Sélectionnez un poste", "application.positions.miningEngineer": "Ingénieur Minier",
+        "application.positions.geologist": "Géologue", "application.positions.projectManager": "Chef de Projet",
+        "application.positions.technician": "Technicien", "application.positions.logistics": "Responsable Logistique",
+        "application.positions.other": "Autre", "application.experience": "Années d'Expérience",
+        "application.selectExperience": "Sélectionnez votre expérience", "application.experienceRanges.0-2": "0-2 ans",
+        "application.experienceRanges.3-5": "3-5 ans", "application.experienceRanges.5-10": "5-10 ans",
+        "application.experienceRanges.10+": "10+ ans", "application.education": "Formation",
+        "application.educationPlaceholder": "Ex: Master en Géologie", "application.motivation": "Lettre de Motivation",
+        "application.cv": "CV (PDF, DOC, DOCX)", "application.chooseFile": "Choisir un fichier",
+        "application.consent": "J'accepte que mes données soient traitées pour ma candidature",
+        "application.submit": "Envoyer ma Candidature", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920"
+    },
+    en: {
+        "nav.home": "Home", "nav.services": "Our Services", "nav.about": "About", "nav.projects": "Achievements",
+        "nav.partners": "Partners", "nav.contact": "Contact", "nav.news": "News", "nav.careers": "Careers",
+        "careers.title": "Join Our Team", "careers.positions.description": "Let's build the future of the mining industry in Africa together",
+        "application.title": "Application Form", "application.firstName": "First Name", "application.lastName": "Last Name",
+        "application.email": "Email", "application.phone": "Phone", "application.position": "Desired Position",
+        "application.selectPosition": "Select a position", "application.positions.miningEngineer": "Mining Engineer",
+        "application.positions.geologist": "Geologist", "application.positions.projectManager": "Project Manager",
+        "application.positions.technician": "Technician", "application.positions.logistics": "Logistics Manager",
+        "application.positions.other": "Other", "application.experience": "Years of Experience",
+        "application.selectExperience": "Select your experience", "application.experienceRanges.0-2": "0-2 years",
+        "application.experienceRanges.3-5": "3-5 years", "application.experienceRanges.5-10": "5-10 years",
+        "application.experienceRanges.10+": "10+ years", "application.education": "Education",
+        "application.educationPlaceholder": "E.g. Master in Geology", "application.motivation": "Cover Letter",
+        "application.cv": "CV (PDF, DOC, DOCX)", "application.chooseFile": "Choose a file",
+        "application.consent": "I agree to my data being processed for my application",
+        "application.submit": "Submit Application", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920"
+    },
+    ar: {
+        "nav.home": "الرئيسية", "nav.services": "خدماتنا", "nav.about": "من نحن", "nav.projects": "إنجازاتنا",
+        "nav.partners": "الشركاء", "nav.contact": "اتصل بنا", "nav.news": "الأخبار", "nav.careers": "وظائف",
+        "careers.title": "انضم إلى فريقنا", "careers.positions.description": "لنبنِ معًا مستقبل صناعة التعدين في أفريقيا",
+        "application.title": "نموذج التقديم", "application.firstName": "الاسم الأول", "application.lastName": "اسم العائلة",
+        "application.email": "البريد الإلكتروني", "application.phone": "الهاتف", "application.position": "المنصب المطلوب",
+        "application.selectPosition": "اختر منصبًا", "application.positions.miningEngineer": "مهندس تعدين",
+        "application.positions.geologist": "جيولوجي", "application.positions.projectManager": "مدير مشروع",
+        "application.positions.technician": "فني", "application.positions.logistics": "مدير لوجستيات",
+        "application.positions.other": "أخرى", "application.experience": "سنوات الخبرة",
+        "application.selectExperience": "اختر خبرتك", "application.experienceRanges.0-2": "0-2 سنوات",
+        "application.experienceRanges.3-5": "3-5 سنوات", "application.experienceRanges.5-10": "5-10 سنوات",
+        "application.experienceRanges.10+": "أكثر من 10 سنوات", "application.education": "التعليم",
+        "application.educationPlaceholder": "مثال: ماجستير في الجيولوجيا", "application.motivation": "رسالة تحفيزية",
+        "application.cv": "السيرة الذاتية", "application.chooseFile": "اختر ملفًا",
+        "application.consent": "أوافق على معالجة بياناتي لغرض التقديم",
+        "application.submit": "إرسال الطلب", "footer.contact": "اتصال", "footer.phone": "الهاتف: +243 999 541 920"
+    },
+    zh: {
+        "nav.home": "首页", "nav.services": "我们的服务", "nav.about": "关于我们", "nav.projects": "项目成果",
+        "nav.partners": "合作伙伴", "nav.contact": "联系我们", "nav.news": "新闻", "nav.careers": "招聘",
+        "careers.title": "加入我们的团队", "careers.positions.description": "让我们共同建设非洲矿业的未来",
+        "application.title": "申请表", "application.firstName": "名字", "application.lastName": "姓氏",
+        "application.email": "邮箱", "application.phone": "电话", "application.position": "申请职位",
+        "application.selectPosition": "选择职位", "application.positions.miningEngineer": "采矿工程师",
+        "application.positions.geologist": "地质学家", "application.positions.projectManager": "项目经理",
+        "application.positions.technician": "技术员", "application.positions.logistics": "物流经理",
+        "application.positions.other": "其他", "application.experience": "工作经验",
+        "application.selectExperience": "选择经验", "application.experienceRanges.0-2": "0-2年",
+        "application.experienceRanges.3-5": "3-5年", "application.experienceRanges.5-10": "5-10年",
+        "application.experienceRanges.10+": "10年以上", "application.education": "学历",
+        "application.educationPlaceholder": "例如：地质学硕士", "application.motivation": "求职信",
+        "application.cv": "简历", "application.chooseFile": "选择文件",
+        "application.consent": "我同意为申请处理我的数据",
+        "application.submit": "提交申请", "footer.contact": "联系", "footer.phone": "电话: +243 999 541 920"
+    },
+    sw: {
+        "nav.home": "Nyumbani", "nav.services": "Huduma Zetu", "nav.about": "Kuhusu Sisi", "nav.projects": "Miradi",
+        "nav.partners": "Washirika", "nav.contact": "Mawasiliano", "nav.news": "Habari", "nav.careers": "Ajira",
+        "careers.title": "Jiunge na Timu Yetu", "careers.positions.description": "Tujenge pamoja mustakabali wa sekta ya madini Afrika",
+        "application.title": "Fomu ya Maombi", "application.firstName": "Jina la Kwanza", "application.lastName": "Jina la Mwisho",
+        "application.email": "Barua Pepe", "application.phone": "Simu", "application.position": "Nafasi Unayotaka",
+        "application.selectPosition": "Chagua nafasi", "application.positions.miningEngineer": "Mhandisi wa Madini",
+        "application.positions.geologist": "Mwanajiolojia", "application.positions.projectManager": "Meneja wa Mradi",
+        "application.positions.technician": "Fundi", "application.positions.logistics": "Meneja wa Usafirishaji",
+        "application.positions.other": "Nyingine", "application.experience": "Miaka ya Uzoefu",
+        "application.selectExperience": "Chagua uzoefu", "application.experienceRanges.0-2": "Miaka 0-2",
+        "application.experienceRanges.3-5": "Miaka 3-5", "application.experienceRanges.5-10": "Miaka 5-10",
+        "application.experienceRanges.10+": "Zaidi ya miaka 10", "application.education": "Elimu",
+        "application.educationPlaceholder": "Mfano: Shahada ya Uzamili ya Jiolojia", "application.motivation": "Barua ya Maombi",
+        "application.cv": "CV", "application.chooseFile": "Chagua faili",
+        "application.consent": "Ninakubali data zangu zitumike kwa maombi yangu",
+        "application.submit": "Tuma Maombi", "footer.contact": "Mawasiliano", "footer.phone": "Simu: +243 999 541 920"
+    },
+    kin: {
+        "nav.home": "Ahabanza", "nav.services": "Serivisi Zacu", "nav.about": "Ibitwerekeyeho", "nav.projects": "Ibikorwa",
+        "nav.partners": "Abafatanyabikorwa", "nav.contact": "Twandikire", "nav.news": "Amakuru", "nav.careers": "Akazi",
+        "careers.title": "Injira mu Ikipe Yacu", "careers.positions.description": "Twubake ejo hazaza h’inganda z’amabuye y’agaciro muri Afurika",
+        "application.title": "Ifishi yo Gusaba Akazi", "application.firstName": "Izina", "application.lastName": "Izina ry’Inyuma",
+        "application.email": "Imeyili", "application.phone": "Telefone", "application.position": "Umwanya Ushaka",
+        "application.selectPosition": "Hitamo umwanya", "application.positions.miningEngineer": "Injeniyeri w’Amabuye y’Agaciro",
+        "application.positions.geologist": "Umwiga w’Isi", "application.positions.projectManager": "Umuyobozi w’Umushinga",
+        "application.positions.technician": "Umutekinisiye", "application.positions.logistics": "Umuyobozi w’Ubwikorezi",
+        "application.positions.other": "Ibindi", "application.experience": "Imyaka y’Uburambe",
+        "application.selectExperience": "Hitamo uburambe", "application.experienceRanges.0-2": "0-2 imyaka",
+        "application.experienceRanges.3-5": "3-5 imyaka", "application.experienceRanges.5-10": "5-10 imyaka",
+        "application.experienceRanges.10+": "10+ imyaka", "application.education": "Amashuri",
+        "application.educationPlaceholder": "Urugero: Master muri Géologie", "application.motivation": "Ibaruwa isobanura impamvu",
+        "application.cv": "CV", "application.chooseFile": "Hitamo dosiye",
+        "application.consent": "Nemeye ko amakuru yanjye akoreshwa mu gusaba akazi",
+        "application.submit": "Ohereza Gusaba", "footer.contact": "Twandikire", "footer.phone": "Telefone: +243 999 541 920"
+    }
+};
+    // Pour les langues supplémentaires, on peut dupliquer l'anglais ou laisser le français par défaut.
+    // Mais par souci de complétude, on remplit rapidement (version abrégée).
+    // Liste des langues disponibles (doit correspondre à translations)
+const availableLanguages = Object.keys(translations);
+
+// Langue par défaut (fallback)
+let currentLang = localStorage.getItem('lang') || 'fr';
+
+// Initialisation
+document.addEventListener('DOMContentLoaded', () => {
+    initLanguageButtons();
+    switchLanguage(currentLang);
+});
+
+// Initialiser les boutons de langue
+function initLanguageButtons() {
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        const lang = btn.getAttribute('data-lang');
+
+        if (!lang || !translations[lang]) return;
+
+        btn.addEventListener('click', () => {
+            switchLanguage(lang);
+        });
+    });
+}
+
+// Fonction principale de changement de langue
+function switchLanguage(lang) {
+    if (!translations[lang]) {
+        console.warn(`Langue non supportée: ${lang}`);
+        return;
+    }
+
+    currentLang = lang;
+    localStorage.setItem('lang', lang);
+
+    // Active button UI
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle(
+            'active',
+            btn.getAttribute('data-lang') === lang
+        );
+    });
+
+    // Direction RTL pour arabe
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+
+    // Traduction du contenu
+    document.querySelectorAll('[data-translate]').forEach(el => {
+        const key = el.getAttribute('data-translate');
+
+        // fallback intelligent
+        const text =
+            translations[lang][key] ??
+            translations['en'][key] ??
+            translations['fr'][key];
+
+        if (text === undefined) return;
+
+        // Gestion fine selon type d’élément
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            if (el.hasAttribute('placeholder')) {
+                el.placeholder = text;
+            } else {
+                el.value = text;
+            }
+        } else if (el.tagName === 'OPTION') {
+            el.textContent = text;
+        } else {
+            el.textContent = text;
+        }
+    });
+}
+    
+    /* Loader */
+    let progress = 0;
+    const loaderNum = document.getElementById('loader-num');
+    const interval = setInterval(() => {
+        progress += Math.random() * 15;
+        if (progress >= 100) {
+            progress = 100;
+            clearInterval(interval);
+            setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
+        }
+        if (loaderNum) loaderNum.textContent = Math.floor(progress) + '%';
+    }, 80);
+    
+    /* Cursor */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx + 'px'; cursor.style.top = my + 'px'; });
+    function animateRing() { rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(animateRing); }
+    animateRing();
+    document.querySelectorAll('a, button, input, select, textarea, .submit-btn').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.style.width = '20px'; cursor.style.height = '20px'; ring.style.width = '60px'; ring.style.height = '60px'; ring.style.borderColor = 'rgba(198,163,0,0.8)'; });
+        el.addEventListener('mouseleave', () => { cursor.style.width = '12px'; cursor.style.height = '12px'; ring.style.width = '40px'; ring.style.height = '40px'; ring.style.borderColor = 'rgba(198,163,0,0.5)'; });
+    });
+    
+    /* Navbar scroll + mobile */
+    const navbarEl = document.getElementById('navbar');
+    window.addEventListener('scroll', () => navbarEl.classList.toggle('scrolled', window.scrollY > 50));
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.getElementById('navLinks');
+    const closeNav = document.getElementById('closeNav');
+    hamburger.addEventListener('click', () => navLinks.classList.add('open'));
+    closeNav.addEventListener('click', () => navLinks.classList.remove('open'));
+    navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => navLinks.classList.remove('open')));
+    
+    /* Form submission (simple alert) */
+    const form = document.getElementById('application-form');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('.submit-btn');
+            const original = btn.innerHTML;
+            btn.innerHTML = '<span>Envoi...</span>';
+            btn.disabled = true;
+            const formData = new FormData(form);
+            try {
+                const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
+                if (response.ok) {
+                    btn.innerHTML = '<span>✓ Envoyé</span>';
+                    form.reset();
+                } else btn.innerHTML = original;
+            } catch { btn.innerHTML = original; }
+            btn.disabled = false;
+            setTimeout(() => { btn.innerHTML = original; }, 3000);
+        });
+    }
+</script>
 </body>
 </html>
