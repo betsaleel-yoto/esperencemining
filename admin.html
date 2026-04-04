@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Espérence Mining — Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --gold:#C6A300; --gold-light:#E8C84A; --gold-dim:rgba(198,163,0,.15);
+      --obsidian:#0A0A0A; --dark:#111; --dark-2:#161616; --dark-3:#1E1E1E;
+      --border:rgba(198,163,0,.12); --silver:#888; --silver-2:#aaa;
+      --light:#F5F2EC; --white:#FFF; --success:#2A7A4B; --danger:#8B2020;
+      --font-display:'Bebas Neue',sans-serif; --font-body:'Inter',sans-serif;
+      --sidebar-w:260px;
+    }
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{font-size:15px;scroll-behavior:smooth}
+    body{font-family:var(--font-body);background:var(--obsidian);color:var(--light);overflow-x:hidden;min-height:100vh}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-track{background:var(--dark)}
+    ::-webkit-scrollbar-thumb{background:var(--gold);border-radius:2px}
+
+    /* LOGIN */
+    #login-screen{position:fixed;inset:0;background:var(--obsidian);display:flex;align-items:center;justify-content:center;z-index:9999}
+    #login-screen::before{content:'ADMIN';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--font-display);font-size:30vw;color:rgba(198,163,0,.02);letter-spacing:.2em;user-select:none;white-space:nowrap}
+    .login-card{position:relative;width:420px;padding:3.5rem;border:1px solid var(--border);background:var(--dark-2)}
+    .login-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+    .login-logo{font-family:var(--font-display);font-size:1.6rem;letter-spacing:.3em;color:var(--gold);margin-bottom:.5rem}
+    .login-sub{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:3rem}
+    .login-field{margin-bottom:1.5rem}
+    .login-field label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:8px}
+    .login-field input{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--light);padding:13px 16px;font-family:var(--font-body);font-size:.9rem;outline:none;transition:border-color .3s}
+    .login-field input:focus{border-color:var(--gold)}
+    .login-btn{width:100%;background:var(--gold);color:var(--obsidian);border:none;padding:15px;font-family:var(--font-body);font-size:.75rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;cursor:pointer;transition:all .3s;margin-top:1rem;position:relative;overflow:hidden}
+    .login-btn:disabled{opacity:.6;cursor:not-allowed}
+    .login-error{background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#ff8080;padding:10px 14px;font-size:.8rem;margin-bottom:1rem;display:none}
+    #login-screen.hidden{display:none}
+
+    /* APP */
+    #app{display:none;min-height:100vh}
+    #app.active{display:flex}
+
+    /* SIDEBAR */
+    .sidebar{width:var(--sidebar-w);background:var(--dark-2);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:100;overflow-y:auto}
+    .sidebar-header{padding:2rem 1.75rem 1.5rem;border-bottom:1px solid var(--border)}
+    .sidebar-brand{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.25em;color:var(--gold);display:block}
+    .sidebar-badge{font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);background:rgba(198,163,0,.08);border:1px solid rgba(198,163,0,.15);padding:3px 8px;display:inline-block;margin-top:6px}
+    .sidebar-nav{padding:1.5rem 0;flex:1}
+    .sidebar-section-label{font-size:.55rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(136,136,136,.5);padding:0 1.75rem;margin-bottom:.5rem;margin-top:1.5rem}
+    .sidebar-nav a{display:flex;align-items:center;gap:12px;padding:11px 1.75rem;color:var(--silver);text-decoration:none;font-size:.82rem;font-weight:400;transition:all .25s;position:relative;cursor:pointer;border:none;background:none;width:100%;text-align:left}
+    .sidebar-nav a::before{content:'';position:absolute;left:0;top:50%;transform:translateY(-50%);width:2px;height:0;background:var(--gold);transition:height .25s}
+    .sidebar-nav a i{width:18px;font-size:.85rem;text-align:center}
+    .sidebar-nav a:hover{color:var(--light);background:rgba(255,255,255,.03)}
+    .sidebar-nav a.active{color:var(--gold);background:rgba(198,163,0,.05)}
+    .sidebar-nav a.active::before{height:60%}
+    .sidebar-nav a .badge-count{margin-left:auto;background:var(--gold);color:var(--obsidian);font-size:.6rem;font-weight:700;padding:2px 7px;border-radius:20px;min-width:20px;text-align:center}
+    .sidebar-footer{padding:1.5rem 1.75rem;border-top:1px solid var(--border)}
+    .sidebar-user{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+    .sidebar-avatar{width:34px;height:34px;background:linear-gradient(135deg,var(--gold),#B87333);display:flex;align-items:center;justify-content:center;font-family:var(--font-display);font-size:.9rem;color:var(--obsidian);flex-shrink:0}
+    .sidebar-user-name{font-size:.8rem;font-weight:600;color:var(--light)}
+    .sidebar-user-role{font-size:.65rem;color:var(--silver)}
+    .logout-btn{display:flex;align-items:center;gap:8px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(136,136,136,.6);cursor:pointer;transition:color .3s;background:none;border:none;padding:0}
+    .logout-btn:hover{color:#ff8080}
+
+    /* MAIN */
+    .main-content{margin-left:var(--sidebar-w);flex:1;min-height:100vh;display:flex;flex-direction:column}
+    .topbar{display:flex;align-items:center;justify-content:space-between;padding:1.25rem 2.5rem;border-bottom:1px solid var(--border);background:var(--dark-2);position:sticky;top:0;z-index:50}
+    .topbar-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:.1em;color:var(--white)}
+    .topbar-actions{display:flex;gap:1rem;align-items:center}
+    .topbar-link{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--silver);text-decoration:none;transition:color .3s;display:flex;align-items:center;gap:6px;cursor:pointer;background:none;border:none}
+    .topbar-link:hover{color:var(--gold)}
+
+    /* PAGES */
+    .page{display:none;padding:2.5rem;animation:fadeInPage .3s ease}
+    .page.active{display:block}
+    @keyframes fadeInPage{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+    /* DASHBOARD STATS */
+    .stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-bottom:2.5rem}
+    .stat-card{background:var(--dark-3);padding:1.75rem 2rem;position:relative;overflow:hidden;transition:background .3s}
+    .stat-card:hover{background:#202020}
+    .stat-card::before{content:'';position:absolute;top:0;left:0;width:0;height:2px;background:var(--gold);transition:width .5s}
+    .stat-card:hover::before{width:100%}
+    .stat-icon{font-size:1.5rem;color:var(--gold);margin-bottom:1rem;opacity:.7}
+    .stat-num{font-family:var(--font-display);font-size:2.5rem;letter-spacing:.05em;color:var(--white);line-height:1;margin-bottom:4px}
+    .stat-label{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--silver)}
+    .stat-trend{position:absolute;top:1.5rem;right:1.5rem;font-size:.7rem;color:#4caf86;display:flex;align-items:center;gap:3px}
+
+    /* DASHBOARD GRID */
+    .dashboard-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .dashboard-panel{background:var(--dark-3);border:1px solid var(--border);padding:1.75rem}
+    .panel-title{font-family:var(--font-display);font-size:1rem;letter-spacing:.15em;color:var(--silver-2);margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+    .panel-title::after{content:'';flex:1;height:1px;background:var(--border)}
+    .recent-article-item{display:flex;align-items:center;gap:1rem;padding:.9rem 0;border-bottom:1px solid rgba(255,255,255,.04);cursor:pointer;transition:padding-left .2s}
+    .recent-article-item:last-child{border-bottom:none}
+    .recent-article-item:hover{padding-left:6px}
+    .recent-article-img{width:48px;height:38px;object-fit:cover;filter:brightness(.7);flex-shrink:0;background:var(--dark)}
+    .recent-article-title{font-size:.82rem;font-weight:500;color:var(--light);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-bottom:3px}
+    .recent-article-meta{font-size:.65rem;color:var(--silver)}
+    .status-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+    .status-dot.PUBLISHED{background:#4caf86}
+    .status-dot.DRAFT{background:var(--silver)}
+    .subscriber-row{display:flex;align-items:center;gap:10px;padding:6px 0;font-size:.82rem;color:var(--silver-2)}
+    .subscriber-row i{color:var(--gold);font-size:.75rem;width:18px;text-align:center}
+    .subscriber-row .del-sub-btn{margin-left:auto;background:none;border:1px solid rgba(255,80,80,.3);color:#ff8080;width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.6rem;transition:all .2s;flex-shrink:0}
+    .subscriber-row .del-sub-btn:hover{background:rgba(255,80,80,.2)}
+
+    /* EDITOR */
+    .editor-layout{display:grid;grid-template-columns:1fr 320px;gap:1.5rem;align-items:start}
+    .editor-main,.editor-sidebar-panel{display:flex;flex-direction:column;gap:1.25rem}
+    .editor-card{background:var(--dark-3);border:1px solid var(--border);padding:1.75rem}
+    .editor-card-title{font-size:.6rem;letter-spacing:.25em;text-transform:uppercase;color:var(--silver);margin-bottom:1.25rem;display:flex;align-items:center;gap:8px}
+    .editor-card-title i{color:var(--gold)}
+    .field-label{display:block;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:8px}
+    .field-input,.field-select,.field-textarea{width:100%;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--light);padding:12px 14px;font-family:var(--font-body);font-size:.875rem;font-weight:300;outline:none;transition:border-color .3s;border-radius:0;appearance:none}
+    .field-input:focus,.field-select:focus,.field-textarea:focus{border-color:var(--gold);background:rgba(198,163,0,.02)}
+    .field-input::placeholder,.field-textarea::placeholder{color:rgba(245,242,236,.2)}
+    .field-select option{background:var(--dark-2)}
+    .field-textarea{resize:vertical;min-height:120px;line-height:1.7}
+    .field-group{display:flex;flex-direction:column;gap:8px}
+    .content-editor{width:100%;min-height:380px;background:rgba(255,255,255,.02);border:1px solid var(--border);color:var(--light);padding:1.25rem;font-family:var(--font-body);font-size:.9rem;font-weight:300;line-height:1.8;outline:none;transition:border-color .3s;resize:vertical}
+    .content-editor:focus{border-color:var(--gold)}
+    .editor-toolbar{display:flex;flex-wrap:wrap;gap:2px;padding:8px;background:rgba(255,255,255,.02);border:1px solid var(--border);border-bottom:none}
+    .toolbar-btn{width:32px;height:32px;background:transparent;border:1px solid transparent;color:var(--silver);display:flex;align-items:center;justify-content:center;font-size:.75rem;cursor:pointer;transition:all .2s}
+    .toolbar-btn:hover{background:rgba(198,163,0,.1);border-color:var(--border);color:var(--gold)}
+    .toolbar-sep{width:1px;background:var(--border);margin:4px}
+    .img-preview-wrap{position:relative;width:100%;aspect-ratio:16/9;background:rgba(255,255,255,.03);border:1px dashed rgba(198,163,0,.2);overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;cursor:pointer;transition:border-color .3s}
+    .img-preview-wrap:hover{border-color:rgba(198,163,0,.4)}
+    .img-preview-wrap img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none}
+    .img-preview-wrap.has-img img{display:block}
+    .img-placeholder{color:var(--silver);font-size:.75rem;text-align:center}
+    .img-placeholder i{display:block;font-size:1.5rem;margin-bottom:6px;color:rgba(198,163,0,.3)}
+    .upload-progress{display:none;width:100%;height:3px;background:rgba(255,255,255,.05);margin-top:8px;position:relative;overflow:hidden}
+    .upload-progress.active{display:block}
+    .upload-progress-bar{height:100%;background:var(--gold);animation:uploadPulse 1s ease-in-out infinite;width:60%}
+    @keyframes uploadPulse{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+    .status-toggle{display:flex;gap:1px;background:var(--border)}
+    .status-option{flex:1;padding:9px;text-align:center;font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .25s;color:var(--silver);background:var(--dark-2);border:none;font-family:var(--font-body)}
+    .status-option.selected{background:var(--gold);color:var(--obsidian);font-weight:600}
+    .tags-wrap{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+    .tag-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(198,163,0,.08);border:1px solid rgba(198,163,0,.2);color:var(--gold);font-size:.65rem;padding:4px 10px;letter-spacing:.1em}
+    .tag-remove{cursor:pointer;color:var(--silver);font-size:.6rem;transition:color .2s}
+    .tag-remove:hover{color:#ff8080}
+    .editor-actions{display:flex;gap:.75rem;justify-content:flex-end;margin-top:1.5rem}
+    .btn-save-draft{background:transparent;border:1px solid var(--border);color:var(--silver-2);padding:12px 24px;font-family:var(--font-body);font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+    .btn-save-draft:hover{border-color:var(--silver);color:var(--light)}
+    .btn-save-draft:disabled{opacity:.4;cursor:not-allowed}
+    .btn-publish{background:var(--gold);border:none;color:var(--obsidian);padding:12px 28px;font-family:var(--font-body);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;transition:all .3s;position:relative;overflow:hidden}
+    .btn-publish:disabled{opacity:.5;cursor:not-allowed}
+    .btn-publish::before{content:'';position:absolute;inset:0;background:var(--gold-light);transform:translateX(-100%);transition:transform .3s}
+    .btn-publish:not(:disabled):hover::before{transform:translateX(0)}
+    .btn-publish span,.btn-publish i{position:relative;z-index:1}
+
+    /* ARTICLES TABLE */
+    .articles-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem}
+    .articles-filters{display:flex;gap:.5rem;flex-wrap:wrap}
+    .filter-btn{background:transparent;border:1px solid var(--border);color:var(--silver);padding:7px 16px;font-family:var(--font-body);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+    .filter-btn:hover,.filter-btn.active{background:var(--gold);border-color:var(--gold);color:var(--obsidian)}
+    .search-input-wrap{position:relative}
+    .search-input-wrap i{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--silver);font-size:.75rem}
+    .search-input{background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--light);padding:8px 14px 8px 34px;font-family:var(--font-body);font-size:.82rem;outline:none;width:220px;transition:border-color .3s}
+    .search-input:focus{border-color:var(--gold)}
+    .articles-table{width:100%;border-collapse:collapse}
+    .articles-table th{text-align:left;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);padding:12px 16px;border-bottom:1px solid var(--border);font-weight:500}
+    .articles-table td{padding:14px 16px;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
+    .articles-table tr:hover td{background:rgba(255,255,255,.02)}
+    .articles-table tr:last-child td{border-bottom:none}
+    .art-thumb{width:56px;height:40px;object-fit:cover;filter:brightness(.8)}
+    .art-title-cell{font-size:.875rem;font-weight:500;color:var(--light);margin-bottom:3px}
+    .art-excerpt-cell{font-size:.75rem;color:var(--silver);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:280px}
+    .status-badge{display:inline-block;font-size:.55rem;letter-spacing:.15em;text-transform:uppercase;padding:4px 10px;font-weight:600}
+    .status-badge.PUBLISHED{background:rgba(76,175,134,.15);color:#4caf86;border:1px solid rgba(76,175,134,.3)}
+    .status-badge.DRAFT{background:rgba(136,136,136,.1);color:var(--silver);border:1px solid rgba(136,136,136,.2)}
+    .status-badge.ARCHIVED{background:rgba(184,115,51,.1);color:#B87333;border:1px solid rgba(184,115,51,.2)}
+    .table-actions{display:flex;gap:6px}
+    .tbl-btn{width:30px;height:30px;background:transparent;border:1px solid var(--border);color:var(--silver);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.7rem;transition:all .2s}
+    .tbl-btn:hover{border-color:var(--gold);color:var(--gold)}
+    .tbl-btn.danger:hover{border-color:#ff8080;color:#ff8080}
+    .tbl-btn.success-btn:hover{border-color:#4caf86;color:#4caf86}
+    .empty-state{text-align:center;padding:4rem 2rem;color:var(--silver)}
+    .empty-state i{font-size:3rem;margin-bottom:1rem;opacity:.3;display:block}
+    .empty-state p{font-size:.875rem}
+    .loading-state{display:flex;align-items:center;justify-content:center;padding:3rem;color:var(--silver);gap:12px}
+    .loading-state i{animation:spin 1s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+
+    /* SUBSCRIBERS */
+    .subscribers-table{width:100%;border-collapse:collapse}
+    .subscribers-table th{color:var(--silver);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:12px 16px;border-bottom:1px solid var(--border);text-align:left}
+    .subscribers-table td{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.04);font-size:.82rem}
+    .subscribers-table tr:last-child td{border-bottom:none}
+    .subscribers-table tr:hover td{background:rgba(255,255,255,.02)}
+    .sub-status{font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;font-weight:600}
+    .sub-status.ACTIVE{color:#4caf86;border:1px solid rgba(76,175,134,.3);background:rgba(76,175,134,.05)}
+    .sub-status.UNSUBSCRIBED{color:var(--silver);border:1px solid var(--border)}
+
+    /* ADD SUBSCRIBER FORM */
+    .add-sub-form{display:flex;gap:.75rem;margin-bottom:1.5rem;flex-wrap:wrap}
+    .add-sub-form input{flex:1;min-width:200px;background:rgba(255,255,255,.03);border:1px solid var(--border);color:var(--light);padding:10px 14px;font-family:var(--font-body);font-size:.85rem;outline:none;transition:border-color .3s}
+    .add-sub-form input:focus{border-color:var(--gold)}
+    .add-sub-form button{background:var(--gold);color:var(--obsidian);border:none;padding:10px 20px;font-family:var(--font-body);font-size:.7rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:8px;white-space:nowrap}
+    .add-sub-form button:hover{background:var(--gold-light)}
+
+    /* NEWSLETTER CAMPAIGNS */
+    .campaign-card{background:var(--dark-3);border:1px solid var(--border);padding:1.5rem;margin-bottom:1px;display:flex;align-items:center;justify-content:space-between;gap:1rem;transition:background .3s}
+    .campaign-card:hover{background:#1a1a1a}
+    .campaign-info h3{font-family:var(--font-display);font-size:1.2rem;letter-spacing:.05em;color:var(--white);margin-bottom:.3rem}
+    .campaign-info p{font-size:.75rem;color:var(--silver)}
+    .campaign-stats{display:flex;gap:1.5rem;font-size:.7rem;color:var(--silver)}
+    .campaign-stat{text-align:center}
+    .campaign-stat-num{font-family:var(--font-display);font-size:1.2rem;color:var(--gold);display:block}
+    .campaign-actions{display:flex;gap:.5rem}
+    .btn-send{background:transparent;border:1px solid rgba(76,175,134,.4);color:#4caf86;padding:8px 16px;font-family:var(--font-body);font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:6px}
+    .btn-send:hover{background:rgba(76,175,134,.15)}
+    .btn-send:disabled{opacity:.4;cursor:not-allowed}
+    .campaign-status-badge{font-size:.55rem;padding:4px 10px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;border:1px solid}
+    .campaign-status-badge.SENT{color:#4caf86;border-color:rgba(76,175,134,.3);background:rgba(76,175,134,.05)}
+    .campaign-status-badge.DRAFT{color:var(--silver);border-color:var(--border)}
+    .campaign-status-badge.SENDING{color:var(--gold);border-color:rgba(198,163,0,.3);background:rgba(198,163,0,.05)}
+
+    /* SETTINGS */
+    .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem}
+    .settings-card{background:var(--dark-3);border:1px solid var(--border);padding:2rem}
+    .settings-card-title{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.1em;color:var(--white);margin-bottom:1.5rem}
+    .danger-zone{border-color:rgba(139,32,32,.3)}
+    .danger-zone .settings-card-title{color:#ff8080}
+    .btn-danger{background:rgba(139,32,32,.2);border:1px solid rgba(139,32,32,.4);color:#ff8080;padding:10px 20px;font-family:var(--font-body);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:all .3s;display:flex;align-items:center;gap:8px}
+    .btn-danger:hover{background:rgba(139,32,32,.4)}
+
+    /* PAGE TITLES */
+    .page-title{font-family:var(--font-display);font-size:2rem;letter-spacing:.1em;color:var(--white);margin-bottom:.5rem}
+    .page-breadcrumb{font-size:.7rem;color:var(--silver);letter-spacing:.1em;margin-bottom:2rem}
+    .page-breadcrumb span{color:var(--gold)}
+
+    /* TOAST */
+    #toast-container{position:fixed;bottom:2rem;right:2rem;z-index:99999;display:flex;flex-direction:column;gap:.5rem}
+    .toast{display:flex;align-items:center;gap:12px;padding:14px 18px;background:var(--dark-2);border-left:3px solid var(--gold);min-width:280px;animation:toastIn .4s cubic-bezier(.34,1.56,.64,1);border:1px solid var(--border);border-left-width:3px}
+    .toast.success{border-left-color:#4caf86}
+    .toast.error{border-left-color:#ff8080}
+    .toast.info{border-left-color:var(--gold)}
+    .toast i{font-size:.9rem}
+    .toast.success i{color:#4caf86}
+    .toast.error i{color:#ff8080}
+    .toast.info i{color:var(--gold)}
+    .toast p{font-size:.82rem;color:var(--light);flex:1}
+    .toast-close{background:none;border:none;color:var(--silver);cursor:pointer;font-size:.7rem;margin-left:auto}
+    @keyframes toastIn{from{opacity:0;transform:translateX(30px)}to{opacity:1;transform:translateX(0)}}
+
+    /* MODAL */
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(4px);z-index:10000;display:none;align-items:center;justify-content:center}
+    .modal-overlay.open{display:flex}
+    .modal-box{background:var(--dark-2);border:1px solid var(--border);padding:2.5rem;max-width:500px;width:90%;position:relative;animation:modalIn .3s ease}
+    @keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
+    .modal-box::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+    .modal-title{font-family:var(--font-display);font-size:1.4rem;letter-spacing:.1em;color:var(--white);margin-bottom:.75rem}
+    .modal-body{font-size:.875rem;color:var(--silver);line-height:1.7;margin-bottom:2rem}
+    .modal-actions{display:flex;gap:1rem;justify-content:flex-end}
+    .modal-cancel{background:transparent;border:1px solid var(--border);color:var(--silver);padding:10px 20px;font-family:var(--font-body);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:all .3s}
+    .modal-cancel:hover{border-color:var(--silver);color:var(--light)}
+    .modal-confirm{background:#8B2020;border:none;color:var(--light);padding:10px 20px;font-family:var(--font-body);font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;cursor:pointer;transition:background .3s}
+    .modal-confirm:hover{background:#aa2828}
+
+    /* PAGINATION */
+    .pagination{display:flex;gap:.5rem;justify-content:center;margin-top:1.5rem}
+    .page-btn{background:transparent;border:1px solid var(--border);color:var(--silver);width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:.75rem;cursor:pointer;transition:all .2s}
+    .page-btn:hover,.page-btn.current{background:var(--gold);border-color:var(--gold);color:var(--obsidian)}
+    .page-btn:disabled{opacity:.3;cursor:not-allowed}
+
+    /* CAMPAIGN FORM */
+    .campaign-form-card{background:var(--dark-3);border:1px solid var(--border);padding:1.75rem;margin-bottom:1.5rem}
+    .campaign-form-card h3{font-family:var(--font-display);font-size:1.1rem;letter-spacing:.1em;color:var(--white);margin-bottom:1.25rem}
+
+    @media(max-width:1100px){
+      .editor-layout{grid-template-columns:1fr}
+      .stats-row{grid-template-columns:1fr 1fr}
+      .settings-grid{grid-template-columns:1fr}
+      .dashboard-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:768px){
+      .sidebar{transform:translateX(-100%);transition:transform .3s}
+      .sidebar.open{transform:translateX(0)}
+      .main-content{margin-left:0}
+      .stats-row{grid-template-columns:1fr 1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- LOGIN -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">ESPÉRENCE</div>
+    <div class="login-sub">Panneau d'Administration</div>
+    <div class="login-error" id="login-error"><i class="fas fa-exclamation-circle"></i> <span id="login-error-msg">Identifiants incorrects</span></div>
+    <div class="login-field"><label>Identifiant</label><input type="text" id="login-user" placeholder="admin" autocomplete="username"></div>
+    <div class="login-field"><label>Mot de passe</label><input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password"></div>
+    <button class="login-btn" id="login-btn" onclick="attemptLogin()"><span>Accéder au tableau de bord</span></button>
+  </div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-header">
+      <span class="sidebar-brand">ESPÉRENCE</span>
+      <span class="sidebar-badge">Administration</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="sidebar-section-label">Principal</div>
+      <a onclick="showPage('dashboard')" id="nav-dashboard" class="active"><i class="fas fa-chart-line"></i> Tableau de bord</a>
+      <div class="sidebar-section-label">Contenu</div>
+      <a onclick="showPage('new-article')" id="nav-new-article"><i class="fas fa-plus-circle"></i> Nouvel Article</a>
+      <a onclick="showPage('articles')" id="nav-articles"><i class="fas fa-newspaper"></i> Articles <span class="badge-count" id="articles-badge">0</span></a>
+      <div class="sidebar-section-label">Audience</div>
+      <a onclick="showPage('subscribers')" id="nav-subscribers"><i class="fas fa-envelope"></i> Abonnés Newsletter <span class="badge-count" id="subs-badge">0</span></a>
+      <a onclick="showPage('campaigns')" id="nav-campaigns"><i class="fas fa-paper-plane"></i> Campagnes</a>
+      <div class="sidebar-section-label">Système</div>
+      <a onclick="showPage('settings')" id="nav-settings"><i class="fas fa-cog"></i> Paramètres</a>
+      <a href="./index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="admin-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="sidebar-user-name" id="admin-name">Administrateur</div>
+          <div class="sidebar-user-role" id="admin-role">Admin</div>
+        </div>
+      </div>
+      <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+    </div>
+  </aside>
+
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title" id="topbar-title">TABLEAU DE BORD</div>
+      <div class="topbar-actions">
+        <a href="./index.html" target="_blank" class="topbar-link"><i class="fas fa-eye"></i> Voir le site</a>
+        <a onclick="showPage('new-article')" class="topbar-link" style="color:var(--gold)"><i class="fas fa-plus"></i> Nouvel article</a>
+      </div>
+    </div>
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="stats-row" id="stats-row">
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-newspaper"></i></div><div class="stat-num" id="s-total">–</div><div class="stat-label">Articles Total</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-num" id="s-published">–</div><div class="stat-label">Publiés</div><div class="stat-trend"><i class="fas fa-circle" style="font-size:.5rem;color:#4caf86"></i> Live</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-pencil-alt"></i></div><div class="stat-num" id="s-drafts">–</div><div class="stat-label">Brouillons</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-envelope"></i></div><div class="stat-num" id="s-subs">–</div><div class="stat-label">Abonnés actifs</div></div>
+      </div>
+      <div class="dashboard-grid" style="padding:0 0 2rem">
+        <div class="dashboard-panel">
+          <div class="panel-title"><i class="fas fa-clock" style="color:var(--gold);margin-right:4px"></i> Articles récents</div>
+          <div id="recent-articles-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+        </div>
+        <div class="dashboard-panel">
+          <div class="panel-title"><i class="fas fa-envelope" style="color:var(--gold);margin-right:4px"></i> Derniers abonnés</div>
+          <div id="recent-subs-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- NOUVEL ARTICLE / ÉDITEUR -->
+    <div class="page" id="page-new-article">
+      <div class="page-title" id="editor-mode-title">NOUVEL ARTICLE</div>
+      <div class="page-breadcrumb">Contenu <span>›</span> <span id="editor-mode-bc">Créer</span></div>
+      <div class="editor-layout">
+        <div class="editor-main">
+          <div class="editor-card">
+            <div class="editor-card-title"><i class="fas fa-heading"></i> Informations</div>
+            <div class="field-group" style="margin-bottom:1rem">
+              <label class="field-label">Titre *</label>
+              <input type="text" class="field-input" id="art-title" placeholder="Titre de l'article...">
+            </div>
+            <div class="field-group">
+              <label class="field-label">Extrait</label>
+              <textarea class="field-textarea" id="art-excerpt" placeholder="Courte description..." style="min-height:80px"></textarea>
+            </div>
+          </div>
+          <div class="editor-card">
+            <div class="editor-card-title"><i class="fas fa-align-left"></i> Contenu</div>
+            <div class="editor-toolbar">
+              <button class="toolbar-btn" onclick="execCmd('bold')" title="Gras"><i class="fas fa-bold"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('italic')" title="Italique"><i class="fas fa-italic"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('underline')" title="Souligné"><i class="fas fa-underline"></i></button>
+              <div class="toolbar-sep"></div>
+              <button class="toolbar-btn" onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
+              <div class="toolbar-sep"></div>
+              <button class="toolbar-btn" onclick="execCmd('justifyLeft')"><i class="fas fa-align-left"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
+              <div class="toolbar-sep"></div>
+              <button class="toolbar-btn" onclick="insertLink()" title="Lien"><i class="fas fa-link"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('removeFormat')"><i class="fas fa-remove-format"></i></button>
+            </div>
+            <div class="content-editor" id="art-content" contenteditable="true"></div>
+          </div>
+        </div>
+        <div class="editor-sidebar-panel">
+          <div class="editor-card">
+            <div class="editor-card-title"><i class="fas fa-paper-plane"></i> Publication</div>
+            <div class="field-group" style="margin-bottom:1rem">
+              <label class="field-label">Statut</label>
+              <div class="status-toggle">
+                <button class="status-option selected" id="status-draft" onclick="setStatus('DRAFT')">Brouillon</button>
+                <button class="status-option" id="status-published" onclick="setStatus('PUBLISHED')">Publié</button>
+              </div>
+            </div>
+            <div class="field-group" style="margin-bottom:1rem">
+              <label class="field-label">Catégorie</label>
+              <select class="field-select" id="art-category">
+                <option value="">Sélectionner...</option>
+                <option value="Innovation">Innovation</option>
+                <option value="Expansion">Expansion</option>
+                <option value="Ressources Humaines">Ressources Humaines</option>
+                <option value="Partenariat">Partenariat</option>
+                <option value="Opérations">Opérations</option>
+                <option value="Logistique">Logistique</option>
+                <option value="Actualité">Actualité</option>
+              </select>
+            </div>
+            <div class="editor-actions">
+              <button class="btn-save-draft" id="btn-draft" onclick="saveArticle('DRAFT')">Brouillon</button>
+              <button class="btn-publish" id="btn-publish" onclick="saveArticle('PUBLISHED')"><span>Publier</span><i class="fas fa-rocket"></i></button>
+            </div>
+          </div>
+          <div class="editor-card">
+            <div class="editor-card-title"><i class="fas fa-image"></i> Image de couverture</div>
+            <div class="img-preview-wrap" id="img-preview" onclick="document.getElementById('img-file-input').click()">
+              <img id="preview-img" src="" alt="">
+              <div class="img-placeholder"><i class="fas fa-cloud-upload-alt"></i>Cliquez pour choisir<br><small style="opacity:.5">JPG, PNG, WebP — max 5 MB</small></div>
+            </div>
+            <div class="upload-progress" id="upload-progress"><div class="upload-progress-bar"></div></div>
+            <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
+            <div style="margin-top:.75rem;font-size:.65rem;color:var(--silver)">Ou entrez une URL :</div>
+            <input type="url" class="field-input" id="img-url-input" placeholder="https://..." style="margin-top:.5rem" oninput="setImageFromUrl(this.value)">
+          </div>
+          <div class="editor-card">
+            <div class="editor-card-title"><i class="fas fa-tags"></i> Tags</div>
+            <input type="text" class="field-input" id="tag-input" placeholder="Ajouter un tag + Entrée">
+            <div class="tags-wrap" id="tags-wrap"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LISTE ARTICLES -->
+    <div class="page" id="page-articles">
+      <div class="page-title">ARTICLES</div>
+      <div class="page-breadcrumb">Contenu <span>›</span> <span>Gérer les articles</span></div>
+      <div class="articles-header">
+        <div class="articles-filters">
+          <button class="filter-btn active" onclick="setArticleFilter('',this)">Tous</button>
+          <button class="filter-btn" onclick="setArticleFilter('PUBLISHED',this)">Publiés</button>
+          <button class="filter-btn" onclick="setArticleFilter('DRAFT',this)">Brouillons</button>
+          <button class="filter-btn" onclick="setArticleFilter('ARCHIVED',this)">Archivés</button>
+        </div>
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div class="search-input-wrap"><i class="fas fa-search"></i><input type="text" class="search-input" id="article-search" placeholder="Rechercher..." oninput="debouncedArticleSearch(this.value)"></div>
+          <button class="btn-publish" onclick="showPage('new-article')" style="padding:10px 18px"><span>+ Nouvel Article</span></button>
+        </div>
+      </div>
+      <div style="background:var(--dark-3);border:1px solid var(--border)">
+        <table class="articles-table">
+          <thead>
+            <tr>
+              <th style="width:60px">Image</th><th>Article</th><th style="width:120px">Catégorie</th>
+              <th style="width:90px">Statut</th><th style="width:120px">Date</th><th style="width:120px">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="articles-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></td></tr></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="articles-pagination"></div>
+    </div>
+
+    <!-- ABONNÉS -->
+    <div class="page" id="page-subscribers">
+      <div class="page-title">ABONNÉS NEWSLETTER</div>
+      <div class="page-breadcrumb">Audience <span>›</span> <span>Gestion des abonnés</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
+        <div style="display:flex;gap:1rem;align-items:center">
+          <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold)" id="total-subs-display">0</div>
+          <div style="font-size:.75rem;color:var(--silver)">abonnés actifs</div>
+        </div>
+        <div style="display:flex;gap:.75rem">
+          <button class="btn-danger" onclick="exportSubscribers()"><i class="fas fa-download"></i> Exporter CSV</button>
+        </div>
+      </div>
+      <!-- Ajouter un abonné manuellement -->
+      <div class="add-sub-form">
+        <input type="email" id="new-sub-email" placeholder="email@exemple.com">
+        <button onclick="addSubscriber()"><i class="fas fa-plus"></i> Ajouter l'abonné</button>
+      </div>
+      <div style="background:var(--dark-3);border:1px solid var(--border)">
+        <table class="subscribers-table">
+          <thead><tr><th>#</th><th>Email</th><th>Statut</th><th>Date</th><th>Source</th><th>Actions</th></tr></thead>
+          <tbody id="subs-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i></div></td></tr></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="subs-pagination"></div>
+    </div>
+
+    <!-- CAMPAGNES -->
+    <div class="page" id="page-campaigns">
+      <div class="page-title">CAMPAGNES NEWSLETTER</div>
+      <div class="page-breadcrumb">Audience <span>›</span> <span>Envoi d'emails</span></div>
+      <div class="campaign-form-card">
+        <h3><i class="fas fa-plus" style="color:var(--gold);margin-right:8px"></i> Nouvelle campagne</h3>
+        <div class="field-group" style="margin-bottom:1rem">
+          <label class="field-label">Sujet de l'email *</label>
+          <input type="text" class="field-input" id="camp-subject" placeholder="Objet de votre newsletter...">
+        </div>
+        <div class="field-group" style="margin-bottom:1rem">
+          <label class="field-label">Contenu HTML *</label>
+          <textarea class="field-textarea" id="camp-content" style="min-height:200px" placeholder="Contenu de votre newsletter (HTML accepté)..."></textarea>
+        </div>
+        <div style="display:flex;gap:.75rem">
+          <button class="btn-save-draft" onclick="createCampaign('DRAFT')">Sauver brouillon</button>
+          <button class="btn-publish" onclick="createCampaign('SEND')"><span>Créer et envoyer</span><i class="fas fa-paper-plane"></i></button>
+        </div>
+      </div>
+      <div id="campaigns-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+    </div>
+
+    <!-- PARAMÈTRES -->
+    <div class="page" id="page-settings">
+      <div class="page-title">PARAMÈTRES</div>
+      <div class="page-breadcrumb">Système <span>›</span> <span>Configuration</span></div>
+      <div class="settings-grid">
+        <div class="settings-card">
+          <div class="settings-card-title">Modifier le mot de passe</div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Mot de passe actuel</label><input type="password" class="field-input" id="current-pass" placeholder="••••••••"></div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Nouveau mot de passe</label><input type="password" class="field-input" id="new-pass" placeholder="••••••••"></div>
+          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label">Confirmer</label><input type="password" class="field-input" id="confirm-pass" placeholder="••••••••"></div>
+          <button class="btn-publish" onclick="changePassword()"><span>Mettre à jour</span></button>
+        </div>
+        <div class="settings-card">
+          <div class="settings-card-title">Profil administrateur</div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Prénom</label><input type="text" class="field-input" id="p-firstname" placeholder="Prénom"></div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Nom</label><input type="text" class="field-input" id="p-lastname" placeholder="Nom"></div>
+          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label">Email</label><input type="email" class="field-input" id="p-email" placeholder="email@exemple.com"></div>
+          <button class="btn-publish" onclick="updateProfile()"><span>Sauvegarder</span></button>
+        </div>
+        <div class="settings-card danger-zone">
+          <div class="settings-card-title"><i class="fas fa-exclamation-triangle"></i> Zone Dangereuse</div>
+          <p style="font-size:.82rem;color:var(--silver);margin-bottom:1.5rem;line-height:1.7">Actions irréversibles — procédez avec prudence.</p>
+          <div style="display:flex;gap:1rem;flex-wrap:wrap">
+            <button class="btn-danger" onclick="confirmBulkDelete('articles')"><i class="fas fa-trash"></i> Supprimer tous les articles</button>
+            <button class="btn-danger" onclick="confirmBulkDelete('subscribers')"><i class="fas fa-trash"></i> Supprimer tous les abonnés</button>
+          </div>
+        </div>
+        <div class="settings-card">
+          <div class="settings-card-title">Informations API</div>
+          <div style="font-size:.82rem;color:var(--silver);line-height:2" id="api-info">
+            <div>Base URL : <code style="color:var(--gold)" id="api-base-url">–</code></div>
+            <div>Environnement : <code style="color:var(--gold)" id="api-env">–</code></div>
+            <div>Connexion : <code id="api-status" style="color:#4caf86">–</code></div>
+          </div>
+          <button class="btn-save-draft" style="margin-top:1rem" onclick="checkApiHealth()"><i class="fas fa-heartbeat" style="margin-right:6px"></i> Tester la connexion API</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main-content -->
+</div><!-- /app -->
+
+<div id="toast-container"></div>
+
+<div class="modal-overlay" id="confirm-modal">
+  <div class="modal-box">
+    <div class="modal-title" id="modal-title">Confirmer</div>
+    <div class="modal-body" id="modal-body"></div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Annuler</button>
+      <button class="modal-confirm" id="modal-confirm-btn">Confirmer</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ════════════════════════════════════════
+//  CONFIG API
+// ════════════════════════════════════════
+const API_BASE = 'https://espeback.onrender.com/api/v1'; // ← changez en production
+let accessToken = null;
+let refreshTokenValue = null;
+let currentArticleStatus = 'DRAFT';
+let currentTags = [];
+let editingArticleId = null;
+let currentArticleFilter = '';
+let currentArticlePage = 1;
+let currentSubsPage = 1;
+let articleSearchQuery = '';
+
+// ── FETCH HELPER ──────────────────────────────────────
+async function apiFetch(endpoint, options = {}) {
+  const headers = { 'Content-Type': 'application/json', ...options.headers };
+  if (accessToken) headers['Authorization'] = `Bearer ${accessToken}`;
+
+  try {
+    let res = await fetch(API_BASE + endpoint, { ...options, headers });
+
+    // Token expiré → refresh automatique
+    if (res.status === 401 && refreshTokenValue && !options._retry) {
+      const refreshed = await refreshAccessToken();
+      if (refreshed) {
+        headers['Authorization'] = `Bearer ${accessToken}`;
+        res = await fetch(API_BASE + endpoint, { ...options, headers, _retry: true });
+      } else {
+        logout();
+        return null;
+      }
+    }
+
+    const data = await res.json().catch(() => ({}));
+    if (!res.ok) throw new Error(data.message || `Erreur ${res.status}`);
+    return data;
+  } catch (err) {
+    if (err.name === 'TypeError') {
+      showToast('Impossible de contacter l\'API. Serveur démarré ?', 'error');
+    } else {
+      showToast(err.message, 'error');
+    }
+    throw err;
+  }
+}
+
+// FormData fetch (pour upload)
+async function apiFetchFormData(endpoint, formData) {
+  const headers = {};
+  if (accessToken) headers['Authorization'] = `Bearer ${accessToken}`;
+  const res = await fetch(API_BASE + endpoint, { method: 'POST', headers, body: formData });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.message || `Erreur ${res.status}`);
+  return data;
+}
+
+async function refreshAccessToken() {
+  try {
+    const res = await fetch(API_BASE + '/auth/refresh', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ refreshToken: refreshTokenValue }),
+    });
+    if (!res.ok) return false;
+    const data = await res.json();
+    accessToken = data.data.accessToken;
+    refreshTokenValue = data.data.refreshToken;
+    localStorage.setItem('em_access', accessToken);
+    localStorage.setItem('em_refresh', refreshTokenValue);
+    return true;
+  } catch { return false; }
+}
+
+// ════════════════════════════════════════
+//  AUTH
+// ════════════════════════════════════════
+async function attemptLogin() {
+  const username = document.getElementById('login-user').value.trim();
+  const password = document.getElementById('login-pass').value;
+  const btn = document.getElementById('login-btn');
+  const errEl = document.getElementById('login-error');
+
+  if (!username || !password) { showLoginError('Tous les champs sont requis.'); return; }
+
+  btn.disabled = true;
+  btn.querySelector('span').textContent = 'Connexion...';
+  errEl.style.display = 'none';
+
+  try {
+    const data = await apiFetch('/auth/login', {
+      method: 'POST',
+      body: JSON.stringify({ username, password }),
+    });
+
+    accessToken = data.data.accessToken;
+    refreshTokenValue = data.data.refreshToken;
+    localStorage.setItem('em_access', accessToken);
+    localStorage.setItem('em_refresh', refreshTokenValue);
+
+    const admin = data.data.admin;
+    document.getElementById('admin-name').textContent = admin.firstName || admin.username;
+    document.getElementById('admin-role').textContent = admin.role;
+    document.getElementById('admin-avatar').textContent = (admin.firstName || admin.username)[0].toUpperCase();
+
+    document.getElementById('login-screen').classList.add('hidden');
+    document.getElementById('app').classList.add('active');
+    initApp();
+    showToast('Bienvenue ' + (admin.firstName || admin.username) + ' !', 'success');
+  } catch (err) {
+    showLoginError(err.message || 'Identifiants incorrects.');
+  } finally {
+    btn.disabled = false;
+    btn.querySelector('span').textContent = 'Accéder au tableau de bord';
+  }
+}
+
+function showLoginError(msg) {
+  const el = document.getElementById('login-error');
+  document.getElementById('login-error-msg').textContent = msg;
+  el.style.display = 'block';
+}
+
+async function logout() {
+  try {
+    await apiFetch('/auth/logout', { method: 'POST', body: JSON.stringify({ refreshToken: refreshTokenValue }) });
+  } catch {}
+  accessToken = null;
+  refreshTokenValue = null;
+  localStorage.removeItem('em_access');
+  localStorage.removeItem('em_refresh');
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('login-screen').classList.remove('hidden');
+  document.getElementById('login-user').value = '';
+  document.getElementById('login-pass').value = '';
+}
+
+// Auto-login si tokens sauvegardés
+window.addEventListener('DOMContentLoaded', async () => {
+  const savedAccess = localStorage.getItem('em_access');
+  const savedRefresh = localStorage.getItem('em_refresh');
+  if (savedAccess && savedRefresh) {
+    accessToken = savedAccess;
+    refreshTokenValue = savedRefresh;
+    try {
+      const data = await apiFetch('/auth/me');
+      if (data?.data) {
+        const admin = data.data;
+        document.getElementById('admin-name').textContent = admin.firstName || admin.username;
+        document.getElementById('admin-role').textContent = admin.role;
+        document.getElementById('admin-avatar').textContent = (admin.firstName || admin.username)[0].toUpperCase();
+        document.getElementById('login-screen').classList.add('hidden');
+        document.getElementById('app').classList.add('active');
+        initApp();
+      }
+    } catch { localStorage.removeItem('em_access'); localStorage.removeItem('em_refresh'); }
+  }
+
+  // Enter sur login
+  ['login-user','login-pass'].forEach(id =>
+    document.getElementById(id).addEventListener('keydown', e => e.key === 'Enter' && attemptLogin())
+  );
+
+  // Tag input
+  document.getElementById('tag-input').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault();
+      const val = this.value.trim().replace(/,/g,'');
+      if (val && !currentTags.includes(val)) { currentTags.push(val); renderTags(); }
+      this.value = '';
+    }
+  });
+
+  // Image URL input
+  document.getElementById('img-url-input').addEventListener('input', function() {
+    setImageFromUrl(this.value);
+  });
+});
+
+// ════════════════════════════════════════
+//  NAVIGATION
+// ════════════════════════════════════════
+const PAGE_TITLES = { dashboard:'TABLEAU DE BORD', 'new-article':'NOUVEL ARTICLE', articles:'ARTICLES', subscribers:'ABONNÉS', campaigns:'CAMPAGNES', settings:'PARAMÈTRES' };
+
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
+  document.getElementById('page-' + page)?.classList.add('active');
+  document.getElementById('nav-' + page)?.classList.add('active');
+  document.getElementById('topbar-title').textContent = PAGE_TITLES[page] || page.toUpperCase();
+
+  if (page === 'dashboard') loadDashboard();
+  if (page === 'articles') { currentArticlePage = 1; loadArticles(); }
+  if (page === 'subscribers') { currentSubsPage = 1; loadSubscribers(); }
+  if (page === 'campaigns') loadCampaigns();
+  if (page === 'new-article') resetEditor();
+  if (page === 'settings') loadSettings();
+}
+
+function initApp() {
+  loadDashboard();
+  loadBadges();
+}
+
+// ════════════════════════════════════════
+//  DASHBOARD
+// ════════════════════════════════════════
+async function loadDashboard() {
+  try {
+    const [artStats, subStats, recentArts, recentSubs] = await Promise.all([
+      apiFetch('/articles/stats'),
+      apiFetch('/subscribers/stats'),
+      apiFetch('/articles?limit=5&sort=newest'),
+      apiFetch('/subscribers?limit=6&status=ACTIVE'),
+    ]);
+
+    if (artStats?.data) {
+      document.getElementById('s-total').textContent = artStats.data.total;
+      document.getElementById('s-published').textContent = artStats.data.published;
+      document.getElementById('s-drafts').textContent = artStats.data.draft;
+    }
+    if (subStats?.data) {
+      document.getElementById('s-subs').textContent = subStats.data.active;
+    }
+
+    // Articles récents
+    const artList = document.getElementById('recent-articles-list');
+    if (recentArts?.data?.length) {
+      artList.innerHTML = recentArts.data.map(a => `
+        <div class="recent-article-item" onclick="editArticle('${a.id}')">
+          <img class="recent-article-img" src="${a.imageUrl || 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&q=60'}" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&q=60'" alt="">
+          <div style="flex:1;overflow:hidden">
+            <div class="recent-article-title">${a.title}</div>
+            <div class="recent-article-meta">${a.category || '—'} · ${fmtDate(a.createdAt)}</div>
+          </div>
+          <div class="status-dot ${a.status}"></div>
+        </div>`).join('');
+    } else {
+      artList.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aucun article</p></div>';
+    }
+
+    // Abonnés récents
+    const subsList = document.getElementById('recent-subs-list');
+    if (recentSubs?.data?.length) {
+      subsList.innerHTML = recentSubs.data.map(s => `
+        <div class="subscriber-row">
+          <i class="fas fa-envelope"></i> ${s.email}
+          <button class="del-sub-btn" onclick="deleteSubscriber('${s.id}','${s.email}',true)" title="Supprimer"><i class="fas fa-times"></i></button>
+        </div>`).join('');
+    } else {
+      subsList.innerHTML = '<div style="color:var(--silver);font-size:.8rem;padding:1rem 0">Aucun abonné.</div>';
+    }
+
+    loadBadges();
+  } catch(e) { console.error(e); }
+}
+
+async function loadBadges() {
+  try {
+    const [arts, subs] = await Promise.all([apiFetch('/articles/stats'), apiFetch('/subscribers/stats')]);
+    document.getElementById('articles-badge').textContent = arts?.data?.total || 0;
+    document.getElementById('subs-badge').textContent = subs?.data?.active || 0;
+  } catch {}
+}
+
+// ════════════════════════════════════════
+//  ARTICLES
+// ════════════════════════════════════════
+let searchTimeout;
+function debouncedArticleSearch(val) {
+  clearTimeout(searchTimeout);
+  searchTimeout = setTimeout(() => { articleSearchQuery = val; currentArticlePage = 1; loadArticles(); }, 400);
+}
+
+function setArticleFilter(status, btn) {
+  currentArticleFilter = status;
+  currentArticlePage = 1;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  loadArticles();
+}
+
+async function loadArticles() {
+  const tbody = document.getElementById('articles-tbody');
+  tbody.innerHTML = '<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></td></tr>';
+
+  const params = new URLSearchParams({ page: currentArticlePage, limit: 15 });
+  if (currentArticleFilter) params.set('status', currentArticleFilter);
+  if (articleSearchQuery) params.set('search', articleSearchQuery);
+
+  try {
+    const data = await apiFetch(`/articles?${params}`);
+    const articles = data?.data || [];
+    const meta = data?.meta || {};
+
+    if (!articles.length) {
+      tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-newspaper"></i><p>Aucun article trouvé.</p></div></td></tr>';
+      document.getElementById('articles-pagination').innerHTML = '';
+      return;
+    }
+
+    const FALLBACK = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=100&q=60';
+    tbody.innerHTML = articles.map(art => `
+      <tr>
+        <td><img class="art-thumb" src="${art.imageUrl || FALLBACK}" onerror="this.src='${FALLBACK}'" alt=""></td>
+        <td>
+          <div class="art-title-cell">${esc(art.title)}</div>
+          <div class="art-excerpt-cell">${esc(art.excerpt || '')}</div>
+        </td>
+        <td><span style="font-size:.7rem;color:var(--gold);letter-spacing:.1em">${art.category || '—'}</span></td>
+        <td><span class="status-badge ${art.status}">${fmtStatus(art.status)}</span></td>
+        <td style="font-size:.75rem;color:var(--silver)">${fmtDate(art.createdAt)}</td>
+        <td>
+          <div class="table-actions">
+            <button class="tbl-btn success-btn" onclick="toggleArticleStatus('${art.id}','${art.status}')" title="${art.status === 'PUBLISHED' ? 'Dépublier' : 'Publier'}">
+              <i class="fas fa-${art.status === 'PUBLISHED' ? 'eye-slash' : 'eye'}"></i>
+            </button>
+            <button class="tbl-btn" onclick="editArticle('${art.id}')" title="Modifier"><i class="fas fa-edit"></i></button>
+            <button class="tbl-btn danger" onclick="deleteArticle('${art.id}','${esc(art.title)}')" title="Supprimer"><i class="fas fa-trash"></i></button>
+          </div>
+        </td>
+      </tr>`).join('');
+
+    renderPagination('articles-pagination', meta.page, meta.totalPages, (p) => { currentArticlePage = p; loadArticles(); });
+  } catch(e) {
+    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Erreur de chargement</p></div></td></tr>';
+  }
+}
+
+async function toggleArticleStatus(id, currentStatus) {
+  const newStatus = currentStatus === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED';
+  try {
+    await apiFetch(`/articles/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status: newStatus }) });
+    showToast(newStatus === 'PUBLISHED' ? '🚀 Article publié !' : 'Article mis en brouillon.', 'success');
+    loadArticles();
+    loadBadges();
+  } catch {}
+}
+
+function deleteArticle(id, title) {
+  openModal('Supprimer l\'article', `Supprimer "${title}" ? Cette action est irréversible.`, async () => {
+    try {
+      await apiFetch(`/articles/${id}`, { method: 'DELETE' });
+      showToast('Article supprimé.', 'success');
+      loadArticles();
+      loadBadges();
+    } catch {}
+  });
+}
+
+// ════════════════════════════════════════
+//  ÉDITEUR D'ARTICLES
+// ════════════════════════════════════════
+function resetEditor() {
+  editingArticleId = null;
+  currentTags = [];
+  currentArticleStatus = 'DRAFT';
+  document.getElementById('art-title').value = '';
+  document.getElementById('art-excerpt').value = '';
+  document.getElementById('art-content').innerHTML = '';
+  document.getElementById('art-category').value = '';
+  document.getElementById('img-url-input').value = '';
+  document.getElementById('preview-img').src = '';
+  document.getElementById('img-preview').classList.remove('has-img');
+  document.getElementById('tags-wrap').innerHTML = '';
+  setStatus('DRAFT');
+  document.getElementById('editor-mode-title').textContent = 'NOUVEL ARTICLE';
+  document.getElementById('editor-mode-bc').textContent = 'Créer';
+  document.getElementById('img-file-input').value = '';
+}
+
+async function editArticle(id) {
+  try {
+    const data = await apiFetch(`/articles/${id}`);
+    const art = data.data;
+    if (!art) return;
+
+    editingArticleId = id;
+    currentTags = art.tags?.map(t => t.name) || [];
+    currentArticleStatus = art.status;
+
+    document.getElementById('art-title').value = art.title;
+    document.getElementById('art-excerpt').value = art.excerpt || '';
+    document.getElementById('art-content').innerHTML = art.content || '';
+    document.getElementById('art-category').value = art.category || '';
+    document.getElementById('img-url-input').value = art.imageUrl || '';
+
+    if (art.imageUrl) {
+      document.getElementById('preview-img').src = art.imageUrl;
+      document.getElementById('img-preview').classList.add('has-img');
+    } else {
+      document.getElementById('img-preview').classList.remove('has-img');
+    }
+
+    setStatus(art.status);
+    renderTags();
+    document.getElementById('editor-mode-title').textContent = 'MODIFIER L\'ARTICLE';
+    document.getElementById('editor-mode-bc').textContent = 'Modifier';
+    showPage('new-article');
+  } catch {}
+}
+
+async function saveArticle(status) {
+  const title = document.getElementById('art-title').value.trim();
+  const content = document.getElementById('art-content').innerHTML.trim();
+
+  if (!title) { showToast('Le titre est obligatoire.', 'error'); return; }
+  if (!content && status === 'PUBLISHED') { showToast('Le contenu est requis pour publier.', 'error'); return; }
+
+  const btnDraft = document.getElementById('btn-draft');
+  const btnPub = document.getElementById('btn-publish');
+  btnDraft.disabled = true; btnPub.disabled = true;
+
+  const payload = {
+    title,
+    excerpt: document.getElementById('art-excerpt').value.trim() || undefined,
+    content,
+    category: document.getElementById('art-category').value || undefined,
+    imageUrl: document.getElementById('img-url-input').value.trim() || undefined,
+    status,
+    tags: currentTags,
+  };
+
+  try {
+    let data;
+    if (editingArticleId) {
+      data = await apiFetch(`/articles/${editingArticleId}`, { method: 'PUT', body: JSON.stringify(payload) });
+      showToast('Article mis à jour !', 'success');
+    } else {
+      data = await apiFetch('/articles', { method: 'POST', body: JSON.stringify(payload) });
+      showToast(status === 'PUBLISHED' ? '🚀 Article publié sur le site !' : 'Brouillon enregistré.', 'success');
+    }
+
+    setStatus(status);
+    editingArticleId = data?.data?.id || editingArticleId;
+    loadBadges();
+    if (status === 'PUBLISHED') setTimeout(() => showPage('articles'), 800);
+  } catch {} finally {
+    btnDraft.disabled = false; btnPub.disabled = false;
+  }
+}
+
+// Upload image via API → GitHub
+async function handleImageUpload(input) {
+  const file = input.files[0];
+  if (!file) return;
+
+  const progress = document.getElementById('upload-progress');
+  progress.classList.add('active');
+  document.getElementById('img-preview').classList.remove('has-img');
+
+  try {
+    const formData = new FormData();
+    formData.append('image', file);
+    const data = await apiFetchFormData('/upload/image', formData);
+
+    const url = data.data.url;
+    document.getElementById('img-url-input').value = url;
+    document.getElementById('preview-img').src = url;
+    document.getElementById('img-preview').classList.add('has-img');
+    showToast('Image uploadée sur GitHub !', 'success');
+  } catch(err) {
+    showToast(err.message || 'Erreur upload image', 'error');
+  } finally {
+    progress.classList.remove('active');
+  }
+}
+
+function setImageFromUrl(url) {
+  if (!url) { document.getElementById('img-preview').classList.remove('has-img'); return; }
+  const img = document.getElementById('preview-img');
+  img.src = url;
+  img.onload = () => document.getElementById('img-preview').classList.add('has-img');
+  img.onerror = () => document.getElementById('img-preview').classList.remove('has-img');
+}
+
+function setStatus(s) {
+  currentArticleStatus = s;
+  document.getElementById('status-draft').classList.toggle('selected', s === 'DRAFT');
+  document.getElementById('status-published').classList.toggle('selected', s === 'PUBLISHED');
+}
+
+function execCmd(cmd) { document.execCommand(cmd, false, null); document.getElementById('art-content').focus(); }
+function insertLink() { const url = prompt('URL du lien:'); if (url) document.execCommand('createLink', false, url); }
+
+function renderTags() {
+  document.getElementById('tags-wrap').innerHTML = currentTags.map((t, i) =>
+    `<span class="tag-chip">${esc(t)} <i class="fas fa-times tag-remove" onclick="removeTag(${i})"></i></span>`
+  ).join('');
+}
+function removeTag(i) { currentTags.splice(i, 1); renderTags(); }
+
+// ════════════════════════════════════════
+//  ABONNÉS
+// ════════════════════════════════════════
+async function loadSubscribers() {
+  const tbody = document.getElementById('subs-tbody');
+  tbody.innerHTML = '<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i></div></td></tr>';
+
+  try {
+    const data = await apiFetch(`/subscribers?page=${currentSubsPage}&limit=20`);
+    const subs = data?.data || [];
+    const meta = data?.meta || {};
+
+    document.getElementById('total-subs-display').textContent = meta.total || 0;
+
+    if (!subs.length) {
+      tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-envelope"></i><p>Aucun abonné.</p></div></td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = subs.map((s, i) => `
+      <tr>
+        <td style="color:var(--silver);font-size:.75rem">${((currentSubsPage-1)*20) + i + 1}</td>
+        <td style="color:var(--light)">${esc(s.email)}</td>
+        <td><span class="sub-status ${s.status}">${s.status === 'ACTIVE' ? 'Actif' : 'Désabonné'}</span></td>
+        <td style="color:var(--silver);font-size:.75rem">${fmtDate(s.subscribedAt)}</td>
+        <td style="color:var(--silver);font-size:.7rem">${s.source || 'website'}</td>
+        <td>
+          <div class="table-actions">
+            <button class="tbl-btn danger" onclick="deleteSubscriber('${s.id}','${esc(s.email)}')" title="Supprimer"><i class="fas fa-trash"></i></button>
+          </div>
+        </td>
+      </tr>`).join('');
+
+    renderPagination('subs-pagination', meta.page, meta.totalPages, (p) => { currentSubsPage = p; loadSubscribers(); });
+  } catch {}
+}
+
+async function addSubscriber() {
+  const email = document.getElementById('new-sub-email').value.trim();
+  if (!email || !email.includes('@')) { showToast('Email invalide.', 'error'); return; }
+
+  try {
+    await apiFetch('/subscribers', { method: 'POST', body: JSON.stringify({ email }) });
+    showToast(`${email} ajouté à la newsletter !`, 'success');
+    document.getElementById('new-sub-email').value = '';
+    loadSubscribers();
+    loadBadges();
+  } catch {}
+}
+
+function deleteSubscriber(id, email, fromDashboard = false) {
+  openModal('Supprimer l\'abonné', `Supprimer ${email} de la newsletter ?`, async () => {
+    try {
+      await apiFetch(`/subscribers/${id}`, { method: 'DELETE' });
+      showToast('Abonné supprimé.', 'success');
+      if (fromDashboard) loadDashboard();
+      else loadSubscribers();
+      loadBadges();
+    } catch {}
+  });
+}
+
+async function exportSubscribers() {
+  try {
+    const headers = { Authorization: `Bearer ${accessToken}` };
+    const res = await fetch(API_BASE + '/subscribers/export', { headers });
+    if (!res.ok) throw new Error('Export échoué');
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url; a.download = `subscribers_${Date.now()}.csv`; a.click();
+    URL.revokeObjectURL(url);
+    showToast('Export CSV téléchargé !', 'success');
+  } catch { showToast('Erreur export CSV.', 'error'); }
+}
+
+// ════════════════════════════════════════
+//  CAMPAGNES
+// ════════════════════════════════════════
+async function loadCampaigns() {
+  const container = document.getElementById('campaigns-list');
+  container.innerHTML = '<div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div>';
+  try {
+    const data = await apiFetch('/newsletter/campaigns');
+    const campaigns = data?.data || [];
+    if (!campaigns.length) {
+      container.innerHTML = '<div class="empty-state"><i class="fas fa-paper-plane"></i><p>Aucune campagne. Créez-en une ci-dessus.</p></div>';
+      return;
+    }
+    container.innerHTML = campaigns.map(c => `
+      <div class="campaign-card">
+        <div class="campaign-info">
+          <h3>${esc(c.subject)}</h3>
+          <p>${fmtDate(c.createdAt)} · par ${c.author?.username || '—'}</p>
+        </div>
+        <div class="campaign-stats">
+          <div class="campaign-stat"><span class="campaign-stat-num">${c.sentCount}</span>Envoyés</div>
+          <div class="campaign-stat"><span class="campaign-stat-num">${c.errorCount}</span>Erreurs</div>
+        </div>
+        <span class="campaign-status-badge ${c.status}">${c.status}</span>
+        <div class="campaign-actions">
+          ${c.status !== 'SENT' && c.status !== 'SENDING' ? `<button class="btn-send" onclick="sendCampaign('${c.id}')"><i class="fas fa-paper-plane"></i> Envoyer</button>` : ''}
+          ${c.status === 'DRAFT' ? `<button class="tbl-btn danger" onclick="deleteCampaign('${c.id}','${esc(c.subject)}')"><i class="fas fa-trash"></i></button>` : ''}
+        </div>
+      </div>`).join('');
+  } catch {}
+}
+
+async function createCampaign(action) {
+  const subject = document.getElementById('camp-subject').value.trim();
+  const content = document.getElementById('camp-content').value.trim();
+  if (!subject || !content) { showToast('Sujet et contenu requis.', 'error'); return; }
+
+  try {
+    const data = await apiFetch('/newsletter/campaigns', { method: 'POST', body: JSON.stringify({ subject, content }) });
+    showToast('Campagne créée !', 'success');
+    document.getElementById('camp-subject').value = '';
+    document.getElementById('camp-content').value = '';
+
+    if (action === 'SEND') {
+      await sendCampaign(data.data.id);
+    } else {
+      loadCampaigns();
+    }
+  } catch {}
+}
+
+async function sendCampaign(id) {
+  openModal('Envoyer la campagne', 'Envoyer cette campagne à tous les abonnés actifs ? Cette action est irréversible.', async () => {
+    try {
+      await apiFetch(`/newsletter/campaigns/${id}/send`, { method: 'POST' });
+      showToast('📨 Campagne en cours d\'envoi !', 'info');
+      setTimeout(loadCampaigns, 2000);
+    } catch {}
+  });
+}
+
+function deleteCampaign(id, subject) {
+  openModal('Supprimer la campagne', `Supprimer "${subject}" ?`, async () => {
+    try {
+      await apiFetch(`/newsletter/campaigns/${id}`, { method: 'DELETE' });
+      showToast('Campagne supprimée.', 'success');
+      loadCampaigns();
+    } catch {}
+  });
+}
+
+// ════════════════════════════════════════
+//  PARAMÈTRES
+// ════════════════════════════════════════
+async function loadSettings() {
+  document.getElementById('api-base-url').textContent = API_BASE;
+  await checkApiHealth();
+  // Charger le profil
+  try {
+    const data = await apiFetch('/auth/me');
+    if (data?.data) {
+      document.getElementById('p-firstname').value = data.data.firstName || '';
+      document.getElementById('p-lastname').value = data.data.lastName || '';
+      document.getElementById('p-email').value = data.data.email || '';
+    }
+  } catch {}
+}
+
+async function checkApiHealth() {
+  const statusEl = document.getElementById('api-status');
+  const envEl = document.getElementById('api-env');
+  try {
+    const res = await fetch(API_BASE.replace('/api/v1', '') + '/health');
+    const data = await res.json();
+    statusEl.textContent = '✅ Connecté';
+    statusEl.style.color = '#4caf86';
+    envEl.textContent = data.environment || '—';
+    showToast('API connectée avec succès.', 'success');
+  } catch {
+    statusEl.textContent = '❌ Hors ligne';
+    statusEl.style.color = '#ff8080';
+    showToast('Impossible de contacter l\'API.', 'error');
+  }
+}
+
+async function changePassword() {
+  const current = document.getElementById('current-pass').value;
+  const next = document.getElementById('new-pass').value;
+  const confirm = document.getElementById('confirm-pass').value;
+  if (!current || !next) { showToast('Remplissez tous les champs.', 'error'); return; }
+  if (next.length < 8) { showToast('Minimum 8 caractères.', 'error'); return; }
+  if (next !== confirm) { showToast('Les mots de passe ne correspondent pas.', 'error'); return; }
+  try {
+    await apiFetch('/auth/change-password', { method: 'PUT', body: JSON.stringify({ currentPassword: current, newPassword: next }) });
+    showToast('Mot de passe mis à jour. Reconnectez-vous.', 'success');
+    ['current-pass','new-pass','confirm-pass'].forEach(id => document.getElementById(id).value = '');
+    setTimeout(logout, 2000);
+  } catch {}
+}
+
+async function updateProfile() {
+  const body = {
+    firstName: document.getElementById('p-firstname').value.trim(),
+    lastName: document.getElementById('p-lastname').value.trim(),
+    email: document.getElementById('p-email').value.trim(),
+  };
+  try {
+    await apiFetch('/auth/profile', { method: 'PUT', body: JSON.stringify(body) });
+    showToast('Profil mis à jour !', 'success');
+    if (body.firstName) document.getElementById('admin-name').textContent = body.firstName;
+  } catch {}
+}
+
+function confirmBulkDelete(type) {
+  openModal(
+    `Supprimer tous les ${type === 'articles' ? 'articles' : 'abonnés'}`,
+    `Cette action va supprimer TOUS les ${type === 'articles' ? 'articles' : 'abonnés'} définitivement. Continuer ?`,
+    async () => {
+      try {
+        if (type === 'articles') {
+          const data = await apiFetch('/articles?limit=1000');
+          for (const art of data?.data || []) await apiFetch(`/articles/${art.id}`, { method: 'DELETE' });
+        } else {
+          const data = await apiFetch('/subscribers?limit=1000');
+          for (const sub of data?.data || []) await apiFetch(`/subscribers/${sub.id}`, { method: 'DELETE' });
+        }
+        showToast('Suppression effectuée.', 'success');
+        loadBadges();
+        loadDashboard();
+      } catch {}
+    }
+  );
+}
+
+// ════════════════════════════════════════
+//  PAGINATION
+// ════════════════════════════════════════
+function renderPagination(containerId, current, total, onPage) {
+  const container = document.getElementById(containerId);
+  if (!total || total <= 1) { container.innerHTML = ''; return; }
+  let html = `<button class="page-btn" onclick="(${onPage.toString()})(${current-1})" ${current<=1?'disabled':''}><i class="fas fa-chevron-left"></i></button>`;
+  for (let i = 1; i <= total; i++) {
+    if (i === 1 || i === total || Math.abs(i - current) <= 2) {
+      html += `<button class="page-btn ${i===current?'current':''}" onclick="(${onPage.toString()})(${i})">${i}</button>`;
+    } else if (Math.abs(i - current) === 3) {
+      html += `<span style="color:var(--silver);padding:0 4px">…</span>`;
+    }
+  }
+  html += `<button class="page-btn" onclick="(${onPage.toString()})(${current+1})" ${current>=total?'disabled':''}><i class="fas fa-chevron-right"></i></button>`;
+  container.innerHTML = html;
+}
+
+// ════════════════════════════════════════
+//  MODAL
+// ════════════════════════════════════════
+let modalCallback = null;
+function openModal(title, body, onConfirm) {
+  document.getElementById('modal-title').textContent = title;
+  document.getElementById('modal-body').textContent = body;
+  modalCallback = onConfirm;
+  document.getElementById('confirm-modal').classList.add('open');
+  document.getElementById('modal-confirm-btn').onclick = () => { if (modalCallback) modalCallback(); closeModal(); };
+}
+function closeModal() { document.getElementById('confirm-modal').classList.remove('open'); modalCallback = null; }
+document.getElementById('confirm-modal').addEventListener('click', e => { if (e.target === document.getElementById('confirm-modal')) closeModal(); });
+
+// ════════════════════════════════════════
+//  TOAST
+// ════════════════════════════════════════
+function showToast(msg, type = 'info') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  toast.className = `toast ${type}`;
+  const icons = { success:'check-circle', error:'exclamation-circle', info:'info-circle' };
+  toast.innerHTML = `<i class="fas fa-${icons[type]||'info-circle'}"></i><p>${msg}</p><button class="toast-close" onclick="this.parentElement.remove()"><i class="fas fa-times"></i></button>`;
+  container.appendChild(toast);
+  setTimeout(() => { toast.style.opacity='0'; toast.style.transform='translateX(20px)'; toast.style.transition='all .3s'; setTimeout(() => toast.remove(), 300); }, 4000);
+}
+
+// ════════════════════════════════════════
+//  HELPERS
+// ════════════════════════════════════════
+function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function fmtDate(d) { return d ? new Date(d).toLocaleDateString('fr-FR', {day:'2-digit',month:'short',year:'numeric'}) : '—'; }
+function fmtStatus(s) { return {PUBLISHED:'Publié',DRAFT:'Brouillon',ARCHIVED:'Archivé'}[s] || s; }
+</script>
+</body>
+</html>

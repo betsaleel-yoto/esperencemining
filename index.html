@@ -1,315 +1,2315 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Espérence Mining | Excellence in Mining Operations</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="./images/IMG-20250303-WA0005~2.jpg" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            /* Light theme colors */
+            --gold: #C6A300;
+            --gold-light: #E8C84A;
+            --gold-pale: #f5e99a;
+            --copper: #B87333;
+            --obsidian: #FEFEF7;
+            --dark: #F8F6F0;
+            --dark-2: #FFFFFF;
+            --dark-3: #F0EEE9;
+            --stone: #E5E2DA;
+            --ash: #5F5F5F;
+            --silver: #6F6F6F;
+            --light: #1A1A1A;
+            --white: #000000;
+            --red-deep: #8B0000;
+            --border-light: rgba(0,0,0,0.08);
+            --shadow-sm: 0 4px 20px rgba(0,0,0,0.03), 0 2px 4px rgba(0,0,0,0.02);
+            --shadow-md: 0 8px 30px rgba(0,0,0,0.05);
+            --font-display: 'Bebas Neue', sans-serif;
+            --font-serif: 'Cormorant Garamond', serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body { 
+            font-family: var(--font-body); 
+            background: var(--obsidian); 
+            color: var(--light); 
+            overflow-x: hidden; 
+            cursor: none; 
+        }
+
+        /* CURSOR - adapté au thème clair */
+        .cursor { 
+            position: fixed; top: 0; left: 0; width: 12px; height: 12px; 
+            background: var(--gold); border-radius: 50%; pointer-events: none; 
+            z-index: 99999; transform: translate(-50%, -50%); 
+            transition: width 0.2s, height 0.2s, background 0.2s; 
+            mix-blend-mode: difference; 
+        }
+        .cursor-ring { 
+            position: fixed; top: 0; left: 0; width: 40px; height: 40px; 
+            border: 1px solid rgba(198,163,0,0.4); border-radius: 50%; 
+            pointer-events: none; z-index: 99998; transform: translate(-50%, -50%); 
+            transition: all 0.15s ease; 
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--stone); }
+        ::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 2px; }
+
+        /* NOISE OVERLAY - plus subtil */
+        body::after { 
+            content: ''; position: fixed; inset: 0; 
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.02'/%3E%3C/svg%3E"); 
+            pointer-events: none; z-index: 99990; opacity: 0.2; 
+        }
+
+        /* NAVBAR */
+        .navbar { 
+            position: fixed; top: 0; left: 0; right: 0; z-index: 9000; 
+            display: flex; align-items: center; justify-content: space-between; 
+            padding: 0 4rem; height: 80px; transition: all 0.5s ease; 
+            background: rgba(254,254,247,0.92); backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+        .navbar.scrolled { 
+            background: rgba(254,254,247,0.98); 
+            backdrop-filter: blur(20px); 
+            height: 64px;
+            box-shadow: var(--shadow-sm);
+        }
+        .logo { position: relative; z-index: 1; display: flex; align-items: center; gap: 12px; }
+        .logo img { height: 48px; width: auto; filter: brightness(0.95); }
+        .nav-center { display: flex; align-items: center; gap: 0; position: relative; z-index: 1; }
+        .nav-center a { 
+            font-family: var(--font-body); font-size: 0.7rem; font-weight: 500; 
+            letter-spacing: 0.15em; text-transform: uppercase; 
+            color: rgba(26,26,26,0.65); text-decoration: none; padding: 8px 18px; 
+            transition: color 0.3s; position: relative; 
+        }
+        .nav-center a::after { 
+            content: ''; position: absolute; bottom: 0; left: 50%; right: 50%; 
+            height: 1px; background: var(--gold); transition: left 0.3s, right 0.3s; 
+        }
+        .nav-center a:hover { color: var(--gold); }
+        .nav-center a:hover::after { left: 18px; right: 18px; }
+        .nav-right { display: flex; align-items: center; gap: 1rem; position: relative; z-index: 1; }
+        .lang-btns-desktop { display: flex; gap: 4px; }
+        .lang-btn { 
+            background: transparent; border: 1px solid rgba(0,0,0,0.15); 
+            color: rgba(26,26,26,0.7); padding: 4px 10px; border-radius: 2px; 
+            font-size: 0.65rem; letter-spacing: 0.1em; cursor: pointer; 
+            transition: all 0.3s; font-family: var(--font-body); 
+        }
+        .lang-btn:hover, .lang-btn.active { 
+            background: var(--gold); border-color: var(--gold); color: #fff; 
+        }
+        .lang-select { display: none; background: #fff; border: 1px solid rgba(0,0,0,0.1); color: #111; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; }
+        .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
+        .hamburger-btn span { display: block; width: 28px; height: 1.5px; background: var(--gold); transition: all 0.3s; transform-origin: center; }
+        .hamburger-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger-btn.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+        .hamburger-btn.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        /* MOBILE NAV - fond clair */
+        .mobile-nav { 
+            position: fixed; inset: 0; background: rgba(254,254,247,0.98); 
+            backdrop-filter: blur(30px); z-index: 8000; 
+            display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 2rem; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.77, 0, 0.175, 1); 
+        }
+        .mobile-nav.open { transform: translateX(0); }
+        .mobile-nav a { 
+            font-family: var(--font-display); font-size: 3rem; color: var(--light); 
+            text-decoration: none; letter-spacing: 0.1em; transition: color 0.3s; 
+            opacity: 0; transform: translateX(30px); 
+        }
+        .mobile-nav.open a { opacity: 1; transform: translateX(0); transition: opacity 0.4s ease, transform 0.4s ease, color 0.3s; }
+        .mobile-nav.open a:nth-child(1) { transition-delay: 0.1s; }
+        .mobile-nav.open a:nth-child(2) { transition-delay: 0.15s; }
+        .mobile-nav.open a:nth-child(3) { transition-delay: 0.2s; }
+        .mobile-nav.open a:nth-child(4) { transition-delay: 0.25s; }
+        .mobile-nav.open a:nth-child(5) { transition-delay: 0.3s; }
+        .mobile-nav.open a:nth-child(6) { transition-delay: 0.35s; }
+        .mobile-nav.open a:nth-child(7) { transition-delay: 0.4s; }
+        .mobile-nav.open a:nth-child(8) { transition-delay: 0.45s; }
+        .mobile-nav a:hover { color: var(--gold); }
+
+        /* HERO */
+        #hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: flex-end; overflow: hidden; }
+        .hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
+        .hero-bg-fallback {
+            position: absolute; inset: 0;
+            background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80') center/cover no-repeat;
+            filter: brightness(0.75) contrast(1.05) saturate(0.9);
+            z-index: 0;
+        }
+        .hero-video-wrap::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(135deg, rgba(255,255,245,0.65) 0%, rgba(255,255,245,0.2) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        #heroVideo {
+            position: absolute; inset: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            z-index: 1;
+            transition: opacity 1.2s ease;
+        }
+        #heroVideo.loaded { opacity: 0.4; }
+        .hero-overlay { 
+            position: absolute; inset: 0; z-index: 3; 
+            background: linear-gradient(to top, rgba(254,254,247,0.95) 0%, rgba(254,254,247,0.4) 50%, transparent 100%); 
+        }
+        .hero-overlay-left { 
+            position: absolute; inset: 0; z-index: 3; 
+            background: linear-gradient(to right, rgba(254,254,247,0.75) 0%, transparent 70%); 
+        }
+        .hero-content { position: relative; z-index: 4; padding: 0 4rem 6rem; max-width: 900px; }
+        .hero-tagline { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s ease 0.3s forwards; }
+        .hero-tagline::before { content: ''; display: block; width: 40px; height: 1px; background: var(--gold); }
+        .hero-tagline span { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+        .hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 8rem); line-height: 0.92; letter-spacing: 0.02em; color: #000; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s ease 0.5s forwards; }
+        .hero-title em { font-style: italic; font-family: var(--font-serif); color: var(--gold); font-size: 0.85em; letter-spacing: 0.01em; }
+        .hero-sub { font-size: 1rem; color: rgba(0,0,0,0.6); line-height: 1.8; max-width: 500px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s ease 0.7s forwards; font-weight: 400; letter-spacing: 0.02em; }
+        .hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+
+        .btn-primary { 
+            display: inline-flex; align-items: center; gap: 10px; background: var(--gold); 
+            color: #000; font-family: var(--font-body); font-size: 0.7rem; font-weight: 600; 
+            letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; 
+            padding: 16px 32px; border: none; cursor: pointer; position: relative; overflow: hidden; 
+            transition: all 0.4s; clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px)); 
+        }
+        .btn-primary::before { content: ''; position: absolute; inset: 0; background: rgba(255,255,200,0.4); transform: translateX(-100%); transition: transform 0.4s ease; }
+        .btn-primary:hover::before { transform: translateX(0); }
+        .btn-primary span, .btn-primary i { position: relative; z-index: 1; }
+        .btn-primary i { font-size: 0.75rem; transition: transform 0.3s; }
+        .btn-primary:hover i { transform: translateX(4px); }
+        .btn-outline { 
+            display: inline-flex; align-items: center; gap: 10px; background: transparent; 
+            color: #000; border: 1px solid rgba(0,0,0,0.2); font-size: 0.7rem; font-weight: 500; 
+            letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; 
+            padding: 16px 32px; cursor: pointer; transition: all 0.4s; 
+        }
+        .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+        .scroll-indicator { position: absolute; bottom: 2rem; right: 4rem; z-index: 4; display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: 0; animation: fadeIn 1s ease 1.5s forwards; }
+        .scroll-indicator span { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(0,0,0,0.3); writing-mode: vertical-rl; }
+        .scroll-line { width: 1px; height: 60px; background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent); animation: scrollPulse 2s ease-in-out infinite; }
+        @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.1); } }
+
+        .hero-stats { 
+            position: absolute; bottom: 0; right: 0; z-index: 4; 
+            display: flex; background: rgba(255,255,255,0.9); backdrop-filter: blur(12px); 
+            border-top: 1px solid rgba(198,163,0,0.3); border-left: 1px solid rgba(198,163,0,0.3); 
+            opacity: 0; animation: fadeIn 1s ease 1.2s forwards; 
+            box-shadow: var(--shadow-sm);
+        }
+        .hero-stat { padding: 1.5rem 2.5rem; border-right: 1px solid rgba(0,0,0,0.08); text-align: center; }
+        .hero-stat:last-child { border-right: none; }
+        .hero-stat-num { font-family: var(--font-display); font-size: 2.2rem; letter-spacing: 0.05em; color: var(--gold); line-height: 1; margin-bottom: 4px; }
+        .hero-stat-label { font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(0,0,0,0.55); }
+
+        /* HERO - version avec vidéo bien visible */
+#hero { position: relative; height: 100vh; min-height: 700px; display: flex; align-items: flex-end; overflow: hidden; }
+
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; }
+.hero-bg-fallback {
+    position: absolute; inset: 0;
+    background: url('https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80') center/cover no-repeat;
+    filter: brightness(0.5) contrast(1.1);
+    z-index: 0;
+}
+.hero-video-wrap::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: rgba(0,0,0,0.15);
+    z-index: 2;
+    pointer-events: none;
+}
+#heroVideo {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    z-index: 1;
+    transition: opacity 1.2s ease;
+}
+#heroVideo.loaded { opacity: 0.85; }
+.hero-overlay { 
+    position: absolute; inset: 0; z-index: 3; 
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.2) 40%, transparent 100%); 
+}
+.hero-overlay-left { 
+    position: absolute; inset: 0; z-index: 3; 
+    background: linear-gradient(to right, rgba(0,0,0,0.4) 0%, transparent 70%); 
+}
+
+.hero-content { position: relative; z-index: 4; padding: 0 4rem 6rem; max-width: 900px; }
+.hero-tagline span { color: var(--gold); text-shadow: 0 0 4px rgba(0,0,0,0.3); }
+.hero-title { color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
+.hero-sub { color: rgba(255,255,255,0.9); text-shadow: 0 1px 5px rgba(0,0,0,0.3); }
+.btn-outline { color: #fff; border-color: rgba(255,255,255,0.5); }
+.btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+.scroll-indicator span { color: rgba(255,255,255,0.6); }
+.scroll-line { background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent); }
+.hero-stats { background: rgba(0,0,0,0.7); backdrop-filter: blur(12px); border-color: rgba(198,163,0,0.5); }
+.hero-stat-label { color: rgba(255,255,255,0.7); }
+
+
+        /* SECTION BASE */
+        section { padding: 8rem 4rem; }
+        .section-header { margin-bottom: 5rem; }
+        .section-eyebrow { display: inline-flex; align-items: center; gap: 12px; margin-bottom: 1.5rem; }
+        .section-eyebrow::before { content: ''; display: block; width: 30px; height: 1px; background: var(--gold); }
+        .section-eyebrow span { font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+        .section-title { font-family: var(--font-display); font-size: clamp(2.5rem, 5vw, 5rem); line-height: 0.95; letter-spacing: 0.03em; color: #000; }
+        .section-title em { font-style: italic; font-family: var(--font-serif); color: var(--gold); }
+
+        /* SERVICES */
+        #services { background: var(--dark); position: relative; box-shadow: inset 0 1px 0 rgba(0,0,0,0.02), inset 0 -1px 0 rgba(0,0,0,0.02); }
+        #services::before { content: 'SERVICES'; position: absolute; top: 4rem; left: 4rem; font-family: var(--font-display); font-size: 18vw; color: rgba(0,0,0,0.02); letter-spacing: 0.1em; user-select: none; pointer-events: none; white-space: nowrap; }
+        .services-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(0,0,0,0.06); }
+        .service-card { background: #fff; padding: 3.5rem; position: relative; overflow: hidden; cursor: default; transition: background 0.3s; box-shadow: var(--shadow-sm); }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 0; background: var(--gold); transition: height 0.5s ease; }
+        .service-card:hover { background: #FEFCF5; }
+        .service-card:hover::before { height: 100%; }
+        .service-number { font-family: var(--font-display); font-size: 5rem; color: rgba(198,163,0,0.1); line-height: 1; margin-bottom: 2rem; transition: color 0.5s; }
+        .service-card:hover .service-number { color: rgba(198,163,0,0.2); }
+        .service-icon { width: 56px; height: 56px; border: 1px solid rgba(198,163,0,0.3); display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; transition: all 0.4s; }
+        .service-icon i { font-size: 1.3rem; color: var(--gold); }
+        .service-card:hover .service-icon { background: var(--gold); border-color: var(--gold); }
+        .service-card:hover .service-icon i { color: #fff; }
+        .service-card h3 { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 0.05em; color: #000; margin-bottom: 1rem; }
+        .service-card p { font-size: 0.875rem; color: var(--ash); line-height: 1.8; font-weight: 400; }
+        .service-arrow { position: absolute; bottom: 3rem; right: 3rem; width: 40px; height: 40px; border: 1px solid rgba(198,163,0,0.2); display: flex; align-items: center; justify-content: center; transition: all 0.4s; opacity: 0; }
+        .service-arrow i { color: var(--gold); font-size: 0.8rem; }
+        .service-card:hover .service-arrow { opacity: 1; background: var(--gold); border-color: var(--gold); }
+        .service-card:hover .service-arrow i { color: #fff; }
+
+        /* ABOUT */
+        #about { background: var(--obsidian); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; padding: 8rem 4rem; }
+        .about-visual { position: relative; }
+        .about-img-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; filter: brightness(0.95) contrast(1.05); border-radius: 4px; box-shadow: var(--shadow-md); }
+        .about-img-accent { position: absolute; bottom: -3rem; right: -3rem; width: 55%; aspect-ratio: 1; object-fit: cover; border: 4px solid var(--obsidian); filter: brightness(0.95); border-radius: 4px; }
+        .about-badge { position: absolute; top: 2rem; left: -2rem; background: var(--gold); color: #000; padding: 2rem; text-align: center; z-index: 1; box-shadow: var(--shadow-sm); }
+        .about-badge-num { font-family: var(--font-display); font-size: 3.5rem; line-height: 1; display: block; }
+        .about-badge-text { font-size: 0.6rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; }
+        .about-text .section-header { margin-bottom: 3rem; }
+        .about-desc { font-size: 1.05rem; color: rgba(0,0,0,0.7); line-height: 1.9; font-weight: 400; margin-bottom: 1.5rem; }
+        .about-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 3rem; }
+        .about-highlight { padding: 1.5rem; border: 1px solid rgba(0,0,0,0.05); background: #fff; position: relative; overflow: hidden; transition: all 0.2s; }
+        .about-highlight::before { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 2px; background: var(--gold); transition: width 0.5s; }
+        .about-highlight:hover::before { width: 100%; }
+        .about-highlight h4 { font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 0.05em; color: var(--gold); margin-bottom: 0.5rem; }
+        .about-highlight p { font-size: 0.75rem; color: var(--ash); letter-spacing: 0.05em; }
+        .countries-strip { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+        .country-tag { font-size: 0.65rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(198,163,0,0.4); padding: 6px 14px; background: rgba(198,163,0,0.02); }
+
+        /* PROJECTS */
+        #projects { background: var(--dark); padding: 8rem 4rem; }
+        .projects-grid { display: grid; grid-template-columns: 2fr 1fr; grid-template-rows: auto auto; gap: 1.5rem; margin-top: 4rem; }
+        .project-card { position: relative; overflow: hidden; cursor: pointer; border-radius: 8px; box-shadow: var(--shadow-sm); transition: transform 0.3s; }
+        .project-card:hover { transform: translateY(-4px); }
+        .project-card:first-child { grid-row: span 2; }
+        .project-img { width: 100%; height: 100%; min-height: 300px; object-fit: cover; transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); filter: brightness(0.85) saturate(0.9); }
+        .project-card:hover .project-img { transform: scale(1.05); filter: brightness(0.75) saturate(0.9); }
+        .project-info { position: absolute; inset: 0; padding: 2.5rem; display: flex; flex-direction: column; justify-content: flex-end; background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 70%); }
+        .project-cat { font-size: 0.6rem; letter-spacing: 0.3em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.75rem; font-weight: 500; }
+        .project-card h3 { font-family: var(--font-display); font-size: 1.6rem; letter-spacing: 0.05em; color: #fff; margin-bottom: 0.75rem; line-height: 1.1; }
+        .project-card p { font-size: 0.8rem; color: rgba(255,255,255,0.8); line-height: 1.6; transform: translateY(10px); opacity: 0; transition: all 0.4s; }
+        .project-card:hover p { opacity: 1; transform: translateY(0); }
+        .project-link { position: absolute; top: 2rem; right: 2rem; width: 44px; height: 44px; border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center; opacity: 0; transition: all 0.4s; border-radius: 50%; background: rgba(0,0,0,0.4); }
+        .project-link i { color: #fff; font-size: 0.8rem; }
+        .project-card:hover .project-link { opacity: 1; background: var(--gold); border-color: var(--gold); }
+        .project-card:hover .project-link i { color: #000; }
+
+        /* PARTNERS */
+        #partners { background: var(--obsidian); padding: 8rem 4rem; }
+        .partners-marquee-wrap { overflow: hidden; margin: 4rem -4rem; border-top: 1px solid rgba(0,0,0,0.05); border-bottom: 1px solid rgba(0,0,0,0.05); background: #fff; }
+        .partners-marquee { display: flex; gap: 0; animation: marquee 30s linear infinite; will-change: transform; }
+        .partners-marquee:hover { animation-play-state: paused; }
+        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .partner-item { flex-shrink: 0; padding: 2.5rem 4rem; border-right: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: center; min-width: 200px; transition: background 0.3s; }
+        .partner-item:hover { background: rgba(198,163,0,0.04); }
+        .partner-item img { height: 36px; width: auto; filter: grayscale(0.6) brightness(0.9); transition: all 0.4s; max-width: 120px; object-fit: contain; }
+        .partner-item:hover img { filter: grayscale(0) brightness(1); }
+        .partners-grid-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(0,0,0,0.05); margin-top: 5rem; }
+        .partner-card-full { background: #fff; padding: 3rem; display: flex; flex-direction: column; align-items: flex-start; gap: 1.5rem; transition: background 0.4s; box-shadow: var(--shadow-sm); }
+        .partner-card-full:hover { background: #FEFCF5; }
+        .partner-logo-wrap { height: 48px; display: flex; align-items: center; }
+        .partner-logo-wrap img { height: 100%; width: auto; max-width: 130px; object-fit: contain; filter: grayscale(0.4) brightness(0.95); transition: filter 0.4s; }
+        .partner-card-full:hover .partner-logo-wrap img { filter: grayscale(0) brightness(1); }
+        .partner-card-full h3 { font-family: var(--font-display); font-size: 1.2rem; letter-spacing: 0.05em; color: #000; }
+        .partner-card-full p { font-size: 0.8rem; color: var(--ash); line-height: 1.7; }
+        .partner-type-badge { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(198,163,0,0.3); padding: 4px 12px; margin-top: auto; background: rgba(198,163,0,0.02); }
+        .become-partner { margin-top: 5rem; padding: 5rem; border: 1px solid rgba(0,0,0,0.08); background: #fff; display: flex; align-items: center; justify-content: space-between; gap: 3rem; position: relative; overflow: hidden; box-shadow: var(--shadow-sm); }
+        .become-partner::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(198,163,0,0.03), transparent); }
+        .become-partner-text h3 { font-family: var(--font-display); font-size: 2.5rem; letter-spacing: 0.05em; color: #000; margin-bottom: 1rem; }
+        .become-partner-text p { font-size: 0.9rem; color: var(--ash); max-width: 400px; line-height: 1.7; }
+
+        /* CONTACT */
+        #contact { background: var(--dark); display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
+        .contact-left { padding: 8rem 5rem; background: #fff; position: relative; }
+        .contact-left::after { content: ''; position: absolute; top: 0; bottom: 0; right: 0; width: 1px; background: linear-gradient(to bottom, transparent, rgba(198,163,0,0.3), transparent); }
+        .contact-info-blocks { margin-top: 4rem; display: flex; flex-direction: column; gap: 2.5rem; }
+        .contact-info-block { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .contact-info-icon { width: 44px; height: 44px; flex-shrink: 0; border: 1px solid rgba(198,163,0,0.2); display: flex; align-items: center; justify-content: center; background: #fff; }
+        .contact-info-icon i { color: var(--gold); font-size: 0.85rem; }
+        .contact-info-text h4 { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+        .contact-info-text p { font-size: 0.9rem; color: var(--ash); line-height: 1.6; }
+        .contact-right { padding: 8rem 5rem; background: var(--dark); }
+        .contact-form { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 4rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .form-field { display: flex; flex-direction: column; gap: 8px; }
+        .form-field label { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--ash); font-weight: 500; }
+        .form-field input, .form-field select, .form-field textarea { background: #fff; border: 1px solid rgba(0,0,0,0.1); color: #000; padding: 14px 16px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 400; outline: none; transition: border-color 0.3s; appearance: none; border-radius: 0; }
+        .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--gold); background: #fff; box-shadow: 0 0 0 1px rgba(198,163,0,0.1); }
+        .form-field select option { background: #fff; color: #000; }
+        .form-field textarea { height: 140px; resize: none; }
+
+        /* BLOG */
+        #blog { background: var(--obsidian); padding: 8rem 4rem; }
+        .blog-layout { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1.5rem; margin-top: 4rem; }
+        .blog-card { position: relative; overflow: hidden; border: 1px solid rgba(0,0,0,0.05); background: #fff; transition: all 0.3s; border-radius: 8px; box-shadow: var(--shadow-sm); }
+        .blog-card:hover { transform: translateY(-4px); border-color: rgba(198,163,0,0.2); box-shadow: var(--shadow-md); }
+        .blog-card-img { width: 100%; height: 220px; object-fit: cover; filter: brightness(0.95) saturate(0.95); transition: transform 0.6s ease; }
+        .blog-card:hover .blog-card-img { transform: scale(1.03); }
+        .blog-card-body { padding: 2rem; }
+        .blog-meta { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+        .blog-cat { font-size: 0.55rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+        .blog-date { font-size: 0.7rem; color: var(--silver); }
+        .blog-card h3 { font-family: var(--font-serif); font-size: 1.2rem; color: #000; line-height: 1.4; margin-bottom: 1rem; font-weight: 500; }
+        .blog-card p { font-size: 0.8rem; color: var(--ash); line-height: 1.7; margin-bottom: 1.5rem; }
+        .read-more-link { display: inline-flex; align-items: center; gap: 8px; font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); text-decoration: none; transition: gap 0.3s; }
+        .read-more-link:hover { gap: 14px; }
+        .read-more-link::after { content: '→'; font-size: 0.9rem; }
+
+        /* Articles loading skeleton */
+        .blog-skeleton { border-radius: 8px; overflow: hidden; background: #fff; border: 1px solid rgba(0,0,0,0.05); box-shadow: var(--shadow-sm); }
+        .skeleton-img { width: 100%; height: 220px; background: linear-gradient(90deg, #f0ece4 25%, #e8e4dc 50%, #f0ece4 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        .skeleton-body { padding: 2rem; display: flex; flex-direction: column; gap: 12px; }
+        .skeleton-line { height: 10px; border-radius: 4px; background: linear-gradient(90deg, #f0ece4 25%, #e8e4dc 50%, #f0ece4 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite; }
+        .skeleton-line.short { width: 40%; }
+        .skeleton-line.medium { width: 70%; }
+        .skeleton-line.title { height: 16px; width: 90%; }
+        @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+        /* NEWSLETTER */
+        #newsletter {
+            background: var(--dark);
+            padding: 7rem 4rem;
+            position: relative;
+            overflow: hidden;
+        }
+        #newsletter::before {
+            content: 'NEWS';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: var(--font-display);
+            font-size: 22vw;
+            color: rgba(0,0,0,0.02);
+            letter-spacing: 0.1em;
+            user-select: none;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .newsletter-inner {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .newsletter-icon {
+            width: 72px; height: 72px;
+            border: 1px solid rgba(198,163,0,0.3);
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 2.5rem;
+            position: relative;
+            background: #fff;
+        }
+        .newsletter-icon::before {
+            content: '';
+            position: absolute; inset: -6px;
+            border: 1px solid rgba(198,163,0,0.1);
+        }
+        .newsletter-icon i { font-size: 1.6rem; color: var(--gold); }
+        .newsletter-eyebrow {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-bottom: 1.5rem;
+        }
+        .newsletter-eyebrow::before, .newsletter-eyebrow::after {
+            content: '';
+            display: block; width: 40px; height: 1px;
+            background: linear-gradient(to right, transparent, var(--gold));
+        }
+        .newsletter-eyebrow::after {
+            background: linear-gradient(to left, transparent, var(--gold));
+        }
+        .newsletter-eyebrow span {
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+        .newsletter-title {
+            font-family: var(--font-display);
+            font-size: clamp(2rem, 5vw, 4rem);
+            letter-spacing: 0.05em;
+            color: #000;
+            line-height: 1;
+            margin-bottom: 1rem;
+        }
+        .newsletter-title em {
+            font-style: italic;
+            font-family: var(--font-serif);
+            color: var(--gold);
+        }
+        .newsletter-sub {
+            font-size: 0.95rem;
+            color: rgba(0,0,0,0.55);
+            line-height: 1.8;
+            font-weight: 400;
+            max-width: 480px;
+            margin: 0 auto 3rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 0;
+            max-width: 560px;
+            margin: 0 auto 2rem;
+            position: relative;
+        }
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-right: none;
+            color: #000;
+            padding: 16px 20px;
+            font-family: var(--font-body);
+            font-size: 0.875rem;
+            font-weight: 400;
+            outline: none;
+            transition: border-color 0.3s;
+            border-radius: 0;
+        }
+        .newsletter-form input[type="email"]:focus {
+            border-color: var(--gold);
+        }
+        .newsletter-form input[type="email"]::placeholder {
+            color: rgba(0,0,0,0.3);
+        }
+        .newsletter-submit {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 16px 28px;
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex; align-items: center; gap: 8px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+        .newsletter-submit::before {
+            content: '';
+            position: absolute; inset: 0;
+            background: rgba(255,255,200,0.4);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+        }
+        .newsletter-submit:hover::before { transform: translateX(0); }
+        .newsletter-submit span, .newsletter-submit i { position: relative; z-index: 1; }
+        .newsletter-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+        .newsletter-perks {
+            display: flex;
+            justify-content: center;
+            gap: 2.5rem;
+            flex-wrap: wrap;
+        }
+        .newsletter-perk {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.7rem;
+            color: rgba(0,0,0,0.5);
+            letter-spacing: 0.05em;
+        }
+        .newsletter-perk i { color: var(--gold); font-size: 0.65rem; }
+        .newsletter-success {
+            display: none;
+            flex-direction: column; align-items: center; gap: 1rem;
+            padding: 2rem;
+            background: #fff;
+            border-radius: 12px;
+        }
+        .newsletter-success .success-icon {
+            width: 60px; height: 60px;
+            border: 1px solid var(--gold);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--gold);
+            animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        @keyframes popIn {
+            from { transform: scale(0) rotate(-20deg); opacity: 0; }
+            to { transform: scale(1) rotate(0); opacity: 1; }
+        }
+        .newsletter-success p {
+            font-size: 0.9rem; color: rgba(0,0,0,0.7);
+            letter-spacing: 0.05em;
+        }
+        .newsletter-count {
+            margin-top: 2.5rem;
+            display: flex; align-items: center; justify-content: center; gap: 1rem;
+        }
+        .subscriber-avatars { display: flex; }
+        .subscriber-avatar {
+            width: 32px; height: 32px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            margin-right: -8px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--gold), var(--copper));
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-display);
+            font-size: 0.75rem;
+            color: #000;
+        }
+        .newsletter-count-text {
+            font-size: 0.75rem;
+            color: rgba(0,0,0,0.5);
+            letter-spacing: 0.05em;
+            padding-left: 12px;
+        }
+        .newsletter-count-text strong { color: var(--gold); }
+
+        /* CAREERS */
+        #careers { background: var(--dark); padding: 8rem 4rem; }
+        .careers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 4rem; align-items: start; }
+        .job-listings { display: flex; flex-direction: column; gap: 1px; background: rgba(0,0,0,0.05); }
+        .job-card { background: #fff; padding: 2.5rem 3rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; transition: background 0.3s; cursor: pointer; border-radius: 8px; margin-bottom: 1px; }
+        .job-card:hover { background: #FEFCF5; }
+        .job-dept { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+        .job-card h3 { font-family: var(--font-display); font-size: 1.3rem; letter-spacing: 0.05em; color: #000; margin-bottom: 0.5rem; }
+        .job-meta { display: flex; gap: 1rem; }
+        .job-tag { font-size: 0.65rem; color: var(--ash); background: rgba(0,0,0,0.04); padding: 3px 10px; border-radius: 20px; }
+        .apply-btn-sm { display: inline-flex; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(198,163,0,0.4); color: var(--gold); font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; text-decoration: none; padding: 10px 20px; flex-shrink: 0; transition: all 0.3s; }
+        .apply-btn-sm:hover { background: var(--gold); color: #fff; border-color: var(--gold); }
+
+        /* FOOTER */
+        footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
+        .footer-top { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 4rem; padding: 5rem 4rem; }
+        .footer-brand p { font-size: 0.825rem; color: var(--ash); line-height: 1.8; max-width: 280px; font-weight: 400; }
+        .footer-col h4 { font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.5rem; }
+        .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; }
+        .footer-col ul li a { font-size: 0.825rem; color: var(--ash); text-decoration: none; transition: color 0.3s; }
+        .footer-col ul li a:hover { color: #000; }
+        .social-links { display: flex; gap: 1rem; margin-top: 2rem; }
+        .social-link { width: 40px; height: 40px; border: 1px solid rgba(0,0,0,0.1); display: flex; align-items: center; justify-content: center; transition: all 0.3s; border-radius: 50%; }
+        .social-link svg { width: 16px; height: 16px; fill: var(--ash); transition: fill 0.3s; }
+        .social-link:hover { background: var(--gold); border-color: var(--gold); }
+        .social-link:hover svg { fill: #fff; }
+        .footer-bottom { padding: 2rem 4rem; border-top: 1px solid rgba(0,0,0,0.05); display: flex; align-items: center; justify-content: space-between; }
+        .footer-bottom p { font-size: 0.75rem; color: rgba(0,0,0,0.4); letter-spacing: 0.05em; }
+        .gold-divider { height: 1px; background: linear-gradient(to right, transparent, var(--gold), transparent); margin: 0 4rem; }
+
+        /* REVEAL ANIMATIONS */
+        .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-left.visible { opacity: 1; transform: translateX(0); }
+        .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
+        .reveal-right.visible { opacity: 1; transform: translateX(0); }
+        .stagger-1 { transition-delay: 0.1s; }
+        .stagger-2 { transition-delay: 0.2s; }
+        .stagger-3 { transition-delay: 0.3s; }
+        .stagger-4 { transition-delay: 0.4s; }
+        .stagger-5 { transition-delay: 0.5s; }
+
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* LOADER - light */
+        #loader { 
+            position: fixed; inset: 0; background: #fff; z-index: 99999; 
+            display: flex; align-items: center; justify-content: center; 
+            flex-direction: column; gap: 2rem; transition: opacity 0.8s ease, visibility 0.8s; 
+        }
+        #loader.hidden { opacity: 0; visibility: hidden; }
+        .loader-logo { font-family: var(--font-display); font-size: 1.5rem; letter-spacing: 0.4em; color: var(--gold); text-transform: uppercase; }
+        .loader-bar-wrap { width: 200px; height: 1px; background: rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+        .loader-bar { position: absolute; top: 0; left: 0; bottom: 0; background: var(--gold); width: 0%; animation: loadBar 1.8s ease forwards; }
+        @keyframes loadBar { 0% { width: 0%; } 60% { width: 80%; } 100% { width: 100%; } }
+        .loader-num { font-family: var(--font-display); font-size: 0.75rem; letter-spacing: 0.3em; color: rgba(0,0,0,0.3); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1100px) {
+            #about { grid-template-columns: 1fr; gap: 4rem; }
+            .about-visual { display: none; }
+            #contact { grid-template-columns: 1fr; }
+            .contact-left { padding: 5rem 3rem 3rem; }
+            .contact-right { padding: 3rem; }
+            .partners-grid-cards { grid-template-columns: 1fr 1fr; }
+            .footer-top { grid-template-columns: 1fr 1fr; }
+            .blog-layout { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 900px) {
+            section { padding: 5rem 2rem; }
+            #hero { padding: 0; }
+            .hero-content { padding: 0 2rem 4rem; }
+            .services-layout { grid-template-columns: 1fr; }
+            .projects-grid { grid-template-columns: 1fr; }
+            .project-card:first-child { grid-row: span 1; }
+            .careers-grid { grid-template-columns: 1fr; }
+            .become-partner { flex-direction: column; padding: 3rem 2rem; }
+            .navbar { padding: 0 1.5rem; }
+            .nav-center { display: none; }
+            .hamburger-btn { display: flex; }
+            .lang-btns-desktop { display: none; }
+            .lang-select { display: block; }
+            .hero-stats { display: none; }
+            .form-row { grid-template-columns: 1fr; }
+            .footer-top { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
+            .footer-bottom { padding: 1.5rem 2rem; flex-direction: column; gap: 1rem; text-align: center; }
+            .blog-layout { grid-template-columns: 1fr; }
+            .partners-grid-cards { grid-template-columns: 1fr; }
+            .newsletter-form { flex-direction: column; }
+            .newsletter-form input[type="email"] { border-right: 1px solid rgba(0,0,0,0.15); }
+            .newsletter-submit { justify-content: center; }
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">
-                <img src="./images/IMG-20250303-WA0005_2-removebg-preview.png" alt="Espérence Mining Logo">
-            </div>
-            <div class="nav-controls">
-                <div class="menu-icon">
-                    <svg class="hamburger" viewBox="0 0 100 100">
-                        <rect width="80" height="8" x="10" y="25" rx="4"></rect>
-                        <rect width="80" height="8" x="10" y="46" rx="4"></rect>
-                        <rect width="80" height="8" x="10" y="67" rx="4"></rect>
-                    </svg>
-                </div>
-                <div class="lang-buttons">
-                    <select class="lang-select" onchange="switchLanguage(this.value)">
-                        <option value="fr">FR</option>
-                        <option value="en">EN</option>
-                        <option value="ar">عر</option>
-                        <option value="zh">中</option>
-                        <option value="sw">SW</option>
-                        <option value="kin">KIN</option>
-                    </select>
-                    <div class="lang-btns-desktop">
-                        <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
-                        <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
-                        <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
-                        <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
-                        <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
-                        <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-links" style="margin-top: 2.5rem;">
-                <div class="close-icon">
-                    <svg viewBox="0 0 24 24" class="icon">
-                        <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
-                    </svg>
-                </div>
-                <a href="#home" class="active" data-translate="nav.home">Accueil</a>
-                <a href="#services" data-translate="nav.services">Nos Services</a>
-                <a href="#about" data-translate="nav.about">À Propos</a>
-                <a href="#projects" data-translate="nav.projects">Réalisations</a>
-                <a href="#partners" data-translate="nav.partners">Partenaires</a>
-                <a href="#contact" data-translate="nav.contact">Contact</a>
-                <a href="#blog" data-translate="nav.news">Actualités</a>
-                <a href="#careers" data-translate="nav.careers">Recrutement</a>
-            </div>
-        </nav>
-    </header>
 
-    <main>
-        <section id="hero" class="hero section-animate">
-            <div class="hero-content animate fade-in-up">
-                <h1 data-translate="hero.title">From Earth to Prosperity: Elevating Mining Operations Worldwide</h1>
-                <p data-translate="hero.subtitle">Leading mining contractor in East Africa, delivering excellence across six nations</p>
-                <a href="#contact" class="cta-button animate slide-in-right delay-200" data-translate="hero.cta">Get Started</a>
+<!-- LOADER -->
+<div id="loader">
+    <div class="loader-logo">Espérence Mining</div>
+    <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
+    <div class="loader-num" id="loader-num">0%</div>
+</div>
+
+<!-- CUSTOM CURSOR -->
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+    <a href="#hero" data-translate="nav.home">Accueil</a>
+    <a href="#services" data-translate="nav.services">Services</a>
+    <a href="#about" data-translate="nav.about">À Propos</a>
+    <a href="#projects" data-translate="nav.projects">Réalisations</a>
+    <a href="#partners" data-translate="nav.partners">Partenaires</a>
+    <a href="#contact" data-translate="nav.contact">Contact</a>
+    <a href="#blog" data-translate="nav.news">Actualités</a>
+    <a href="#careers" data-translate="nav.careers">Recrutement</a>
+</div>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+    <div class="logo">
+        <img src="./images/IMG-20250303-WA0005_2-removebg-preview.png"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"
+             alt="Espérence Mining" style="width: 100px; height: 110px;">
+        <span style="display:none; font-family:var(--font-display); font-size:1.1rem; letter-spacing:0.1em; color:var(--gold);">ESPÉRENCE</span>
+    </div>
+    <div class="nav-center">
+        <a href="#services" data-translate="nav.services">Services</a>
+        <a href="#about" data-translate="nav.about">À Propos</a>
+        <a href="#projects" data-translate="nav.projects">Réalisations</a>
+        <a href="#partners" data-translate="nav.partners">Partenaires</a>
+        <a href="#contact" data-translate="nav.contact">Contact</a>
+        <a href="#careers" data-translate="nav.careers">Recrutement</a>
+    </div>
+    <div class="nav-right">
+        <div class="lang-btns-desktop">
+            <button onclick="switchLanguage('fr')" class="lang-btn active">FR</button>
+            <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
+            <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
+            <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
+            <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
+            <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
+        </div>
+        <select class="lang-select" onchange="switchLanguage(this.value)">
+            <option value="fr">FR</option>
+            <option value="en">EN</option>
+            <option value="ar">عر</option>
+            <option value="zh">中</option>
+            <option value="sw">SW</option>
+            <option value="kin">KIN</option>
+        </select>
+        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="hero-video-wrap">
+        <div class="hero-bg-fallback"></div>
+        <video id="heroVideo" autoplay muted loop playsinline
+               poster="https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80">
+            <source src="./images/outputvideo1.mp4" type="video/mp4">
+        </video>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-overlay-left"></div>
+
+    <div class="hero-content">
+        <div class="hero-tagline">
+            <span data-translate="hero.tagline">Leader en Afrique de l'Est — Depuis 2014</span>
+        </div>
+        <h1 class="hero-title" data-translate="hero.title">
+            FROM <em>EARTH</em><br>TO PROSPERITY
+        </h1>
+        <p class="hero-sub" data-translate="hero.subtitle">
+            Leader dans l'exploitation minière en Afrique de l'Est, délivrant l'excellence dans six nations.
+        </p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn-primary">
+                <span data-translate="hero.cta">Démarrer un projet</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="#about" class="btn-outline" data-translate="hero.learnMore">Découvrir</a>
+        </div>
+    </div>
+
+    <div class="hero-stats">
+        <div class="hero-stat">
+            <div class="hero-stat-num" data-counter="10" data-suffix="+">10+</div>
+            <div class="hero-stat-label" data-translate="stats.years">Ans d'Expérience</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num" data-counter="6">6</div>
+            <div class="hero-stat-label" data-translate="stats.countries">Pays</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num" data-counter="3000" data-suffix="+">3000+</div>
+            <div class="hero-stat-label" data-translate="stats.projects">Projets</div>
+        </div>
+        <div class="hero-stat">
+            <div class="hero-stat-num" data-counter="17" data-suffix="+">17+</div>
+            <div class="hero-stat-label" data-translate="stats.partners">Partenaires</div>
+        </div>
+    </div>
+
+    <div class="scroll-indicator">
+        <span>Scroll</span>
+        <div class="scroll-line"></div>
+    </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span data-translate="services.eyebrow">Ce que nous faisons</span></div>
+        <h2 class="section-title" data-translate="services.title">NOS <em>SERVICES</em><br>PREMIUM</h2>
+    </div>
+    <div class="services-layout">
+        <div class="service-card reveal stagger-1">
+            <div class="service-number">01</div>
+            <div class="service-icon"><i class="fas fa-truck-moving"></i></div>
+            <h3 data-translate="services.logistics.title">Logistique d'approvisionnement</h3>
+            <p data-translate="services.logistics.description">Elle concerne l’acheminement des matières premières vers l’entreprise.
+Exemple : transport des minerais ou équipements vers un site minier.
+ 2. Logistique de production
+
+Elle gère les flux internes à l’entreprise (stockage, transformation, circulation des produits).
+Exemple : déplacement des matières dans une usine ou sur un site d’exploitation.
+
+ 3. Logistique de distribution
+
+Elle assure la livraison des produits finis aux clients.
+Exemple : exportation de produits miniers vers l’étranger.
+
+ 4. Logistique de transport
+A: transport national 
+1 truck
+2.⁠ ⁠Dump truck 
+3.⁠ ⁠Flate bed 
+4.⁠ ⁠Super Link 
+5.⁠ ⁠Bus 
+6.⁠ ⁠Moto 🏍️ 
+7.⁠ ⁠Taxi</p>
+            <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal stagger-2">
+            <div class="service-number">02</div>
+            <div class="service-icon"><i class="fas fa-users"></i></div>
+            <h3 data-translate="services.manpower.title">Main d'Œuvre qualifiée</h3>
+            <p data-translate="services.manpower.description">Nous mettons à votre disposition une expertise avérée en recrutement, gestion et placement de personnel hautement qualifié, spécialement dans les secteurs miniers clés ainsi que dans divers autres domaines stratégiques.
+
+Grâce à notre réseau et à notre rigueur dans la sélection, nous garantissons des profils compétents, fiables et adaptés aux exigences spécifiques de chaque projet, contribuant ainsi à l’efficacité opérationnelle et à la performance de nos partenaires</p>
+            <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal stagger-3">
+            <div class="service-number">03</div>
+            <div class="service-icon"><i class="fas fa-gas-pump"></i></div>
+            <h3 data-translate="services.fuel.title">Chaîne d'approvisionnement fiable et sécurisée</h3>
+            <p data-translate="services.fuel.description">Dans un environnement industriel exigeant, nous mettons à votre disposition une solution d’approvisionnement stratégique, fiable et continue pour vos opérations.
+
+Nous assurons la fourniture des produits essentiels suivants :
+
+Diesel (carburant industriel de haute qualité)
+
+Soufre
+
+Acide sulfurique
+
+
+Grâce à un réseau logistique structuré et des partenaires internationaux de confiance, nous garantissons :
+
+La disponibilité des produits
+
+La conformité aux standards internationaux
+
+Le respect strict des délais de livraison
+
+
+MODES DE PAIEMENT FLEXIBLES & SÉCURISÉS
+
+Afin de s’adapter aux exigences de nos partenaires, nous proposons plusieurs options de paiement :
+
+Paiement anticipé (Advance Payment)
+
+Lettre de Crédit Documentaire (DLC)
+
+Standby Letter of Credit (SBLC)
+
+Ou tout autre instrument bancaire</p>
+            <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card reveal stagger-4">
+            <div class="service-number">04</div>
+            <div class="service-icon"><i class="fas fa-handshake"></i></div>
+            <h3 data-translate="services.partnerships.title">Proposition de Partenariat Minier – Esperence Mining SARL</h3>
+            <p data-translate="services.partnerships.description">Esperence Mining SARL se positionne comme un partenaire stratégique de référence dans le secteur minier, en proposant des solutions intégrées couvrant l’achat, l’exploitation et le traitement à façon des ressources minières.
+
+
+---
+
+1.⁠ ⁠Vision du partenariat
+
+Dans une dynamique de croissance durable et de création de valeur, Esperence Mining SARL développe des partenariats solides basés sur :
+
+La confiance et la transparence
+
+La performance opérationnelle
+
+La sécurisation des investissements
+
+Une vision à long terme du développement minier
+---
+
+2.⁠ ⁠Domaines d’intervention
+
+Esperence Mining SARL intervient sur toute la chaîne de valeur minière :
+
+Achat de produits miniers
+Approvisionnement sécurisé en minerais (bruts ou semi-transformés)
+
+Exploitation minière
+Gestion et développement des sites miniers avec une approche professionnelle et rentable
+</p>
+            <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+    <div class="about-visual reveal-left">
+        <img class="about-img-main" src="https://images.pexels.com/photos/60008/brown-coal-energy-garzweiler-bucket-wheel-excavators-60008.jpeg" alt="Mining operations" onerror="this.src='https://www.festanks.com.au/wp-content/uploads/2019/07/Syama-resolute-mining.jpg'">
+        <img class="about-img-accent" src="https://images.pexels.com/photos/10410019/pexels-photo-10410019.jpeg" alt="Mining equipment" onerror="this.style.display='none'">
+        <div class="about-badge">
+            <span class="about-badge-num">10</span>
+            <span class="about-badge-text">Years<br>of excellence</span>
+        </div>
+    </div>
+    <div class="about-text reveal-right">
+        <div class="section-header">
+            <div class="section-eyebrow"><span data-translate="about.eyebrow">Notre Histoire</span></div>
+            <h2 class="section-title" data-translate="about.title">À PROPOS<br><em>d'Espérence</em></h2>
+        </div>
+        <p class="about-desc" data-translate="about.description">Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
+        <p class="about-desc" data-translate="about.expertise">Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
+        <div class="about-highlights">
+            <div class="about-highlight"><h4>3 000+</h4><p data-translate="stats.projects">Projets réalisés</p></div>
+            <div class="about-highlight"><h4>17+</h4><p data-translate="stats.partners">Partenaires miniers</p></div>
+            <div class="about-highlight"><h4>6</h4><p data-translate="stats.countries">Nations africaines</p></div>
+            <div class="about-highlight"><h4>10+</h4><p data-translate="stats.years">Années d'expérience</p></div>
+        </div>
+        <div class="countries-strip">
+            <span class="country-tag">RDC</span>
+            <span class="country-tag">Uganda</span>
+            <span class="country-tag">Burundi</span>
+            <span class="country-tag">Tanzania</span>
+            <span class="country-tag">Rwanda</span>
+            <span class="country-tag">Kenya</span>
+        </div>
+    </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span data-translate="projects.eyebrow">Notre Portfolio</span></div>
+        <h2 class="section-title" data-translate="projects.title">NOS <em>RÉALISATIONS</em></h2>
+    </div>
+    <div class="projects-grid">
+        <div class="project-card reveal stagger-1">
+            <img class="project-img" src="https://images.pexels.com/photos/33122152/pexels-photo-33122152.jpeg" alt="Exploitation Minière RDC">
+            <div class="project-info">
+                <span class="project-cat" data-translate="projects.project1.cat">Extraction Minière · RDC</span>
+                <h3 data-translate="projects.project1.title">Exploitation Minière RDC</h3>
+                <p data-translate="projects.project1.description">Projet majeur d'extraction avec équipement de pointe — gestion de la logistique complète.</p>
             </div>
-        </section>
+            <div class="project-link"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="project-card reveal stagger-2">
+            <img class="project-img" src="https://images.pexels.com/photos/10582613/pexels-photo-10582613.jpeg" alt="Logistique Tanzanie">
+            <div class="project-info">
+                <span class="project-cat" data-translate="projects.project2.cat">Logistique · Tanzanie</span>
+                <h3 data-translate="projects.project2.title">Logistique Tanzanie</h3>
+                <p data-translate="projects.project2.description">Transport et gestion d'équipements miniers lourds sur le corridor tanzanien.</p>
+            </div>
+            <div class="project-link"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="project-card reveal stagger-3">
+            <img class="project-img" src="https://images.pexels.com/photos/6890408/pexels-photo-6890408.jpeg" alt="Recrutement Kamoa">
+            <div class="project-info">
+                <span class="project-cat" data-translate="projects.project3.cat">Ressources Humaines · RDC</span>
+                <h3 data-translate="projects.project3.title">Recrutement Kamoa</h3>
+                <p data-translate="projects.project3.description">Placement de plus de 500 spécialistes miniers pour le projet Kamoa Copper.</p>
+            </div>
+            <div class="project-link"><i class="fas fa-arrow-right"></i></div>
+        </div>
+    </div>
+</section>
 
-        <section class="stats-section section-animate">
-            <div class="stats-container">
-                <div class="stat-item animate scale-in delay-100">
-                    <span class="counter-number" data-target="10" data-suffix="+">0+</span>
-                    <p class="stat-label" data-translate="stats.years">Years Experience</p>
-                </div>
-                <div class="stat-item animate scale-in delay-200">
-                    <span class="counter-number" data-target="6">0</span>
-                    <p class="stat-label" data-translate="stats.countries">Countries</p>
-                </div>
-                <div class="stat-item animate scale-in delay-300">
-                    <span class="counter-number" data-target="3000" data-suffix="+">0+</span>
-                    <p class="stat-label" data-translate="stats.projects">Projects Completed</p>
-                </div>
-                <div class="stat-item animate scale-in delay-400">
-                    <span class="counter-number" data-target="17" data-suffix="+">0+</span>
-                    <p class="stat-label" data-translate="stats.partners">Mining Partners</p>
+<!-- PARTNERS -->
+<section id="partners">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span data-translate="partners.eyebrow">Ils nous font confiance</span></div>
+        <h2 class="section-title" data-translate="partners.title">NOS <em>PARTENAIRES</em><br>& CLIENTS</h2>
+    </div>
+    <div class="partners-marquee-wrap">
+        <div class="partners-marquee">
+            <div class="partner-item"><img src="https://upload.wikimedia.org/wikipedia/fr/d/d9/Africa_Global_Logistics_logo.png" alt="AGL"></div>
+            <div class="partner-item"><img src="https://www.kipushicorp.com/img/KICO.png" alt="KICO"></div>
+            <div class="partner-item"><img src="https://www.kamoacopper.com/wp-content/uploads/2024/06/Kamoa-logo-with-shape-red.png" alt="Kamoa Copper"></div>
+            <div class="partner-item"><img src="https://www.kamotocoppercompany.com/dam/jcr:8707c276-9037-4329-93f9-c3936ebfc32a/logo138px-01.svg" alt="KCC"></div>
+            <div class="partner-item"><img src="https://concordiaplglobal.com/images/180/13348149/ConcordiaGlobalLogo2025.png" alt="Concordia"></div>
+            <div class="partner-item"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1775294414/WhatsApp_Image_2026-03-25_at_14.02.59_ia58de.jpg" alt="Rawbank"></div>
+            <div class="partner-item"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1775294414/WhatsApp_Image_2026-03-25_at_14.04.06_rrbfy0.jpg" alt="Cone"></div>
+            <div class="partner-item"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1775294413/WhatsApp_Image_2026-03-25_at_14.01.58_uo2lno.jpg" alt="CRDBbank"></div>
+            <div class="partner-item"><img src="https://res.cloudinary.com/dlkow85gp/image/upload/v1775294412/WhatsApp_Image_2026-03-25_at_14.01.58_1_ido3mh.jpg" alt="Mexco"></div>
+            <div class="partner-item"><img src="https://www.globalmachinerysolutions.co.uk/media/rqzffynu/sany.png?width=800&height=600&rnd=133488543780330000" alt="Sany"></div>
+        </div>
+    </div>
+    <div class="partners-grid-cards">
+        <div class="partner-card-full reveal stagger-1">
+            <div class="partner-logo-wrap"><img src="https://concordiaplglobal.com/images/180/13348149/ConcordiaGlobalLogo2025.png" alt="Concordia"></div>
+            <h3 data-translate="partners.partner1.title">Concordia Petroleum Global</h3>
+            <p data-translate="partners.partner1.description">Partenaire stratégique pour la fourniture de carburant diesel de haute qualité.</p>
+            <span class="partner-type-badge" data-translate="partners.partner1.type">Fournisseur de carburant</span>
+        </div>
+         <div class="partner-card-full reveal stagger-1">
+            <div class="partner-logo-wrap"><img src="https://www.globalmachinerysolutions.co.uk/media/rqzffynu/sany.png?width=800&height=600&rnd=133488543780330000" alt="Sany"></div>
+            <h3 data-translate="partners.partner2.title">SANY</h3>
+            <p data-translate="partners.partner2.description">Leader mondial en fourniture d'équipements pour l'industrie miniére.</p>
+            <span class="partner-type-badge" data-translate="partners.partner2.type">Fournisseur d'equipements</span>
+        </div>
+        <div class="partner-card-full reveal stagger-3">
+            <div class="partner-logo-wrap"><img src="https://upload.wikimedia.org/wikipedia/fr/d/d9/Africa_Global_Logistics_logo.png" alt="AGL"></div>
+            <h3 data-translate="partners.partner3.title">AGL</h3>
+            <p data-translate="partners.partner3.description">Partenaire logistique pour le transport et la chaîne d'approvisionnement.</p>
+            <span class="partner-type-badge" data-translate="partners.partner3.type">Services logistiques</span>
+        </div>
+        <div class="partner-card-full reveal stagger-1">
+            <div class="partner-logo-wrap"><img src="https://www.kamoacopper.com/wp-content/uploads/2024/06/Kamoa-logo-with-shape-red.png" alt="Kamoa"></div>
+            <h3 data-translate="partners.partner4.title">Kamoa Copper S.A</h3>
+            <p data-translate="partners.partner4.description">Client principal pour la fourniture de main d'œuvre spécialisée.</p>
+            <span class="partner-type-badge" data-translate="partners.partner4.type">Client minier</span>
+        </div>
+        <div class="partner-card-full reveal stagger-2">
+            <div class="partner-logo-wrap"><img src="https://www.kamotocoppercompany.com/dam/jcr:8707c276-9037-4329-93f9-c3936ebfc32a/logo138px-01.svg" alt="KCC"></div>
+            <h3 data-translate="partners.partner5.title">KCC — Kamoto Copper</h3>
+            <p data-translate="partners.partner5.description">Partenariat pour la gestion des ressources humaines dans les mines de cuivre.</p>
+            <span class="partner-type-badge" data-translate="partners.partner5.type">Client minier</span>
+        </div>
+        <div class="partner-card-full reveal stagger-3">
+            <div class="partner-logo-wrap"><img src="https://www.kipushicorp.com/img/KICO.png" alt="KICO"></div>
+            <h3 data-translate="partners.partner6.title">Kipushi Corp (KICO)</h3>
+            <p data-translate="partners.partner6.description">Collaboration pour le placement de spécialistes dans les mines de zinc.</p>
+            <span class="partner-type-badge" data-translate="partners.partner6.type">Client minier</span>
+        </div>
+    </div>
+    <div class="become-partner reveal">
+        <div class="become-partner-text">
+            <h3 data-translate="partners.becomePartner.title">Devenez Notre Partenaire</h3>
+            <p data-translate="partners.becomePartner.description">Rejoignez notre réseau d'excellence dans l'industrie minière et accédez aux meilleures opportunités d'affaires en Afrique.</p>
+        </div>
+        <a href="#contact" class="btn-primary">
+            <span data-translate="partners.becomePartner.cta">Nous Contacter</span>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+    <div class="contact-left">
+        <div class="section-eyebrow"><span data-translate="contact.eyebrow">Parlons de votre projet</span></div>
+        <h2 class="section-title" data-translate="contact.title">DÉMARRONS<br><em>ENSEMBLE</em></h2>
+        <div class="contact-info-blocks">
+            <div class="contact-info-block">
+                <div class="contact-info-icon"><i class="fas fa-envelope"></i></div>
+                <div class="contact-info-text"><h4 data-translate="contact.email">Email</h4><p>esperencesarl@gmail.com</p></div>
+            </div>
+            <div class="contact-info-block">
+                <div class="contact-info-icon"><i class="fas fa-phone"></i></div>
+                <div class="contact-info-text"><h4 data-translate="contact.phone">Téléphone</h4><p>+243 999 541 920</p></div>
+            </div>
+            <div class="contact-info-block">
+                <div class="contact-info-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="contact-info-text"><h4 data-translate="contact.locations">Présence</h4><p>DRC · Uganda · Burundi · Tanzania · Rwanda · Kenya</p></div>
+            </div>
+        </div>
+    </div>
+    <div class="contact-right">
+        <div class="section-eyebrow"><span data-translate="contact.formEyebrow">Formulaire de contact</span></div>
+        <h2 class="section-title" style="font-size:2rem; margin-bottom:0;" data-translate="contact.formTitle">VOTRE <em>MESSAGE</em></h2>
+        <form class="contact-form" id="contact-form" action="https://formspree.io/f/xzzejbpv" method="POST">
+            <div class="form-row">
+                <div class="form-field"><label data-translate="contact.name">Votre nom</label><input type="text" name="Name" required placeholder="Jean Dupont"></div>
+                <div class="form-field"><label data-translate="contact.emailLabel">Email</label><input type="email" name="email" required placeholder="jean@example.com"></div>
+            </div>
+            <div class="form-field">
+                <label data-translate="contact.service">Service requis</label>
+                <select name="service" required>
+                    <option value="" data-translate="contact.selectService">Sélectionner un service</option>
+                    <option value="logistics" data-translate="services.logistics.title">Logistique</option>
+                    <option value="manpower" data-translate="services.manpower.title">Main d'Œuvre</option>
+                    <option value="fuel" data-translate="services.fuel.title">Carburant</option>
+                    <option value="partnership" data-translate="services.partnerships.title">Partenariat</option>
+                </select>
+            </div>
+            <div class="form-field"><label data-translate="contact.message">Votre message</label><textarea name="message" required placeholder="Décrivez votre projet..."></textarea></div>
+            <button type="submit" class="btn-primary" style="border:none; width:100%; justify-content:center;">
+                <span data-translate="contact.send">Envoyer le message</span>
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </form>
+    </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+    <div class="section-header reveal">
+        <div class="section-eyebrow"><span data-translate="news.eyebrow">Restez informé</span></div>
+        <h2 class="section-title" data-translate="news.title">ACTUALITÉS<br><em>MINIÈRES</em></h2>
+    </div>
+
+    <!-- Articles depuis l'API backend — chargés dynamiquement -->
+    <div id="api-articles-section">
+        <!-- Skeletons de chargement -->
+        <div class="blog-layout" id="api-articles-grid">
+            <div class="blog-skeleton reveal stagger-1">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line title"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
                 </div>
             </div>
-        </section>
-
-        <section id="services" class="services section-animate">
-            <h2 class="animate fade-in-up" data-translate="services.title">Our Premium Services</h2>
-            <div class="services-grid">
-                <div class="service-card animate slide-in-left delay-200">
-                    <i class="fas fa-truck-moving"></i>
-                    <h3 data-translate="services.logistics.title">Logistics</h3>
-                    <p data-translate="services.logistics.description">Comprehensive management and transportation of mining equipment</p>
-                </div>
-                <div class="service-card animate slide-in-left delay-300">
-                    <i class="fas fa-users"></i>
-                    <h3 data-translate="services.manpower.title">Man Power</h3>
-                    <p data-translate="services.manpower.description">Expert recruitment for underground mining operations</p>
-                </div>
-                <div class="service-card animate slide-in-left delay-400">
-                    <i class="fas fa-gas-pump"></i>
-                    <h3 data-translate="services.fuel.title">Fuel Supply</h3>
-                    <p data-translate="services.fuel.description">Premium 50 PPM diesel supply for mining operations</p>
-                </div>
-                <div class="service-card animate slide-in-left delay-500">
-                    <i class="fas fa-handshake"></i>
-                    <h3 data-translate="services.partnerships.title">Mining Partnerships</h3>
-                    <p data-translate="services.partnerships.description">Strategic collaborations for mining finance and operations</p>
+            <div class="blog-skeleton reveal stagger-2">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line title"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
                 </div>
             </div>
-        </section>
-
-        <section id="about" class="about section-animate">
-            <h2 class="about-title animate fade-in-up" data-translate="about.title">À Propos d'Espérence Mining</h2>
-            <div class="about-content animate slide-in-right delay-200">
-                <div class="about-text">
-                    <p class="about-description" data-translate="about.description">Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.</p>
-                    <p class="about-expertise" data-translate="about.expertise">Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="projects" class="projects section-animate">
-            <h2 class="animate fade-in-up" data-translate="projects.title">Nos Réalisations</h2>
-            <div class="projects-grid">
-                <div class="project-card animate slide-in-right delay-200">
-                    <img src="https://www.festanks.com.au/wp-content/uploads/2019/07/Syama-resolute-mining.jpg" alt="Exploitation Minière RDC" class="project-image">
-                    <h3 data-translate="projects.project1.title">Exploitation Minière RDC</h3>
-                    <p data-translate="projects.project1.description">Projet majeur d'extraction avec équipement de pointe</p>
-                </div>
-                <div class="project-card animate slide-in-right delay-300">
-                    <img src="https://images.squarespace-cdn.com/content/v1/5f71d110704fd32c33582494/08feca8d-2c63-45a2-a53d-0631cf0c0f4a/mining.png" alt="Logistique Tanzanie" class="project-image">
-                    <h3 data-translate="projects.project2.title">Logistique Tanzanie</h3>
-                    <p data-translate="projects.project2.description">Transport et gestion d'équipements miniers</p>
-                </div>
-            </div>
-        </section>
-
-        <section id="partners" class="partners section-animate">
-            <h2 class="animate fade-in-up" data-translate="partners.title">Nos Partenaires et Clients</h2>
-            <div class="partners-grid">
-                <div class="partner-card animate slide-in-left delay-200">
-                    <div class="partner-logo">
-                        <img src="https://concordiaplglobal.com/images/180/13348149/ConcordiaGlobalLogo2025.png" alt="partner-logoenaire" class="partner-logo">
-                    </div>
-                    <h3 data-translate="partners.partner1.title">Concordia Petroleum Global</h3>
-                    <p data-translate="partners.partner1.description">Partenaire Diesel</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner1.type">Fournisseur de carburant</span>
-                    </div>
-                </div>
-
-                <div class="partner-card animate slide-in-left delay-300">
-                    <div class="partner-logo">
-                        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAkFBMVEX////jBBPiAADjABD4ysz97O3jAAvjAAfyoqX+8PH+9fb40dLjAAX63N7gAADnND31wMH85+jscXboTFLnPUT4y83oQ0nnLTf3xcfxmZzuf4Pvh4v/+vvlHijxnaD1uLvwj5P0rrHpUljrZWrkER3ufIH0sLP73+H1ubzlJi/vhYnlHCbpWV7tdXnra2/qYGWDchU0AAAP4ElEQVR4nO1d6WKyOBSVUFFRq9SlLtStLrW29v3fbrKQPUBEgs4M58/MV0FzyM3dcnNpNGrUqFGjRo0aNWrU+D/i9OgBOEb0AT6iRw/CKd6ABz4fPQinOAeeD8JHj8IhIuB5Hlg/ehgOMcQMfx49jPLRH27eppdJo7FEDD0kppvp22b4n9Cr4Ww5BQg9cG00BgFmuG10AMFo8xI/eoj3oD8fQxYtz2vB/0z7jRD4mOEIzSaE5/UQy9W/dC5P8w/MzoMkxpsJ+lMXCyn8Swf+o7/awU98zPK8+tcZyXgNZROJZADAbttM/jqnDNvk3+H6hzwEeNVo+LDBFkBn44EeHLgPwGDV5H/fJQx7U37pdownEs70ZfVvMZTNBRkz5HftSp+QZYjoiELZ/yXXw4lcdqodaiGE34zfUllc/WQKIcOV9EFnE9B7Nk+vWlcg0Zdgo8ncljFsjZWP4jl9Lv62opEWQ/dM+X0b1tQbY+gBzUCES4A/9sGgX8VQi+EXq0+4oH6Myj/wOcO5/nHzj9zeAgvXAy2ISUDmCOxnxs8jPoVe8G664mVPv6Fr+vjR+KYT+J1ywVBg6AGzKC7pl2ycjbMoOuPk8V9SH/+3xHBpvqh7Sb5n9GTGceInauKaru2J203F9JxyVXxNlNX+qRTOlgpXhqqPxSmEDFLnmn3Zl4uhFsMmeexe1mOfKAzTFWZ3nwhEu/yhFsMhWTrjTJ9rLjMMLumXskW9KXmkBZEYcvCXfdmPzNADk/yL0/RRtaAEf3OuA77CMPOGt+ehSEU0zQpS9JUp9Hwv08k+PIugbmyf9VZl6AGz60OxSL55lXmVc2wtZ7DRuOoMr9l3/Cbf/dD06iQxE2/5l34EKkMf5MSCn4nReKDpb7ZIdtAixdvUphDel2fSR/imwHucA0fMFjDGCQq+TAxz7EsjPvfwdaMyBlsERN0FwCa5cjAwzN+jiZJVsClhtAUwTJaJVSw3bekMLZTILNE2D4kXaQLbSpuHhimE9+5ybyTWKNjfPdwCIJrOciMJz4XO0mIrkWgbcLh3uLeDyI8f2Ok55HYDg0nMT6w1E1GpXk73xFBk+yUMO4DE+Vul2LPQkmsip2kRszOQ9WFj6hFCqJDe+M6MMIkWevgP2K/38kBkx7e1xX1AbJrm2NgEuR3yW71q7T4JbsDR8vL16yVElTQbdRJb0/ybG23yY/m+b4k4kd+0GR7BsQmnvamHUPIeTRrOaOp9q0vLAtGKN+m3+B1J5Lsmpobkt4aXyi1GMoU3lf6MANqOmWtiOrC7GU9iM//KkkAit5ukBt0CbzjpYmqziU+ku7qUBlFutpYCA88dksix6p/aedU/ZBKr2lxckSd6g8wcidUeUL0owLxHo4JYUgsXqBxgq3bLKkxSAWg7JtLF1CqExyvR7mncD5K8viG3cKKJRCSRo57K0Gp1zW790XuArb22T52OcE/XHnIutZxb8GH1LdgmVmP1Y6Jn7DNgY2FzuwvVlCamVma1TXRN4WHfgNmNak3M5qM5ULP7lpY8UeBVBFHYGNr7FwuREJLIoyame6unhUOMSkxi66ZnqVgHMKHZD/GPLzbfhNNCVYSJ2L3I2hqTMFQmDM39nyamVr5D6ONH6979xpNiq9P66nz5UCK11KnvW4kpTgxZB2zFQZZD1t4fRxNoqXwwS5Sx9EerukSczsjdxLsfaHg5G2MU8Ydq3cl2jJaRsvOPsDZ1vxBPN9Sij0x5biiR6uK0PaCAs8rOzzKQanurEgI9eUglUhdTq7ILnAOxU7x3gPyKjXuo5WQSMn9sZ1D4o5VQzOyf7h1AE+PbmGh9z5dL5EsxMQ0rUTUo0WKTx33RJJHN19okplZGAFVVOT+PgsZm4TpFZoI+PmOhuHKYodUWIRIg18o0tLO6oa8ZQsxjv/yarA+hKfltI6YoueA6ldG3UzTvpkUoVnF5mpjaJCiIIndrLiZWv6EFSISE4K0vtT0am+zyyVqRFwdS2MFHjpyYdrQVm2dIftsktm7wGIsCec2tHK2wMhOUk9tnLflts7e0922d2MJAVi6nhGJtJqiYMT35bZP4QX6b47JTFDtl29yu0U5oVmyii6lF5IcCKMc1UpjhJuOCKDDZCTBQl64hb2qxR/NWEcMMzzA0BExQAvcd+JF0oW4RA4s9moV7hngdZhj8qdkQQgW/kQ2elt23MgPIm3e8Dr+yH+KnWcvM0C6wvBINFUQWezS4pMOtLp1lMtTsOBn5FusfKT03M1xp4XEiQ+Q4QJxkiYk5YEJTgxxxscQwAqblmp+ixAzd+jT9jDk0zQvJwZCdix4/I9K+vqMooyUbFpTBizNZYil1ewozTGeoZQ7JqJG/mexcBOA6Y0Yv7m5/8Tn2HrsNZcQXr1lZKahpnG+TpurSzt5kCHvIh+UpYEjospsPIzrIuH88jHxGE7qcbZBVzgcXuuVWVXFAf9JoD+OBSUaDVqSc6PIDNG+X0WYd0WUZn9bL0QU3IPhFW1NgmjpL0Ke3qGe8D9AeGEN8Y8CE9afB8nk+6jSwHy2OfUYz+trsLjAugxMOBmnhGQzybyofKIKN+Te07BkRyrW+c6HQBNPfbZfNWURy/uCcEkrB5+g81wYHYMgFaZECIbhK0z8CTdRQAgyu7QmdN5wJ2pvd8PfAuhqyMGCYrcc5KQHTAeqfnjFhowIvzo/rfNZJ9FLLbPUge8fGAv2Ini5ND5jic6qMptAMRtSyGAwjtFXW+3rFgWph5cdozhwCFCqYdi6y4VN/1Tf4nzAgyTtoUwLgkpMzJbzUQpqQfSgdwL8dvm534WqooGioq/7K2GwnotSdC3uKqtqEltWqDO5OwChBLFMwBkw+mmatJOFmqPHUD1wP7glCSmJhb0rAdMzaubiBoryb7vmV1JiugVBybXJYyLPvI8V4N0cp6xUB99YQIRSC2aFZjaLwoDNbfX6Au2mKqcsjqKYmCq4GmhZLcVjAD1UHzW77l9AsTpHnn9+Ac6eUYAiSDcSOMXPo4SBp8DanNiXsbhck4C1GkWUiz4HjjD5FTA/kZTks0EF5lUx2f/1NGrfdLLTggyz7E6jsgNcSYH/DmDlMgKLaqe5BnobLH3Cz1AIfhxorYFXYXwYigFRNusOCHMzPY6qH3Jxt/i430WxhO78D7r1uRtF0/IXTu/zOcnMpSNWaslFpXwof6exc1RRiGB0WFNMONvYloOFkex1b0QwqMYQiJrrCQEtv1L69dBCq2sPYz6PpV9zL5aSuISib/t+6+DIJT8fldC/lFjWKVbY561xaCr39IX/p5QJlo0b7NIviV6ZJG3LAhDpXbspMtEez+Y9npFndqSAWMBVdevloTuZXT7MoVVGMaCYFgOvaZXFLCL3as+juVXXwCVWytuDSW7iugySAqpa6e0E1oQXaRQPjebUNR/rrxQ6u+MoaucRENpvtag8fR5X3ODmD9yp+Mx69P6pxK3SFU/dQykMM/Tr3RxDMCOHSH7vWbvEUWB4bcgFUf+BYUMMx/I0H9vtuAw9cXJ6wbp7Bg1thLQB029wZjn4AHt6x7Q84DGy+oNNWUXotA2h7yZG/uETbhXndsioASkiBUfkWK8TPznVdgg1iFEsBv+xqsxfvWQg2iKAG4FCm0YoXoIrTI9bApSbgUl6y6AUnmx+vZDgO+Ggg+CxnNXauaAL9R5sJGW0cjJeTlJ7j9vOZXZcfgQkgx/T3947ruCcH7zO7Lj8EHbKNEYDLPRyPF0A6Ju2erGE5xpzkUwIACr5sJFwFJPMEnqfPtYz+O8kA+gC83d7doZu8qgTePn7e9+oQJYE5nue3xDzR6kwTpE87gQTRH63ghsI6mPetvID+fMASowBcn/1dM5MxS2+ijbbPbT9rUYan7eeFJ0R7YPqUb7ZQ8DXglfgoK+5Pf7ezKJSnMw6bs+1h5IlpbQDGVe+hFcVwKu46kBJS8DH9+Xw7fC8Xh7fPn+kHkKvY0bMYVZNiLgfdq1p64QctwNFSqmx6APw+nYnPQYhexmU6N6IDVTUcn/49TyZE7VFuPQKa2NG2unaBpSMcLgbKgmNiiwvZx98lbK0+GvGk/YuVpoz9TqzS/w8gPr18rdvzzWYzb6+/Xk7/JW41atSoUaNGjRo1atSooSLuT16MmCk5w4h/ouY/4xn7rGm8JRIv0fPKJ/7VpYdgw50Wx1K8KnnOAf9IPdfaeWUfSf0RVsnfX1eNxje/Rs1wNPlvlv1m5OYYpJ+SUQ4miy2E1DEKHb2lw3f0pB/O6rMTxEA9Oc5KsG94gYgd+hn8NIY7kaHyqMWe5WIpjsSww980L5+yXPIS7JLT/53spJnMUHqNhToUkaH4Vg6JodCLQTpMwhuDlt5ryNwpMIWh3H5W2ZCX+s4LQigz5P0xxSfEm4GXfl5W782VwVBpVaZ0s5Y76/N6KoVhY0DzycIhSyb9vdJfBGFu7ZHCUG1PKu8IKu8OYEKoMuSdDFgBxJzPa+mbqLQdZ2BhLTrqYRC5a47CMPA6ZobC6bHk+XFBKr9qmL5UO3ifdM0QLD47uMdO0UoDUt//QEu7NIZ8OZMq4fjCvq/83hH0NaI2HSpjn873aBzQByN8rr3hIhFCnSF/ixkuUWRndVx0UqJz6H+shzJetE0xdkYfzPj/Cqo97R0eBob8sDjY8mZpbt4uS/tc+YY1uJTtHZWl4MKVu9jThjFkzYYD3MXewJA/LR8cOVsnpQxa92YOSFosEmL6AQkfOywsnDOnDP3BlNmDnxSGvE+Yzwm6KarV2+JKHDf8ync2203hNqFSlDIMxh1pWowMQ61JGu4L4wLmLvkUfBaZt0X0HXtHF187jOGAzzc6cWBkqDcwcvaqmfCSPYvUv+SSh0dylAkrDAV7cE5hqHbZcniSNMqkSAMIZpSDJLbxmSDSZyAybHATd9iaGUpxitv3O4d/GS0faHssNhz/PJpCjC6MIQ2iJIaCPRjRsiiFYScQa1LcVkx1rwZjQQeI15mgkPwWBh8dbXQuMRR6Y7PZVI2B0FSzgmP5UV/GiXZFJGd3svQRVbgyQ8MbrjRzN2aGs/J35jZ4pIRdT9M74gUJI4KsMNTeMqAzZC15nb48r50C+uvYLzP3m1eGrjDUQs9HMUxLsjF7F6W9X5whaS+jMlSbiDyKofa+BmX079JQfQls7EcjQ6U135MyRMPir6ryQdBiCNifyQB1hnLI/JwMW+dYCgSaIUcshOZDI0O5yelTMiT9zZiTrL5bgEkhfk+HgaHUifcZGQJsiIW0ihKhCrnPrpkhT6w9IUPo5pDTA++sWltr4cq9z58Uhk2+FJ/NWgBwJZ7UF9tMedWOJs/FnBzbmZGyLUd+u5YL4ts8LvuzNlPAwtEO/1vW3SH/Ryf9Ehn8q5/9pEKNGjVq1KhRo0aNGjVq1KhRo0aNGjVq1KhRo8b/Gf8A+LPN3OlmBskAAAAASUVORK5CYII=" alt="partner-logoenaire" class="partner-logo">
-                    </div>
-                    <h3 data-translate="partners.partner2.title">SANY</h3>
-                    <p data-translate="partners.partner2.description">Partenaire équipements miniers</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner2.type">Fournisseur d'équipements</span>
-                    </div>
-                </div>
-
-                <div class="partner-card animate slide-in-left delay-400">
-                    <div class="partner-logo">
-                        <img src="https://www.aglgroup.com/app/uploads/2023/02/agl_bleu.svg" alt="partner-logoenaire" class="partner-logo">
-                    </div>
-                    <h3 data-translate="partners.partner3.title">AGL</h3>
-                    <p data-translate="partners.partner3.description">Partenaire logistique</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner3.type">Services logistiques</span>
-                    </div>
-                </div>
-
-                <div class="partner-card animate slide-in-left delay-500">
-                    <div class="partner-logo">
-                        <img src="https://www.kamoacopper.com/wp-content/uploads/2024/06/Kamoa-logo-with-shape-red.png" alt="partner-logoenaire" class="partner-logo">
-                    </div>
-                    <h3 data-translate="partners.partner4.title">Kamoa Copper S.A</h3>
-                    <p data-translate="partners.partner4.description">Partenaire Man Power</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner4.type">Client minier</span>
-                    </div>
-                </div>
-
-                <div class="partner-card animate slide-in-left delay-600">
-                    <div class="partner-logo">
-                        <img src="https://www.kamotocoppercompany.com/dam/jcr:8707c276-9037-4329-93f9-c3936ebfc32a/logo138px-01.svg" alt="partner-logoenaire" class="partner-logo_kamoto">
-                    </div>
-                    <h3 data-translate="partners.partner5.title">KCC</h3>
-                    <p data-translate="partners.partner5.description">Partenaire Man Power</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner5.type">Client minier</span>
-                    </div>
-                </div>
-
-                <div class="partner-card animate slide-in-left delay-700">
-                    <div class="partner-logo">
-                        <img src="https://www.kipushicorp.com/img/KICO.png" alt="partner-logoenaire" class="partner-logo">
-                    </div>
-                    <h3 data-translate="partners.partner6.title">Kipushi Corporation S.A (KICO)</h3>
-                    <p data-translate="partners.partner6.description">Partenaire Man Power</p>
-                    <div class="partner-details">
-                        <span class="partnership-type" data-translate="partners.partner6.type">Client minier</span>
-                    </div>
-                </div>
-            </div>
-            <div class="partnership-cta animate slide-in-right delay-200">
-                <h3 data-translate="partners.becomePartner.title">Devenez Notre Partenaire</h3>
-                <p data-translate="partners.becomePartner.description">Rejoignez notre réseau d'excellence dans l'industrie minière</p>
-                <button class="cta-button" data-translate="partners.becomePartner.cta">Contactez-nous</button>
-            </div>
-        </section>
-
-        <section id="contact" class="contact section-animate">
-            <h2 class="animate fade-in-up" data-translate="contact.title">Start Your Mining Project</h2>
-            <div class="contact-container animate slide-in-right delay-200">
-                <form id="contact-form" action="https://formspree.io/f/xzzejbpv"
-                method="POST">
-                    <div class="form-group">
-                        <input type="text" placeholder="Your Name" name="Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="email" placeholder="Your Email" name="email" required>
-                    </div>
-                    <div class="form-group">
-                        <select name="service" required>
-                            <option value="">Select Service</option>
-                            <option value="logistics">Logistics</option>
-                            <option value="manpower">Man Power</option>
-                            <option value="fuel">Fuel Supply</option>
-                            <option value="partnership">Mining Partnership</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <textarea placeholder="Your Message" name="message" required></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn animate slide-in-right delay-300" data-translate="contact.send">Send Message</button>
-                </form>
-            </div>
-        </section>
-
-        <section id="blog" class="blog section-animate">
-            <h2 class="animate fade-in-up" data-translate="news.title">Actualités Minières</h2>
-            <div class="blog-grid">
-                <article class="blog-post animate slide-in-left delay-200">
-                    <img src="https://www.csm.tech/storage/uploads/news/65deeb8373b121709108099Thumb.jpg" alt="Mining News" class="blog-image">
-                    <h3 data-translate="news.post1.title">Innovations dans l'Exploitation Minière</h3>
-                    <p data-translate="news.post1.description">Les dernières avancées technologiques dans le secteur minier...</p>
-                    <a href="#" class="read-more animate slide-in-right delay-300" data-translate="news.readMore">Lire la suite</a>
-                </article>
-            </div>
-        </section>
-
-        <section id="careers" class="careers section-animate">
-            <h2 class="animate fade-in-up" data-translate="careers.title">Rejoignez Notre Équipe</h2>
-            <div class="careers-content animate slide-in-right delay-200">
-                <div class="job-listings">
-                    <div class="job-card animate slide-in-left delay-200">
-                        <h3 data-translate="careers.positions.engineer">Ingénieur Minier Senior</h3>
-                        <p data-translate="careers.positions.description">Nous recherchons un ingénieur expérimenté pour superviser nos opérations...</p>
-                        <a href="./candidature.html" class="apply-btn animate slide-in-right delay-300" data-translate="careers.positions.apply">Postuler</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="footer-content">
-            <div class="contact-info">
-                <h3 data-translate="footer.contact">Contact</h3>
-                <p>Email: esperencesarl@gmail.com</p>
-                <p data-translate="footer.phone">Phone: +243 999 541 920</p>
-            </div>
-            <div class="footer-section animate slide-in-left delay-300">
-                <h4>Locations</h4>
-                <p>DRC | Uganda | Burundi</p>
-                <p>Tanzania | Rwanda | Kenya</p>
-            </div>
-            <div class="footer-section animate slide-in-left delay-400">
-                <h4 data-translate="social.title">Follow Us</h4>
-                <div class="social-icons">
-                    <a href="#" class="social-link animate slide-in-right delay-200">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link animate slide-in-right delay-300">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/>
-                        </svg>
-                    </a>
-                    <a href="#" class="social-link animate slide-in-right delay-400">
-                        <svg class="social-icon" viewBox="0 0 24 24">
-                            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.223-.548.223l.188-2.85 5.18-4.68c.223-.198-.054-.308-.346-.11l-6.4 4.02-2.76-.918c-.598-.183-.608-.598.126-.885l10.78-4.156c.503-.18.94.126.78.885z"/>
-                        </svg>
-                    </a>
+            <div class="blog-skeleton reveal stagger-3">
+                <div class="skeleton-img"></div>
+                <div class="skeleton-body">
+                    <div class="skeleton-line short"></div>
+                    <div class="skeleton-line title"></div>
+                    <div class="skeleton-line medium"></div>
+                    <div class="skeleton-line short"></div>
                 </div>
             </div>
         </div>
-        <div class="footer-bottom animate slide-in-right delay-200">
-            <p>&copy; 2024 Espérence Mining SARL. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
-    <script src="js/main.js"></script>
+    <!-- Articles statiques de fallback (affichés si l'API échoue) -->
+    <div class="blog-layout" id="static-articles" style="display:none;">
+        <div class="blog-card reveal stagger-1">
+            <img class="blog-card-img" src="https://www.csm.tech/storage/uploads/news/65deeb8373b121709108099Thumb.jpg" alt="Innovation" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
+            <div class="blog-card-body">
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post1.cat">Innovation</span><span class="blog-date">Mars 2025</span></div>
+                <h3 data-translate="news.post1.title">Innovations dans l'Exploitation Minière</h3>
+                <p data-translate="news.post1.description">Les dernières avancées technologiques transforment le secteur minier en Afrique de l'Est.</p>
+                <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
+            </div>
+        </div>
+        <div class="blog-card reveal stagger-2">
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1509390874189-b67716037d5a?w=600&q=80" alt="Expansion" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
+            <div class="blog-card-body">
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post2.cat">Expansion</span><span class="blog-date">Février 2025</span></div>
+                <h3 data-translate="news.post2.title">Espérence s'étend au Rwanda</h3>
+                <p data-translate="news.post2.description">Nouvelle présence opérationnelle au Rwanda, renforçant notre réseau régional d'excellence.</p>
+                <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
+            </div>
+        </div>
+        <div class="blog-card reveal stagger-3">
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Recrutement" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
+            <div class="blog-card-body">
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post3.cat">Ressources Humaines</span><span class="blog-date">Janvier 2025</span></div>
+                <h3 data-translate="news.post3.title">500 postes ouverts pour 2025</h3>
+                <p data-translate="news.post3.description">Espérence Mining lance sa plus grande campagne de recrutement pour ses projets en RDC et Tanzanie.</p>
+                <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section id="newsletter">
+    <div class="newsletter-inner reveal">
+        <div class="newsletter-icon">
+            <i class="fas fa-envelope-open-text"></i>
+        </div>
+        <div class="newsletter-eyebrow">
+            <span data-translate="newsletter.eyebrow">Newsletter</span>
+        </div>
+        <h2 class="newsletter-title" data-translate="newsletter.title">
+            RESTEZ DANS<br>LA <em>BOUCLE</em>
+        </h2>
+        <p class="newsletter-sub" data-translate="newsletter.sub">
+            Recevez en exclusivité les dernières actualités minières, offres d'emploi, et opportunités de partenariat d'Espérence Mining.
+        </p>
+
+        <!-- Formulaire -->
+        <div id="newsletter-form-wrap">
+            <form class="newsletter-form" id="newsletter-form" novalidate>
+                <input type="email" id="newsletter-email" placeholder="votre@email.com" required autocomplete="email">
+                <button type="submit" class="newsletter-submit" id="newsletter-btn">
+                    <span>S'abonner</span>
+                    <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            <div class="newsletter-perks">
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Gratuit</span></div>
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Sans spam</span></div>
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Désabonnement facile</span></div>
+            </div>
+        </div>
+
+        <!-- Succès -->
+        <div class="newsletter-success" id="newsletter-success">
+            <div class="success-icon"><i class="fas fa-check"></i></div>
+            <p style="font-family:var(--font-display); font-size:1.5rem; letter-spacing:0.1em; color:var(--white);">BIENVENUE !</p>
+            <p id="newsletter-success-msg">Vous êtes désormais abonné à notre newsletter.</p>
+        </div>
+
+        <!-- Compteur abonnés -->
+        <div class="newsletter-count">
+            <div class="subscriber-avatars">
+                <div class="subscriber-avatar">E</div>
+                <div class="subscriber-avatar">M</div>
+                <div class="subscriber-avatar" style="background: linear-gradient(135deg, #B87333, #8B4513);">K</div>
+                <div class="subscriber-avatar" style="background: linear-gradient(135deg, #444, #222);">+</div>
+            </div>
+            <span class="newsletter-count-text">Rejoignez <strong id="sub-count">1 240+</strong> professionnels abonnés</span>
+        </div>
+    </div>
+</section>
+
+<!-- CAREERS -->
+<section id="careers">
+    <div class="careers-grid">
+        <div class="careers-text reveal-left">
+            <div class="section-eyebrow"><span data-translate="careers.eyebrow">Nous recrutons</span></div>
+            <h2 class="section-title" data-translate="careers.title">REJOIGNEZ<br><em>L'ÉQUIPE</em></h2>
+            <p class="about-desc" style="margin-top:2rem;" data-translate="careers.description">Nous recherchons des professionnels passionnés prêts à relever les défis de l'industrie minière en Afrique.</p>
+            <a href="./candidature.html" class="btn-primary" style="margin-top:2rem; display:inline-flex;">
+                <span data-translate="careers.viewAll">Voir tous les postes</span>
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+        <div class="job-listings reveal-right">
+            <div class="job-card">
+                <div class="job-card-left">
+                    <div class="job-dept" data-translate="careers.dept1">Ingénierie</div>
+                    <h3 data-translate="careers.positions.engineer">Ingénieur Minier Senior</h3>
+                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">RDC</span></div>
+                </div>
+                <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
+            </div>
+            <div class="job-card">
+                <div class="job-card-left">
+                    <div class="job-dept" data-translate="careers.dept2">Logistique</div>
+                    <h3 data-translate="careers.positions.logistics">Responsable Logistique</h3>
+                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Tanzania</span></div>
+                </div>
+                <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
+            </div>
+            <div class="job-card">
+                <div class="job-card-left">
+                    <div class="job-dept" data-translate="careers.dept3">Opérations</div>
+                    <h3 data-translate="careers.positions.operator">Opérateur de machines lourdes</h3>
+                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Multi-sites</span></div>
+                </div>
+                <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
+            </div>
+            <div class="job-card">
+                <div class="job-card-left">
+                    <div class="job-dept">HSE</div>
+                    <h3 data-translate="careers.positions.hse">Responsable HSE</h3>
+                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Kenya / Rwanda</span></div>
+                </div>
+                <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-top">
+        <div class="footer-brand">
+            <p style="font-family:var(--font-display); font-size:1.4rem; letter-spacing:0.15em; color:var(--gold); margin-bottom:1rem;">ESPÉRENCE MINING</p>
+            <p data-translate="footer.tagline">Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité, et performance à travers six nations africaines.</p>
+            <div class="social-links">
+                <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
+                <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
+                <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
+            </div>
+        </div>
+        <div class="footer-col">
+            <h4 data-translate="footer.navigation">Navigation</h4>
+            <ul>
+                <li><a href="#services" data-translate="nav.services">Services</a></li>
+                <li><a href="#about" data-translate="nav.about">À Propos</a></li>
+                <li><a href="#projects" data-translate="nav.projects">Réalisations</a></li>
+                <li><a href="#partners" data-translate="nav.partners">Partenaires</a></li>
+                <li><a href="#blog" data-translate="nav.news">Actualités</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-translate="footer.services">Services</h4>
+            <ul>
+                <li><a href="#services" data-translate="services.logistics.title">Logistique</a></li>
+                <li><a href="#services" data-translate="services.manpower.title">Main d'Œuvre</a></li>
+                <li><a href="#services" data-translate="services.fuel.title">Carburant</a></li>
+                <li><a href="#services" data-translate="services.partnerships.title">Partenariats</a></li>
+                <li><a href="#careers" data-translate="nav.careers">Recrutement</a></li>
+            </ul>
+        </div>
+        <div class="footer-col">
+            <h4 data-translate="footer.contact">Contact</h4>
+            <ul>
+                <li><a href="mailto:esperencesarl@gmail.com">esperencesarl@gmail.com</a></li>
+                <li><a href="tel:+243999541920">+243 999 541 920</a></li>
+            </ul>
+            <div style="margin-top:1.5rem; font-size:0.75rem; color:var(--silver); line-height:1.7;">DRC · Uganda · Burundi<br>Tanzania · Rwanda · Kenya</div>
+        </div>
+    </div>
+    <div class="gold-divider"></div>
+    <div class="footer-bottom">
+        <p>© 2024 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
+        <p style="font-size:0.65rem; letter-spacing:0.1em; color:rgba(0,0,0,0.25);">BUILT FOR EXCELLENCE</p>
+    </div>
+</footer>
+
+<script>
+/* ══════════════════════ TRANSLATIONS ══════════════════════ */
+const translations = {
+    fr: {
+        "hero.tagline": "Leader en Afrique de l'Est — Depuis 2014",
+        "hero.title": "FROM <em>EARTH</em><br>TO PROSPERITY",
+        "hero.subtitle": "Leader dans l'exploitation minière en Afrique de l'Est, délivrant l'excellence dans six nations.",
+        "hero.cta": "Démarrer un projet",
+        "hero.learnMore": "Découvrir",
+        "services.eyebrow": "Ce que nous faisons",
+        "services.title": "NOS <em>SERVICES</em><br>PREMIUM",
+        "services.logistics.title": "Logistique d'approvisionnement",
+        "services.logistics.description": "Elle concerne l’acheminement des matières premières vers l’entreprise.\nExemple : transport des minerais ou équipements vers un site minier.\n 2. Logistique de production\nElle gère les flux internes à l’entreprise (stockage, transformation, circulation des produits).\nExemple : déplacement des matières dans une usine ou sur un site d’exploitation.\n 3. Logistique de distribution\nElle assure la livraison des produits finis aux clients.\nExemple : exportation de produits miniers vers l’étranger.\n 4. Logistique de transport\nA: transport national \n1 truck\n2.⁠ ⁠Dump truck \n3.⁠ ⁠Flate bed \n4.⁠ ⁠Super Link \n5.⁠ ⁠Bus \n6.⁠ ⁠Moto 🏍️ \n7.⁠ ⁠Taxi",
+        "services.manpower.title": "Main d'Œuvre qualifiée",
+        "services.manpower.description": "Nous mettons à votre disposition une expertise avérée en recrutement, gestion et placement de personnel hautement qualifié, spécialement dans les secteurs miniers clés ainsi que dans divers autres domaines stratégiques.\nGrâce à notre réseau et à notre rigueur dans la sélection, nous garantissons des profils compétents, fiables et adaptés aux exigences spécifiques de chaque projet, contribuant ainsi à l’efficacité opérationnelle et à la performance de nos partenaires",
+        "services.fuel.title": "Chaîne d'approvisionnement fiable et sécurisée",
+        "services.fuel.description": "Dans un environnement industriel exigeant, nous mettons à votre disposition une solution d’approvisionnement stratégique, fiable et continue pour vos opérations.\nNous assurons la fourniture des produits essentiels suivants :\nDiesel (carburant industriel de haute qualité)\nSoufre\nAcide sulfurique\nGrâce à un réseau logistique structuré et des partenaires internationaux de confiance, nous garantissons :\nLa disponibilité des produits\nLa conformité aux standards internationaux\nLe respect strict des délais de livraison\nMODES DE PAIEMENT FLEXIBLES & SÉCURISÉS\nAfin de s’adapter aux exigences de nos partenaires, nous proposons plusieurs options de paiement :\nPaiement anticipé (Advance Payment)\nLettre de Crédit Documentaire (DLC)\nStandby Letter of Credit (SBLC)\nOu tout autre instrument bancaire",
+        "services.partnerships.title": "Proposition de Partenariat Minier – Esperence Mining SARL",
+        "services.partnerships.description": "Esperence Mining SARL se positionne comme un partenaire stratégique de référence dans le secteur minier, en proposant des solutions intégrées couvrant l’achat, l’exploitation et le traitement à façon des ressources minières.\n---\n1.⁠ ⁠Vision du partenariat\nDans une dynamique de croissance durable et de création de valeur, Esperence Mining SARL développe des partenariats solides basés sur :\nLa confiance et la transparence\nLa performance opérationnelle\nLa sécurisation des investissements\nUne vision à long terme du développement minier\n---\n2.⁠ ⁠Domaines d’intervention\nEsperence Mining SARL intervient sur toute la chaîne de valeur minière :\nAchat de produits miniers\nApprovisionnement sécurisé en minerais (bruts ou semi-transformés)\nExploitation minière\nGestion et développement des sites miniers avec une approche professionnelle et rentable",
+        "about.eyebrow": "Notre Histoire",
+        "about.title": "À PROPOS<br><em>d'Espérence</em>",
+        "about.description": "Leader dans le secteur minier en Afrique de l'Est, Espérence Mining SARL opère dans six pays majeurs : RDC, Ouganda, Burundi, Tanzanie, Rwanda et Kenya.",
+        "about.expertise": "Notre expertise s'étend de la logistique minière au recrutement spécialisé, en passant par l'approvisionnement en carburant et les partenariats stratégiques.",
+        "stats.years": "Ans d'Expérience",
+        "stats.countries": "Pays",
+        "stats.projects": "Projets",
+        "stats.partners": "Partenaires",
+        "projects.eyebrow": "Notre Portfolio",
+        "projects.title": "NOS <em>RÉALISATIONS</em>",
+        "projects.project1.cat": "Extraction Minière · RDC",
+        "projects.project1.title": "Exploitation Minière RDC",
+        "projects.project1.description": "Projet majeur d'extraction avec équipement de pointe — gestion de la logistique complète.",
+        "projects.project2.cat": "Logistique · Tanzanie",
+        "projects.project2.title": "Logistique Tanzanie",
+        "projects.project2.description": "Transport et gestion d'équipements miniers lourds sur le corridor tanzanien.",
+        "projects.project3.cat": "Ressources Humaines · RDC",
+        "projects.project3.title": "Recrutement Kamoa",
+        "projects.project3.description": "Placement de plus de 500 spécialistes miniers pour le projet Kamoa Copper.",
+        "partners.eyebrow": "Ils nous font confiance",
+        "partners.title": "NOS <em>PARTENAIRES</em><br>& CLIENTS",
+        "partners.partner1.title": "Concordia Petroleum Global",
+        "partners.partner1.description": "Partenaire stratégique pour la fourniture de carburant diesel de haute qualité.",
+        "partners.partner1.type": "Fournisseur de carburant",
+        "partners.partner2.title": "SANY",
+        "partners.partner2.description": "Leader mondial en fourniture d'équipements pour l'industrie miniére.",
+        "partners.partner2.type": "Fournisseur d'equipements",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "Partenaire logistique pour le transport et la chaîne d'approvisionnement.",
+        "partners.partner3.type": "Services logistiques",
+        "partners.partner4.title": "Kamoa Copper S.A",
+        "partners.partner4.description": "Client principal pour la fourniture de main d'œuvre spécialisée.",
+        "partners.partner4.type": "Client minier",
+        "partners.partner5.title": "KCC — Kamoto Copper",
+        "partners.partner5.description": "Partenariat pour la gestion des ressources humaines dans les mines de cuivre.",
+        "partners.partner5.type": "Client minier",
+        "partners.partner6.title": "Kipushi Corp (KICO)",
+        "partners.partner6.description": "Collaboration pour le placement de spécialistes dans les mines de zinc.",
+        "partners.partner6.type": "Client minier",
+        "partners.becomePartner.title": "Devenez Notre Partenaire",
+        "partners.becomePartner.description": "Rejoignez notre réseau d'excellence dans l'industrie minière et accédez aux meilleures opportunités d'affaires en Afrique.",
+        "partners.becomePartner.cta": "Nous Contacter",
+        "contact.eyebrow": "Parlons de votre projet",
+        "contact.title": "DÉMARRONS<br><em>ENSEMBLE</em>",
+        "contact.email": "Email",
+        "contact.phone": "Téléphone",
+        "contact.locations": "Présence",
+        "contact.formEyebrow": "Formulaire de contact",
+        "contact.formTitle": "VOTRE <em>MESSAGE</em>",
+        "contact.name": "Votre nom",
+        "contact.emailLabel": "Email",
+        "contact.service": "Service requis",
+        "contact.selectService": "Sélectionner un service",
+        "contact.message": "Votre message",
+        "contact.send": "Envoyer le message",
+        "news.eyebrow": "Restez informé",
+        "news.title": "ACTUALITÉS<br><em>MINIÈRES</em>",
+        "news.post1.cat": "Innovation",
+        "news.post1.title": "Innovations dans l'Exploitation Minière",
+        "news.post1.description": "Les dernières avancées technologiques transforment le secteur minier en Afrique de l'Est.",
+        "news.post2.cat": "Expansion",
+        "news.post2.title": "Espérence s'étend au Rwanda",
+        "news.post2.description": "Nouvelle présence opérationnelle au Rwanda, renforçant notre réseau régional d'excellence.",
+        "news.post3.cat": "Ressources Humaines",
+        "news.post3.title": "500 postes ouverts pour 2025",
+        "news.post3.description": "Espérence Mining lance sa plus grande campagne de recrutement pour ses projets en RDC et Tanzanie.",
+        "news.readMore": "Lire la suite",
+        "newsletter.eyebrow": "Newsletter",
+        "newsletter.title": "RESTEZ DANS<br>LA <em>BOUCLE</em>",
+        "newsletter.sub": "Recevez en exclusivité les dernières actualités minières, offres d'emploi, et opportunités de partenariat d'Espérence Mining.",
+        "careers.eyebrow": "Nous recrutons",
+        "careers.title": "REJOIGNEZ<br><em>L'ÉQUIPE</em>",
+        "careers.description": "Nous recherchons des professionnels passionnés prêts à relever les défis de l'industrie minière en Afrique.",
+        "careers.viewAll": "Voir tous les postes",
+        "careers.dept1": "Ingénierie",
+        "careers.dept2": "Logistique",
+        "careers.dept3": "Opérations",
+        "careers.positions.engineer": "Ingénieur Minier Senior",
+        "careers.positions.logistics": "Responsable Logistique",
+        "careers.positions.operator": "Opérateur de machines lourdes",
+        "careers.positions.hse": "Responsable HSE",
+        "careers.positions.apply": "Postuler",
+        "nav.home": "Accueil",
+        "nav.services": "Services",
+        "nav.about": "À Propos",
+        "nav.projects": "Réalisations",
+        "nav.partners": "Partenaires",
+        "nav.contact": "Contact",
+        "nav.news": "Actualités",
+        "nav.careers": "Recrutement",
+        "footer.tagline": "Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité, et performance à travers six nations africaines.",
+        "footer.navigation": "Navigation",
+        "footer.services": "Services",
+        "footer.contact": "Contact",
+        "footer.rights": "Tous droits réservés."
+    },
+    en: {
+        "hero.tagline": "East Africa's Mining Leader — Since 2014",
+        "hero.title": "FROM <em>EARTH</em><br>TO PROSPERITY",
+        "hero.subtitle": "Leading mining contractor in East Africa, delivering excellence across six nations.",
+        "hero.cta": "Start a Project",
+        "hero.learnMore": "Discover",
+        "services.eyebrow": "What we do",
+        "services.title": "OUR PREMIUM<br><em>SERVICES</em>",
+        "services.logistics.title": "Supply Logistics",
+        "services.logistics.description": "It concerns the delivery of raw materials to the company. Example: transport of minerals or equipment to a mining site. 2. Production Logistics: Manages internal flows (storage, transformation, product circulation). Example: moving materials within a plant or on a mining site. 3. Distribution Logistics: Ensures delivery of finished products to customers. Example: export of mining products abroad. 4. Transport Logistics: A: national transport: 1 truck, 2. Dump truck, 3. Flat bed, 4. Super Link, 5. Bus, 6. Motorcycle 🏍️, 7. Taxi",
+        "services.manpower.title": "Skilled Manpower",
+        "services.manpower.description": "We provide proven expertise in recruiting, managing and placing highly qualified personnel, especially in key mining sectors as well as in various other strategic areas. Thanks to our network and rigorous selection, we guarantee competent, reliable profiles adapted to the specific requirements of each project, contributing to operational efficiency and partner performance.",
+        "services.fuel.title": "Reliable & Secure Supply Chain",
+        "services.fuel.description": "In a demanding industrial environment, we offer a strategic, reliable and continuous supply solution for your operations. We supply the following essential products: Diesel (high-quality industrial fuel), Sulphur, Sulphuric acid. Thanks to a structured logistics network and trusted international partners, we guarantee product availability, compliance with international standards, and strict respect of delivery deadlines. FLEXIBLE & SECURE PAYMENT METHODS: Advance Payment, Documentary Letter of Credit (DLC), Standby Letter of Credit (SBLC), or any other banking instrument.",
+        "services.partnerships.title": "Mining Partnership Proposal – Esperence Mining SARL",
+        "services.partnerships.description": "Esperence Mining SARL positions itself as a strategic reference partner in the mining sector, offering integrated solutions covering the purchase, operation and toll treatment of mining resources. --- 1. Partnership Vision: In a dynamic of sustainable growth and value creation, Esperence Mining SARL develops strong partnerships based on trust and transparency, operational performance, investment security, and a long-term vision of mining development. --- 2. Areas of intervention: Esperence Mining SARL operates across the entire mining value chain: Purchase of mining products (secure supply of raw or semi-processed ores), Mining operation (management and development of mining sites with a professional and profitable approach).",
+        "about.eyebrow": "Our Story",
+        "about.title": "ABOUT<br><em>Espérence</em>",
+        "about.description": "A leader in East African mining, Espérence Mining SARL operates in six major countries: DRC, Uganda, Burundi, Tanzania, Rwanda and Kenya.",
+        "about.expertise": "Our expertise spans mining logistics, specialized recruitment, fuel supply and strategic partnerships.",
+        "stats.years": "Years Experience",
+        "stats.countries": "Countries",
+        "stats.projects": "Projects",
+        "stats.partners": "Partners",
+        "projects.eyebrow": "Our Portfolio",
+        "projects.title": "OUR <em>ACHIEVEMENTS</em>",
+        "projects.project1.cat": "Mining · DRC",
+        "projects.project1.title": "DRC Mining Operations",
+        "projects.project1.description": "Major extraction project with cutting-edge equipment — complete logistics management.",
+        "projects.project2.cat": "Logistics · Tanzania",
+        "projects.project2.title": "Tanzania Logistics",
+        "projects.project2.description": "Transport and management of heavy mining equipment on the Tanzanian corridor.",
+        "projects.project3.cat": "HR · DRC",
+        "projects.project3.title": "Kamoa Recruitment",
+        "projects.project3.description": "Placement of over 500 mining specialists for the Kamoa Copper project.",
+        "partners.eyebrow": "Trusted by leaders",
+        "partners.title": "OUR <em>PARTNERS</em><br>& CLIENTS",
+        "partners.partner1.title": "Concordia Petroleum Global",
+        "partners.partner1.description": "Strategic partner for high-quality diesel fuel supply.",
+        "partners.partner1.type": "Fuel Supplier",
+        "partners.partner2.title": "SANY",
+        "partners.partner2.description": "Global leader in heavy mining equipment supply.",
+        "partners.partner2.type": "Equipment Supplier",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "Logistics partner for transport and supply chain.",
+        "partners.partner3.type": "Logistics Services",
+        "partners.partner4.title": "Kamoa Copper S.A",
+        "partners.partner4.description": "Key client for specialized workforce supply.",
+        "partners.partner4.type": "Mining Client",
+        "partners.partner5.title": "KCC — Kamoto Copper",
+        "partners.partner5.description": "Partnership for human resources management in copper mines.",
+        "partners.partner5.type": "Mining Client",
+        "partners.partner6.title": "Kipushi Corp (KICO)",
+        "partners.partner6.description": "Collaboration for specialist placement in zinc mines.",
+        "partners.partner6.type": "Mining Client",
+        "partners.becomePartner.title": "Become Our Partner",
+        "partners.becomePartner.description": "Join our network of excellence in the mining industry and access the best business opportunities in Africa.",
+        "partners.becomePartner.cta": "Contact Us",
+        "contact.eyebrow": "Let's talk about your project",
+        "contact.title": "LET'S START<br><em>TOGETHER</em>",
+        "contact.email": "Email",
+        "contact.phone": "Phone",
+        "contact.locations": "Presence",
+        "contact.formEyebrow": "Contact form",
+        "contact.formTitle": "YOUR <em>MESSAGE</em>",
+        "contact.name": "Your name",
+        "contact.emailLabel": "Email",
+        "contact.service": "Service needed",
+        "contact.selectService": "Select a service",
+        "contact.message": "Your message",
+        "contact.send": "Send message",
+        "news.eyebrow": "Stay informed",
+        "news.title": "MINING<br><em>NEWS</em>",
+        "news.post1.cat": "Innovation",
+        "news.post1.title": "Mining Operation Innovations",
+        "news.post1.description": "The latest technological advances transforming the mining sector in East Africa.",
+        "news.post2.cat": "Expansion",
+        "news.post2.title": "Espérence Expands to Rwanda",
+        "news.post2.description": "New operational presence in Rwanda, strengthening our regional network of excellence.",
+        "news.post3.cat": "Human Resources",
+        "news.post3.title": "500 positions open for 2025",
+        "news.post3.description": "Espérence Mining launches its largest recruitment campaign for its projects in DRC and Tanzania.",
+        "news.readMore": "Read More",
+        "newsletter.eyebrow": "Newsletter",
+        "newsletter.title": "STAY IN THE<br><em>LOOP</em>",
+        "newsletter.sub": "Get exclusive mining news, job offers, and partnership opportunities from Espérence Mining.",
+        "careers.eyebrow": "We're hiring",
+        "careers.title": "JOIN THE<br><em>TEAM</em>",
+        "careers.description": "We're looking for passionate professionals ready to tackle the challenges of Africa's mining industry.",
+        "careers.viewAll": "View all positions",
+        "careers.dept1": "Engineering",
+        "careers.dept2": "Logistics",
+        "careers.dept3": "Operations",
+        "careers.positions.engineer": "Senior Mining Engineer",
+        "careers.positions.logistics": "Logistics Manager",
+        "careers.positions.operator": "Heavy Machinery Operator",
+        "careers.positions.hse": "HSE Manager",
+        "careers.positions.apply": "Apply",
+        "nav.home": "Home",
+        "nav.services": "Services",
+        "nav.about": "About",
+        "nav.projects": "Projects",
+        "nav.partners": "Partners",
+        "nav.contact": "Contact",
+        "nav.news": "News",
+        "nav.careers": "Careers",
+        "footer.tagline": "Leader in East African mining. Excellence, integrity, and performance across six African nations.",
+        "footer.navigation": "Navigation",
+        "footer.services": "Services",
+        "footer.contact": "Contact",
+        "footer.rights": "All rights reserved."
+    },
+    ar: {
+        "hero.tagline": "الرائد في شرق أفريقيا — منذ 2014",
+        "hero.title": "من <em>الأرض</em><br>إلى الازدهار",
+        "hero.subtitle": "الرائد في التعدين بشرق أفريقيا، نقدم التميز في ست دول.",
+        "hero.cta": "ابدأ مشروعاً",
+        "hero.learnMore": "اكتشف",
+        "services.eyebrow": "ماذا نفعل",
+        "services.title": "<em>خدماتنا</em><br>المتميزة",
+        "services.logistics.title": "لوجستيات التوريد",
+        "services.logistics.description": "تتعلق بتوصيل المواد الخام إلى الشركة. مثال: نقل المعادن أو المعدات إلى موقع تعدين. 2. لوجستيات الإنتاج: تدير التدفقات الداخلية (التخزين، التحويل، تداول المنتجات). مثال: نقل المواد داخل مصنع أو موقع تعدين. 3. لوجستيات التوزيع: تضمن تسليم المنتجات النهائية للعملاء. مثال: تصدير المنتجات التعدينية إلى الخارج. 4. لوجستيات النقل: أ: النقل الوطني: 1 شاحنة، 2. شاحنة قلابة، 3. سطح مسطح، 4. سوبر لينك، 5. حافلة، 6. دراجة نارية 🏍️، 7. سيارة أجرة",
+        "services.manpower.title": "القوى العاملة الماهرة",
+        "services.manpower.description": "نقدم خبرة مثبتة في توظيف وإدارة ووضع الأفراد المؤهلين تأهيلاً عالياً، خاصة في قطاعات التعدين الرئيسية وكذلك في مختلف المجالات الاستراتيجية الأخرى. بفضل شبكتنا ودقة اختيارنا، نضمن ملفات كفوءة وموثوقة تتكيف مع المتطلبات الخاصة لكل مشروع، مما يساهم في الكفاءة التشغيلية وأداء شركائنا.",
+        "services.fuel.title": "سلسلة توريد موثوقة وآمنة",
+        "services.fuel.description": "في بيئة صناعية صعبة، نقدم لك حلاً استراتيجياً وموثوقاً ومستمراً للتوريد لعملياتك. نوفر المنتجات الأساسية التالية: الديزل (وقود صناعي عالي الجودة)، الكبريت، حمض الكبريتيك. بفضل شبكة لوجستية منظمة وشركاء دوليين موثوقين، نضمن: توافر المنتجات، الامتثال للمعايير الدولية، والاحترام الصارم لمواعيد التسليم. طرق دفع مرنة وآمنة: الدفع المسبق، خطاب الاعتماد المستندي (DLC)، خطاب الاعتماد الاحتياطي (SBLC)، أو أي أداة مصرفية أخرى.",
+        "services.partnerships.title": "اقتراح شراكة تعدينية – Esperence Mining SARL",
+        "services.partnerships.description": "تضع Esperence Mining SARL نفسها كشريك استراتيجي مرجعي في قطاع التعدين، من خلال تقديم حلول متكاملة تغطي شراء وتشغيل ومعالجة الموارد التعدينية بالخدمة. --- 1. رؤية الشراكة: في ديناميكية النمو المستدام وخلق القيمة، تطور Esperence Mining SARL شراكات قوية قائمة على الثقة والشفافية، والأداء التشغيلي، وتأمين الاستثمارات، ورؤية طويلة المدى لتطوير التعدين. --- 2. مجالات التدخل: تتدخل Esperence Mining SARL في جميع أنحاء سلسلة القيمة التعدينية: شراء المنتجات التعدينية (توريد آمن للمعادن الخام أو شبه المصنعة)، التشغيل التعديني (إدارة وتطوير مواقع التعدين بنهج مهني ومربح).",
+        "about.eyebrow": "قصتنا",
+        "about.title": "عن<br><em>إسبيرانس</em>",
+        "about.description": "شركة رائدة في قطاع التعدين بشرق أفريقيا، Esperence Mining SARL تعمل في ست دول رئيسية: الكونغو الديمقراطية، أوغندا، بوروندي، تنزانيا، رواندا وكينيا.",
+        "about.expertise": "تمتد خبرتنا من اللوجستيات التعدينية إلى التوظيف المتخصص، مروراً بتوريد الوقود والشراكات الاستراتيجية.",
+        "stats.years": "سنوات خبرة",
+        "stats.countries": "دول",
+        "stats.projects": "مشاريع",
+        "stats.partners": "شركاء",
+        "projects.eyebrow": "محفظتنا",
+        "projects.title": "<em>إنجازاتنا</em>",
+        "projects.project1.cat": "استخراج تعديني · الكونغو الديمقراطية",
+        "projects.project1.title": "عمليات التعدين في الكونغو الديمقراطية",
+        "projects.project1.description": "مشروع استخراج كبير بمعدات متطورة — إدارة لوجستية كاملة.",
+        "projects.project2.cat": "لوجستيات · تنزانيا",
+        "projects.project2.title": "لوجستيات تنزانيا",
+        "projects.project2.description": "نقل وإدارة المعدات التعدينية الثقيلة على ممر تنزانيا.",
+        "projects.project3.cat": "الموارد البشرية · الكونغو الديمقراطية",
+        "projects.project3.title": "توظيف كاموا",
+        "projects.project3.description": "وضع أكثر من 500 متخصص تعديني لمشروع كاموا كوبر.",
+        "partners.eyebrow": "يثقون بنا القادة",
+        "partners.title": "<em>شركاؤنا</em><br>وعملاؤنا",
+        "partners.partner1.title": "كونكورديا بتروليوم جلوبال",
+        "partners.partner1.description": "شريك استراتيجي لتوريد وقود الديزل عالي الجودة.",
+        "partners.partner1.type": "مورد وقود",
+        "partners.partner2.title": "ساني",
+        "partners.partner2.description": "رائد عالمي في توريد معدات التعدين الثقيلة.",
+        "partners.partner2.type": "مورد معدات",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "شريك لوجستي للنقل وسلسلة التوريد.",
+        "partners.partner3.type": "خدمات لوجستية",
+        "partners.partner4.title": "كاموا كوبر S.A",
+        "partners.partner4.description": "عميل رئيسي لتوريد القوى العاملة المتخصصة.",
+        "partners.partner4.type": "عميل تعديني",
+        "partners.partner5.title": "KCC — كاموتو كوبر",
+        "partners.partner5.description": "شراكة لإدارة الموارد البشرية في مناجم النحاس.",
+        "partners.partner5.type": "عميل تعديني",
+        "partners.partner6.title": "كيبوشي كورب (KICO)",
+        "partners.partner6.description": "تعاون لوضع متخصصين في مناجم الزنك.",
+        "partners.partner6.type": "عميل تعديني",
+        "partners.becomePartner.title": "كن شريكنا",
+        "partners.becomePartner.description": "انضم إلى شبكة التميز لدينا في صناعة التعدين واحصل على أفضل فرص الأعمال في أفريقيا.",
+        "partners.becomePartner.cta": "اتصل بنا",
+        "contact.eyebrow": "لنتحدث عن مشروعك",
+        "contact.title": "لنبدأ<br><em>معاً</em>",
+        "contact.email": "البريد الإلكتروني",
+        "contact.phone": "الهاتف",
+        "contact.locations": "الوجود",
+        "contact.formEyebrow": "نموذج الاتصال",
+        "contact.formTitle": "<em>رسالتك</em>",
+        "contact.name": "اسمك",
+        "contact.emailLabel": "البريد الإلكتروني",
+        "contact.service": "الخدمة المطلوبة",
+        "contact.selectService": "اختر خدمة",
+        "contact.message": "رسالتك",
+        "contact.send": "إرسال الرسالة",
+        "news.eyebrow": "ابق على اطلاع",
+        "news.title": "<em>أخبار</em><br>التعدين",
+        "news.post1.cat": "ابتكار",
+        "news.post1.title": "ابتكارات في عمليات التعدين",
+        "news.post1.description": "أحدث التطورات التكنولوجية تحول قطاع التعدين في شرق أفريقيا.",
+        "news.post2.cat": "توسع",
+        "news.post2.title": "إسبيرانس تتوسع إلى رواندا",
+        "news.post2.description": "وجود تشغيلي جديد في رواندا، يعزز شبكتنا الإقليمية للتميز.",
+        "news.post3.cat": "الموارد البشرية",
+        "news.post3.title": "500 وظيفة شاغرة لعام 2025",
+        "news.post3.description": "إسبيرانس للتعدين تطلق أكبر حملة توظيف لمشاريعها في الكونغو الديمقراطية وتنزانيا.",
+        "news.readMore": "اقرأ المزيد",
+        "newsletter.eyebrow": "النشرة البريدية",
+        "newsletter.title": "ابق في<br><em>الحلقة</em>",
+        "newsletter.sub": "احصل على حصرية آخر أخبار التعدين وعروض العمل وفرص الشراكة من إسبيرانس للتعدين.",
+        "careers.eyebrow": "نحن نوظف",
+        "careers.title": "انضم إلى<br><em>الفريق</em>",
+        "careers.description": "نبحث عن محترفين شغوفين على استعداد لمواجهة تحديات صناعة التعدين في أفريقيا.",
+        "careers.viewAll": "عرض جميع المناصب",
+        "careers.dept1": "الهندسة",
+        "careers.dept2": "اللوجستيات",
+        "careers.dept3": "العمليات",
+        "careers.positions.engineer": "مهندس تعدين أول",
+        "careers.positions.logistics": "مدير لوجستيات",
+        "careers.positions.operator": "مشغل آلات ثقيلة",
+        "careers.positions.hse": "مدير الصحة والسلامة والبيئة",
+        "careers.positions.apply": "تقدم الآن",
+        "nav.home": "الرئيسية",
+        "nav.services": "الخدمات",
+        "nav.about": "عن الشركة",
+        "nav.projects": "المشاريع",
+        "nav.partners": "الشركاء",
+        "nav.contact": "اتصل بنا",
+        "nav.news": "الأخبار",
+        "nav.careers": "وظائف",
+        "footer.tagline": "الرائد في صناعة التعدين بشرق أفريقيا. التميز والنزاهة والأداء عبر ست دول أفريقية.",
+        "footer.navigation": "التنقل",
+        "footer.services": "الخدمات",
+        "footer.contact": "اتصل",
+        "footer.rights": "جميع الحقوق محفوظة."
+    },
+    zh: {
+        "hero.tagline": "东非领导者 — 自2014年",
+        "hero.title": "从<em>大地</em><br>到繁荣",
+        "hero.subtitle": "东非采矿业的领导者，在六个国家提供卓越服务。",
+        "hero.cta": "启动项目",
+        "hero.learnMore": "了解更多",
+        "services.eyebrow": "我们的服务",
+        "services.title": "我们的<em>优质服务</em>",
+        "services.logistics.title": "供应物流",
+        "services.logistics.description": "涉及将原材料运送到公司。例如：将矿物或设备运输到采矿场。2. 生产物流：管理内部流程（存储、转换、产品流通）。例如：在工厂或采矿场内移动物料。3. 分销物流：确保成品交付给客户。例如：向国外出口矿产品。4. 运输物流：A：国内运输：1卡车，2.自卸卡车，3.平板车，4.超链接车，5.巴士，6.摩托车🏍️，7.出租车",
+        "services.manpower.title": "熟练劳动力",
+        "services.manpower.description": "我们在招聘、管理和安置高素质人员方面提供成熟的专业知识，特别是在关键采矿部门以及各个其他战略领域。凭借我们的网络和严格的筛选，我们保证胜任、可靠且适应每个项目特定要求的个人资料，有助于提高运营效率和合作伙伴绩效。",
+        "services.fuel.title": "可靠且安全的供应链",
+        "services.fuel.description": "在苛刻的工业环境中，我们为您的运营提供战略、可靠和持续的供应解决方案。我们供应以下基本产品：柴油（高品质工业燃料）、硫磺、硫酸。得益于结构化的物流网络和值得信赖的国际合作伙伴，我们保证产品可用性、符合国际标准、严格遵守交货期限。灵活安全的支付方式：预付款、跟单信用证（DLC）、备用信用证（SBLC）或任何其他银行工具。",
+        "services.partnerships.title": "采矿合作伙伴提案 – Esperence Mining SARL",
+        "services.partnerships.description": "Esperence Mining SARL将自己定位为采矿业的战略参考合作伙伴，提供涵盖采矿资源的购买、运营和收费处理的集成解决方案。--- 1. 合作伙伴愿景：在可持续增长和价值创造的动态中，Esperence Mining SARL建立基于信任和透明度、运营绩效、投资安全以及采矿发展长期愿景的强大合作伙伴关系。--- 2. 干预领域：Esperence Mining SARL在整个采矿价值链中运营：购买矿产品（安全供应原矿或半加工矿石），采矿作业（以专业且盈利的方式管理和开发采矿场）。",
+        "about.eyebrow": "我们的故事",
+        "about.title": "关于<br><em>Espérence</em>",
+        "about.description": "东非采矿业的领导者，Espérence Mining SARL在六个主要国家运营：刚果民主共和国、乌干达、布隆迪、坦桑尼亚、卢旺达和肯尼亚。",
+        "about.expertise": "我们的专业知识涵盖采矿物流、专业招聘、燃料供应和战略合作伙伴关系。",
+        "stats.years": "经验年数",
+        "stats.countries": "国家",
+        "stats.projects": "项目",
+        "stats.partners": "合作伙伴",
+        "projects.eyebrow": "我们的作品集",
+        "projects.title": "我们的<em>成就</em>",
+        "projects.project1.cat": "采矿 · 刚果民主共和国",
+        "projects.project1.title": "刚果民主共和国采矿作业",
+        "projects.project1.description": "采用尖端设备的大型开采项目 — 完整的物流管理。",
+        "projects.project2.cat": "物流 · 坦桑尼亚",
+        "projects.project2.title": "坦桑尼亚物流",
+        "projects.project2.description": "在坦桑尼亚走廊上运输和管理重型采矿设备。",
+        "projects.project3.cat": "人力资源 · 刚果民主共和国",
+        "projects.project3.title": "Kamoa招聘",
+        "projects.project3.description": "为Kamoa Copper项目安置了500多名采矿专家。",
+        "partners.eyebrow": "领导者信赖我们",
+        "partners.title": "我们的<em>合作伙伴</em><br>与客户",
+        "partners.partner1.title": "Concordia Petroleum Global",
+        "partners.partner1.description": "高品质柴油燃料供应的战略合作伙伴。",
+        "partners.partner1.type": "燃料供应商",
+        "partners.partner2.title": "三一重工",
+        "partners.partner2.description": "重型采矿设备供应的全球领导者。",
+        "partners.partner2.type": "设备供应商",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "运输和供应链的物流合作伙伴。",
+        "partners.partner3.type": "物流服务",
+        "partners.partner4.title": "Kamoa Copper S.A",
+        "partners.partner4.description": "专业劳动力供应的主要客户。",
+        "partners.partner4.type": "采矿客户",
+        "partners.partner5.title": "KCC — Kamoto Copper",
+        "partners.partner5.description": "铜矿人力资源管理的合作伙伴关系。",
+        "partners.partner5.type": "采矿客户",
+        "partners.partner6.title": "Kipushi Corp (KICO)",
+        "partners.partner6.description": "锌矿专家安置的合作。",
+        "partners.partner6.type": "采矿客户",
+        "partners.becomePartner.title": "成为我们的合作伙伴",
+        "partners.becomePartner.description": "加入我们在采矿业的卓越网络，获得非洲最好的商业机会。",
+        "partners.becomePartner.cta": "联系我们",
+        "contact.eyebrow": "让我们谈谈您的项目",
+        "contact.title": "让我们<em>一起</em><br>开始",
+        "contact.email": "电子邮件",
+        "contact.phone": "电话",
+        "contact.locations": "业务范围",
+        "contact.formEyebrow": "联系表格",
+        "contact.formTitle": "您的<em>信息</em>",
+        "contact.name": "您的姓名",
+        "contact.emailLabel": "电子邮件",
+        "contact.service": "所需服务",
+        "contact.selectService": "选择服务",
+        "contact.message": "您的信息",
+        "contact.send": "发送信息",
+        "news.eyebrow": "保持信息畅通",
+        "news.title": "采矿<br><em>新闻</em>",
+        "news.post1.cat": "创新",
+        "news.post1.title": "采矿作业的创新",
+        "news.post1.description": "最新的技术进步正在改变东非的采矿业。",
+        "news.post2.cat": "扩张",
+        "news.post2.title": "Espérence扩展到卢旺达",
+        "news.post2.description": "在卢旺达的新业务存在，加强了我们的区域卓越网络。",
+        "news.post3.cat": "人力资源",
+        "news.post3.title": "2025年开放500个职位",
+        "news.post3.description": "Espérence Mining为其在刚果民主共和国和坦桑尼亚的项目发起最大的招聘活动。",
+        "news.readMore": "阅读更多",
+        "newsletter.eyebrow": "新闻通讯",
+        "newsletter.title": "保持<br><em>关注</em>",
+        "newsletter.sub": "独家获取Espérence Mining的最新采矿新闻、工作机会和合作伙伴机会。",
+        "careers.eyebrow": "我们正在招聘",
+        "careers.title": "加入<br><em>团队</em>",
+        "careers.description": "我们正在寻找热情的专业人士，准备迎接非洲采矿业的挑战。",
+        "careers.viewAll": "查看所有职位",
+        "careers.dept1": "工程",
+        "careers.dept2": "物流",
+        "careers.dept3": "运营",
+        "careers.positions.engineer": "高级采矿工程师",
+        "careers.positions.logistics": "物流经理",
+        "careers.positions.operator": "重型机械操作员",
+        "careers.positions.hse": "HSE经理",
+        "careers.positions.apply": "申请",
+        "nav.home": "首页",
+        "nav.services": "服务",
+        "nav.about": "关于",
+        "nav.projects": "项目",
+        "nav.partners": "合作伙伴",
+        "nav.contact": "联系",
+        "nav.news": "新闻",
+        "nav.careers": "职业",
+        "footer.tagline": "东非采矿业的领导者。卓越、诚信和绩效横跨六个非洲国家。",
+        "footer.navigation": "导航",
+        "footer.services": "服务",
+        "footer.contact": "联系",
+        "footer.rights": "版权所有。"
+    },
+    sw: {
+        "hero.tagline": "Kiongozi Afrika Mashariki — Tangu 2014",
+        "hero.title": "KUTOKA <em>ARDHINI</em><br>HADI UFANISI",
+        "hero.subtitle": "Kiongozi katika uchimbaji madini Afrika Mashariki, kutoa ubora katika mataifa sita.",
+        "hero.cta": "Anzisha Mradi",
+        "hero.learnMore": "Gundua",
+        "services.eyebrow": "Tunachofanya",
+        "services.title": "<em>HUDUMA</em> ZETU<br>ZA KWALI",
+        "services.logistics.title": "Usafirishaji wa Ugavi",
+        "services.logistics.description": "Inahusu usafirishaji wa malighafi kwa kampuni. Mfano: usafirishaji wa madini au vifaa kwenye tovuti ya uchimbaji. 2. Usafirishaji wa Uzalishaji: Inasimamia mtiririko wa ndani (uhifadhi, mabadiliko, mzunguko wa bidhaa). Mfano: kuhamisha nyenzo ndani ya kiwanda au kwenye tovuti ya uchimbaji. 3. Usafirishaji wa Usambazaji: Inahakikisha utoaji wa bidhaa zilizokamilika kwa wateja. Mfano: usafirishaji wa bidhaa za madini nje ya nchi. 4. Usafirishaji wa Usafiri: A: usafiri wa kitaifa: 1 lori, 2. Lori la kujipakia, 3. Kitanda bapa, 4. Super Link, 5. Basi, 6. Pikipiki 🏍️, 7. Teksi",
+        "services.manpower.title": "Wafanyikazi Wenye Ujuzi",
+        "services.manpower.description": "Tunatoa utaalamu uliothibitishwa katika kuajiri, kusimamia na kuweka wafanyikazi waliohitimu sana, hasa katika sekta muhimu za madini na pia katika maeneo mengine ya kimkakati. Kupitia mtandao wetu na ukakamali wetu katika uteuzi, tunahakikisha wasifu wenye uwezo, wa kuaminika na unaozoeleka mahitaji maalum ya kila mradi, kuchangia ufanisi wa uendeshaji na utendaji wa washirika wetu.",
+        "services.fuel.title": "Msururu wa Ugavi wa Kuaminika na Salama",
+        "services.fuel.description": "Katika mazingira magumu ya kiviwanda, tunakupa suluhisho la kimkakati, la kuaminika na la kuendelea la ugavi kwa shughuli zako. Tunatoa bidhaa muhimu zifuatazo: Diesel (mafuta ya kiviwanda ya ubora wa juu), Sulfuri, Asidi ya sulfuriki. Kupitia mtandao wa usafirishaji uliopangwa na washirika wa kimataifa wanaoaminika, tunahakikisha: upatikanaji wa bidhaa, kufuata viwango vya kimataifa, na uzingatiaji mkali wa tarehe za mwisho za utoaji. NJIA ZA MALIPO ZINAZONYUMBULIKA NA SALAMA: Malipo ya Mapema, Barua ya Mkopo ya Hati (DLC), Barua ya Mkopo ya Kusubiri (SBLC), au chombo kingine chochote cha benki.",
+        "services.partnerships.title": "Pendekezo la Ushirikiano wa Madini – Esperence Mining SARL",
+        "services.partnerships.description": "Esperence Mining SARL inajiweka kama mshirika wa kimkakati wa marejeleo katika sekta ya madini, kwa kutoa suluhisho zilizounganishwa zinazojumuisha ununuzi, uendeshaji na usindikaji kwa njia ya ada wa rasilimali za madini. --- 1. Dira ya Ushirikiano: Katika mwendo wa ukuaji endelevu na uundaji wa thamani, Esperence Mining SARL inaunda ushirikiano imara unaozingatia uaminifu na uwazi, utendaji wa uendeshaji, ulinzi wa uwekezaji, na maono ya muda mrefu ya maendeleo ya madini. --- 2. Maeneo ya uingiliaji: Esperence Mining SARL inafanya kazi katika msururu mzima wa thamani ya madini: Ununuzi wa bidhaa za madini (ugavi salama wa madini ghafi au yaliyochakatwa nusu), Uendeshaji wa madini (usimamizi na maendeleo ya tovuti za uchimbaji kwa mbinu ya kitaalamu na yenye faida).",
+        "about.eyebrow": "Hadithi Yetu",
+        "about.title": "KUHUSU<br><em>Espérence</em>",
+        "about.description": "Kiongozi katika sekta ya madini Afrika Mashariki, Esperence Mining SARL inafanya kazi katika nchi sita kuu: DRC, Uganda, Burundi, Tanzania, Rwanda na Kenya.",
+        "about.expertise": "Utaalamu wetu unaanzia kwenye usafirishaji wa madini hadi uajiri maalum, ikiwa ni pamoja na usambazaji wa mafuta na ushirikiano wa kimkakati.",
+        "stats.years": "Miaka ya Uzoefu",
+        "stats.countries": "Nchi",
+        "stats.projects": "Miradi",
+        "stats.partners": "Washirika",
+        "projects.eyebrow": "Kwingineko Yetu",
+        "projects.title": "<em>MAFANIKIO</em> YETU",
+        "projects.project1.cat": "Uchimbaji Madini · DRC",
+        "projects.project1.title": "Shughuli za Uchimbaji DRC",
+        "projects.project1.description": "Mradi mkubwa wa uchimbaji kwa vifaa vya kisasa — usimamizi kamili wa usafirishaji.",
+        "projects.project2.cat": "Usafirishaji · Tanzania",
+        "projects.project2.title": "Usafirishaji Tanzania",
+        "projects.project2.description": "Usafirishaji na usimamizi wa vifaa vizito vya uchimbaji kwenye ukanda wa Tanzania.",
+        "projects.project3.cat": "Rasilimali Watu · DRC",
+        "projects.project3.title": "Uajiri Kamoa",
+        "projects.project3.description": "Uwekaji wa zaidi ya wataalamu 500 wa uchimbaji kwa mradi wa Kamoa Copper.",
+        "partners.eyebrow": "Wanaotuamini viongozi",
+        "partners.title": "<em>WASHIRIKA</em> WETU<br>NA WATEJA",
+        "partners.partner1.title": "Concordia Petroleum Global",
+        "partners.partner1.description": "Mshirika wa kimkakati wa usambazaji wa mafuta ya dizeli ya ubora wa juu.",
+        "partners.partner1.type": "Msambazaji Mafuta",
+        "partners.partner2.title": "SANY",
+        "partners.partner2.description": "Kiongozi wa kimataifa katika usambazaji wa vifaa vizito vya uchimbaji madini.",
+        "partners.partner2.type": "Msambazaji Vifaa",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "Mshirika wa usafirishaji kwa usafiri na msururu wa ugavi.",
+        "partners.partner3.type": "Huduma za Usafirishaji",
+        "partners.partner4.title": "Kamoa Copper S.A",
+        "partners.partner4.description": "Mteja mkuu kwa usambazaji wa wafanyikazi maalumu.",
+        "partners.partner4.type": "Mteja wa Madini",
+        "partners.partner5.title": "KCC — Kamoto Copper",
+        "partners.partner5.description": "Ushirikiano kwa usimamizi wa rasilimali watu katika migodi ya shaba.",
+        "partners.partner5.type": "Mteja wa Madini",
+        "partners.partner6.title": "Kipushi Corp (KICO)",
+        "partners.partner6.description": "Ushirikiano kwa uwekaji wa wataalamu katika migodi ya zinki.",
+        "partners.partner6.type": "Mteja wa Madini",
+        "partners.becomePartner.title": "Kuwa Mshirika Wetu",
+        "partners.becomePartner.description": "Jiunge na mtandao wetu wa ubora katika tasnia ya madini na upate fursa bora za kibiashara barani Afrika.",
+        "partners.becomePartner.cta": "Wasiliana Nasi",
+        "contact.eyebrow": "Tuzungumze kuhusu mradi wako",
+        "contact.title": "TUANZE<br><em>PAMOJA</em>",
+        "contact.email": "Barua pepe",
+        "contact.phone": "Simu",
+        "contact.locations": "Uwepo",
+        "contact.formEyebrow": "Fomu ya mawasiliano",
+        "contact.formTitle": "<em>UJUMBE</em> WAKO",
+        "contact.name": "Jina lako",
+        "contact.emailLabel": "Barua pepe",
+        "contact.service": "Huduma inayohitajika",
+        "contact.selectService": "Chagua huduma",
+        "contact.message": "Ujumbe wako",
+        "contact.send": "Tuma ujumbe",
+        "news.eyebrow": "Kaa na habari",
+        "news.title": "<em>HABARI</em> ZA<br>MADINI",
+        "news.post1.cat": "Ubunifu",
+        "news.post1.title": "Ubunifu katika Uendeshaji wa Uchimbaji Madini",
+        "news.post1.description": "Maendeleo ya hivi punde ya kiteknolojia yanabadilisha sekta ya madini Afrika Mashariki.",
+        "news.post2.cat": "Upanuzi",
+        "news.post2.title": "Espérence Inapanua Rwanda",
+        "news.post2.description": "Uwepo mpya wa uendeshaji nchini Rwanda, kuimarisha mtandao wetu wa kikanda wa ubora.",
+        "news.post3.cat": "Rasilimali Watu",
+        "news.post3.title": "Nafasi 500 zimefunguliwa kwa 2025",
+        "news.post3.description": "Espérence Mining inazindua kampeni yake kubwa zaidi ya uajiri kwa miradi yake nchini DRC na Tanzania.",
+        "news.readMore": "Soma Zaidi",
+        "newsletter.eyebrow": "Barua pepe habari",
+        "newsletter.title": "KA<br><em>KITANZENI</em>",
+        "newsletter.sub": "Pokea kwa upekee habari za hivi punde za madini, ofa za kazi, na fursa za ushirikiano kutoka Espérence Mining.",
+        "careers.eyebrow": "Tunaajiri",
+        "careers.title": "JIUNGE NA<br><em>TIMU</em>",
+        "careers.description": "Tunatafuta wataalamu wenye shauku tayari kukabiliana na changamoto za tasnia ya madini barani Afrika.",
+        "careers.viewAll": "Tazama nafasi zote",
+        "careers.dept1": "Uhandisi",
+        "careers.dept2": "Usafirishaji",
+        "careers.dept3": "Uendeshaji",
+        "careers.positions.engineer": "Mhandisi Mkuu wa Madini",
+        "careers.positions.logistics": "Meneja Usafirishaji",
+        "careers.positions.operator": "Opereta wa Mashine Nzito",
+        "careers.positions.hse": "Meneja HSE",
+        "careers.positions.apply": "Omba",
+        "nav.home": "Nyumbani",
+        "nav.services": "Huduma",
+        "nav.about": "Kuhusu",
+        "nav.projects": "Miradi",
+        "nav.partners": "Washirika",
+        "nav.contact": "Wasiliana",
+        "nav.news": "Habari",
+        "nav.careers": "Kazi",
+        "footer.tagline": "Kiongozi katika uchimbaji madini Afrika Mashariki. Ubora, uadilifu, na utendaji katika mataifa sita ya Afrika.",
+        "footer.navigation": "Urambazaji",
+        "footer.services": "Huduma",
+        "footer.contact": "Wasiliana",
+        "footer.rights": "Haki zote zimehifadhiwa."
+    },
+    kin: {
+        "hero.tagline": "Ubuyobozi mu Afurika y'Iburasirazuba — Kuva 2014",
+        "hero.title": "KUVA <em>ISI</em><br>KUGERA KU MUSARURO",
+        "hero.subtitle": "Ubuyobozi mu kubukura amabuye y'agaciro mu burasirazuba bwa Afurika, dutanga ubwiza mu bihugu bitandatu.",
+        "hero.cta": "Tangiza Umushinga",
+        "hero.learnMore": "Menya byinshi",
+        "services.eyebrow": "Ibyo dukora",
+        "services.title": "<em>IBIKORWA</em> BYACU<br>BY'IKIRENGA",
+        "services.logistics.title": "Logistics yo Gutanga",
+        "services.logistics.description": "Ireba koherezwa kw'ibikoresho mbumbe mu ruganda. Urugero: kohereza amabuye y'agaciro cyangwa ibikoresho ku kibanza cy'ubukure. 2. Logistics y'umusaruro: Icungira imigezi y'imbere (ububiko, ihinduka, ugendanwa bw'ibicuruzwa). Urugero: kwimura ibikoresho mu ruganda cyangwa ku kibanza cy'ubukure. 3. Logistics yo gukwirakwiza: Ireba koherezwa kw'ibicuruzwa birangiye ku bakiriya. Urugero: kohereza ibicuruzwa by'amabuye y'agaciro hanze y'igihugu. 4. Logistics y'ubwikorezi: A: ubwikorezi bw'igihugu: 1 ikamyo, 2. Dump truck, 3. Igitanda kiringaniye, 4. Super Link, 5. Bisi, 6. Moto 🏍️, 7. Tagisi",
+        "services.manpower.title": "Abakozi Babishoboye",
+        "services.manpower.description": "Dutanga ubumenyi bwakozwe mu gushaka akazi, gucunga no gushyira abakozi bafite ubumenyi bwihariye, cyane cyane mu byiciro by'ingenzi by'ubukure ndetse no mu zindi nzego z'ingamba. Binyuze mu mbuga zacu n'ubukana bwacu mu gutomora, dusingiza ibyangombwa bishoboye, byizerwa kandi bihuje n'ibyifuzo byihariye bya buri mushinga, bigira uruhare mu mikorere nziza no gutanga umusaruro kw'abafatanyabikorwa bacu.",
+        "services.fuel.title": "Urukurikirane rw'Ibitangizwa Rwizerwa kandi Rufite Umutekano",
+        "services.fuel.description": "Mu bidukikije bikomeye by'inganda, dukubaka umuti w'ingamba z'ibitangizwa, rwizerwa kandi rurambye ku mikorere yawe. Dutanga ibicuruzwa by'ingenzi bikurikira: Dizeli (amavuta y'inganda yo mu rwego rwo hejuru), Kirwayi, Aside ya kirwayi. Binyuze mu mbuga za logistics zateguwe n'abafatanyabikorwa mpuzamahanga bizerwa, dusingiza: kuboneka kw'ibicuruzwa, gukurikiza ibipimo mpuzamahanga, no gukurikiza byimazeyo iminsi ntarengwa yo kohereza. UBURYO BWO KWISHURA BUNYOROSHE KANDI BUFITE UMUTEKANO: Kwishura hambere, Ibaruwa y'Inguzanyo y'Inyandiko (DLC), Ibaruwa y'Inguzanyo yo Kugumiza (SBLC), cyangwa ikindi gikoresho icyo aricyo cyose cya banki.",
+        "services.partnerships.title": "Icyifuzo cy'Ubutabera mu Bucukuzi – Esperence Mining SARL",
+        "services.partnerships.description": "Esperence Mining SARL iyishyiraho nk'umufatanyabikorwa w'ingamba z'ibanze mu rwego rw'ubucukuzi, itanga ibisubizo byunze ubumwe bitwikiriye kugura, gukoresha no gutunganya uburyo bw'umutungo w'amabuye y'agaciro. --- 1. Iyerekwa ry'Ubutabera: Mu ngufu zikomeye z'ikura rirambye no kurema agaciro, Esperence Mining SARL itera imbere ubufatanyabikorwa bukomeye bushingiye ku cyizere n'ubugari bw'itangaza, imikorere nziza, umutekano w'ishoramari, n'iyerekwa rirambye ry'iterambere ry'ubukure. --- 2. Uturere tw'Urusobe: Esperence Mining SARL ikora mu muhorondo w'igiciro cy'ubukure bwose: Kugura ibicuruzwa by'amabuye y'agaciro (ugutanga umutekano w'amabuye y'agaciro mbumbe cyangwa yatunganijwe nk'igice), Ubukure (gucunga no guteza imbere ibibanza by'ubukure hakoreshejwe uburyo bw'umwuga kandi bw'inyungu).",
+        "about.eyebrow": "Inkuru Yacu",
+        "about.title": "KURI<br><em>Espérence</em>",
+        "about.description": "Ubuyobozi mu rwego rw'ubukure mu burasirazuba bwa Afurika, Esperence Mining SARL ikora mu bihugu bitandatu by'ingenzi: DRC, Uganda, Uburundi, Tanzaniya, Rwanda na Kenya.",
+        "about.expertise": "Ubuhanga bwacu buva mu by'ubwikorezi bw'amabuye y'agaciro kugeza ku gushaka akazi bwihariye, harimo gutanga amavuta n'ubufatanyabikorwa bw'ingamba.",
+        "stats.years": "Imyaka y'Uburambe",
+        "stats.countries": "Ibihugu",
+        "stats.projects": "Imishinga",
+        "stats.partners": "Abafatanyabikorwa",
+        "projects.eyebrow": "Ipote foliyo Yacu",
+        "projects.title": "<em>IBYAGEZWEHO</em> BYACU",
+        "projects.project1.cat": "Ubukure · DRC",
+        "projects.project1.title": "Ibikorwa by'Ubukure muri DRC",
+        "projects.project1.description": "Umushinga ukomeye wo gukura hamwe n'ibikoresho vya kijyambere — gucunga logistics zuzuye.",
+        "projects.project2.cat": "Logistics · Tanzaniya",
+        "projects.project2.title": "Logistics Tanzaniya",
+        "projects.project2.description": "Kwikoreza no gucunga ibikoresho bikomeye by'ubukure ku muhanda wa Tanzaniya.",
+        "projects.project3.cat": "Ressources Humaines · DRC",
+        "projects.project3.title": "Ubutabera bwa Kamoa",
+        "projects.project3.description": "Gushyira abahanga mu bukure barenga 500 mu mushinga wa Kamoa Copper.",
+        "partners.eyebrow": "Baraturizera abayobozi",
+        "partners.title": "<em>ABAFATANYABIKORWA</em><br>N'ABAKIRIYA",
+        "partners.partner1.title": "Concordia Petroleum Global",
+        "partners.partner1.description": "Umufatanyabikorwa w'ingamba mu gutanga amavuta ya dizeli yo mu rwego rwo hejuru.",
+        "partners.partner1.type": "Utanga Amavuta",
+        "partners.partner2.title": "SANY",
+        "partners.partner2.description": "Ubuyobozi mpuzamahanga mu gutanga ibikoresho bikomeye by'ubukure.",
+        "partners.partner2.type": "Utanga Ibikoresho",
+        "partners.partner3.title": "AGL",
+        "partners.partner3.description": "Umufatanyabikorwa wa logistics mu bwikorezi n'urukurikirane rw'ibitangizwa.",
+        "partners.partner3.type": "Serivisi za Logistics",
+        "partners.partner4.title": "Kamoa Copper S.A",
+        "partners.partner4.description": "Umukiriya nyamukuru mu gutanga abakozi babishoboye.",
+        "partners.partner4.type": "Umukiriya w'Ubukure",
+        "partners.partner5.title": "KCC — Kamoto Copper",
+        "partners.partner5.description": "Ubutabera mu gucunga abakozi mu birombe by'umuringa.",
+        "partners.partner5.type": "Umukiriya w'Ubukure",
+        "partners.partner6.title": "Kipushi Corp (KICO)",
+        "partners.partner6.description": "Ubufatanye mu gushyira abahanga mu birombe bya zinki.",
+        "partners.partner6.type": "Umukiriya w'Ubukure",
+        "partners.becomePartner.title": "Ube Umufatanyabikorwa Wacu",
+        "partners.becomePartner.description": "Injira mu mbuga zacu z'ubwiza mu nganda z'ubukure kandi ubone amahirwe meza y'ubucuruzi muri Afurika.",
+        "partners.becomePartner.cta": "Twandikire",
+        "contact.eyebrow": "Revo tuvuge ku mushinga wawe",
+        "contact.title": "DUHAGURUKIRE<br><em>HAMWE</em>",
+        "contact.email": "Imeri",
+        "contact.phone": "Telefone",
+        "contact.locations": "Uhubane",
+        "contact.formEyebrow": "Ifishi y'itumanaho",
+        "contact.formTitle": "<em>UBUTUMWA</em> BWAWE",
+        "contact.name": "Izina ryawe",
+        "contact.emailLabel": "Imeri",
+        "contact.service": "Serivisi isabwa",
+        "contact.selectService": "Hitamo serivisi",
+        "contact.message": "Ubutumwa bwawe",
+        "contact.send": "Kohereza ubutumwa",
+        "news.eyebrow": "Komeza umenye",
+        "news.title": "<em>AMAKURU</em> Y'<br>UBUKURE",
+        "news.post1.cat": "Ubuhanga",
+        "news.post1.title": "Ubuhanga mu Mikorere y'Ubukure",
+        "news.post1.description": "Iterambere rya vuba ry'ikorana buhanga rihindura urwego rw'ubukure mu burasirazuba bwa Afurika.",
+        "news.post2.cat": "Kwaguka",
+        "news.post2.title": "Espérence Yagutse mu Rwanda",
+        "news.post2.description": "Kuboneka kw'imikorere mishya mu Rwanda, gushimangira urusobe rwacu rw'akarere rw'ubwiza.",
+        "news.post3.cat": "Ressources Humaines",
+        "news.post3.title": "Imyanya 500 yafunguwe muri 2025",
+        "news.post3.description": "Espérence Mining itangiza ubukangurambaga bunini bwo gushaka akazi ku mishinga yayo muri DRC na Tanzaniya.",
+        "news.readMore": "Soma byinshi",
+        "newsletter.eyebrow": "Ibaruwa mpuzamahanga",
+        "newsletter.title": "GUMANA<br><em>MU RUHEREREKANE</em>",
+        "newsletter.sub": "Kira amakuru yihariye ya vuba y'ubukure, amahirwe y'akazi, n'amahirwe y'ubufatanye kuva kuri Esperence Mining.",
+        "careers.eyebrow": "Dushaka abakozi",
+        "careers.title": "INJIRA MU<br><em>KIPE</em>",
+        "careers.description": "Turashaka abahanga bakunda kwitegura guhangana n'ibibazo by'inganda z'ubukure muri Afurika.",
+        "careers.viewAll": "Reba imyanya yose",
+        "careers.dept1": "Ubuhanga",
+        "careers.dept2": "Logistics",
+        "careers.dept3": "Imikorere",
+        "careers.positions.engineer": "Injineri Mukuru w'Ubukure",
+        "careers.positions.logistics": "Umucunguzi wa Logistics",
+        "careers.positions.operator": "Ukoresha imashini ziremereye",
+        "careers.positions.hse": "Umucunguzi wa HSE",
+        "careers.positions.apply": "Saba",
+        "nav.home": "Ahabanza",
+        "nav.services": "Serivisi",
+        "nav.about": "Kuri",
+        "nav.projects": "Imishinga",
+        "nav.partners": "Abafatanyabikorwa",
+        "nav.contact": "Itumanaho",
+        "nav.news": "Amakuru",
+        "nav.careers": "Akazi",
+        "footer.tagline": "Ubuyobozi mu bukure mu burasirazuba bwa Afurika. Ubwiza, ubunyangamugayo, n'umusaruro mu bihugu bitandatu bya Afurika.",
+        "footer.navigation": "Urugendo",
+        "footer.services": "Serivisi",
+        "footer.contact": "Itumanaho",
+        "footer.rights": "Uburenganzira bwose burakikijwe."
+    }
+};
+let currentLang = 'fr';
+
+/* ══ LOADER ══ */
+let loaderProgress = 0;
+const loaderNumEl = document.getElementById('loader-num');
+const loaderInterval = setInterval(() => {
+    loaderProgress += Math.random() * 15;
+    if (loaderProgress >= 100) {
+        loaderProgress = 100;
+        clearInterval(loaderInterval);
+        setTimeout(() => document.getElementById('loader').classList.add('hidden'), 300);
+    }
+    if (loaderNumEl) loaderNumEl.textContent = Math.floor(loaderProgress) + '%';
+}, 80);
+
+/* ══ HERO VIDEO FIX ══ */
+const heroVideo = document.getElementById('heroVideo');
+if (heroVideo) {
+    heroVideo.addEventListener('canplay', () => {
+        heroVideo.classList.add('loaded');
+    });
+    heroVideo.play().catch(() => {
+        console.log('Video autoplay blocked, showing fallback background.');
+    });
+    if (heroVideo.readyState >= 3) {
+        heroVideo.classList.add('loaded');
+    }
+}
+
+/* ══ CURSOR ══ */
+const cursor = document.getElementById('cursor');
+const cursorRing = document.getElementById('cursorRing');
+let mouseX = 0, mouseY = 0, ringX = 0, ringY = 0;
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX; mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top = mouseY + 'px';
+});
+function animateRing() {
+    ringX += (mouseX - ringX) * 0.12;
+    ringY += (mouseY - ringY) * 0.12;
+    cursorRing.style.left = ringX + 'px';
+    cursorRing.style.top = ringY + 'px';
+    requestAnimationFrame(animateRing);
+}
+animateRing();
+document.querySelectorAll('a, button, .service-card, .project-card, .blog-card, .job-card').forEach(el => {
+    el.addEventListener('mouseenter', () => { cursor.style.width='20px'; cursor.style.height='20px'; cursorRing.style.width='60px'; cursorRing.style.height='60px'; cursorRing.style.borderColor='rgba(198,163,0,0.8)'; });
+    el.addEventListener('mouseleave', () => { cursor.style.width='12px'; cursor.style.height='12px'; cursorRing.style.width='40px'; cursorRing.style.height='40px'; cursorRing.style.borderColor='rgba(198,163,0,0.5)'; });
+});
+
+/* ══ NAVBAR ══ */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 50));
+
+/* ══ MOBILE NAV ══ */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileNav = document.getElementById('mobileNav');
+hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+});
+mobileNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+    hamburgerBtn.classList.remove('open'); mobileNav.classList.remove('open'); document.body.style.overflow = '';
+}));
+
+/* ══ SMOOTH SCROLL ══ */
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+    });
+});
+
+/* ══ REVEAL OBSERVER ══ */
+const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => revealObserver.observe(el));
+
+/* ══ COUNTER ══ */
+function animateCounter(el, target, suffix = '') {
+    let start = 0;
+    const duration = 2000;
+    const startTime = performance.now();
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 4);
+        el.textContent = Math.floor(eased * target).toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+}
+const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.querySelectorAll('[data-counter]').forEach(el => {
+                animateCounter(el, parseInt(el.getAttribute('data-counter')), el.getAttribute('data-suffix') || '');
+            });
+            counterObserver.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.3 });
+const heroStats = document.querySelector('.hero-stats');
+if (heroStats) counterObserver.observe(heroStats);
+
+/* ══ LANGUAGE SWITCHER ══ */
+function switchLanguage(lang) {
+    if (!translations[lang]) return;
+    currentLang = lang;
+    document.querySelectorAll('.lang-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', ['fr','en','ar','zh','sw','kin'][i] === lang);
+    });
+    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.querySelectorAll('[data-translate]').forEach(el => {
+        const t = translations[lang][el.getAttribute('data-translate')];
+        if (t === undefined) return;
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t;
+        else if (el.tagName === 'OPTION') el.textContent = t;
+        else el.innerHTML = t;
+    });
+}
+
+/* ══ PARALLAX ══ */
+window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY;
+    const heroContent = document.querySelector('.hero-content');
+    if (heroContent && scrolled < window.innerHeight) {
+        heroContent.style.transform = `translateY(${scrolled * 0.2}px)`;
+        heroContent.style.opacity = 1 - scrolled / (window.innerHeight * 0.8);
+    }
+});
+
+/* ══ CONTACT FORM ══ */
+const form = document.getElementById('contact-form');
+if (form) {
+    form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span>Envoi en cours...</span>';
+        btn.style.opacity = '0.7';
+        try {
+            const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
+            if (response.ok) {
+                btn.innerHTML = '<span>✓ Message envoyé</span>';
+                btn.style.background = '#2d8a4e';
+                form.reset();
+            } else { btn.innerHTML = originalHTML; }
+        } catch { btn.innerHTML = originalHTML; }
+        btn.style.opacity = '1';
+        setTimeout(() => { btn.innerHTML = originalHTML; btn.style.background = ''; }, 4000);
+    });
+}
+
+/* ══════════════════════════════════════════
+   NEWSLETTER — Appel API réel
+   POST https://espeback.onrender.com/api/v1/subscribers
+══════════════════════════════════════════ */
+const newsletterForm = document.getElementById('newsletter-form');
+if (newsletterForm) {
+    newsletterForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const email = document.getElementById('newsletter-email').value.trim();
+        if (!email || !email.includes('@')) return;
+
+        const btn = document.getElementById('newsletter-btn');
+        const originalBtnHTML = btn.innerHTML;
+        btn.disabled = true;
+        btn.innerHTML = '<span>...</span>';
+
+        try {
+            const response = await fetch('https://espeback.onrender.com/api/v1/subscribers', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ email: email.toLowerCase() })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                document.getElementById('newsletter-form-wrap').style.display = 'none';
+                document.getElementById('newsletter-success-msg').textContent = 'Vous êtes désormais abonné à notre newsletter.';
+                const successEl = document.getElementById('newsletter-success');
+                successEl.style.display = 'flex';
+
+            } else if (response.status === 409) {
+                document.getElementById('newsletter-form-wrap').style.display = 'none';
+                document.getElementById('newsletter-success-msg').textContent = data.message || 'Vous êtes déjà abonné à notre newsletter.';
+                const successEl = document.getElementById('newsletter-success');
+                successEl.querySelector('p:nth-child(2)').textContent = 'DÉJÀ ABONNÉ';
+                successEl.style.display = 'flex';
+
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = originalBtnHTML;
+                console.error('Erreur abonnement newsletter:', data.message || response.status);
+            }
+
+        } catch (err) {
+            btn.disabled = false;
+            btn.innerHTML = originalBtnHTML;
+            console.error('Erreur réseau newsletter:', err);
+        }
+    });
+}
+
+/* ══════════════════════════════════════════
+   ARTICLES — Appel API réel
+   GET https://espeback.onrender.com/api/v1/articles?status=PUBLISHED&limit=6&sort=newest
+══════════════════════════════════════════ */
+async function loadApiArticles() {
+    const grid = document.getElementById('api-articles-grid');
+    const fallback = document.getElementById('static-articles');
+    const fallbackImg = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80';
+
+    try {
+        const response = await fetch(
+            'https://espeback.onrender.com/api/v1/articles?limit=6&sort=newest',
+            { headers: { 'Accept': 'application/json' } }
+        );
+
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+
+        const articles = data.data || data.articles || data;
+
+        if (!Array.isArray(articles) || articles.length === 0) {
+            grid.innerHTML = '';
+            fallback.style.display = 'grid';
+            return;
+        }
+
+        grid.innerHTML = '';
+        articles.forEach((article, i) => {
+            const card = document.createElement('div');
+            card.className = 'blog-card reveal stagger-' + ((i % 3) + 1);
+
+            const imgSrc = article.imageUrl || fallbackImg;
+            const pubDate = article.publishedAt || article.createdAt;
+            const dateStr = pubDate
+                ? new Date(pubDate).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+                : '';
+            const excerpt = article.excerpt
+                || (article.content ? article.content.replace(/<[^>]+>/g, '').substring(0, 120) + '...' : '');
+            const category = article.category || 'Actualité';
+            const slug = article.slug || article.id;
+
+            card.innerHTML = `
+                <img class="blog-card-img"
+                     src="${escapeHtml(imgSrc)}"
+                     alt="${escapeHtml(article.title)}"
+                     onerror="this.src='${fallbackImg}'">
+                <div class="blog-card-body">
+                    <div class="blog-meta">
+                        <span class="blog-cat">${escapeHtml(category)}</span>
+                        <span class="blog-date">${escapeHtml(dateStr)}</span>
+                    </div>
+                    <h3>${escapeHtml(article.title)}</h3>
+                    <p>${escapeHtml(excerpt)}</p>
+                    <a href="/article/${escapeHtml(slug)}" class="read-more-link">Lire la suite</a>
+                </div>`;
+
+            grid.appendChild(card);
+            revealObserver.observe(card);
+        });
+
+    } catch (err) {
+        console.warn('API articles indisponible, affichage du contenu statique.', err);
+        grid.innerHTML = '';
+        fallback.style.display = 'grid';
+    }
+}
+
+function escapeHtml(str) {
+    if (typeof str !== 'string') return '';
+    return str
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+loadApiArticles();
+</script>
 </body>
 </html>
