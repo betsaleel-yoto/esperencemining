@@ -396,6 +396,12 @@ function escapeHtml(str) {
     return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#039;');
 }
 
+function safeDecodeURIComponent(value) {
+    if (typeof value !== 'string') return '';
+    try { return decodeURIComponent(value); }
+    catch { return value; }
+}
+
 /* ══════════════════════════════════════
    LOADER — identique à index.html
 ══════════════════════════════════════ */
@@ -422,16 +428,16 @@ const loaderInterval = setInterval(() => {
 function getArticleId() {
     // 1. Hash (méthode utilisée par index.html)
     if (window.location.hash) {
-        const h = window.location.hash.slice(1).trim();
+        const h = safeDecodeURIComponent(window.location.hash.slice(1)).trim();
         if (h) return h;
     }
     // 2. Query string
     const p = new URLSearchParams(window.location.search);
-    if (p.has('id') && p.get('id').trim()) return p.get('id').trim();
+    if (p.has('id') && p.get('id').trim()) return safeDecodeURIComponent(p.get('id')).trim();
     // 3. Dernier segment du pathname
     const parts = window.location.pathname.split('/').filter(Boolean);
     const last  = parts[parts.length - 1];
-    if (last && !last.includes('.html')) return last;
+    if (last && !last.includes('.html')) return safeDecodeURIComponent(last);
     return null;
 }
 
@@ -444,15 +450,127 @@ function formatDate(d) {
     catch { return ''; }
 }
 function estimateReadTime(c) {
-    if (!c) return '3 min';
-    return Math.max(1, Math.ceil(c.replace(/<[^>]+>/g,'').split(/\s+/).length / 220)) + ' min de lecture';
+    const text = extractPlainText(c);
+    if (!text) return '3 min de lecture';
+    return Math.max(1, Math.ceil(text.split(/\s+/).length / 220)) + ' min de lecture';
+}
+function extractPlainText(value) {
+    if (!value) return '';
+    if (typeof value === 'string') return value.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+    if (Array.isArray(value)) return value.map(extractPlainText).filter(Boolean).join(' ').trim();
+    if (typeof value === 'object') {
+        if (typeof value.text === 'string') return value.text.trim();
+        if (typeof value.html === 'string') return extractPlainText(value.html);
+        if (typeof value.content === 'string') return extractPlainText(value.content);
+        if (Array.isArray(value.blocks)) return value.blocks.map(block => extractPlainText(block?.text || block)).filter(Boolean).join(' ').trim();
+    }
+    return String(value).trim();
+}
+function normalizeSimpleHtml(rawHtml) {
+    const wrapper = document.createElement('div');
+    wrapper.innerHTML = rawHtml;
+
+    Array.from(wrapper.querySelectorAll('div')).forEach(div => {
+        if (div.querySelector('div, p, h1, h2, h3, h4, h5, h6, ul, ol, li, blockquote, pre, table, figure')) return;
+        const p = document.createElement('p');
+        p.innerHTML = div.innerHTML.trim();
+        div.replaceWith(p);
+    });
+
+    Array.from(wrapper.childNodes).forEach(node => {
+        if (node.nodeType !== Node.TEXT_NODE) return;
+        const text = node.textContent.replace(/\s+/g, ' ').trim();
+        if (!text) {
+            node.remove();
+            return;
+        }
+        const p = document.createElement('p');
+        p.innerHTML = escapeHtml(text);
+        node.replaceWith(p);
+    });
+
+    return wrapper.innerHTML.trim() || '<p>Contenu non disponible.</p>';
 }
 function parseContent(raw) {
     if (!raw) return '<p>Contenu non disponible.</p>';
-    if (/<[a-z][\s\S]*>/i.test(raw)) return raw;
-    return raw.split(/\n{2,}/).filter(Boolean).map(p => `<p>${p.replace(/\n/g,'<br>')}</p>`).join('');
+    if (Array.isArray(raw)) {
+        const parts = raw.map(item => parseContent(item)).filter(Boolean);
+        return parts.join('') || '<p>Contenu non disponible.</p>';
+    }
+    if (typeof raw === 'object') {
+        if (typeof raw.html === 'string') return parseContent(raw.html);
+        if (typeof raw.content === 'string') return parseContent(raw.content);
+        if (Array.isArray(raw.blocks)) {
+            const blocks = raw.blocks
+                .map(block => extractPlainText(block?.text || block))
+                .filter(Boolean)
+                .map(text => `<p>${escapeHtml(text)}</p>`);
+            return blocks.join('') || '<p>Contenu non disponible.</p>';
+        }
+        return `<p>${escapeHtml(extractPlainText(raw) || 'Contenu non disponible.')}</p>`;
+    }
+    const rawStr = String(raw).trim();
+    if (!rawStr) return '<p>Contenu non disponible.</p>';
+    if (/<[a-z][\s\S]*>/i.test(rawStr)) return normalizeSimpleHtml(rawStr);
+    return rawStr
+        .split(/\n{2,}/)
+        .map(p => p.trim())
+        .filter(Boolean)
+        .map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`)
+        .join('');
 }
-function getInitials(n) { return n ? n.split(' ').slice(0,2).map(w=>w[0].toUpperCase()).join('') : 'EM'; }
+function normalizeAuthor(author, authorName) {
+    if (typeof authorName === 'string' && authorName.trim()) return authorName.trim();
+    if (typeof author === 'string' && author.trim()) return author.trim();
+    if (author && typeof author === 'object') {
+        const fullName = [author.firstName, author.lastName]
+            .filter(part => typeof part === 'string' && part.trim())
+            .map(part => part.trim())
+            .join(' ')
+            .trim();
+        if (fullName) return fullName;
+        if (typeof author.name === 'string' && author.name.trim()) return author.name.trim();
+        if (typeof author.username === 'string' && author.username.trim()) return author.username.trim();
+        if (typeof author.email === 'string' && author.email.trim()) return author.email.trim();
+    }
+    return 'Espérence Mining';
+}
+function normalizeTags(tags, fallbackCategory) {
+    const normalized = Array.isArray(tags)
+        ? tags.map(tag => {
+            if (typeof tag === 'string') return tag.trim();
+            if (tag && typeof tag === 'object') {
+                if (typeof tag.name === 'string') return tag.name.trim();
+                if (typeof tag.label === 'string') return tag.label.trim();
+                if (typeof tag.title === 'string') return tag.title.trim();
+            }
+            return '';
+        }).filter(Boolean)
+        : [];
+
+    if (normalized.length) return normalized;
+    return fallbackCategory ? [fallbackCategory] : [];
+}
+function formatReadTime(readTime, content) {
+    if (typeof readTime === 'number' && Number.isFinite(readTime)) {
+        return `${Math.max(1, Math.round(readTime))} min de lecture`;
+    }
+    if (typeof readTime === 'string' && readTime.trim()) {
+        return /min/i.test(readTime) ? readTime.trim() : `${readTime.trim()} min de lecture`;
+    }
+    return estimateReadTime(content);
+}
+function getInitials(name) {
+    const safeName = typeof name === 'string' ? name.trim() : '';
+    if (!safeName) return 'EM';
+    const initials = safeName
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map(word => word[0].toUpperCase())
+        .join('');
+    return initials || 'EM';
+}
 
 /* ══════════════════════════════════════
    APPEL API — Article par ID
@@ -495,16 +613,16 @@ function renderArticle(article) {
     if (Array.isArray(article)) article = article[0];
     if (!article || typeof article !== 'object') { renderError(null, 'Format de réponse inattendu'); return; }
 
-    const id       = article.id       || article._id        || '';
-    const title    = article.title    || 'Sans titre';
-    const cat      = article.category || 'Actualité';
-    const dateStr  = formatDate(article.publishedAt || article.createdAt);
-    const author   = article.author   || article.authorName || 'Espérence Mining';
-    const imageUrl = article.imageUrl || article.image      || FALLBACK_IMG;
-    const lead     = article.excerpt  || '';
-    const body     = parseContent(article.content);
-    const readTime = article.readTime || estimateReadTime(article.content);
-    const tags     = article.tags     || (cat ? [cat] : []);
+    const id         = article.id       || article._id        || '';
+    const title      = article.title    || 'Sans titre';
+    const cat        = article.category || 'Actualité';
+    const dateStr    = formatDate(article.publishedAt || article.createdAt);
+    const authorName = normalizeAuthor(article.author, article.authorName);
+    const imageUrl   = article.imageUrl || article.image      || FALLBACK_IMG;
+    const lead       = article.excerpt  || '';
+    const body       = parseContent(article.content);
+    const readTime   = formatReadTime(article.readTime, article.content);
+    const tags       = normalizeTags(article.tags, cat);
 
     // ── Meta page ──
     document.title = `${title} — Espérence Mining`;
@@ -523,22 +641,25 @@ function renderArticle(article) {
     document.getElementById('article-title').textContent     = title;
     document.getElementById('article-date').textContent      = dateStr;
     document.getElementById('article-read-time').textContent = readTime;
-    document.getElementById('article-author').textContent    = author;
+    document.getElementById('article-author').textContent    = authorName;
 
     // ── ID affiché ET posé en attribut data-article-id ──
     const idEl = document.getElementById('article-id-display');
     idEl.textContent = `ID : ${id}`;
     idEl.setAttribute('data-article-id', id);
     // Pose l'ID sur l'élément main pour ciblage CSS/JS éventuel
-    document.getElementById('articleMain').setAttribute('id', `article-${id}`);
+    document.getElementById('articleMain').dataset.articleId = id;
 
     // ── Sidebar auteur ──
-    document.getElementById('sidebar-author').textContent = author;
-    document.getElementById('author-avatar').textContent  = getInitials(author);
+    document.getElementById('sidebar-author').textContent = authorName;
+    document.getElementById('author-avatar').textContent  = getInitials(authorName);
 
     // ── Lead (excerpt) ──
     const leadEl = document.getElementById('article-lead');
-    if (lead) { leadEl.textContent = lead; }
+    if (lead) {
+        leadEl.style.display = '';
+        leadEl.textContent = lead;
+    }
     else { leadEl.style.display = 'none'; }
 
     // ── Corps complet ──
@@ -547,6 +668,7 @@ function renderArticle(article) {
     // ── Tags ──
     const tagsEl = document.getElementById('article-tags');
     if (tags.length) {
+        tagsEl.style.display = '';
         tagsEl.innerHTML = tags.map(t => `<span class="tag">${escapeHtml(t)}</span>`).join('');
     } else {
         tagsEl.style.display = 'none';
@@ -605,9 +727,9 @@ function renderRecentArticles(articles) {
         const artId = a.id || a._id;
         const img   = a.imageUrl || a.image || FALLBACK_IMG;
         const cat   = a.category || 'Actualité';
-        const href  = `./article.html#${escapeHtml(String(artId))}`;
+        const href  = `./article.html#${encodeURIComponent(String(artId))}`;
         return `
-        <a class="related-item" href="${href}" id="related-${escapeHtml(String(artId))}">
+        <a class="related-item" href="${escapeHtml(href)}" id="related-${escapeHtml(String(artId))}">
             <img class="related-thumb" src="${escapeHtml(img)}" alt="${escapeHtml(a.title||'')}" onerror="this.src='${FALLBACK_IMG}'">
             <div>
                 <span class="related-title">${escapeHtml(a.title||'Sans titre')}</span>
