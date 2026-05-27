@@ -2398,7 +2398,7 @@ if (newsletterForm) {
         btn.innerHTML = '<span>...</span>';
 
         try {
-            const response = await fetch('https://espeback-1q2k.onrender.com/api/v1/subscribers', {
+            const response = await fetch('https://espeback-production.up.railway.app/api/v1/subscribers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -2447,7 +2447,7 @@ async function loadApiArticles() {
 
     try {
         const response = await fetch(
-            'https://espeback-1q2k.onrender.com/api/v1/articles?limit=6&sort=newest',
+            'https://espeback-production.up.railway.app/api/v1/articles?limit=6&sort=newest',
             { headers: { 'Accept': 'application/json' } }
         );
 
