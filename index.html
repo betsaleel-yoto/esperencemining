@@ -2382,7 +2382,7 @@ if (form) {
 
 /* ══════════════════════════════════════════
    NEWSLETTER — Appel API réel
-   POST https://espeback.onrender.com/api/v1/subscribers
+   POST https://espeback-1q2k.onrender.com/api/v1/subscribers
 ══════════════════════════════════════════ */
 const newsletterForm = document.getElementById('newsletter-form');
 if (newsletterForm) {
@@ -2398,7 +2398,7 @@ if (newsletterForm) {
         btn.innerHTML = '<span>...</span>';
 
         try {
-            const response = await fetch('https://espeback.onrender.com/api/v1/subscribers', {
+            const response = await fetch('https://espeback-1q2k.onrender.com/api/v1/subscribers', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -2438,7 +2438,7 @@ if (newsletterForm) {
 
 /* ══════════════════════════════════════════
    ARTICLES — Appel API réel
-   GET https://espeback.onrender.com/api/v1/articles?status=PUBLISHED&limit=6&sort=newest
+   GET https://espeback-1q2k.onrender.com/api/v1/articles?status=PUBLISHED&limit=6&sort=newest
 ══════════════════════════════════════════ */
 async function loadApiArticles() {
     const grid = document.getElementById('api-articles-grid');
@@ -2447,7 +2447,7 @@ async function loadApiArticles() {
 
     try {
         const response = await fetch(
-            'https://espeback.onrender.com/api/v1/articles?limit=6&sort=newest',
+            'https://espeback-1q2k.onrender.com/api/v1/articles?limit=6&sort=newest',
             { headers: { 'Accept': 'application/json' } }
         );
 
