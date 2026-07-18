@@ -883,6 +883,12 @@
         form.removeAttribute('aria-busy');
     }
 
+    function waitForSubmissionModalToDisappear() {
+        return new Promise((resolve) => {
+            window.setTimeout(resolve, 320);
+        });
+    }
+
     function validateRequiredFiles() {
         const arspFile = document.getElementById('arspFile').files[0];
         if (!arspFile) {
@@ -941,6 +947,7 @@
                 categorySelect.value = '';
                 if (categoryOtherInput) categoryOtherInput.required = false;
                 closeSubmissionModal();
+                await waitForSubmissionModalToDisappear();
                 showAlert('✅ Votre dossier a été soumis avec succès. Un email de confirmation vous parviendra après validation.', 'success');
             } else {
                 closeSubmissionModal();
