@@ -357,31 +357,6 @@
             margin-top: 3px;
             font-size: 0.85rem;
         }
-        .catalog-note {
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(198,163,0,0.04);
-            border: 1px solid rgba(198,163,0,0.14);
-            font-size: 0.78rem;
-            color: var(--ash);
-            line-height: 1.7;
-        }
-        .summary-chip-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-top: 1rem;
-        }
-        .summary-chip {
-            font-size: 0.58rem;
-            letter-spacing: 0.14em;
-            text-transform: uppercase;
-            color: var(--gold);
-            border: 1px solid rgba(198,163,0,0.24);
-            background: rgba(198,163,0,0.04);
-            padding: 6px 10px;
-        }
-
         .form-card {
             padding: 2rem;
         }
@@ -626,6 +601,19 @@
             background: rgba(198,163,0,0.08);
             color: #000;
         }
+        .combobox-group + .combobox-group {
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+        .combobox-group-label {
+            padding: 10px 14px 7px;
+            background: rgba(198,163,0,0.08);
+            color: var(--gold);
+            font-family: var(--font-display);
+            font-size: 0.64rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
         .combobox-empty {
             padding: 14px;
             font-size: 0.82rem;
@@ -814,8 +802,7 @@
             <div class="hero-kicker"><span>Demande de cotation</span></div>
             <h1>Demande de <em>Cotation</em> Automatique</h1>
             <p>
-                Sélectionnez un produit chimique ou un équipement logistique issu de nos catalogues,
-                renseignez la quantité souhaitée et recevez une cotation prête à l’envoi par email.
+                Sélectionnez un produit chimique ou un équipement logistique, puis laissez la liste se regrouper par familles ou secteurs selon les données renvoyées par le backend avant d’envoyer votre demande par email.
             </p>
             <div class="hero-actions">
                 <a href="#quotationForm" class="btn-primary">
@@ -834,29 +821,11 @@
                     <div class="info-kicker">Flux en 4 étapes</div>
                     <h2>Un parcours rapide et clair</h2>
                     <ul class="info-list">
-                        <li><i class="fas fa-circle-check"></i><span>Choisissez votre secteur entre produits chimiques et équipements logistiques.</span></li>
-                        <li><i class="fas fa-circle-check"></i><span>Recherchez l’article voulu dans une liste filtrable et évolutive.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span>Choisissez votre type d’article entre produits chimiques et équipements logistiques.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span>Recherchez l’article voulu dans une liste filtrable, regroupée par familles ou secteurs quand le backend les fournit.</span></li>
                         <li><i class="fas fa-circle-check"></i><span>Indiquez la quantité, l’unité et vos coordonnées de contact.</span></li>
                         <li><i class="fas fa-circle-check"></i><span>Validez la demande et recevez la cotation officielle par email.</span></li>
                     </ul>
-                </div>
-                <div class="info-card">
-                    <div class="info-kicker">Catalogues sources</div>
-                    <h2>Base métier initiale</h2>
-                    <p>
-                        Les propositions ci-dessous sont chargées à partir des listes métier fournies pour la mine de cuivre et la logistique.
-                        Le formulaire peut aussi fusionner de futurs ajouts exposés par le backend de l’administration.
-                    </p>
-                    <div class="summary-chip-row">
-                        <span class="summary-chip">Produits chimiques</span>
-                        <span class="summary-chip">Équipements</span>
-                        <span class="summary-chip">Filtres dynamiques</span>
-                        <span class="summary-chip">Email automatique</span>
-                    </div>
-                    <div class="catalog-note">
-                        Endpoint configuré côté front-end : <strong>/api/v1/quotations/submit</strong><br>
-                        Les listes métier embarquées servent de base fiable en attendant la source dynamique admin.
-                    </div>
                 </div>
             </aside>
 
@@ -866,8 +835,7 @@
                         <div class="section-kicker">Formulaire</div>
                         <h2>Configurez votre demande</h2>
                         <p>
-                            Renseignez les informations demandées pas à pas. Le champ article se met à jour selon le secteur sélectionné
-                            pour simplifier la saisie et réduire les erreurs.
+                            Renseignez les informations demandées pas à pas. Le champ article s’adapte au type sélectionné et regroupe les résultats par familles ou secteurs quand la source distante les expose.
                         </p>
                     </div>
                     <div class="progress-wrap">
@@ -883,20 +851,20 @@
                         <div class="step-title">
                             <div class="step-badge">1</div>
                             <div>
-                                <h3>Choix du secteur</h3>
-                                <p>Sélectionnez la famille d’articles avant de rechercher le produit ou l’équipement concerné.</p>
+                                <h3>Choix du type</h3>
+                                <p>Sélectionnez la grande famille d’articles avant de rechercher le produit ou l’équipement concerné.</p>
                             </div>
                         </div>
-                        <div class="choice-grid" role="tablist" aria-label="Choix du secteur">
+                        <div class="choice-grid" role="tablist" aria-label="Choix du type">
                             <button type="button" class="choice-card selected" data-type="CHEMICAL" aria-pressed="true">
                                 <div class="choice-icon"><i class="fas fa-vial"></i></div>
                                 <h4>Intrants & Produits Chimiques</h4>
-                                <p>Acide sulfurique, chaux vive, xanthates, MIBC et autres réactifs miniers.</p>
+                                <p>Réactifs, intrants et produits de procédé pour vos opérations minières.</p>
                             </button>
                             <button type="button" class="choice-card" data-type="EQUIPMENT" aria-pressed="false">
                                 <div class="choice-icon"><i class="fas fa-truck"></i></div>
                                 <h4>Matériels, Logistique & Engins</h4>
-                                <p>Camion benne, grue télescopique, dumper, bulldozer et équipements de transport.</p>
+                                <p>Véhicules, matériels de manutention et engins pour la logistique et le site.</p>
                             </button>
                         </div>
                         <div class="step-actions">
@@ -913,7 +881,7 @@
                             <div class="step-badge">2</div>
                             <div>
                                 <h3>Sélection de l’article</h3>
-                                <p>Commencez à taper pour filtrer la liste. Vous pouvez ensuite cliquer sur l’élément exact souhaité.</p>
+                                <p>Commencez à taper pour filtrer la liste. Les résultats sont ensuite regroupés par familles ou secteurs quand le backend les fournit.</p>
                             </div>
                         </div>
                         <div class="field-group">
@@ -928,7 +896,7 @@
                                 <i class="fas fa-tag"></i>
                                 <span id="selectedItemText"></span>
                             </div>
-                            <p class="field-help" id="itemHint">Les suggestions chimiques apparaissent par défaut. Le catalogue se met à jour dès que vous changez de secteur.</p>
+                            <p class="field-help" id="itemHint">Les suggestions du type sélectionné apparaissent par défaut. Le catalogue se regroupe automatiquement par familles ou secteurs selon la source distante.</p>
                         </div>
                         <div class="step-actions">
                             <button type="button" class="btn-outline" data-back-step>
@@ -962,7 +930,7 @@
                         </div>
                         <div class="summary-box">
                             <h4>Récapitulatif rapide</h4>
-                            <div class="summary-line"><span>Secteur</span><strong id="summaryType">Intrants & Produits Chimiques</strong></div>
+                            <div class="summary-line"><span>Type</span><strong id="summaryType">Intrants & Produits Chimiques</strong></div>
                             <div class="summary-line"><span>Article</span><strong id="summaryItem">Aucun article sélectionné</strong></div>
                             <div class="summary-line"><span>Quantité</span><strong id="summaryQuantity">-</strong></div>
                             <div class="summary-line"><span>Unité</span><strong id="summaryUnit">-</strong></div>
@@ -1181,9 +1149,14 @@
             EQUIPMENT: 'Matériels, Logistique & Engins'
         };
 
+        const DEFAULT_FAMILIES = {
+            CHEMICAL: 'Produits chimiques',
+            EQUIPMENT: 'Équipements'
+        };
+
         const TYPE_HINTS = {
-            CHEMICAL: 'Exemples: Acide sulfurique, Chaux vive, Xanthates, MIBC.',
-            EQUIPMENT: 'Exemples: Camion benne, Grue télescopique, Dumper, Bulldozer.'
+            CHEMICAL: 'Exemples: Acide sulfurique, Chaux vive, Xanthates, MIBC. Les résultats sont regroupés par familles ou secteurs si le backend les fournit.',
+            EQUIPMENT: 'Exemples: Camion benne, Grue télescopique, Dumper, Bulldozer. Les résultats sont regroupés par familles ou secteurs si le backend les fournit.'
         };
 
         const form = document.getElementById('quotationForm');
@@ -1217,6 +1190,10 @@
         let catalog = {
             CHEMICAL: [...STATIC_CATALOG.CHEMICAL],
             EQUIPMENT: [...STATIC_CATALOG.EQUIPMENT]
+        };
+        let catalogFamilies = {
+            CHEMICAL: new Map(),
+            EQUIPMENT: new Map()
         };
 
         const loaderInterval = setInterval(() => {
@@ -1287,23 +1264,97 @@
             return result;
         }
 
-        function extractCatalogItems(payload) {
+        function extractCatalogEntries(payload, fallbackFamily = '') {
             if (!payload) return [];
             if (Array.isArray(payload)) {
-                return payload.flatMap(extractCatalogItems);
+                return payload.flatMap((item) => extractCatalogEntries(item, fallbackFamily));
             }
             if (typeof payload === 'string') {
                 const trimmed = payload.trim();
-                return trimmed ? [trimmed] : [];
+                return trimmed ? [{ title: trimmed, family: fallbackFamily }] : [];
             }
             if (typeof payload === 'object') {
-                const direct = payload.name || payload.label || payload.itemName || payload.productName || payload.title || payload.value;
-                if (direct) return [String(direct).trim()];
-                if (Array.isArray(payload.items)) return payload.items.flatMap(extractCatalogItems);
-                if (Array.isArray(payload.products)) return payload.products.flatMap(extractCatalogItems);
-                if (Array.isArray(payload.data)) return payload.data.flatMap(extractCatalogItems);
+                const direct = payload.name || payload.label || payload.itemName || payload.productName || payload.product || payload.title || payload.value || payload.article || payload.designation;
+                const family = String(
+                    payload.family ||
+                    payload.familyName ||
+                    payload.category ||
+                    payload.categoryName ||
+                    payload.sector ||
+                    payload.sectorName ||
+                    payload.group ||
+                    payload.groupName ||
+                    payload.section ||
+                    payload.sectionName ||
+                    fallbackFamily ||
+                    ''
+                ).trim();
+                if (direct) return [{ title: String(direct).trim(), family }];
+                const groupedCollections = [
+                    payload.families,
+                    payload.sectors,
+                    payload.categories,
+                    payload.groups,
+                    payload.sections
+                ];
+                for (const collection of groupedCollections) {
+                    if (!Array.isArray(collection) || !collection.length) continue;
+                    const groupedItems = collection.flatMap((group) => {
+                        if (!group || typeof group !== 'object') return [];
+                        const groupFamily = String(
+                            group.label ||
+                            group.name ||
+                            group.family ||
+                            group.category ||
+                            group.sector ||
+                            group.group ||
+                            group.section ||
+                            fallbackFamily ||
+                            ''
+                        ).trim();
+                        return extractCatalogEntries(
+                            group.items ||
+                            group.products ||
+                            group.data ||
+                            group.children ||
+                            group.entries,
+                            groupFamily
+                        );
+                    });
+                    if (groupedItems.length) return groupedItems;
+                }
+                if (Array.isArray(payload.items)) return payload.items.flatMap((item) => extractCatalogEntries(item, family));
+                if (Array.isArray(payload.products)) return payload.products.flatMap((item) => extractCatalogEntries(item, family));
+                if (Array.isArray(payload.data)) return payload.data.flatMap((item) => extractCatalogEntries(item, family));
+                if (Array.isArray(payload.children)) return payload.children.flatMap((item) => extractCatalogEntries(item, family));
+                if (Array.isArray(payload.entries)) return payload.entries.flatMap((item) => extractCatalogEntries(item, family));
             }
             return [];
+        }
+
+        function pickCatalogPayload(data) {
+            const keys = ['data', 'items', 'catalog', 'catalogue', 'results', 'result', 'records'];
+            const hasMeaningfulValue = (value) => {
+                if (value == null) return false;
+                if (Array.isArray(value)) return value.length > 0;
+                if (typeof value === 'string') return value.trim().length > 0;
+                if (typeof value === 'object') {
+                    const itemKeys = ['name', 'label', 'itemName', 'productName', 'product', 'title', 'value', 'article', 'designation'];
+                    const groupKeys = ['family', 'familyName', 'category', 'categoryName', 'sector', 'sectorName', 'group', 'groupName', 'section', 'sectionName'];
+                    const collectionKeys = ['items', 'products', 'data', 'children', 'entries', 'families', 'sectors', 'categories', 'groups', 'sections'];
+                    return itemKeys.some((key) => String(value[key] || '').trim()) ||
+                        groupKeys.some((key) => String(value[key] || '').trim()) ||
+                        collectionKeys.some((key) => Array.isArray(value[key]) && value[key].length > 0);
+                }
+                return true;
+            };
+            for (const key of keys) {
+                if (!Object.prototype.hasOwnProperty.call(data, key)) continue;
+                const value = data[key];
+                if (!hasMeaningfulValue(value)) continue;
+                return value;
+            }
+            return data;
         }
 
         async function loadRemoteCatalog(type) {
@@ -1313,10 +1364,20 @@
                 });
                 if (!response.ok) return [];
                 const data = await response.json().catch(() => ({}));
-                return extractCatalogItems(data.data || data.items || data.catalog || data);
+                return extractCatalogEntries(pickCatalogPayload(data), DEFAULT_FAMILIES[type]);
             } catch {
                 return [];
             }
+        }
+
+        function buildCatalogFamilyMap(type, entries) {
+            const families = new Map();
+            entries.forEach((entry) => {
+                const title = String(entry.title || '').trim();
+                if (!title) return;
+                families.set(normalizeText(title), entry.family || DEFAULT_FAMILIES[type]);
+            });
+            return families;
         }
 
         async function hydrateCatalogs() {
@@ -1325,8 +1386,16 @@
                 loadRemoteCatalog('EQUIPMENT')
             ]);
 
-            catalog.CHEMICAL = dedupeItems([...STATIC_CATALOG.CHEMICAL, ...chemicals]);
-            catalog.EQUIPMENT = dedupeItems([...STATIC_CATALOG.EQUIPMENT, ...equipment]);
+            catalog.CHEMICAL = dedupeItems([
+                ...STATIC_CATALOG.CHEMICAL,
+                ...chemicals.map((entry) => entry.title)
+            ]);
+            catalog.EQUIPMENT = dedupeItems([
+                ...STATIC_CATALOG.EQUIPMENT,
+                ...equipment.map((entry) => entry.title)
+            ]);
+            catalogFamilies.CHEMICAL = buildCatalogFamilyMap('CHEMICAL', chemicals);
+            catalogFamilies.EQUIPMENT = buildCatalogFamilyMap('EQUIPMENT', equipment);
 
             renderSuggestions(true);
         }
@@ -1383,6 +1452,14 @@
         function renderSuggestions(preserveOpen = false) {
             const query = normalizeText(itemSearch.value);
             const items = (catalog[currentType] || []).filter((item) => normalizeText(item).includes(query));
+            const familyMap = catalogFamilies[currentType] || new Map();
+            const groups = new Map();
+
+            items.forEach((item) => {
+                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[currentType];
+                if (!groups.has(family)) groups.set(family, []);
+                groups.get(family).push(item);
+            });
 
             itemPanel.innerHTML = '';
             if (!items.length) {
@@ -1391,14 +1468,26 @@
                 empty.textContent = 'Aucun résultat';
                 itemPanel.appendChild(empty);
             } else {
-                items.forEach((item) => {
-                    const button = document.createElement('button');
-                    button.type = 'button';
-                    button.className = 'combobox-option';
-                    button.setAttribute('role', 'option');
-                    button.textContent = item;
-                    button.addEventListener('click', () => selectItem(item));
-                    itemPanel.appendChild(button);
+                groups.forEach((groupItems, family) => {
+                    const group = document.createElement('div');
+                    group.className = 'combobox-group';
+
+                    const heading = document.createElement('div');
+                    heading.className = 'combobox-group-label';
+                    heading.textContent = family;
+                    group.appendChild(heading);
+
+                    groupItems.forEach((item) => {
+                        const button = document.createElement('button');
+                        button.type = 'button';
+                        button.className = 'combobox-option';
+                        button.setAttribute('role', 'option');
+                        button.textContent = item;
+                        button.addEventListener('click', () => selectItem(item));
+                        group.appendChild(button);
+                    });
+
+                    itemPanel.appendChild(group);
                 });
             }
 
