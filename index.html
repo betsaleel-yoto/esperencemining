@@ -111,6 +111,7 @@ body::after {
     background: var(--gold); border-color: var(--gold); color: #fff; 
 }
 .lang-select { display: none; background: #fff; border: 1px solid rgba(0,0,0,0.1); color: #111; padding: 6px 10px; border-radius: 4px; font-size: 0.8rem; cursor: pointer; }
+.nav-quote-btn { white-space: nowrap; }
 .hamburger-btn { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 8px; }
 .hamburger-btn span { display: block; width: 28px; height: 1.5px; background: var(--gold); transition: all 0.3s; transform-origin: center; }
 .hamburger-btn.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
@@ -296,6 +297,58 @@ section { padding: 8rem 4rem; }
 .service-arrow i { color: var(--gold); font-size: 0.8rem; }
 .service-card:hover .service-arrow { opacity: 1; background: var(--gold); border-color: var(--gold); }
 .service-card:hover .service-arrow i { color: #fff; }
+.service-cta-card {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    background: linear-gradient(135deg, rgba(198,163,0,0.08), rgba(255,255,255,0.98));
+    border: 1px solid rgba(198,163,0,0.16);
+    box-shadow: var(--shadow-md);
+}
+.service-cta-copy {
+    max-width: 760px;
+}
+.service-cta-card .service-number {
+    margin-bottom: 1rem;
+}
+.service-cta-card .service-icon {
+    margin-bottom: 1.5rem;
+}
+.service-cta-card h3 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    letter-spacing: 0.05em;
+    color: #000;
+    margin-bottom: 1rem;
+}
+.service-cta-card p {
+    font-size: 0.95rem;
+    color: var(--ash);
+    line-height: 1.85;
+    font-weight: 400;
+}
+.service-cta-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+@media(max-width:900px) {
+    .service-cta-card {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .service-cta-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+    .service-cta-actions .btn-primary {
+        width: 100%;
+        justify-content: center;
+    }
+}
 
 /* ABOUT */
 #about { background: var(--obsidian); display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; padding: 8rem 4rem; }
@@ -682,6 +735,7 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
     .hamburger-btn { display: flex; }
     .lang-btns-desktop { display: none; }
     .lang-select { display: block; }
+    .nav-quote-btn { padding: 10px 14px !important; font-size: 0.52rem !important; }
     .hero-stats { display: none; }
     .form-row { grid-template-columns: 1fr; }
     .footer-top { grid-template-columns: 1fr; gap: 2rem; padding: 3rem 2rem; }
@@ -798,6 +852,7 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
     .contact-left, .contact-right {
         padding: 2rem 1.5rem;
     }
+    .nav-quote-btn { padding: 10px 12px !important; }
     .form-field input,
     .form-field select,
     .form-field textarea {
@@ -950,6 +1005,10 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
             <option value="sw">SW</option>
             <option value="kin">KIN</option>
         </select>
+        <a href="./quotation.html" class="btn-primary nav-quote-btn" style="padding:12px 18px;font-size:.58rem;letter-spacing:.18em;white-space:nowrap;">
+            <span>Demander une Cotation</span>
+            <i class="fas fa-file-invoice-dollar"></i>
+        </a>
         <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
@@ -1125,6 +1184,23 @@ Exploitation minière
 Gestion et développement des sites miniers avec une approche professionnelle et rentable
 </p>
             <div class="service-arrow"><i class="fas fa-arrow-right"></i></div>
+        </div>
+        <div class="service-card service-cta-card reveal stagger-5">
+            <div class="service-cta-copy">
+                <div class="service-number">05</div>
+                <div class="service-icon"><i class="fas fa-file-invoice-dollar"></i></div>
+                <h3>Demande de Cotation Automatique</h3>
+                <p>
+                    Sélectionnez vos produits chimiques ou vos équipements logistiques, renseignez la quantité et vos coordonnées,
+                    puis recevez instantanément votre cotation par email grâce à un parcours rapide et adapté à votre besoin.
+                </p>
+            </div>
+            <div class="service-cta-actions">
+                <a href="./quotation.html" class="btn-primary">
+                    <span>Demander une Cotation</span>
+                    <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
         </div>
     </div>
 </section>

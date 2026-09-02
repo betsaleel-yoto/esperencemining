@@ -65,6 +65,7 @@ body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:
 .nav-center a:hover::after { left:18px; right:18px; }
 .nav-back-btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-size:.65rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:rgba(26,26,26,.6); padding:8px 16px; border:1px solid rgba(0,0,0,.12); transition:all .3s; cursor:pointer; background:transparent; }
 .nav-back-btn:hover { color:var(--gold); border-color:rgba(198,163,0,.4); }
+.nav-quote-btn { white-space:nowrap; padding:10px 18px; font-size:.58rem; }
 .hamburger-btn { display:none; flex-direction:column; gap:5px; background:none; border:none; cursor:pointer; padding:8px; }
 .hamburger-btn span { display:block; width:28px; height:1.5px; background:var(--gold); transition:all .3s; transform-origin:center; }
 .hamburger-btn.open span:nth-child(1){ transform:translateY(6.5px) rotate(45deg); }
@@ -201,6 +202,7 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
 @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
 
 @media(max-width:900px){ .navbar{padding:0 1.5rem;} .nav-center{display:none;} .hamburger-btn{display:flex;} .hero-content{padding:2rem;} #article-title{font-size:2.2rem;} }
+@media(max-width:600px){ .nav-quote-btn { padding:10px 12px; } }
 @media(max-width:600px){ .share-bar{flex-direction:column;align-items:flex-start;} .article-nav{flex-direction:column;} .article-nav a{width:100%;justify-content:center;} }
     </style>
 </head>
@@ -246,6 +248,10 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
         <button class="nav-back-btn" onclick="goBack()">
             <i class="fas fa-arrow-left" style="font-size:.65rem;"></i> Retour
         </button>
+        <a href="./quotation.html" class="btn-primary nav-quote-btn">
+            <span>Demander une Cotation</span>
+            <i class="fas fa-file-invoice-dollar"></i>
+        </a>
         <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
