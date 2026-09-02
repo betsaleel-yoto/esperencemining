@@ -993,8 +993,8 @@
                                 <input type="text" id="clientName" name="clientName" placeholder="Jean Dupont" required>
                             </div>
                             <div class="field-group">
-                                <label for="companyName">Nom de l'entreprise *</label>
-                                <input type="text" id="companyName" name="companyName" placeholder="Espérance Mining SARL" required>
+                                <label for="companyName">Nom de l'entreprise</label>
+                                <input type="text" id="companyName" name="companyName" placeholder="Espérance Mining SARL">
                             </div>
                         </div>
                         <div class="form-grid">
@@ -1561,7 +1561,6 @@
 
             const payload = {
                 clientName: document.getElementById('clientName').value.trim(),
-                companyName: document.getElementById('companyName').value.trim(),
                 clientEmail: document.getElementById('clientEmail').value.trim(),
                 clientPhone: document.getElementById('clientPhone').value.trim(),
                 itemType: currentType,
@@ -1570,7 +1569,7 @@
                 unit: unitSelect.value
             };
 
-            if (!payload.clientName || !payload.companyName || !payload.clientEmail || !payload.clientPhone) {
+            if (!payload.clientName || !payload.clientEmail || !payload.clientPhone) {
                 showAlert('Tous les champs du demandeur sont requis.', 'error');
                 return;
             }
@@ -1595,10 +1594,17 @@
                 const data = await response.json().catch(() => ({}));
 
                 if (response.ok && (data.success !== false)) {
-                    showAlert('Votre demande a été traitée avec succès. Votre cotation officielle vient de vous être envoyée par email !', 'success');
+                    const status = data.data?.status || data.status;
+                    const message = status === 'MANUAL_REVIEW'
+                        ? 'Votre demande a bien été reçue. Elle sera examinée par un expert minier.'
+                        : 'Votre demande a été traitée avec succès. Votre cotation officielle vient de vous être envoyée par email !';
+                    showAlert(message, 'success');
                     resetFormState();
                 } else {
-                    const message = data.message || 'La demande n’a pas pu être envoyée. Veuillez réessayer.';
+                    const validationMessage = Array.isArray(data.errors)
+                        ? data.errors.map((error) => error.message).filter(Boolean).join(' ')
+                        : '';
+                    const message = validationMessage || data.message || 'La demande n’a pas pu être envoyée. Veuillez réessayer.';
                     showAlert(message, 'error');
                 }
             } catch (error) {
