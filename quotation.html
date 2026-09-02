@@ -459,6 +459,34 @@
             grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 1rem;
         }
+        .family-section {
+            grid-column: 1 / -1;
+        }
+        .family-section + .family-section {
+            margin-top: 0.75rem;
+        }
+        .family-section-title {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 1rem;
+            margin-bottom: 0.75rem;
+        }
+        .family-section-title h4 {
+            font-family: var(--font-display);
+            font-size: 1.25rem;
+            letter-spacing: 0.05em;
+            color: #000;
+        }
+        .family-section-title span {
+            font-size: 0.72rem;
+            color: var(--silver);
+        }
+        .family-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.85rem;
+        }
         .choice-card {
             appearance: none;
             border: 1px solid rgba(0,0,0,0.08);
@@ -470,6 +498,46 @@
             min-height: 130px;
             position: relative;
             overflow: hidden;
+        }
+        .family-card {
+            min-height: 0;
+            padding: 1.1rem;
+        }
+        .family-card .choice-icon {
+            width: 34px;
+            height: 34px;
+            margin-bottom: 0.7rem;
+            font-size: 0.85rem;
+        }
+        .family-card h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.65rem;
+        }
+        .family-products {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.35rem;
+            position: relative;
+            z-index: 1;
+        }
+        .family-product {
+            padding: 0.25rem 0.45rem;
+            background: rgba(0,0,0,0.04);
+            color: var(--ash);
+            font-size: 0.68rem;
+            line-height: 1.35;
+        }
+        .family-product-more {
+            color: var(--gold);
+            font-size: 0.68rem;
+            align-self: center;
+        }
+        .family-empty {
+            grid-column: 1 / -1;
+            padding: 1rem;
+            border: 1px dashed rgba(0,0,0,0.12);
+            color: var(--silver);
+            font-size: 0.82rem;
         }
         .choice-card::before {
             content: '';
@@ -756,7 +824,7 @@
             .quote-shell { padding: 0 1.5rem 5rem; }
             .form-head { flex-direction: column; }
             .progress-wrap { width: 100%; text-align: left; }
-            .choice-grid, .form-grid { grid-template-columns: 1fr; }
+            .choice-grid, .family-grid, .form-grid { grid-template-columns: 1fr; }
             .footer-top { padding: 2.5rem 1.5rem; grid-template-columns: 1fr; }
             .footer-bottom { padding: 1.25rem 1.5rem; flex-direction: column; text-align: center; }
         }
@@ -852,20 +920,11 @@
                             <div class="step-badge">1</div>
                             <div>
                                 <h3>Choix du type</h3>
-                                <p>Sélectionnez la grande famille d’articles avant de rechercher le produit ou l’équipement concerné.</p>
+                                <p>Sélectionnez directement une famille pour voir les produits et équipements qui lui sont rattachés.</p>
                             </div>
                         </div>
-                        <div class="choice-grid" role="tablist" aria-label="Choix du type">
-                            <button type="button" class="choice-card selected" data-type="CHEMICAL" aria-pressed="true">
-                                <div class="choice-icon"><i class="fas fa-vial"></i></div>
-                                <h4>Intrants & Produits Chimiques</h4>
-                                <p>Réactifs, intrants et produits de procédé pour vos opérations minières.</p>
-                            </button>
-                            <button type="button" class="choice-card" data-type="EQUIPMENT" aria-pressed="false">
-                                <div class="choice-icon"><i class="fas fa-truck"></i></div>
-                                <h4>Matériels, Logistique & Engins</h4>
-                                <p>Véhicules, matériels de manutention et engins pour la logistique et le site.</p>
-                            </button>
+                        <div id="familyChoices" class="choice-grid" aria-label="Familles d’articles">
+                            <div class="family-empty">Chargement des familles et des produits disponibles...</div>
                         </div>
                         <div class="step-actions">
                             <span></span>
@@ -1178,7 +1237,7 @@
         const summaryQuantity = document.getElementById('summaryQuantity');
         const summaryUnit = document.getElementById('summaryUnit');
         const loaderNumEl = document.getElementById('loader-num');
-        const sectorCards = Array.from(document.querySelectorAll('.choice-card'));
+        const familyChoices = document.getElementById('familyChoices');
         const stepPanels = Array.from(document.querySelectorAll('.quote-step'));
         const backButtons = Array.from(document.querySelectorAll('[data-back-step]'));
         const nextButtons = Array.from(document.querySelectorAll('[data-next-step]'));
@@ -1186,6 +1245,7 @@
         let loaderProgress = 0;
         let currentStep = 1;
         let currentType = 'CHEMICAL';
+        let selectedFamily = '';
         let selectedItem = '';
         let catalog = {
             CHEMICAL: [...STATIC_CATALOG.CHEMICAL],
@@ -1289,7 +1349,6 @@
                     fallbackFamily ||
                     ''
                 ).trim();
-                if (direct) return [{ title: String(direct).trim(), family }];
                 const groupedCollections = [
                     payload.families,
                     payload.sectors,
@@ -1297,6 +1356,11 @@
                     payload.groups,
                     payload.sections
                 ];
+                const nestedItems = payload.items || payload.products || payload.data || payload.children || payload.entries;
+                if (direct && Array.isArray(nestedItems)) {
+                    return extractCatalogEntries(nestedItems, String(direct).trim());
+                }
+                if (direct) return [{ title: String(direct).trim(), family }];
                 for (const collection of groupedCollections) {
                     if (!Array.isArray(collection) || !collection.length) continue;
                     const groupedItems = collection.flatMap((group) => {
@@ -1396,8 +1460,91 @@
             ]);
             catalogFamilies.CHEMICAL = buildCatalogFamilyMap('CHEMICAL', chemicals);
             catalogFamilies.EQUIPMENT = buildCatalogFamilyMap('EQUIPMENT', equipment);
-
+            renderFamilyChoices();
             renderSuggestions(true);
+        }
+
+        function getFamilyGroups(type) {
+            const familyMap = catalogFamilies[type] || new Map();
+            const groups = new Map();
+            (catalog[type] || []).forEach((item) => {
+                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[type];
+                if (!groups.has(family)) groups.set(family, []);
+                groups.get(family).push(item);
+            });
+            return groups;
+        }
+
+        function renderFamilyChoices() {
+            if (!familyChoices) return;
+            familyChoices.innerHTML = '';
+
+            ['CHEMICAL', 'EQUIPMENT'].forEach((type) => {
+                const groups = getFamilyGroups(type);
+                if (!groups.size) return;
+
+                const section = document.createElement('div');
+                section.className = 'family-section';
+
+                const sectionTitle = document.createElement('div');
+                sectionTitle.className = 'family-section-title';
+                const title = document.createElement('h4');
+                title.textContent = TYPE_LABELS[type];
+                const count = document.createElement('span');
+                count.textContent = `${groups.size} famille${groups.size > 1 ? 's' : ''}`;
+                sectionTitle.append(title, count);
+                section.appendChild(sectionTitle);
+
+                const grid = document.createElement('div');
+                grid.className = 'family-grid';
+                groups.forEach((items, family) => {
+                    const card = document.createElement('button');
+                    card.type = 'button';
+                    card.className = 'choice-card family-card';
+                    card.dataset.type = type;
+                    card.dataset.family = family;
+                    card.setAttribute('aria-pressed', type === currentType && family === selectedFamily ? 'true' : 'false');
+
+                    const icon = document.createElement('div');
+                    icon.className = 'choice-icon';
+                    icon.innerHTML = type === 'CHEMICAL' ? '<i class="fas fa-vial"></i>' : '<i class="fas fa-truck"></i>';
+                    const heading = document.createElement('h4');
+                    heading.textContent = family;
+                    const products = document.createElement('div');
+                    products.className = 'family-products';
+                    items.slice(0, 5).forEach((item) => {
+                        const product = document.createElement('span');
+                        product.className = 'family-product';
+                        product.textContent = item;
+                        products.appendChild(product);
+                    });
+                    if (items.length > 5) {
+                        const more = document.createElement('span');
+                        more.className = 'family-product-more';
+                        more.textContent = `+${items.length - 5} autre${items.length - 5 > 1 ? 's' : ''}`;
+                        products.appendChild(more);
+                    }
+                    card.append(icon, heading, products);
+                    card.addEventListener('click', () => selectFamily(type, family));
+                    grid.appendChild(card);
+                });
+                section.appendChild(grid);
+                familyChoices.appendChild(section);
+            });
+        }
+
+        function selectFamily(type, family) {
+            currentType = type;
+            selectedFamily = family;
+            document.querySelectorAll('.family-card').forEach((card) => {
+                const active = card.dataset.type === type && card.dataset.family === family;
+                card.classList.toggle('selected', active);
+                card.setAttribute('aria-pressed', active ? 'true' : 'false');
+            });
+            updateUnits();
+            itemSearch.value = '';
+            resetItemSelection();
+            renderSuggestions(false);
         }
 
         function setStep(step) {
@@ -1451,8 +1598,11 @@
 
         function renderSuggestions(preserveOpen = false) {
             const query = normalizeText(itemSearch.value);
-            const items = (catalog[currentType] || []).filter((item) => normalizeText(item).includes(query));
             const familyMap = catalogFamilies[currentType] || new Map();
+            const items = (catalog[currentType] || []).filter((item) => {
+                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[currentType];
+                return (!selectedFamily || family === selectedFamily) && normalizeText(item).includes(query);
+            });
             const groups = new Map();
 
             items.forEach((item) => {
@@ -1516,7 +1666,7 @@
 
         function validateCurrentStep() {
             if (currentStep === 1) {
-                return !!currentType;
+                return !!currentType && !!selectedFamily;
             }
             if (currentStep === 2) {
                 const candidate = itemSearch.value.trim();
@@ -1548,13 +1698,9 @@
         function resetFormState() {
             form.reset();
             currentType = 'CHEMICAL';
+            selectedFamily = '';
             selectedItem = '';
             itemTypeInput.value = currentType;
-            sectorCards.forEach((card) => {
-                const active = card.dataset.type === currentType;
-                card.classList.toggle('selected', active);
-                card.setAttribute('aria-pressed', active ? 'true' : 'false');
-            });
             updateUnits();
             itemSearch.value = '';
             itemNameInput.value = '';
@@ -1563,26 +1709,10 @@
             progressFill.style.width = '25%';
             progressLabel.textContent = 'Étape 1 / 4';
             setStep(1);
+            renderFamilyChoices();
             renderSuggestions(true);
             updateSummary();
         }
-
-        sectorCards.forEach((card) => {
-            card.addEventListener('click', () => {
-                const type = card.dataset.type;
-                if (!type || type === currentType) return;
-                currentType = type;
-                sectorCards.forEach((other) => {
-                    const active = other === card;
-                    other.classList.toggle('selected', active);
-                    other.setAttribute('aria-pressed', active ? 'true' : 'false');
-                });
-                updateUnits();
-                itemSearch.value = '';
-                resetItemSelection();
-                renderSuggestions(true);
-            });
-        });
 
         itemSearch.addEventListener('focus', () => {
             renderSuggestions(true);
@@ -1722,6 +1852,7 @@
 
         updateUnits();
         updateSummary();
+        renderFamilyChoices();
         renderSuggestions(true);
         hydrateCatalogs();
         setStep(1);
