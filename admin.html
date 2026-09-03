@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Espérence Mining — Admin</title>
+  <title data-admin-translate="admin.title">Espérence Mining — Admin</title>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
@@ -292,11 +292,14 @@
 <div id="login-screen">
   <div class="login-card">
     <div class="login-logo">ESPÉRENCE</div>
-    <div class="login-sub">Panneau d'Administration</div>
-    <div class="login-error" id="login-error"><i class="fas fa-exclamation-circle"></i> <span id="login-error-msg">Identifiants incorrects</span></div>
-    <div class="login-field"><label>Identifiant</label><input type="text" id="login-user" placeholder="admin" autocomplete="username"></div>
-    <div class="login-field"><label>Mot de passe</label><input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password"></div>
-    <button class="login-btn" id="login-btn" onclick="attemptLogin()"><span>Accéder au tableau de bord</span></button>
+    <div class="login-sub" data-admin-translate="admin.subtitle">Panneau d'Administration</div>
+    <div class="login-error" id="login-error"><i class="fas fa-exclamation-circle"></i> <span id="login-error-msg" data-admin-translate="login.invalid">Identifiants incorrects</span></div>
+    <div class="login-field"><label data-admin-translate="login.identifier">Identifiant</label><input type="text" id="login-user" placeholder="admin" autocomplete="username"></div>
+    <div class="login-field"><label data-admin-translate="login.password">Mot de passe</label><input type="password" id="login-pass" placeholder="••••••••" autocomplete="current-password"></div>
+    <button class="login-btn" id="login-btn" onclick="attemptLogin()"><span data-admin-translate="login.submit">Accéder au tableau de bord</span></button>
+    <select class="admin-lang-select" data-admin-translate-attr="admin.language" data-admin-translate-attr-name="aria-label" aria-label="Langue" style="margin-top:1.25rem;width:100%;background:var(--dark-2);border:1px solid var(--border);color:var(--silver);padding:8px;font:600 .65rem var(--font-body);letter-spacing:.1em">
+      <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option>
+    </select>
   </div>
 </div>
 
@@ -305,85 +308,86 @@
   <aside class="sidebar" id="sidebar">
     <div class="sidebar-header">
       <span class="sidebar-brand">ESPÉRENCE</span>
-      <span class="sidebar-badge">Administration</span>
+      <span class="sidebar-badge" data-admin-translate="admin.subtitle">Administration</span>
     </div>
     <nav class="sidebar-nav">
-      <div class="sidebar-section-label">Principal</div>
-      <a onclick="showPage('dashboard')" id="nav-dashboard" class="active"><i class="fas fa-chart-line"></i> Tableau de bord</a>
-      <div class="sidebar-section-label">Contenu</div>
-      <a onclick="showPage('new-article')" id="nav-new-article"><i class="fas fa-plus-circle"></i> Nouvel Article</a>
-      <a onclick="showPage('articles')" id="nav-articles"><i class="fas fa-newspaper"></i> Articles <span class="badge-count" id="articles-badge">0</span></a>
-      <div class="sidebar-section-label">Audience</div>
-      <a onclick="showPage('subscribers')" id="nav-subscribers"><i class="fas fa-envelope"></i> Abonnés Newsletter <span class="badge-count" id="subs-badge">0</span></a>
-      <a onclick="showPage('campaigns')" id="nav-campaigns"><i class="fas fa-paper-plane"></i> Campagnes</a>
-      <div class="sidebar-section-label">Système</div>
-      <a onclick="showPage('settings')" id="nav-settings"><i class="fas fa-cog"></i> Paramètres</a>
-      <a href="./index.html" target="_blank"><i class="fas fa-external-link-alt"></i> Voir le site</a>
+      <div class="sidebar-section-label" data-admin-translate="nav.main">Principal</div>
+      <a onclick="showPage('dashboard')" id="nav-dashboard" class="active"><i class="fas fa-chart-line"></i> <span data-admin-translate="nav.dashboard">Tableau de bord</span></a>
+      <div class="sidebar-section-label" data-admin-translate="nav.content">Contenu</div>
+      <a onclick="showPage('new-article')" id="nav-new-article"><i class="fas fa-plus-circle"></i> <span data-admin-translate="nav.newArticle">Nouvel Article</span></a>
+      <a onclick="showPage('articles')" id="nav-articles"><i class="fas fa-newspaper"></i> <span data-admin-translate="nav.articles">Articles</span> <span class="badge-count" id="articles-badge">0</span></a>
+      <div class="sidebar-section-label" data-admin-translate="nav.audience">Audience</div>
+      <a onclick="showPage('subscribers')" id="nav-subscribers"><i class="fas fa-envelope"></i> <span data-admin-translate="nav.subscribers">Abonnés Newsletter</span> <span class="badge-count" id="subs-badge">0</span></a>
+      <a onclick="showPage('campaigns')" id="nav-campaigns"><i class="fas fa-paper-plane"></i> <span data-admin-translate="nav.campaigns">Campagnes</span></a>
+      <div class="sidebar-section-label" data-admin-translate="nav.system">Système</div>
+      <a onclick="showPage('settings')" id="nav-settings"><i class="fas fa-cog"></i> <span data-admin-translate="nav.settings">Paramètres</span></a>
+      <a href="./index.html" target="_blank"><i class="fas fa-external-link-alt"></i> <span data-admin-translate="nav.viewSite">Voir le site</span></a>
     </nav>
     <div class="sidebar-footer">
       <div class="sidebar-user">
         <div class="sidebar-avatar" id="admin-avatar">A</div>
         <div class="sidebar-user-info">
-          <div class="sidebar-user-name" id="admin-name">Administrateur</div>
-          <div class="sidebar-user-role" id="admin-role">Admin</div>
+          <div class="sidebar-user-name" id="admin-name" data-admin-translate="admin.defaultName">Administrateur</div>
+          <div class="sidebar-user-role" id="admin-role" data-admin-translate="admin.defaultRole">Admin</div>
         </div>
       </div>
-      <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Déconnexion</button>
+      <button class="logout-btn" onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span data-admin-translate="nav.logout">Déconnexion</span></button>
     </div>
   </aside>
 
   <div class="main-content">
     <div class="topbar">
-      <div class="topbar-title" id="topbar-title">TABLEAU DE BORD</div>
+      <div class="topbar-title" id="topbar-title" data-admin-translate="page.dashboard">TABLEAU DE BORD</div>
       <div class="topbar-actions">
-        <a href="./index.html" target="_blank" class="topbar-link"><i class="fas fa-eye"></i> Voir le site</a>
-        <a onclick="showPage('new-article')" class="topbar-link" style="color:var(--gold)"><i class="fas fa-plus"></i> Nouvel article</a>
+        <select class="admin-lang-select" data-admin-translate-attr="admin.language" data-admin-translate-attr-name="aria-label" aria-label="Langue" style="background:var(--dark-2);border:1px solid var(--border);color:var(--silver);padding:7px;font:600 .65rem var(--font-body)"><option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option></select>
+        <a href="./index.html" target="_blank" class="topbar-link"><i class="fas fa-eye"></i> <span data-admin-translate="nav.viewSite">Voir le site</span></a>
+        <a onclick="showPage('new-article')" class="topbar-link" style="color:var(--gold)"><i class="fas fa-plus"></i> <span data-admin-translate="top.newArticle">Nouvel article</span></a>
       </div>
     </div>
 
     <!-- DASHBOARD -->
     <div class="page active" id="page-dashboard">
       <div class="stats-row" id="stats-row">
-        <div class="stat-card"><div class="stat-icon"><i class="fas fa-newspaper"></i></div><div class="stat-num" id="s-total">–</div><div class="stat-label">Articles Total</div></div>
-        <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-num" id="s-published">–</div><div class="stat-label">Publiés</div><div class="stat-trend"><i class="fas fa-circle" style="font-size:.5rem;color:#4caf86"></i> Live</div></div>
-        <div class="stat-card"><div class="stat-icon"><i class="fas fa-pencil-alt"></i></div><div class="stat-num" id="s-drafts">–</div><div class="stat-label">Brouillons</div></div>
-        <div class="stat-card"><div class="stat-icon"><i class="fas fa-envelope"></i></div><div class="stat-num" id="s-subs">–</div><div class="stat-label">Abonnés actifs</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-newspaper"></i></div><div class="stat-num" id="s-total">–</div><div class="stat-label" data-admin-translate="stats.total">Articles Total</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-globe"></i></div><div class="stat-num" id="s-published">–</div><div class="stat-label" data-admin-translate="stats.published">Publiés</div><div class="stat-trend"><i class="fas fa-circle" style="font-size:.5rem;color:#4caf86"></i> <span data-admin-translate="stats.live">Live</span></div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-pencil-alt"></i></div><div class="stat-num" id="s-drafts">–</div><div class="stat-label" data-admin-translate="stats.drafts">Brouillons</div></div>
+        <div class="stat-card"><div class="stat-icon"><i class="fas fa-envelope"></i></div><div class="stat-num" id="s-subs">–</div><div class="stat-label" data-admin-translate="stats.activeSubscribers">Abonnés actifs</div></div>
       </div>
       <div class="dashboard-grid" style="padding:0 0 2rem">
         <div class="dashboard-panel">
-          <div class="panel-title"><i class="fas fa-clock" style="color:var(--gold);margin-right:4px"></i> Articles récents</div>
-          <div id="recent-articles-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+          <div class="panel-title"><i class="fas fa-clock" style="color:var(--gold);margin-right:4px"></i> <span data-admin-translate="dashboard.recentArticles">Articles récents</span></div>
+          <div id="recent-articles-list"><div class="loading-state"><i class="fas fa-spinner"></i> <span data-admin-translate="ui.loading">Chargement...</span></div></div>
         </div>
         <div class="dashboard-panel">
-          <div class="panel-title"><i class="fas fa-envelope" style="color:var(--gold);margin-right:4px"></i> Derniers abonnés</div>
-          <div id="recent-subs-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+          <div class="panel-title"><i class="fas fa-envelope" style="color:var(--gold);margin-right:4px"></i> <span data-admin-translate="dashboard.recentSubscribers">Derniers abonnés</span></div>
+          <div id="recent-subs-list"><div class="loading-state"><i class="fas fa-spinner"></i> <span data-admin-translate="ui.loading">Chargement...</span></div></div>
         </div>
       </div>
     </div>
 
     <!-- NOUVEL ARTICLE / ÉDITEUR -->
     <div class="page" id="page-new-article">
-      <div class="page-title" id="editor-mode-title">NOUVEL ARTICLE</div>
-      <div class="page-breadcrumb">Contenu <span>›</span> <span id="editor-mode-bc">Créer</span></div>
+      <div class="page-title" id="editor-mode-title" data-admin-translate="editor.new">NOUVEL ARTICLE</div>
+      <div class="page-breadcrumb"><span data-admin-translate="nav.content">Contenu</span> <span>›</span> <span id="editor-mode-bc" data-admin-translate="page.create">Créer</span></div>
       <div class="editor-layout">
         <div class="editor-main">
           <div class="editor-card">
-            <div class="editor-card-title"><i class="fas fa-heading"></i> Informations</div>
+            <div class="editor-card-title"><i class="fas fa-heading"></i> <span data-admin-translate="editor.information">Informations</span></div>
             <div class="field-group" style="margin-bottom:1rem">
-              <label class="field-label">Titre *</label>
-              <input type="text" class="field-input" id="art-title" placeholder="Titre de l'article...">
+              <label class="field-label" data-admin-translate="editor.title">Titre *</label>
+              <input type="text" class="field-input" id="art-title" data-admin-translate="editor.titlePlaceholder" placeholder="Titre de l'article...">
             </div>
             <div class="field-group">
-              <label class="field-label">Extrait</label>
-              <textarea class="field-textarea" id="art-excerpt" placeholder="Courte description..." style="min-height:80px"></textarea>
+              <label class="field-label" data-admin-translate="editor.excerpt">Extrait</label>
+              <textarea class="field-textarea" id="art-excerpt" data-admin-translate="editor.excerptPlaceholder" placeholder="Courte description..." style="min-height:80px"></textarea>
             </div>
           </div>
           <div class="editor-card">
-            <div class="editor-card-title"><i class="fas fa-align-left"></i> Contenu</div>
+            <div class="editor-card-title"><i class="fas fa-align-left"></i> <span data-admin-translate="editor.content">Contenu</span></div>
             <div class="editor-toolbar">
-              <button class="toolbar-btn" onclick="execCmd('bold')" title="Gras"><i class="fas fa-bold"></i></button>
-              <button class="toolbar-btn" onclick="execCmd('italic')" title="Italique"><i class="fas fa-italic"></i></button>
-              <button class="toolbar-btn" onclick="execCmd('underline')" title="Souligné"><i class="fas fa-underline"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('bold')" data-admin-translate-attr="editor.bold" title="Gras"><i class="fas fa-bold"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('italic')" data-admin-translate-attr="editor.italic" title="Italique"><i class="fas fa-italic"></i></button>
+              <button class="toolbar-btn" onclick="execCmd('underline')" data-admin-translate-attr="editor.underline" title="Souligné"><i class="fas fa-underline"></i></button>
               <div class="toolbar-sep"></div>
               <button class="toolbar-btn" onclick="execCmd('insertUnorderedList')"><i class="fas fa-list-ul"></i></button>
               <button class="toolbar-btn" onclick="execCmd('insertOrderedList')"><i class="fas fa-list-ol"></i></button>
@@ -391,7 +395,7 @@
               <button class="toolbar-btn" onclick="execCmd('justifyLeft')"><i class="fas fa-align-left"></i></button>
               <button class="toolbar-btn" onclick="execCmd('justifyCenter')"><i class="fas fa-align-center"></i></button>
               <div class="toolbar-sep"></div>
-              <button class="toolbar-btn" onclick="insertLink()" title="Lien"><i class="fas fa-link"></i></button>
+              <button class="toolbar-btn" onclick="insertLink()" data-admin-translate-attr="editor.link" title="Lien"><i class="fas fa-link"></i></button>
               <button class="toolbar-btn" onclick="execCmd('removeFormat')"><i class="fas fa-remove-format"></i></button>
             </div>
             <div class="content-editor" id="art-content" contenteditable="true"></div>
@@ -399,46 +403,46 @@
         </div>
         <div class="editor-sidebar-panel">
           <div class="editor-card">
-            <div class="editor-card-title"><i class="fas fa-paper-plane"></i> Publication</div>
+            <div class="editor-card-title"><i class="fas fa-paper-plane"></i> <span data-admin-translate="editor.publication">Publication</span></div>
             <div class="field-group" style="margin-bottom:1rem">
-              <label class="field-label">Statut</label>
+              <label class="field-label" data-admin-translate="editor.status">Statut</label>
               <div class="status-toggle">
-                <button class="status-option selected" id="status-draft" onclick="setStatus('DRAFT')">Brouillon</button>
-                <button class="status-option" id="status-published" onclick="setStatus('PUBLISHED')">Publié</button>
+                <button class="status-option selected" id="status-draft" onclick="setStatus('DRAFT')" data-admin-translate="editor.draft">Brouillon</button>
+                <button class="status-option" id="status-published" onclick="setStatus('PUBLISHED')" data-admin-translate="editor.published">Publié</button>
               </div>
             </div>
             <div class="field-group" style="margin-bottom:1rem">
-              <label class="field-label">Catégorie</label>
+              <label class="field-label" data-admin-translate="editor.category">Catégorie</label>
               <select class="field-select" id="art-category">
-                <option value="">Sélectionner...</option>
-                <option value="Innovation">Innovation</option>
-                <option value="Expansion">Expansion</option>
-                <option value="Ressources Humaines">Ressources Humaines</option>
-                <option value="Partenariat">Partenariat</option>
-                <option value="Opérations">Opérations</option>
-                <option value="Logistique">Logistique</option>
-                <option value="Actualité">Actualité</option>
+                <option value="" data-admin-translate="editor.select">Sélectionner...</option>
+                <option value="Innovation" data-admin-translate="category.innovation">Innovation</option>
+                <option value="Expansion" data-admin-translate="category.expansion">Expansion</option>
+                <option value="Ressources Humaines" data-admin-translate="category.hr">Ressources Humaines</option>
+                <option value="Partenariat" data-admin-translate="category.partnership">Partenariat</option>
+                <option value="Opérations" data-admin-translate="category.operations">Opérations</option>
+                <option value="Logistique" data-admin-translate="category.logistics">Logistique</option>
+                <option value="Actualité" data-admin-translate="category.news">Actualité</option>
               </select>
             </div>
             <div class="editor-actions">
-              <button class="btn-save-draft" id="btn-draft" onclick="saveArticle('DRAFT')">Brouillon</button>
-              <button class="btn-publish" id="btn-publish" onclick="saveArticle('PUBLISHED')"><span>Publier</span><i class="fas fa-rocket"></i></button>
+              <button class="btn-save-draft" id="btn-draft" onclick="saveArticle('DRAFT')" data-admin-translate="editor.saveDraft">Brouillon</button>
+              <button class="btn-publish" id="btn-publish" onclick="saveArticle('PUBLISHED')"><span data-admin-translate="editor.publish">Publier</span><i class="fas fa-rocket"></i></button>
             </div>
           </div>
           <div class="editor-card">
-            <div class="editor-card-title"><i class="fas fa-image"></i> Image de couverture</div>
+            <div class="editor-card-title"><i class="fas fa-image"></i> <span data-admin-translate="editor.coverImage">Image de couverture</span></div>
             <div class="img-preview-wrap" id="img-preview" onclick="document.getElementById('img-file-input').click()">
               <img id="preview-img" src="" alt="">
-              <div class="img-placeholder"><i class="fas fa-cloud-upload-alt"></i>Cliquez pour choisir<br><small style="opacity:.5">JPG, PNG, WebP — max 5 MB</small></div>
+              <div class="img-placeholder"><i class="fas fa-cloud-upload-alt"></i><span data-admin-translate="editor.chooseFile">Cliquez pour choisir</span><br><small style="opacity:.5" data-admin-translate="editor.imageFormats">JPG, PNG, WebP — max 5 MB</small></div>
             </div>
             <div class="upload-progress" id="upload-progress"><div class="upload-progress-bar"></div></div>
             <input type="file" id="img-file-input" accept="image/*" style="display:none" onchange="handleImageUpload(this)">
-            <div style="margin-top:.75rem;font-size:.65rem;color:var(--silver)">Ou entrez une URL :</div>
+            <div style="margin-top:.75rem;font-size:.65rem;color:var(--silver)" data-admin-translate="editor.imageUrl">Ou entrez une URL :</div>
             <input type="url" class="field-input" id="img-url-input" placeholder="https://..." style="margin-top:.5rem" oninput="setImageFromUrl(this.value)">
           </div>
           <div class="editor-card">
-            <div class="editor-card-title"><i class="fas fa-tags"></i> Tags</div>
-            <input type="text" class="field-input" id="tag-input" placeholder="Ajouter un tag + Entrée">
+            <div class="editor-card-title"><i class="fas fa-tags"></i> <span data-admin-translate="editor.tags">Tags</span></div>
+            <input type="text" class="field-input" id="tag-input" data-admin-translate="editor.tagPlaceholder" placeholder="Ajouter un tag + Entrée">
             <div class="tags-wrap" id="tags-wrap"></div>
           </div>
         </div>
@@ -447,29 +451,29 @@
 
     <!-- LISTE ARTICLES -->
     <div class="page" id="page-articles">
-      <div class="page-title">ARTICLES</div>
-      <div class="page-breadcrumb">Contenu <span>›</span> <span>Gérer les articles</span></div>
+      <div class="page-title" data-admin-translate="page.articles">ARTICLES</div>
+      <div class="page-breadcrumb"><span data-admin-translate="nav.content">Contenu</span> <span>›</span> <span data-admin-translate="page.manageArticles">Gérer les articles</span></div>
       <div class="articles-header">
         <div class="articles-filters">
-          <button class="filter-btn active" onclick="setArticleFilter('',this)">Tous</button>
-          <button class="filter-btn" onclick="setArticleFilter('PUBLISHED',this)">Publiés</button>
-          <button class="filter-btn" onclick="setArticleFilter('DRAFT',this)">Brouillons</button>
-          <button class="filter-btn" onclick="setArticleFilter('ARCHIVED',this)">Archivés</button>
+          <button class="filter-btn active" onclick="setArticleFilter('',this)" data-admin-translate="articles.all">Tous</button>
+          <button class="filter-btn" onclick="setArticleFilter('PUBLISHED',this)" data-admin-translate="articles.published">Publiés</button>
+          <button class="filter-btn" onclick="setArticleFilter('DRAFT',this)" data-admin-translate="articles.drafts">Brouillons</button>
+          <button class="filter-btn" onclick="setArticleFilter('ARCHIVED',this)" data-admin-translate="articles.archived">Archivés</button>
         </div>
         <div style="display:flex;gap:1rem;align-items:center">
-          <div class="search-input-wrap"><i class="fas fa-search"></i><input type="text" class="search-input" id="article-search" placeholder="Rechercher..." oninput="debouncedArticleSearch(this.value)"></div>
-          <button class="btn-publish" onclick="showPage('new-article')" style="padding:10px 18px"><span>+ Nouvel Article</span></button>
+          <div class="search-input-wrap"><i class="fas fa-search"></i><input type="text" class="search-input" id="article-search" data-admin-translate="articles.search" placeholder="Rechercher..." oninput="debouncedArticleSearch(this.value)"></div>
+          <button class="btn-publish" onclick="showPage('new-article')" style="padding:10px 18px"><span data-admin-translate="articles.add">+ Nouvel Article</span></button>
         </div>
       </div>
       <div style="background:var(--dark-3);border:1px solid var(--border)">
         <table class="articles-table">
           <thead>
             <tr>
-              <th style="width:60px">Image</th><th>Article</th><th style="width:120px">Catégorie</th>
-              <th style="width:90px">Statut</th><th style="width:120px">Date</th><th style="width:120px">Actions</th>
+              <th style="width:60px" data-admin-translate="table.image">Image</th><th data-admin-translate="table.article">Article</th><th style="width:120px" data-admin-translate="table.category">Catégorie</th>
+              <th style="width:90px" data-admin-translate="table.status">Statut</th><th style="width:120px" data-admin-translate="table.date">Date</th><th style="width:120px" data-admin-translate="table.actions">Actions</th>
             </tr>
           </thead>
-          <tbody id="articles-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></td></tr></tbody>
+          <tbody id="articles-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> <span data-admin-translate="ui.loading">Chargement...</span></div></td></tr></tbody>
         </table>
       </div>
       <div class="pagination" id="articles-pagination"></div>
@@ -477,26 +481,26 @@
 
     <!-- ABONNÉS -->
     <div class="page" id="page-subscribers">
-      <div class="page-title">ABONNÉS NEWSLETTER</div>
-      <div class="page-breadcrumb">Audience <span>›</span> <span>Gestion des abonnés</span></div>
+      <div class="page-title" data-admin-translate="page.subscribers">ABONNÉS NEWSLETTER</div>
+      <div class="page-breadcrumb"><span data-admin-translate="nav.audience">Audience</span> <span>›</span> <span data-admin-translate="page.subscriberManagement">Gestion des abonnés</span></div>
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem">
         <div style="display:flex;gap:1rem;align-items:center">
           <div style="font-family:var(--font-display);font-size:2rem;color:var(--gold)" id="total-subs-display">0</div>
-          <div style="font-size:.75rem;color:var(--silver)">abonnés actifs</div>
+          <div style="font-size:.75rem;color:var(--silver)" data-admin-translate="subscribers.count">abonnés actifs</div>
         </div>
         <div style="display:flex;gap:.75rem">
-          <button class="btn-danger" onclick="exportSubscribers()"><i class="fas fa-download"></i> Exporter CSV</button>
+          <button class="btn-danger" onclick="exportSubscribers()"><i class="fas fa-download"></i> <span data-admin-translate="subscribers.export">Exporter CSV</span></button>
         </div>
       </div>
       <!-- Ajouter un abonné manuellement -->
       <div class="add-sub-form">
-        <input type="email" id="new-sub-email" placeholder="email@exemple.com">
-        <button onclick="addSubscriber()"><i class="fas fa-plus"></i> Ajouter l'abonné</button>
+        <input type="email" id="new-sub-email" data-admin-translate="subscribers.emailPlaceholder" placeholder="email@exemple.com">
+        <button onclick="addSubscriber()"><i class="fas fa-plus"></i> <span data-admin-translate="subscribers.add">Ajouter l'abonné</span></button>
       </div>
       <div style="background:var(--dark-3);border:1px solid var(--border)">
         <table class="subscribers-table">
-          <thead><tr><th>#</th><th>Email</th><th>Statut</th><th>Date</th><th>Source</th><th>Actions</th></tr></thead>
-          <tbody id="subs-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i></div></td></tr></tbody>
+          <thead><tr><th>#</th><th data-admin-translate="table.email">Email</th><th data-admin-translate="table.status">Statut</th><th data-admin-translate="table.date">Date</th><th data-admin-translate="table.source">Source</th><th data-admin-translate="table.actions">Actions</th></tr></thead>
+          <tbody id="subs-tbody"><tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> <span data-admin-translate="ui.loading">Chargement...</span></div></td></tr></tbody>
         </table>
       </div>
       <div class="pagination" id="subs-pagination"></div>
@@ -504,61 +508,61 @@
 
     <!-- CAMPAGNES -->
     <div class="page" id="page-campaigns">
-      <div class="page-title">CAMPAGNES NEWSLETTER</div>
-      <div class="page-breadcrumb">Audience <span>›</span> <span>Envoi d'emails</span></div>
+      <div class="page-title" data-admin-translate="page.campaigns">CAMPAGNES NEWSLETTER</div>
+      <div class="page-breadcrumb"><span data-admin-translate="nav.audience">Audience</span> <span>›</span> <span data-admin-translate="page.emailSending">Envoi d'emails</span></div>
       <div class="campaign-form-card">
-        <h3><i class="fas fa-plus" style="color:var(--gold);margin-right:8px"></i> Nouvelle campagne</h3>
+        <h3><i class="fas fa-plus" style="color:var(--gold);margin-right:8px"></i> <span data-admin-translate="campaign.new">Nouvelle campagne</span></h3>
         <div class="field-group" style="margin-bottom:1rem">
-          <label class="field-label">Sujet de l'email *</label>
-          <input type="text" class="field-input" id="camp-subject" placeholder="Objet de votre newsletter...">
+          <label class="field-label" data-admin-translate="campaign.subject">Sujet de l'email *</label>
+          <input type="text" class="field-input" id="camp-subject" data-admin-translate="campaign.subjectPlaceholder" placeholder="Objet de votre newsletter...">
         </div>
         <div class="field-group" style="margin-bottom:1rem">
-          <label class="field-label">Contenu HTML *</label>
-          <textarea class="field-textarea" id="camp-content" style="min-height:200px" placeholder="Contenu de votre newsletter (HTML accepté)..."></textarea>
+          <label class="field-label" data-admin-translate="campaign.content">Contenu HTML *</label>
+          <textarea class="field-textarea" id="camp-content" data-admin-translate="campaign.contentPlaceholder" style="min-height:200px" placeholder="Contenu de votre newsletter (HTML accepté)..."></textarea>
         </div>
         <div style="display:flex;gap:.75rem">
-          <button class="btn-save-draft" onclick="createCampaign('DRAFT')">Sauver brouillon</button>
-          <button class="btn-publish" onclick="createCampaign('SEND')"><span>Créer et envoyer</span><i class="fas fa-paper-plane"></i></button>
+          <button class="btn-save-draft" onclick="createCampaign('DRAFT')" data-admin-translate="campaign.saveDraft">Sauver brouillon</button>
+          <button class="btn-publish" onclick="createCampaign('SEND')"><span data-admin-translate="campaign.createSend">Créer et envoyer</span><i class="fas fa-paper-plane"></i></button>
         </div>
       </div>
-      <div id="campaigns-list"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></div>
+      <div id="campaigns-list"><div class="loading-state"><i class="fas fa-spinner"></i> <span data-admin-translate="ui.loading">Chargement...</span></div></div>
     </div>
 
     <!-- PARAMÈTRES -->
     <div class="page" id="page-settings">
-      <div class="page-title">PARAMÈTRES</div>
-      <div class="page-breadcrumb">Système <span>›</span> <span>Configuration</span></div>
+      <div class="page-title" data-admin-translate="page.settings">PARAMÈTRES</div>
+      <div class="page-breadcrumb"><span data-admin-translate="nav.system">Système</span> <span>›</span> <span data-admin-translate="page.configuration">Configuration</span></div>
       <div class="settings-grid">
         <div class="settings-card">
-          <div class="settings-card-title">Modifier le mot de passe</div>
-          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Mot de passe actuel</label><input type="password" class="field-input" id="current-pass" placeholder="••••••••"></div>
-          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Nouveau mot de passe</label><input type="password" class="field-input" id="new-pass" placeholder="••••••••"></div>
-          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label">Confirmer</label><input type="password" class="field-input" id="confirm-pass" placeholder="••••••••"></div>
-          <button class="btn-publish" onclick="changePassword()"><span>Mettre à jour</span></button>
+          <div class="settings-card-title" data-admin-translate="settings.changePassword">Modifier le mot de passe</div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label" data-admin-translate="settings.currentPassword">Mot de passe actuel</label><input type="password" class="field-input" id="current-pass" placeholder="••••••••"></div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label" data-admin-translate="settings.newPassword">Nouveau mot de passe</label><input type="password" class="field-input" id="new-pass" placeholder="••••••••"></div>
+          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label" data-admin-translate="settings.confirm">Confirmer</label><input type="password" class="field-input" id="confirm-pass" placeholder="••••••••"></div>
+          <button class="btn-publish" onclick="changePassword()"><span data-admin-translate="settings.update">Mettre à jour</span></button>
         </div>
         <div class="settings-card">
-          <div class="settings-card-title">Profil administrateur</div>
-          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Prénom</label><input type="text" class="field-input" id="p-firstname" placeholder="Prénom"></div>
-          <div class="field-group" style="margin-bottom:1rem"><label class="field-label">Nom</label><input type="text" class="field-input" id="p-lastname" placeholder="Nom"></div>
-          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label">Email</label><input type="email" class="field-input" id="p-email" placeholder="email@exemple.com"></div>
-          <button class="btn-publish" onclick="updateProfile()"><span>Sauvegarder</span></button>
+          <div class="settings-card-title" data-admin-translate="settings.profile">Profil administrateur</div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label" data-admin-translate="settings.firstName">Prénom</label><input type="text" class="field-input" id="p-firstname" data-admin-translate="settings.firstName" placeholder="Prénom"></div>
+          <div class="field-group" style="margin-bottom:1rem"><label class="field-label" data-admin-translate="settings.lastName">Nom</label><input type="text" class="field-input" id="p-lastname" data-admin-translate="settings.lastName" placeholder="Nom"></div>
+          <div class="field-group" style="margin-bottom:1.5rem"><label class="field-label" data-admin-translate="settings.email">Email</label><input type="email" class="field-input" id="p-email" placeholder="email@exemple.com"></div>
+          <button class="btn-publish" onclick="updateProfile()"><span data-admin-translate="settings.save">Sauvegarder</span></button>
         </div>
         <div class="settings-card danger-zone">
-          <div class="settings-card-title"><i class="fas fa-exclamation-triangle"></i> Zone Dangereuse</div>
-          <p style="font-size:.82rem;color:var(--silver);margin-bottom:1.5rem;line-height:1.7">Actions irréversibles — procédez avec prudence.</p>
+          <div class="settings-card-title"><i class="fas fa-exclamation-triangle"></i> <span data-admin-translate="settings.danger">Zone Dangereuse</span></div>
+          <p style="font-size:.82rem;color:var(--silver);margin-bottom:1.5rem;line-height:1.7" data-admin-translate="settings.irreversible">Actions irréversibles — procédez avec prudence.</p>
           <div style="display:flex;gap:1rem;flex-wrap:wrap">
-            <button class="btn-danger" onclick="confirmBulkDelete('articles')"><i class="fas fa-trash"></i> Supprimer tous les articles</button>
-            <button class="btn-danger" onclick="confirmBulkDelete('subscribers')"><i class="fas fa-trash"></i> Supprimer tous les abonnés</button>
+            <button class="btn-danger" onclick="confirmBulkDelete('articles')"><i class="fas fa-trash"></i> <span data-admin-translate="settings.deleteArticles">Supprimer tous les articles</span></button>
+            <button class="btn-danger" onclick="confirmBulkDelete('subscribers')"><i class="fas fa-trash"></i> <span data-admin-translate="settings.deleteSubscribers">Supprimer tous les abonnés</span></button>
           </div>
         </div>
         <div class="settings-card">
-          <div class="settings-card-title">Informations API</div>
+          <div class="settings-card-title" data-admin-translate="settings.apiInfo">Informations API</div>
           <div style="font-size:.82rem;color:var(--silver);line-height:2" id="api-info">
-            <div>Base URL : <code style="color:var(--gold)" id="api-base-url">–</code></div>
-            <div>Environnement : <code style="color:var(--gold)" id="api-env">–</code></div>
-            <div>Connexion : <code id="api-status" style="color:#4caf86">–</code></div>
+            <div><span data-admin-translate="settings.baseUrl">Base URL :</span> <code style="color:var(--gold)" id="api-base-url">–</code></div>
+            <div><span data-admin-translate="settings.environment">Environnement :</span> <code style="color:var(--gold)" id="api-env">–</code></div>
+            <div><span data-admin-translate="settings.connection">Connexion :</span> <code id="api-status" style="color:#4caf86">–</code></div>
           </div>
-          <button class="btn-save-draft" style="margin-top:1rem" onclick="checkApiHealth()"><i class="fas fa-heartbeat" style="margin-right:6px"></i> Tester la connexion API</button>
+          <button class="btn-save-draft" style="margin-top:1rem" onclick="checkApiHealth()"><i class="fas fa-heartbeat" style="margin-right:6px"></i> <span data-admin-translate="settings.testApi">Tester la connexion API</span></button>
         </div>
       </div>
     </div>
@@ -570,20 +574,22 @@
 
 <div class="modal-overlay" id="confirm-modal">
   <div class="modal-box">
-    <div class="modal-title" id="modal-title">Confirmer</div>
+    <div class="modal-title" id="modal-title" data-admin-translate="modal.confirm">Confirmer</div>
     <div class="modal-body" id="modal-body"></div>
     <div class="modal-actions">
-      <button class="modal-cancel" onclick="closeModal()">Annuler</button>
-      <button class="modal-confirm" id="modal-confirm-btn">Confirmer</button>
+      <button class="modal-cancel" onclick="closeModal()" data-admin-translate="modal.cancel">Annuler</button>
+      <button class="modal-confirm" id="modal-confirm-btn" data-admin-translate="modal.confirm">Confirmer</button>
     </div>
   </div>
 </div>
 
+<script src="./js/admin-i18n.js"></script>
 <script>
 // ════════════════════════════════════════
 //  CONFIG API
 // ════════════════════════════════════════
 const API_BASE = 'https://espeback-1q2k.onrender.com/api/v1';
+const at = (key, fallback = '') => window.adminI18n?.get(key) || fallback || key;
 let accessToken = null;
 let refreshTokenValue = null;
 let currentArticleStatus = 'DRAFT';
@@ -619,7 +625,7 @@ async function apiFetch(endpoint, options = {}) {
     return data;
   } catch (err) {
     if (err.name === 'TypeError') {
-      showToast('Impossible de contacter l\'API. Serveur démarré ?', 'error');
+      showToast(at('toast.apiUnavailable', "Impossible de contacter l'API. Serveur démarré ?"), 'error');
     } else {
       showToast(err.message, 'error');
     }
@@ -663,10 +669,10 @@ async function attemptLogin() {
   const btn = document.getElementById('login-btn');
   const errEl = document.getElementById('login-error');
 
-  if (!username || !password) { showLoginError('Tous les champs sont requis.'); return; }
+  if (!username || !password) { showLoginError(at('login.required', 'Tous les champs sont requis.')); return; }
 
   btn.disabled = true;
-  btn.querySelector('span').textContent = 'Connexion...';
+  btn.querySelector('span').textContent = at('login.loading', 'Connexion...');
   errEl.style.display = 'none';
 
   try {
@@ -688,12 +694,12 @@ async function attemptLogin() {
     document.getElementById('login-screen').classList.add('hidden');
     document.getElementById('app').classList.add('active');
     initApp();
-    showToast('Bienvenue ' + (admin.firstName || admin.username) + ' !', 'success');
+    showToast(at('login.welcome', 'Bienvenue !') + ' ' + (admin.firstName || admin.username), 'success');
   } catch (err) {
-    showLoginError(err.message || 'Identifiants incorrects.');
+    showLoginError(err.message || at('login.invalid', 'Identifiants incorrects.'));
   } finally {
     btn.disabled = false;
-    btn.querySelector('span').textContent = 'Accéder au tableau de bord';
+    btn.querySelector('span').textContent = at('login.submit', 'Accéder au tableau de bord');
   }
 }
 
@@ -762,14 +768,14 @@ window.addEventListener('DOMContentLoaded', async () => {
 // ════════════════════════════════════════
 //  NAVIGATION
 // ════════════════════════════════════════
-const PAGE_TITLES = { dashboard:'TABLEAU DE BORD', 'new-article':'NOUVEL ARTICLE', articles:'ARTICLES', subscribers:'ABONNÉS', campaigns:'CAMPAGNES', settings:'PARAMÈTRES' };
+const PAGE_TITLES = { dashboard:'page.dashboard', 'new-article':'page.newArticle', articles:'page.articles', subscribers:'page.subscribers', campaigns:'page.campaigns', settings:'page.settings' };
 
 function showPage(page) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.sidebar-nav a').forEach(a => a.classList.remove('active'));
   document.getElementById('page-' + page)?.classList.add('active');
   document.getElementById('nav-' + page)?.classList.add('active');
-  document.getElementById('topbar-title').textContent = PAGE_TITLES[page] || page.toUpperCase();
+  document.getElementById('topbar-title').textContent = at(PAGE_TITLES[page], page.toUpperCase());
 
   if (page === 'dashboard') loadDashboard();
   if (page === 'articles') { currentArticlePage = 1; loadArticles(); }
@@ -818,7 +824,7 @@ async function loadDashboard() {
           <div class="status-dot ${a.status}"></div>
         </div>`).join('');
     } else {
-      artList.innerHTML = '<div class="empty-state"><i class="fas fa-newspaper"></i><p>Aucun article</p></div>';
+      artList.innerHTML = `<div class="empty-state"><i class="fas fa-newspaper"></i><p>${at('ui.noArticles', 'Aucun article')}</p></div>`;
     }
 
     // Abonnés récents
@@ -827,10 +833,10 @@ async function loadDashboard() {
       subsList.innerHTML = recentSubs.data.map(s => `
         <div class="subscriber-row">
           <i class="fas fa-envelope"></i> ${s.email}
-          <button class="del-sub-btn" onclick="deleteSubscriber('${s.id}','${s.email}',true)" title="Supprimer"><i class="fas fa-times"></i></button>
+          <button class="del-sub-btn" onclick="deleteSubscriber('${s.id}','${s.email}',true)" title="${at('actions.delete', 'Supprimer')}"><i class="fas fa-times"></i></button>
         </div>`).join('');
     } else {
-      subsList.innerHTML = '<div style="color:var(--silver);font-size:.8rem;padding:1rem 0">Aucun abonné.</div>';
+      subsList.innerHTML = `<div style="color:var(--silver);font-size:.8rem;padding:1rem 0">${at('ui.noSubscribers', 'Aucun abonné.')}</div>`;
     }
 
     loadBadges();
@@ -864,7 +870,7 @@ function setArticleFilter(status, btn) {
 
 async function loadArticles() {
   const tbody = document.getElementById('articles-tbody');
-  tbody.innerHTML = '<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div></td></tr>';
+  tbody.innerHTML = `<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> ${at('ui.loading', 'Chargement...')}</div></td></tr>`;
 
   const params = new URLSearchParams({ page: currentArticlePage, limit: 15 });
   if (currentArticleFilter) params.set('status', currentArticleFilter);
@@ -876,7 +882,7 @@ async function loadArticles() {
     const meta = data?.meta || {};
 
     if (!articles.length) {
-      tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-newspaper"></i><p>Aucun article trouvé.</p></div></td></tr>';
+      tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-newspaper"></i><p>${at('ui.noArticlesFound', 'Aucun article trouvé.')}</p></div></td></tr>`;
       document.getElementById('articles-pagination').innerHTML = '';
       return;
     }
@@ -894,18 +900,18 @@ async function loadArticles() {
         <td style="font-size:.75rem;color:var(--silver)">${fmtDate(art.createdAt)}</td>
         <td>
           <div class="table-actions">
-            <button class="tbl-btn success-btn" onclick="toggleArticleStatus('${art.id}','${art.status}')" title="${art.status === 'PUBLISHED' ? 'Dépublier' : 'Publier'}">
+            <button class="tbl-btn success-btn" onclick="toggleArticleStatus('${art.id}','${art.status}')" title="${art.status === 'PUBLISHED' ? at('actions.unpublish', 'Dépublier') : at('actions.publish', 'Publier')}">
               <i class="fas fa-${art.status === 'PUBLISHED' ? 'eye-slash' : 'eye'}"></i>
             </button>
-            <button class="tbl-btn" onclick="editArticle('${art.id}')" title="Modifier"><i class="fas fa-edit"></i></button>
-            <button class="tbl-btn danger" onclick="deleteArticle('${art.id}','${esc(art.title)}')" title="Supprimer"><i class="fas fa-trash"></i></button>
+            <button class="tbl-btn" onclick="editArticle('${art.id}')" title="${at('actions.edit', 'Modifier')}"><i class="fas fa-edit"></i></button>
+            <button class="tbl-btn danger" onclick="deleteArticle('${art.id}','${esc(art.title)}')" title="${at('actions.delete', 'Supprimer')}"><i class="fas fa-trash"></i></button>
           </div>
         </td>
       </tr>`).join('');
 
     renderPagination('articles-pagination', meta.page, meta.totalPages, (p) => { currentArticlePage = p; loadArticles(); });
   } catch(e) {
-    tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>Erreur de chargement</p></div></td></tr>';
+    tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-exclamation-triangle"></i><p>${at('ui.errorLoading', 'Erreur de chargement')}</p></div></td></tr>`;
   }
 }
 
@@ -913,17 +919,17 @@ async function toggleArticleStatus(id, currentStatus) {
   const newStatus = currentStatus === 'PUBLISHED' ? 'DRAFT' : 'PUBLISHED';
   try {
     await apiFetch(`/articles/${id}/status`, { method: 'PATCH', body: JSON.stringify({ status: newStatus }) });
-    showToast(newStatus === 'PUBLISHED' ? '🚀 Article publié !' : 'Article mis en brouillon.', 'success');
+    showToast(newStatus === 'PUBLISHED' ? at('toast.articlePublished', 'Article publié !') : at('toast.articleDraft', 'Article mis en brouillon.'), 'success');
     loadArticles();
     loadBadges();
   } catch {}
 }
 
 function deleteArticle(id, title) {
-  openModal('Supprimer l\'article', `Supprimer "${title}" ? Cette action est irréversible.`, async () => {
+  openModal(at('modal.confirmDeleteArticle', "Supprimer l'article"), `Supprimer "${title}" ? ${at('settings.irreversible', 'Cette action est irréversible.')}`, async () => {
     try {
       await apiFetch(`/articles/${id}`, { method: 'DELETE' });
-      showToast('Article supprimé.', 'success');
+      showToast(at('toast.articleDeleted', 'Article supprimé.'), 'success');
       loadArticles();
       loadBadges();
     } catch {}
@@ -946,8 +952,8 @@ function resetEditor() {
   document.getElementById('img-preview').classList.remove('has-img');
   document.getElementById('tags-wrap').innerHTML = '';
   setStatus('DRAFT');
-  document.getElementById('editor-mode-title').textContent = 'NOUVEL ARTICLE';
-  document.getElementById('editor-mode-bc').textContent = 'Créer';
+  document.getElementById('editor-mode-title').textContent = at('editor.new', 'NOUVEL ARTICLE');
+  document.getElementById('editor-mode-bc').textContent = at('page.create', 'Créer');
   document.getElementById('img-file-input').value = '';
 }
 
@@ -976,8 +982,8 @@ async function editArticle(id) {
 
     setStatus(art.status);
     renderTags();
-    document.getElementById('editor-mode-title').textContent = 'MODIFIER L\'ARTICLE';
-    document.getElementById('editor-mode-bc').textContent = 'Modifier';
+    document.getElementById('editor-mode-title').textContent = at('editor.edit', "MODIFIER L'ARTICLE");
+    document.getElementById('editor-mode-bc').textContent = at('actions.edit', 'Modifier');
     showPage('new-article');
   } catch {}
 }
@@ -986,8 +992,8 @@ async function saveArticle(status) {
   const title = document.getElementById('art-title').value.trim();
   const content = document.getElementById('art-content').innerHTML.trim();
 
-  if (!title) { showToast('Le titre est obligatoire.', 'error'); return; }
-  if (!content && status === 'PUBLISHED') { showToast('Le contenu est requis pour publier.', 'error'); return; }
+  if (!title) { showToast(at('toast.titleRequired', 'Le titre est obligatoire.'), 'error'); return; }
+  if (!content && status === 'PUBLISHED') { showToast(at('toast.contentRequired', 'Le contenu est requis pour publier.'), 'error'); return; }
 
   const btnDraft = document.getElementById('btn-draft');
   const btnPub = document.getElementById('btn-publish');
@@ -1007,10 +1013,10 @@ async function saveArticle(status) {
     let data;
     if (editingArticleId) {
       data = await apiFetch(`/articles/${editingArticleId}`, { method: 'PUT', body: JSON.stringify(payload) });
-      showToast('Article mis à jour !', 'success');
+      showToast(at('toast.articleUpdated', 'Article mis à jour !'), 'success');
     } else {
       data = await apiFetch('/articles', { method: 'POST', body: JSON.stringify(payload) });
-      showToast(status === 'PUBLISHED' ? '🚀 Article publié sur le site !' : 'Brouillon enregistré.', 'success');
+      showToast(status === 'PUBLISHED' ? at('toast.articlePublished', 'Article publié sur le site !') : at('toast.articleSaved', 'Brouillon enregistré.'), 'success');
     }
 
     setStatus(status);
@@ -1040,9 +1046,9 @@ async function handleImageUpload(input) {
     document.getElementById('img-url-input').value = url;
     document.getElementById('preview-img').src = url;
     document.getElementById('img-preview').classList.add('has-img');
-    showToast('Image uploadée sur GitHub !', 'success');
+    showToast(at('toast.imageUploaded', 'Image uploadée sur GitHub !'), 'success');
   } catch(err) {
-    showToast(err.message || 'Erreur upload image', 'error');
+    showToast(err.message || at('toast.imageError', 'Erreur upload image'), 'error');
   } finally {
     progress.classList.remove('active');
   }
@@ -1063,7 +1069,7 @@ function setStatus(s) {
 }
 
 function execCmd(cmd) { document.execCommand(cmd, false, null); document.getElementById('art-content').focus(); }
-function insertLink() { const url = prompt('URL du lien:'); if (url) document.execCommand('createLink', false, url); }
+function insertLink() { const url = prompt(at('editor.urlPrompt', 'URL du lien:')); if (url) document.execCommand('createLink', false, url); }
 
 function renderTags() {
   document.getElementById('tags-wrap').innerHTML = currentTags.map((t, i) =>
@@ -1077,7 +1083,7 @@ function removeTag(i) { currentTags.splice(i, 1); renderTags(); }
 // ════════════════════════════════════════
 async function loadSubscribers() {
   const tbody = document.getElementById('subs-tbody');
-  tbody.innerHTML = '<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i></div></td></tr>';
+  tbody.innerHTML = `<tr><td colspan="6"><div class="loading-state"><i class="fas fa-spinner"></i> ${at('ui.loading', 'Chargement...')}</div></td></tr>`;
 
   try {
     const data = await apiFetch(`/subscribers?page=${currentSubsPage}&limit=20`);
@@ -1087,7 +1093,7 @@ async function loadSubscribers() {
     document.getElementById('total-subs-display').textContent = meta.total || 0;
 
     if (!subs.length) {
-      tbody.innerHTML = '<tr><td colspan="6"><div class="empty-state"><i class="fas fa-envelope"></i><p>Aucun abonné.</p></div></td></tr>';
+      tbody.innerHTML = `<tr><td colspan="6"><div class="empty-state"><i class="fas fa-envelope"></i><p>${at('ui.noSubscribers', 'Aucun abonné.')}</p></div></td></tr>`;
       return;
     }
 
@@ -1095,12 +1101,12 @@ async function loadSubscribers() {
       <tr>
         <td style="color:var(--silver);font-size:.75rem">${((currentSubsPage-1)*20) + i + 1}</td>
         <td style="color:var(--light)">${esc(s.email)}</td>
-        <td><span class="sub-status ${s.status}">${s.status === 'ACTIVE' ? 'Actif' : 'Désabonné'}</span></td>
+        <td><span class="sub-status ${s.status}">${s.status === 'ACTIVE' ? at('subscribers.active', 'Actif') : at('subscribers.unsubscribed', 'Désabonné')}</span></td>
         <td style="color:var(--silver);font-size:.75rem">${fmtDate(s.subscribedAt)}</td>
         <td style="color:var(--silver);font-size:.7rem">${s.source || 'website'}</td>
         <td>
           <div class="table-actions">
-            <button class="tbl-btn danger" onclick="deleteSubscriber('${s.id}','${esc(s.email)}')" title="Supprimer"><i class="fas fa-trash"></i></button>
+            <button class="tbl-btn danger" onclick="deleteSubscriber('${s.id}','${esc(s.email)}')" title="${at('actions.delete', 'Supprimer')}"><i class="fas fa-trash"></i></button>
           </div>
         </td>
       </tr>`).join('');
@@ -1111,11 +1117,11 @@ async function loadSubscribers() {
 
 async function addSubscriber() {
   const email = document.getElementById('new-sub-email').value.trim();
-  if (!email || !email.includes('@')) { showToast('Email invalide.', 'error'); return; }
+  if (!email || !email.includes('@')) { showToast(at('toast.emailInvalid', 'Email invalide.'), 'error'); return; }
 
   try {
     await apiFetch('/subscribers', { method: 'POST', body: JSON.stringify({ email }) });
-    showToast(`${email} ajouté à la newsletter !`, 'success');
+    showToast(at('toast.subscriberAdded', '{email} ajouté à la newsletter !').replace('{email}', email), 'success');
     document.getElementById('new-sub-email').value = '';
     loadSubscribers();
     loadBadges();
@@ -1123,10 +1129,10 @@ async function addSubscriber() {
 }
 
 function deleteSubscriber(id, email, fromDashboard = false) {
-  openModal('Supprimer l\'abonné', `Supprimer ${email} de la newsletter ?`, async () => {
+  openModal(at('modal.confirmDeleteSubscriber', "Supprimer l'abonné"), `Supprimer ${email} de la newsletter ?`, async () => {
     try {
       await apiFetch(`/subscribers/${id}`, { method: 'DELETE' });
-      showToast('Abonné supprimé.', 'success');
+      showToast(at('toast.subscriberDeleted', 'Abonné supprimé.'), 'success');
       if (fromDashboard) loadDashboard();
       else loadSubscribers();
       loadBadges();
@@ -1138,14 +1144,14 @@ async function exportSubscribers() {
   try {
     const headers = { Authorization: `Bearer ${accessToken}` };
     const res = await fetch(API_BASE + '/subscribers/export', { headers });
-    if (!res.ok) throw new Error('Export échoué');
+    if (!res.ok) throw new Error(at('toast.exportFailed', 'Export échoué'));
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url; a.download = `subscribers_${Date.now()}.csv`; a.click();
     URL.revokeObjectURL(url);
-    showToast('Export CSV téléchargé !', 'success');
-  } catch { showToast('Erreur export CSV.', 'error'); }
+    showToast(at('toast.exported', 'Export CSV téléchargé !'), 'success');
+  } catch { showToast(at('toast.exportError', 'Erreur export CSV.'), 'error'); }
 }
 
 // ════════════════════════════════════════
@@ -1153,27 +1159,27 @@ async function exportSubscribers() {
 // ════════════════════════════════════════
 async function loadCampaigns() {
   const container = document.getElementById('campaigns-list');
-  container.innerHTML = '<div class="loading-state"><i class="fas fa-spinner"></i> Chargement...</div>';
+  container.innerHTML = `<div class="loading-state"><i class="fas fa-spinner"></i> ${at('ui.loading', 'Chargement...')}</div>`;
   try {
     const data = await apiFetch('/newsletter/campaigns');
     const campaigns = data?.data || [];
     if (!campaigns.length) {
-      container.innerHTML = '<div class="empty-state"><i class="fas fa-paper-plane"></i><p>Aucune campagne. Créez-en une ci-dessus.</p></div>';
+      container.innerHTML = `<div class="empty-state"><i class="fas fa-paper-plane"></i><p>${at('campaign.none', 'Aucune campagne. Créez-en une ci-dessus.')}</p></div>`;
       return;
     }
     container.innerHTML = campaigns.map(c => `
       <div class="campaign-card">
         <div class="campaign-info">
           <h3>${esc(c.subject)}</h3>
-          <p>${fmtDate(c.createdAt)} · par ${c.author?.username || '—'}</p>
+          <p>${fmtDate(c.createdAt)} · ${at('campaign.by', 'par')} ${c.author?.username || '—'}</p>
         </div>
         <div class="campaign-stats">
-          <div class="campaign-stat"><span class="campaign-stat-num">${c.sentCount}</span>Envoyés</div>
-          <div class="campaign-stat"><span class="campaign-stat-num">${c.errorCount}</span>Erreurs</div>
+          <div class="campaign-stat"><span class="campaign-stat-num">${c.sentCount}</span>${at('campaign.sent', 'Envoyés')}</div>
+          <div class="campaign-stat"><span class="campaign-stat-num">${c.errorCount}</span>${at('campaign.errors', 'Erreurs')}</div>
         </div>
         <span class="campaign-status-badge ${c.status}">${c.status}</span>
         <div class="campaign-actions">
-          ${c.status !== 'SENT' && c.status !== 'SENDING' ? `<button class="btn-send" onclick="sendCampaign('${c.id}')"><i class="fas fa-paper-plane"></i> Envoyer</button>` : ''}
+          ${c.status !== 'SENT' && c.status !== 'SENDING' ? `<button class="btn-send" onclick="sendCampaign('${c.id}')"><i class="fas fa-paper-plane"></i> ${at('campaign.send', 'Envoyer')}</button>` : ''}
           ${c.status === 'DRAFT' ? `<button class="tbl-btn danger" onclick="deleteCampaign('${c.id}','${esc(c.subject)}')"><i class="fas fa-trash"></i></button>` : ''}
         </div>
       </div>`).join('');
@@ -1183,11 +1189,11 @@ async function loadCampaigns() {
 async function createCampaign(action) {
   const subject = document.getElementById('camp-subject').value.trim();
   const content = document.getElementById('camp-content').value.trim();
-  if (!subject || !content) { showToast('Sujet et contenu requis.', 'error'); return; }
+  if (!subject || !content) { showToast(at('toast.subjectContentRequired', 'Sujet et contenu requis.'), 'error'); return; }
 
   try {
     const data = await apiFetch('/newsletter/campaigns', { method: 'POST', body: JSON.stringify({ subject, content }) });
-    showToast('Campagne créée !', 'success');
+    showToast(at('toast.campaignCreated', 'Campagne créée !'), 'success');
     document.getElementById('camp-subject').value = '';
     document.getElementById('camp-content').value = '';
 
@@ -1200,20 +1206,20 @@ async function createCampaign(action) {
 }
 
 async function sendCampaign(id) {
-  openModal('Envoyer la campagne', 'Envoyer cette campagne à tous les abonnés actifs ? Cette action est irréversible.', async () => {
+  openModal(at('modal.sendCampaign', 'Envoyer la campagne'), `${at('campaign.send', 'Envoyer')} cette campagne à tous les ${at('stats.activeSubscribers', 'abonnés actifs')} ? ${at('settings.irreversible', 'Cette action est irréversible.')}`, async () => {
     try {
       await apiFetch(`/newsletter/campaigns/${id}/send`, { method: 'POST' });
-      showToast('📨 Campagne en cours d\'envoi !', 'info');
+      showToast(at('toast.campaignSending', "Campagne en cours d'envoi !"), 'info');
       setTimeout(loadCampaigns, 2000);
     } catch {}
   });
 }
 
 function deleteCampaign(id, subject) {
-  openModal('Supprimer la campagne', `Supprimer "${subject}" ?`, async () => {
+  openModal(at('modal.confirmCampaign', 'Supprimer la campagne'), `Supprimer "${subject}" ?`, async () => {
     try {
       await apiFetch(`/newsletter/campaigns/${id}`, { method: 'DELETE' });
-      showToast('Campagne supprimée.', 'success');
+      showToast(at('toast.campaignDeleted', 'Campagne supprimée.'), 'success');
       loadCampaigns();
     } catch {}
   });
@@ -1242,14 +1248,14 @@ async function checkApiHealth() {
   try {
     const res = await fetch(API_BASE.replace('/api/v1', '') + '/health');
     const data = await res.json();
-    statusEl.textContent = '✅ Connecté';
+    statusEl.textContent = at('status.connected', '✅ Connecté');
     statusEl.style.color = '#4caf86';
     envEl.textContent = data.environment || '—';
-    showToast('API connectée avec succès.', 'success');
+    showToast(at('toast.apiConnected', 'API connectée avec succès.'), 'success');
   } catch {
-    statusEl.textContent = '❌ Hors ligne';
+    statusEl.textContent = at('status.offline', '❌ Hors ligne');
     statusEl.style.color = '#ff8080';
-    showToast('Impossible de contacter l\'API.', 'error');
+    showToast(at('toast.apiOffline', "Impossible de contacter l'API."), 'error');
   }
 }
 
@@ -1257,12 +1263,12 @@ async function changePassword() {
   const current = document.getElementById('current-pass').value;
   const next = document.getElementById('new-pass').value;
   const confirm = document.getElementById('confirm-pass').value;
-  if (!current || !next) { showToast('Remplissez tous les champs.', 'error'); return; }
-  if (next.length < 8) { showToast('Minimum 8 caractères.', 'error'); return; }
-  if (next !== confirm) { showToast('Les mots de passe ne correspondent pas.', 'error'); return; }
+  if (!current || !next) { showToast(at('toast.fillFields', 'Remplissez tous les champs.'), 'error'); return; }
+  if (next.length < 8) { showToast(at('toast.minPassword', 'Minimum 8 caractères.'), 'error'); return; }
+  if (next !== confirm) { showToast(at('toast.passwordMismatch', 'Les mots de passe ne correspondent pas.'), 'error'); return; }
   try {
     await apiFetch('/auth/change-password', { method: 'PUT', body: JSON.stringify({ currentPassword: current, newPassword: next }) });
-    showToast('Mot de passe mis à jour. Reconnectez-vous.', 'success');
+    showToast(at('toast.passwordUpdated', 'Mot de passe mis à jour. Reconnectez-vous.'), 'success');
     ['current-pass','new-pass','confirm-pass'].forEach(id => document.getElementById(id).value = '');
     setTimeout(logout, 2000);
   } catch {}
@@ -1276,15 +1282,15 @@ async function updateProfile() {
   };
   try {
     await apiFetch('/auth/profile', { method: 'PUT', body: JSON.stringify(body) });
-    showToast('Profil mis à jour !', 'success');
+    showToast(at('toast.profileUpdated', 'Profil mis à jour !'), 'success');
     if (body.firstName) document.getElementById('admin-name').textContent = body.firstName;
   } catch {}
 }
 
 function confirmBulkDelete(type) {
   openModal(
-    `Supprimer tous les ${type === 'articles' ? 'articles' : 'abonnés'}`,
-    `Cette action va supprimer TOUS les ${type === 'articles' ? 'articles' : 'abonnés'} définitivement. Continuer ?`,
+    type === 'articles' ? at('bulk.deleteArticles', 'Supprimer tous les articles') : at('bulk.deleteSubscribers', 'Supprimer tous les abonnés'),
+    type === 'articles' ? at('bulk.bodyArticles', 'Cette action va supprimer TOUS les articles définitivement. Continuer ?') : at('bulk.bodySubscribers', 'Cette action va supprimer TOUS les abonnés définitivement. Continuer ?'),
     async () => {
       try {
         if (type === 'articles') {
@@ -1294,7 +1300,7 @@ function confirmBulkDelete(type) {
           const data = await apiFetch('/subscribers?limit=1000');
           for (const sub of data?.data || []) await apiFetch(`/subscribers/${sub.id}`, { method: 'DELETE' });
         }
-        showToast('Suppression effectuée.', 'success');
+        showToast(at('toast.deleted', 'Suppression effectuée.'), 'success');
         loadBadges();
         loadDashboard();
       } catch {}
@@ -1351,8 +1357,11 @@ function showToast(msg, type = 'info') {
 //  HELPERS
 // ════════════════════════════════════════
 function esc(str) { return String(str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function fmtDate(d) { return d ? new Date(d).toLocaleDateString('fr-FR', {day:'2-digit',month:'short',year:'numeric'}) : '—'; }
-function fmtStatus(s) { return {PUBLISHED:'Publié',DRAFT:'Brouillon',ARCHIVED:'Archivé'}[s] || s; }
+function fmtDate(d) {
+  const locale = { fr:'fr-FR', en:'en-US', ar:'ar', zh:'zh-CN', sw:'sw-TZ', kin:'rw-RW' }[document.documentElement.lang] || 'fr-FR';
+  return d ? new Date(d).toLocaleDateString(locale, {day:'2-digit',month:'short',year:'numeric'}) : '—';
+}
+function fmtStatus(s) { return { PUBLISHED:at('editor.published', 'Publié'), DRAFT:at('editor.draft', 'Brouillon'), ARCHIVED:at('articles.archived', 'Archivé') }[s] || s; }
 </script>
 </body>
 </html>

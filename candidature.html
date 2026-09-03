@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Candidature - Espérence Mining SARL</title>
+    <title data-translate="meta.title">Candidature - Espérence Mining SARL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -377,7 +377,7 @@
         <div class="nav-controls">
             <div class="menu-icon">
                 <div class="pointing-arrow">
-                    <span>Cliquez ici</span>
+                    <span data-translate="nav.menu">Cliquez ici</span>
                     <svg viewBox="0 0 24 24" class="icon">
                         <path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/>
                     </svg>
@@ -398,12 +398,12 @@
                     <option value="kin">KIN</option>
                 </select>
                 <div class="lang-btns-desktop">
-                    <button onclick="switchLanguage('fr')" class="lang-btn">FR</button>
-                    <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
-                    <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
-                    <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
-                    <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
-                    <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
+                    <button onclick="switchLanguage('fr')" class="lang-btn" data-lang="fr">FR</button>
+                    <button onclick="switchLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+                    <button onclick="switchLanguage('ar')" class="lang-btn" data-lang="ar">عر</button>
+                    <button onclick="switchLanguage('zh')" class="lang-btn" data-lang="zh">中</button>
+                    <button onclick="switchLanguage('sw')" class="lang-btn" data-lang="sw">SW</button>
+                    <button onclick="switchLanguage('kin')" class="lang-btn" data-lang="kin">KIN</button>
                 </div>
             </div>
         </div>
@@ -479,7 +479,7 @@
                         <option value="0-2" data-translate="application.experienceRanges.0-2">0-2 ans</option>
                         <option value="3-5" data-translate="application.experienceRanges.3-5">3-5 ans</option>
                         <option value="5-10" data-translate="application.experienceRanges.5-10">5-10 ans</option>
-                        <option value="10+" data-translate="application.experienceRanges.10+">10+ ans</option>
+                    <option value="10+" data-translate="application.experienceRanges.10+">10+ ans</option>
                     </select>
                 </div>
 
@@ -490,7 +490,7 @@
 
                 <div class="form-group">
                     <label for="message" data-translate="application.motivation">Lettre de Motivation</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
+                    <textarea id="message" name="message" data-translate="application.motivationPlaceholder" placeholder="Décrivez votre motivation..." rows="5" required></textarea>
                 </div>
 
                 <div class="form-group file-upload">
@@ -525,17 +525,17 @@
     <div class="footer-content">
         <div class="contact-info">
             <h3 data-translate="footer.contact">Contact</h3>
-            <p>Email: esperencesarl@gmail.com</p>
-            <p data-translate="footer.phone">Phone: +243 999 541 920</p>
+            <p><span data-translate="footer.emailLabel">Email:</span> esperencesarl@gmail.com</p>
+            <p><span data-translate="footer.phoneLabel">Téléphone:</span> +243 999 541 920</p>
         </div>
         <div class="footer-section">
-            <h4>Locations</h4>
-            <p>DRC | Uganda | Burundi</p>
-            <p>Tanzania | Rwanda | Kenya</p>
+            <h4 data-translate="footer.locationsTitle">Présence</h4>
+            <p data-translate="footer.locations1">RDC | Ouganda | Burundi</p>
+            <p data-translate="footer.locations2">Tanzanie | Rwanda | Kenya</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2024 Espérence Mining SARL. All rights reserved.</p>
+        <p>&copy; 2024 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
     </div>
 </footer>
 
@@ -543,6 +543,7 @@
     /* === TRANSLATIONS (reprise de l'accueil + ajout des clés spécifiques) === */
 const translations = {
     fr: {
+        "meta.title": "Candidature - Espérence Mining SARL", "ui.sending": "Envoi...", "ui.sent": "✓ Envoyé", "nav.menu": "Cliquez ici",
         "nav.home": "Accueil", "nav.services": "Nos Services", "nav.about": "À Propos", "nav.projects": "Réalisations",
         "nav.partners": "Partenaires", "nav.contact": "Contact", "nav.news": "Actualités", "nav.careers": "Recrutement",
         "careers.title": "Rejoignez Notre Équipe", "careers.positions.description": "Construisons ensemble l'avenir de l'industrie minière en Afrique",
@@ -555,12 +556,13 @@ const translations = {
         "application.selectExperience": "Sélectionnez votre expérience", "application.experienceRanges.0-2": "0-2 ans",
         "application.experienceRanges.3-5": "3-5 ans", "application.experienceRanges.5-10": "5-10 ans",
         "application.experienceRanges.10+": "10+ ans", "application.education": "Formation",
-        "application.educationPlaceholder": "Ex: Master en Géologie", "application.motivation": "Lettre de Motivation",
+        "application.educationPlaceholder": "Ex: Master en Géologie", "application.motivation": "Lettre de Motivation", "application.motivationPlaceholder": "Décrivez votre motivation...",
         "application.cv": "CV (PDF, DOC, DOCX)", "application.chooseFile": "Choisir un fichier",
         "application.consent": "J'accepte que mes données soient traitées pour ma candidature",
-        "application.submit": "Envoyer ma Candidature", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920"
+        "application.submit": "Envoyer ma Candidature", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920", "footer.emailLabel": "Email:", "footer.phoneLabel": "Téléphone:", "footer.locationsTitle": "Présence", "footer.locations1": "RDC | Ouganda | Burundi", "footer.locations2": "Tanzanie | Rwanda | Kenya", "footer.rights": "Tous droits réservés."
     },
     en: {
+        "meta.title": "Application - Espérence Mining SARL", "ui.sending": "Sending...", "ui.sent": "✓ Sent", "nav.menu": "Click here",
         "nav.home": "Home", "nav.services": "Our Services", "nav.about": "About", "nav.projects": "Achievements",
         "nav.partners": "Partners", "nav.contact": "Contact", "nav.news": "News", "nav.careers": "Careers",
         "careers.title": "Join Our Team", "careers.positions.description": "Let's build the future of the mining industry in Africa together",
@@ -573,12 +575,13 @@ const translations = {
         "application.selectExperience": "Select your experience", "application.experienceRanges.0-2": "0-2 years",
         "application.experienceRanges.3-5": "3-5 years", "application.experienceRanges.5-10": "5-10 years",
         "application.experienceRanges.10+": "10+ years", "application.education": "Education",
-        "application.educationPlaceholder": "E.g. Master in Geology", "application.motivation": "Cover Letter",
+        "application.educationPlaceholder": "E.g. Master in Geology", "application.motivation": "Cover Letter", "application.motivationPlaceholder": "Describe your motivation...",
         "application.cv": "CV (PDF, DOC, DOCX)", "application.chooseFile": "Choose a file",
         "application.consent": "I agree to my data being processed for my application",
-        "application.submit": "Submit Application", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920"
+        "application.submit": "Submit Application", "footer.contact": "Contact", "footer.phone": "Phone: +243 999 541 920", "footer.emailLabel": "Email:", "footer.phoneLabel": "Phone:", "footer.locationsTitle": "Locations", "footer.locations1": "DRC | Uganda | Burundi", "footer.locations2": "Tanzania | Rwanda | Kenya", "footer.rights": "All rights reserved."
     },
     ar: {
+        "meta.title": "التقديم - Espérence Mining SARL", "ui.sending": "جارٍ الإرسال...", "ui.sent": "✓ تم الإرسال", "nav.menu": "اضغط هنا",
         "nav.home": "الرئيسية", "nav.services": "خدماتنا", "nav.about": "من نحن", "nav.projects": "إنجازاتنا",
         "nav.partners": "الشركاء", "nav.contact": "اتصل بنا", "nav.news": "الأخبار", "nav.careers": "وظائف",
         "careers.title": "انضم إلى فريقنا", "careers.positions.description": "لنبنِ معًا مستقبل صناعة التعدين في أفريقيا",
@@ -591,12 +594,13 @@ const translations = {
         "application.selectExperience": "اختر خبرتك", "application.experienceRanges.0-2": "0-2 سنوات",
         "application.experienceRanges.3-5": "3-5 سنوات", "application.experienceRanges.5-10": "5-10 سنوات",
         "application.experienceRanges.10+": "أكثر من 10 سنوات", "application.education": "التعليم",
-        "application.educationPlaceholder": "مثال: ماجستير في الجيولوجيا", "application.motivation": "رسالة تحفيزية",
+        "application.educationPlaceholder": "مثال: ماجستير في الجيولوجيا", "application.motivation": "رسالة تحفيزية", "application.motivationPlaceholder": "صف دوافعك...",
         "application.cv": "السيرة الذاتية", "application.chooseFile": "اختر ملفًا",
         "application.consent": "أوافق على معالجة بياناتي لغرض التقديم",
-        "application.submit": "إرسال الطلب", "footer.contact": "اتصال", "footer.phone": "الهاتف: +243 999 541 920"
+        "application.submit": "إرسال الطلب", "footer.contact": "اتصال", "footer.phone": "الهاتف: +243 999 541 920", "footer.emailLabel": "البريد الإلكتروني:", "footer.phoneLabel": "الهاتف:", "footer.locationsTitle": "مواقعنا", "footer.locations1": "جمهورية الكونغو الديمقراطية | أوغندا | بوروندي", "footer.locations2": "تنزانيا | رواندا | كينيا", "footer.rights": "جميع الحقوق محفوظة."
     },
     zh: {
+        "meta.title": "申请 - Espérence Mining SARL", "ui.sending": "正在发送...", "ui.sent": "✓ 已发送", "nav.menu": "点击这里",
         "nav.home": "首页", "nav.services": "我们的服务", "nav.about": "关于我们", "nav.projects": "项目成果",
         "nav.partners": "合作伙伴", "nav.contact": "联系我们", "nav.news": "新闻", "nav.careers": "招聘",
         "careers.title": "加入我们的团队", "careers.positions.description": "让我们共同建设非洲矿业的未来",
@@ -609,12 +613,13 @@ const translations = {
         "application.selectExperience": "选择经验", "application.experienceRanges.0-2": "0-2年",
         "application.experienceRanges.3-5": "3-5年", "application.experienceRanges.5-10": "5-10年",
         "application.experienceRanges.10+": "10年以上", "application.education": "学历",
-        "application.educationPlaceholder": "例如：地质学硕士", "application.motivation": "求职信",
+        "application.educationPlaceholder": "例如：地质学硕士", "application.motivation": "求职信", "application.motivationPlaceholder": "请描述您的动机...",
         "application.cv": "简历", "application.chooseFile": "选择文件",
         "application.consent": "我同意为申请处理我的数据",
-        "application.submit": "提交申请", "footer.contact": "联系", "footer.phone": "电话: +243 999 541 920"
+        "application.submit": "提交申请", "footer.contact": "联系", "footer.phone": "电话: +243 999 541 920", "footer.emailLabel": "邮箱：", "footer.phoneLabel": "电话：", "footer.locationsTitle": "业务范围", "footer.locations1": "刚果民主共和国 | 乌干达 | 布隆迪", "footer.locations2": "坦桑尼亚 | 卢旺达 | 肯尼亚", "footer.rights": "版权所有。"
     },
     sw: {
+        "meta.title": "Maombi - Espérence Mining SARL", "ui.sending": "Inatuma...", "ui.sent": "✓ Imetumwa", "nav.menu": "Bofya hapa",
         "nav.home": "Nyumbani", "nav.services": "Huduma Zetu", "nav.about": "Kuhusu Sisi", "nav.projects": "Miradi",
         "nav.partners": "Washirika", "nav.contact": "Mawasiliano", "nav.news": "Habari", "nav.careers": "Ajira",
         "careers.title": "Jiunge na Timu Yetu", "careers.positions.description": "Tujenge pamoja mustakabali wa sekta ya madini Afrika",
@@ -627,12 +632,13 @@ const translations = {
         "application.selectExperience": "Chagua uzoefu", "application.experienceRanges.0-2": "Miaka 0-2",
         "application.experienceRanges.3-5": "Miaka 3-5", "application.experienceRanges.5-10": "Miaka 5-10",
         "application.experienceRanges.10+": "Zaidi ya miaka 10", "application.education": "Elimu",
-        "application.educationPlaceholder": "Mfano: Shahada ya Uzamili ya Jiolojia", "application.motivation": "Barua ya Maombi",
+        "application.educationPlaceholder": "Mfano: Shahada ya Uzamili ya Jiolojia", "application.motivation": "Barua ya Maombi", "application.motivationPlaceholder": "Eleza motisha yako...",
         "application.cv": "CV", "application.chooseFile": "Chagua faili",
         "application.consent": "Ninakubali data zangu zitumike kwa maombi yangu",
-        "application.submit": "Tuma Maombi", "footer.contact": "Mawasiliano", "footer.phone": "Simu: +243 999 541 920"
+        "application.submit": "Tuma Maombi", "footer.contact": "Mawasiliano", "footer.phone": "Simu: +243 999 541 920", "footer.emailLabel": "Barua pepe:", "footer.phoneLabel": "Simu:", "footer.locationsTitle": "Uwepo", "footer.locations1": "DRC | Uganda | Burundi", "footer.locations2": "Tanzania | Rwanda | Kenya", "footer.rights": "Haki zote zimehifadhiwa."
     },
     kin: {
+        "meta.title": "Gusaba Akazi - Espérence Mining SARL", "ui.sending": "Ohereza...", "ui.sent": "✓ Byoherejwe", "nav.menu": "Kanda hano",
         "nav.home": "Ahabanza", "nav.services": "Serivisi Zacu", "nav.about": "Ibitwerekeyeho", "nav.projects": "Ibikorwa",
         "nav.partners": "Abafatanyabikorwa", "nav.contact": "Twandikire", "nav.news": "Amakuru", "nav.careers": "Akazi",
         "careers.title": "Injira mu Ikipe Yacu", "careers.positions.description": "Twubake ejo hazaza h’inganda z’amabuye y’agaciro muri Afurika",
@@ -645,10 +651,10 @@ const translations = {
         "application.selectExperience": "Hitamo uburambe", "application.experienceRanges.0-2": "0-2 imyaka",
         "application.experienceRanges.3-5": "3-5 imyaka", "application.experienceRanges.5-10": "5-10 imyaka",
         "application.experienceRanges.10+": "10+ imyaka", "application.education": "Amashuri",
-        "application.educationPlaceholder": "Urugero: Master muri Géologie", "application.motivation": "Ibaruwa isobanura impamvu",
+        "application.educationPlaceholder": "Urugero: Master muri Géologie", "application.motivation": "Ibaruwa isobanura impamvu", "application.motivationPlaceholder": "Sobanura impamvu yawe...",
         "application.cv": "CV", "application.chooseFile": "Hitamo dosiye",
         "application.consent": "Nemeye ko amakuru yanjye akoreshwa mu gusaba akazi",
-        "application.submit": "Ohereza Gusaba", "footer.contact": "Twandikire", "footer.phone": "Telefone: +243 999 541 920"
+        "application.submit": "Ohereza Gusaba", "footer.contact": "Twandikire", "footer.phone": "Telefone: +243 999 541 920", "footer.emailLabel": "Imeyili:", "footer.phoneLabel": "Telefone:", "footer.locationsTitle": "Aho dukorera", "footer.locations1": "DRC | Uganda | Uburundi", "footer.locations2": "Tanzaniya | Rwanda | Kenya", "footer.rights": "Uburenganzira bwose burakikijwe."
     }
 };
     // Pour les langues supplémentaires, on peut dupliquer l'anglais ou laisser le français par défaut.
@@ -657,7 +663,8 @@ const translations = {
 const availableLanguages = Object.keys(translations);
 
 // Langue par défaut (fallback)
-let currentLang = localStorage.getItem('lang') || 'fr';
+const savedLanguage = localStorage.getItem('lang');
+let currentLang = translations[savedLanguage] ? savedLanguage : 'fr';
 
 // Initialisation
 document.addEventListener('DOMContentLoaded', () => {
@@ -687,6 +694,8 @@ function switchLanguage(lang) {
 
     currentLang = lang;
     localStorage.setItem('lang', lang);
+    const languageSelect = document.querySelector('.lang-select');
+    if (languageSelect) languageSelect.value = lang;
 
     // Active button UI
     document.querySelectorAll('.lang-btn').forEach(btn => {
@@ -768,13 +777,13 @@ function switchLanguage(lang) {
             e.preventDefault();
             const btn = form.querySelector('.submit-btn');
             const original = btn.innerHTML;
-            btn.innerHTML = '<span>Envoi...</span>';
+            btn.innerHTML = `<span>${translations[currentLang]['ui.sending']}</span>`;
             btn.disabled = true;
             const formData = new FormData(form);
             try {
                 const response = await fetch(form.action, { method: 'POST', body: formData, headers: { 'Accept': 'application/json' } });
                 if (response.ok) {
-                    btn.innerHTML = '<span>✓ Envoyé</span>';
+                    btn.innerHTML = `<span>${translations[currentLang]['ui.sent']}</span>`;
                     form.reset();
                 } else btn.innerHTML = original;
             } catch { btn.innerHTML = original; }

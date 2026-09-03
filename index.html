@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Espérence Mining | Excellence in Mining Operations</title>
+    <title data-translate="meta.title">Espérence Mining | Excellence in Mining Operations</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -182,7 +182,7 @@ body::after {
 .hero-title { font-family: var(--font-display); font-size: clamp(3.5rem, 8vw, 8rem); line-height: 0.92; letter-spacing: 0.02em; color: #000; margin-bottom: 2rem; opacity: 0; animation: fadeUp 1s ease 0.5s forwards; }
 .hero-title em { font-style: italic; font-family: var(--font-serif); color: var(--gold); font-size: 0.85em; letter-spacing: 0.01em; }
 .hero-sub { font-size: 1rem; color: rgba(0,0,0,0.6); line-height: 1.8; max-width: 500px; margin-bottom: 3rem; opacity: 0; animation: fadeUp 1s ease 0.7s forwards; font-weight: 400; letter-spacing: 0.02em; }
-.hero-actions { display: flex; gap: 1rem; align-items: center; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
+.hero-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; opacity: 0; animation: fadeUp 1s ease 0.9s forwards; }
 
 .btn-primary { 
     display: inline-flex; align-items: center; gap: 10px; background: var(--gold); 
@@ -990,12 +990,12 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
     </div>
     <div class="nav-right">
         <div class="lang-btns-desktop">
-            <button onclick="switchLanguage('fr')" class="lang-btn active">FR</button>
-            <button onclick="switchLanguage('en')" class="lang-btn">EN</button>
-            <button onclick="switchLanguage('ar')" class="lang-btn">عر</button>
-            <button onclick="switchLanguage('zh')" class="lang-btn">中</button>
-            <button onclick="switchLanguage('sw')" class="lang-btn">SW</button>
-            <button onclick="switchLanguage('kin')" class="lang-btn">KIN</button>
+            <button onclick="switchLanguage('fr')" class="lang-btn active" data-lang="fr">FR</button>
+            <button onclick="switchLanguage('en')" class="lang-btn" data-lang="en">EN</button>
+            <button onclick="switchLanguage('ar')" class="lang-btn" data-lang="ar">عر</button>
+            <button onclick="switchLanguage('zh')" class="lang-btn" data-lang="zh">中</button>
+            <button onclick="switchLanguage('sw')" class="lang-btn" data-lang="sw">SW</button>
+            <button onclick="switchLanguage('kin')" class="lang-btn" data-lang="kin">KIN</button>
         </div>
         <select class="lang-select" onchange="switchLanguage(this.value)">
             <option value="fr">FR</option>
@@ -1006,10 +1006,10 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
             <option value="kin">KIN</option>
         </select>
         <a href="./quotation.html" class="btn-primary nav-quote-btn" style="padding:12px 18px;font-size:.58rem;letter-spacing:.18em;white-space:nowrap;">
-            <span>Demander une Cotation</span>
+            <span data-translate="hero.quote">Demander une Cotation</span>
             <i class="fas fa-file-invoice-dollar"></i>
         </a>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <button class="hamburger-btn" id="hamburgerBtn" data-translate-aria-label="nav.menu" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
     </div>
@@ -1042,6 +1042,10 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
                 <span data-translate="hero.cta">Démarrer un projet</span>
                 <i class="fas fa-arrow-right"></i>
             </a>
+            <a href="./quotation.html" class="btn-primary">
+                <span data-translate="hero.quote">Demander une Cotation</span>
+                <i class="fas fa-file-invoice-dollar"></i>
+            </a>
             <a href="#about" class="btn-outline" data-translate="hero.learnMore">Découvrir</a>
         </div>
     </div>
@@ -1066,7 +1070,7 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
     </div>
 
     <div class="scroll-indicator">
-        <span>Scroll</span>
+        <span data-translate="ui.scroll">Scroll</span>
         <div class="scroll-line"></div>
     </div>
 </section>
@@ -1189,15 +1193,15 @@ Gestion et développement des sites miniers avec une approche professionnelle et
             <div class="service-cta-copy">
                 <div class="service-number">05</div>
                 <div class="service-icon"><i class="fas fa-file-invoice-dollar"></i></div>
-                <h3>Demande de Cotation Automatique</h3>
-                <p>
+            <h3 data-translate="quote.titlePlain">Demande de Cotation Automatique</h3>
+            <p data-translate="quote.description">
                     Sélectionnez vos produits chimiques ou vos équipements logistiques, renseignez la quantité et vos coordonnées,
                     puis recevez instantanément votre cotation par email grâce à un parcours rapide et adapté à votre besoin.
                 </p>
             </div>
             <div class="service-cta-actions">
                 <a href="./quotation.html" class="btn-primary">
-                    <span>Demander une Cotation</span>
+                    <span data-translate="hero.quote">Demander une Cotation</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
@@ -1212,7 +1216,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
         <img class="about-img-accent" src="https://images.pexels.com/photos/10410019/pexels-photo-10410019.jpeg" alt="Mining equipment" onerror="this.style.display='none'">
         <div class="about-badge">
             <span class="about-badge-num">10</span>
-            <span class="about-badge-text">Years<br>of excellence</span>
+            <span class="about-badge-text" data-translate="about.badge" data-translate-html="true">Years<br>of excellence</span>
         </div>
     </div>
     <div class="about-text reveal-right">
@@ -1229,12 +1233,12 @@ Gestion et développement des sites miniers avec une approche professionnelle et
             <div class="about-highlight"><h4>10+</h4><p data-translate="stats.years">Années d'expérience</p></div>
         </div>
         <div class="countries-strip">
-            <span class="country-tag">RDC</span>
-            <span class="country-tag">Uganda</span>
-            <span class="country-tag">Burundi</span>
-            <span class="country-tag">Tanzania</span>
-            <span class="country-tag">Rwanda</span>
-            <span class="country-tag">Kenya</span>
+            <span class="country-tag" data-translate="countries.drc">RDC</span>
+            <span class="country-tag" data-translate="countries.uganda">Uganda</span>
+            <span class="country-tag" data-translate="countries.burundi">Burundi</span>
+            <span class="country-tag" data-translate="countries.tanzania">Tanzania</span>
+            <span class="country-tag" data-translate="countries.rwanda">Rwanda</span>
+            <span class="country-tag" data-translate="countries.kenya">Kenya</span>
         </div>
     </div>
 </section>
@@ -1446,7 +1450,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
         <div class="blog-card reveal stagger-1">
             <img class="blog-card-img" src="https://www.csm.tech/storage/uploads/news/65deeb8373b121709108099Thumb.jpg" alt="Innovation" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
             <div class="blog-card-body">
-                <div class="blog-meta"><span class="blog-cat" data-translate="news.post1.cat">Innovation</span><span class="blog-date">Mars 2025</span></div>
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post1.cat">Innovation</span><span class="blog-date" data-translate="news.post1.date">Mars 2025</span></div>
                 <h3 data-translate="news.post1.title">Innovations dans l'Exploitation Minière</h3>
                 <p data-translate="news.post1.description">Les dernières avancées technologiques transforment le secteur minier en Afrique de l'Est.</p>
                 <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
@@ -1455,7 +1459,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
         <div class="blog-card reveal stagger-2">
             <img class="blog-card-img" src="https://images.unsplash.com/photo-1509390874189-b67716037d5a?w=600&q=80" alt="Expansion" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
             <div class="blog-card-body">
-                <div class="blog-meta"><span class="blog-cat" data-translate="news.post2.cat">Expansion</span><span class="blog-date">Février 2025</span></div>
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post2.cat">Expansion</span><span class="blog-date" data-translate="news.post2.date">Février 2025</span></div>
                 <h3 data-translate="news.post2.title">Espérence s'étend au Rwanda</h3>
                 <p data-translate="news.post2.description">Nouvelle présence opérationnelle au Rwanda, renforçant notre réseau régional d'excellence.</p>
                 <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
@@ -1464,7 +1468,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
         <div class="blog-card reveal stagger-3">
             <img class="blog-card-img" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=600&q=80" alt="Recrutement" onerror="this.src='https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=600&q=80'">
             <div class="blog-card-body">
-                <div class="blog-meta"><span class="blog-cat" data-translate="news.post3.cat">Ressources Humaines</span><span class="blog-date">Janvier 2025</span></div>
+                <div class="blog-meta"><span class="blog-cat" data-translate="news.post3.cat">Ressources Humaines</span><span class="blog-date" data-translate="news.post3.date">Janvier 2025</span></div>
                 <h3 data-translate="news.post3.title">500 postes ouverts pour 2025</h3>
                 <p data-translate="news.post3.description">Espérence Mining lance sa plus grande campagne de recrutement pour ses projets en RDC et Tanzanie.</p>
                 <a href="#" class="read-more-link" data-translate="news.readMore">Lire la suite</a>
@@ -1492,24 +1496,24 @@ Gestion et développement des sites miniers avec une approche professionnelle et
         <!-- Formulaire -->
         <div id="newsletter-form-wrap">
             <form class="newsletter-form" id="newsletter-form" novalidate>
-                <input type="email" id="newsletter-email" placeholder="votre@email.com" required autocomplete="email">
+                <input type="email" id="newsletter-email" data-translate="newsletter.placeholder" placeholder="votre@email.com" required autocomplete="email">
                 <button type="submit" class="newsletter-submit" id="newsletter-btn">
-                    <span>S'abonner</span>
+                    <span data-translate="newsletter.subscribe">S'abonner</span>
                     <i class="fas fa-arrow-right"></i>
                 </button>
             </form>
             <div class="newsletter-perks">
-                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Gratuit</span></div>
-                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Sans spam</span></div>
-                <div class="newsletter-perk"><i class="fas fa-check"></i> <span>Désabonnement facile</span></div>
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span data-translate="newsletter.free">Gratuit</span></div>
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span data-translate="newsletter.noSpam">Sans spam</span></div>
+                <div class="newsletter-perk"><i class="fas fa-check"></i> <span data-translate="newsletter.easyUnsubscribe">Désabonnement facile</span></div>
             </div>
         </div>
 
         <!-- Succès -->
         <div class="newsletter-success" id="newsletter-success">
             <div class="success-icon"><i class="fas fa-check"></i></div>
-            <p style="font-family:var(--font-display); font-size:1.5rem; letter-spacing:0.1em; color:var(--white);">BIENVENUE !</p>
-            <p id="newsletter-success-msg">Vous êtes désormais abonné à notre newsletter.</p>
+            <p style="font-family:var(--font-display); font-size:1.5rem; letter-spacing:0.1em; color:var(--white);" data-translate="newsletter.welcome">BIENVENUE !</p>
+            <p id="newsletter-success-msg" data-translate="newsletter.success">Vous êtes désormais abonné à notre newsletter.</p>
         </div>
 
         <!-- Compteur abonnés -->
@@ -1520,7 +1524,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
                 <div class="subscriber-avatar" style="background: linear-gradient(135deg, #B87333, #8B4513);">K</div>
                 <div class="subscriber-avatar" style="background: linear-gradient(135deg, #444, #222);">+</div>
             </div>
-            <span class="newsletter-count-text">Rejoignez <strong id="sub-count">1 240+</strong> professionnels abonnés</span>
+            <span class="newsletter-count-text"><span data-translate="newsletter.join">Rejoignez</span> <strong id="sub-count">1 240+</strong> <span data-translate="newsletter.subscribers">professionnels abonnés</span></span>
         </div>
     </div>
 </section>
@@ -1542,7 +1546,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
                 <div class="job-card-left">
                     <div class="job-dept" data-translate="careers.dept1">Ingénierie</div>
                     <h3 data-translate="careers.positions.engineer">Ingénieur Minier Senior</h3>
-                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">RDC</span></div>
+                    <div class="job-meta"><span class="job-tag" data-translate="careers.fullTime">Temps plein</span><span class="job-tag" data-translate="countries.drc">RDC</span></div>
                 </div>
                 <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
             </div>
@@ -1550,7 +1554,7 @@ Gestion et développement des sites miniers avec une approche professionnelle et
                 <div class="job-card-left">
                     <div class="job-dept" data-translate="careers.dept2">Logistique</div>
                     <h3 data-translate="careers.positions.logistics">Responsable Logistique</h3>
-                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Tanzania</span></div>
+                    <div class="job-meta"><span class="job-tag" data-translate="careers.fullTime">Temps plein</span><span class="job-tag" data-translate="countries.tanzania">Tanzania</span></div>
                 </div>
                 <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
             </div>
@@ -1558,15 +1562,15 @@ Gestion et développement des sites miniers avec une approche professionnelle et
                 <div class="job-card-left">
                     <div class="job-dept" data-translate="careers.dept3">Opérations</div>
                     <h3 data-translate="careers.positions.operator">Opérateur de machines lourdes</h3>
-                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Multi-sites</span></div>
+                    <div class="job-meta"><span class="job-tag" data-translate="careers.fullTime">Temps plein</span><span class="job-tag" data-translate="careers.multiSite">Multi-sites</span></div>
                 </div>
                 <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
             </div>
             <div class="job-card">
                 <div class="job-card-left">
-                    <div class="job-dept">HSE</div>
+                    <div class="job-dept" data-translate="careers.dept4">HSE</div>
                     <h3 data-translate="careers.positions.hse">Responsable HSE</h3>
-                    <div class="job-meta"><span class="job-tag">Temps plein</span><span class="job-tag">Kenya / Rwanda</span></div>
+                    <div class="job-meta"><span class="job-tag" data-translate="careers.fullTime">Temps plein</span><span class="job-tag" data-translate="careers.kenyaRwanda">Kenya / Rwanda</span></div>
                 </div>
                 <a href="./candidature.html" class="apply-btn-sm" data-translate="careers.positions.apply">Postuler</a>
             </div>
@@ -1612,13 +1616,13 @@ Gestion et développement des sites miniers avec une approche professionnelle et
                 <li><a href="mailto:esperencesarl@gmail.com">esperencesarl@gmail.com</a></li>
                 <li><a href="tel:+243999541920">+243 999 541 920</a></li>
             </ul>
-            <div style="margin-top:1.5rem; font-size:0.75rem; color:var(--silver); line-height:1.7;">DRC · Uganda · Burundi<br>Tanzania · Rwanda · Kenya</div>
+            <div style="margin-top:1.5rem; font-size:0.75rem; color:var(--silver); line-height:1.7;" data-translate="footer.countries" data-translate-html="true">RDC · Ouganda · Burundi<br>Tanzanie · Rwanda · Kenya</div>
         </div>
     </div>
     <div class="gold-divider"></div>
     <div class="footer-bottom">
         <p>© 2024 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
-        <p style="font-size:0.65rem; letter-spacing:0.1em; color:rgba(0,0,0,0.25);">BUILT FOR EXCELLENCE</p>
+        <p style="font-size:0.65rem; letter-spacing:0.1em; color:rgba(0,0,0,0.25);" data-translate="footer.built">BUILT FOR EXCELLENCE</p>
     </div>
 </footer>
 
@@ -1626,10 +1630,19 @@ Gestion et développement des sites miniers avec une approche professionnelle et
 /* ══════════════════════ TRANSLATIONS ══════════════════════ */
 const translations = {
     fr: {
+        "meta.title": "Espérence Mining | Excellence des opérations minières",
+        "ui.scroll": "Défiler",
+        "quote.titlePlain": "Demande de Cotation Automatique",
+        "quote.description": "Sélectionnez vos produits chimiques ou vos équipements logistiques, renseignez la quantité et vos coordonnées, puis recevez instantanément votre cotation par email grâce à un parcours rapide et adapté à votre besoin.",
+        "about.badge": "Années<br>d'excellence",
+        "countries.drc": "RDC", "countries.uganda": "Ouganda", "countries.burundi": "Burundi", "countries.tanzania": "Tanzanie", "countries.rwanda": "Rwanda", "countries.kenya": "Kenya",
+        "newsletter.placeholder": "votre@email.com", "newsletter.subscribe": "S'abonner", "newsletter.free": "Gratuit", "newsletter.noSpam": "Sans spam", "newsletter.easyUnsubscribe": "Désabonnement facile", "newsletter.welcome": "BIENVENUE !", "newsletter.success": "Vous êtes désormais abonné à notre newsletter.", "newsletter.join": "Rejoignez", "newsletter.subscribers": "professionnels abonnés",
+        "careers.fullTime": "Temps plein", "careers.multiSite": "Multi-sites", "careers.dept4": "HSE", "careers.kenyaRwanda": "Kenya / Rwanda", "footer.countries": "RDC · Ouganda · Burundi<br>Tanzanie · Rwanda · Kenya", "footer.built": "CONÇU POUR L'EXCELLENCE",
         "hero.tagline": "Leader en Afrique de l'Est — Depuis 2014",
         "hero.title": "FROM <em>EARTH</em><br>TO PROSPERITY",
         "hero.subtitle": "Leader dans l'exploitation minière en Afrique de l'Est, délivrant l'excellence dans six nations.",
         "hero.cta": "Démarrer un projet",
+        "hero.quote": "Demander une Cotation",
         "hero.learnMore": "Découvrir",
         "services.eyebrow": "Ce que nous faisons",
         "services.title": "NOS <em>SERVICES</em><br>PREMIUM",
@@ -1738,10 +1751,12 @@ const translations = {
         "footer.rights": "Tous droits réservés."
     },
     en: {
+        "meta.title": "Espérence Mining | Mining Operations Excellence", "ui.scroll": "Scroll", "quote.titlePlain": "Automatic Quote Request", "quote.description": "Select your chemical products or logistics equipment, enter the quantity and your contact details, then receive your quote instantly by email through a fast process adapted to your needs.", "about.badge": "Years<br>of excellence", "countries.drc": "DRC", "countries.uganda": "Uganda", "countries.burundi": "Burundi", "countries.tanzania": "Tanzania", "countries.rwanda": "Rwanda", "countries.kenya": "Kenya", "newsletter.placeholder": "you@example.com", "newsletter.subscribe": "Subscribe", "newsletter.free": "Free", "newsletter.noSpam": "No spam", "newsletter.easyUnsubscribe": "Easy unsubscribe", "newsletter.welcome": "WELCOME!", "newsletter.success": "You are now subscribed to our newsletter.", "newsletter.join": "Join", "newsletter.subscribers": "subscribed professionals", "careers.fullTime": "Full-time", "careers.multiSite": "Multi-site", "careers.dept4": "HSE", "careers.kenyaRwanda": "Kenya / Rwanda", "footer.countries": "DRC · Uganda · Burundi<br>Tanzania · Rwanda · Kenya", "footer.built": "BUILT FOR EXCELLENCE",
         "hero.tagline": "East Africa's Mining Leader — Since 2014",
         "hero.title": "FROM <em>EARTH</em><br>TO PROSPERITY",
         "hero.subtitle": "Leading mining contractor in East Africa, delivering excellence across six nations.",
         "hero.cta": "Start a Project",
+        "hero.quote": "Request a Quote",
         "hero.learnMore": "Discover",
         "services.eyebrow": "What we do",
         "services.title": "OUR PREMIUM<br><em>SERVICES</em>",
@@ -1850,10 +1865,12 @@ const translations = {
         "footer.rights": "All rights reserved."
     },
     ar: {
+        "meta.title": "Espérence Mining | التميز في عمليات التعدين", "ui.scroll": "مرر", "quote.titlePlain": "طلب عرض سعر تلقائي", "quote.description": "اختر منتجاتك الكيميائية أو معداتك اللوجستية، وأدخل الكمية وبيانات الاتصال، ثم استلم عرض السعر فورًا عبر البريد الإلكتروني.", "about.badge": "سنوات<br>من التميز", "countries.drc": "جمهورية الكونغو الديمقراطية", "countries.uganda": "أوغندا", "countries.burundi": "بوروندي", "countries.tanzania": "تنزانيا", "countries.rwanda": "رواندا", "countries.kenya": "كينيا", "newsletter.placeholder": "you@example.com", "newsletter.subscribe": "اشترك", "newsletter.free": "مجاني", "newsletter.noSpam": "بدون رسائل مزعجة", "newsletter.easyUnsubscribe": "إلغاء اشتراك سهل", "newsletter.welcome": "مرحبًا بك!", "newsletter.success": "تم اشتراكك في نشرتنا البريدية.", "newsletter.join": "انضم إلى", "newsletter.subscribers": "من المهنيين المشتركين", "careers.fullTime": "دوام كامل", "careers.multiSite": "مواقع متعددة", "careers.dept4": "الصحة والسلامة والبيئة", "careers.kenyaRwanda": "كينيا / رواندا", "footer.countries": "جمهورية الكونغو الديمقراطية · أوغندا · بوروندي<br>تنزانيا · رواندا · كينيا", "footer.built": "صُمم للتميز",
         "hero.tagline": "الرائد في شرق أفريقيا — منذ 2014",
         "hero.title": "من <em>الأرض</em><br>إلى الازدهار",
         "hero.subtitle": "الرائد في التعدين بشرق أفريقيا، نقدم التميز في ست دول.",
         "hero.cta": "ابدأ مشروعاً",
+        "hero.quote": "اطلب عرض سعر",
         "hero.learnMore": "اكتشف",
         "services.eyebrow": "ماذا نفعل",
         "services.title": "<em>خدماتنا</em><br>المتميزة",
@@ -1962,10 +1979,12 @@ const translations = {
         "footer.rights": "جميع الحقوق محفوظة."
     },
     zh: {
+        "meta.title": "Espérence Mining | 卓越的采矿运营", "ui.scroll": "滚动", "quote.titlePlain": "自动报价申请", "quote.description": "选择化学品或物流设备，填写数量和联系方式，即可通过快速流程立即通过邮件收到报价。", "about.badge": "卓越<br>运营年限", "countries.drc": "刚果民主共和国", "countries.uganda": "乌干达", "countries.burundi": "布隆迪", "countries.tanzania": "坦桑尼亚", "countries.rwanda": "卢旺达", "countries.kenya": "肯尼亚", "newsletter.placeholder": "you@example.com", "newsletter.subscribe": "订阅", "newsletter.free": "免费", "newsletter.noSpam": "无垃圾邮件", "newsletter.easyUnsubscribe": "轻松退订", "newsletter.welcome": "欢迎！", "newsletter.success": "您已订阅我们的新闻通讯。", "newsletter.join": "加入", "newsletter.subscribers": "位订阅专业人士", "careers.fullTime": "全职", "careers.multiSite": "多地点", "careers.dept4": "健康、安全与环境", "careers.kenyaRwanda": "肯尼亚 / 卢旺达", "footer.countries": "刚果民主共和国 · 乌干达 · 布隆迪<br>坦桑尼亚 · 卢旺达 · 肯尼亚", "footer.built": "为卓越而生",
         "hero.tagline": "东非领导者 — 自2014年",
         "hero.title": "从<em>大地</em><br>到繁荣",
         "hero.subtitle": "东非采矿业的领导者，在六个国家提供卓越服务。",
         "hero.cta": "启动项目",
+        "hero.quote": "获取报价",
         "hero.learnMore": "了解更多",
         "services.eyebrow": "我们的服务",
         "services.title": "我们的<em>优质服务</em>",
@@ -2074,10 +2093,12 @@ const translations = {
         "footer.rights": "版权所有。"
     },
     sw: {
+        "meta.title": "Espérence Mining | Ubora katika Uendeshaji wa Madini", "ui.scroll": "Sogeza", "quote.titlePlain": "Ombi la Nukuu Kiotomatiki", "quote.description": "Chagua bidhaa zako za kemikali au vifaa vya usafirishaji, weka kiasi na mawasiliano yako, kisha upokee nukuu mara moja kwa barua pepe kupitia mchakato wa haraka.", "about.badge": "Miaka<br>ya ubora", "countries.drc": "DRC", "countries.uganda": "Uganda", "countries.burundi": "Burundi", "countries.tanzania": "Tanzania", "countries.rwanda": "Rwanda", "countries.kenya": "Kenya", "newsletter.placeholder": "wewe@example.com", "newsletter.subscribe": "Jisajili", "newsletter.free": "Bure", "newsletter.noSpam": "Hakuna barua taka", "newsletter.easyUnsubscribe": "Jiondoe kwa urahisi", "newsletter.welcome": "KARIBU!", "newsletter.success": "Sasa umejisajili kwenye jarida letu.", "newsletter.join": "Jiunge na", "newsletter.subscribers": "wataalamu waliojisajili", "careers.fullTime": "Muda wote", "careers.multiSite": "Maeneo mengi", "careers.dept4": "Afya, Usalama na Mazingira", "careers.kenyaRwanda": "Kenya / Rwanda", "footer.countries": "DRC · Uganda · Burundi<br>Tanzania · Rwanda · Kenya", "footer.built": "TUMEJENGWA KWA UBORA",
         "hero.tagline": "Kiongozi Afrika Mashariki — Tangu 2014",
         "hero.title": "KUTOKA <em>ARDHINI</em><br>HADI UFANISI",
         "hero.subtitle": "Kiongozi katika uchimbaji madini Afrika Mashariki, kutoa ubora katika mataifa sita.",
         "hero.cta": "Anzisha Mradi",
+        "hero.quote": "Omba Nukuu",
         "hero.learnMore": "Gundua",
         "services.eyebrow": "Tunachofanya",
         "services.title": "<em>HUDUMA</em> ZETU<br>ZA KWALI",
@@ -2186,10 +2207,12 @@ const translations = {
         "footer.rights": "Haki zote zimehifadhiwa."
     },
     kin: {
+        "meta.title": "Espérence Mining | Ubwiza mu Mikorere y'Ubucukuzi", "ui.scroll": "Manuka", "quote.titlePlain": "Gusaba Igiciro mu buryo bwikora", "quote.description": "Hitamo imiti cyangwa ibikoresho by'ubwikorezi, andika ingano n'amakuru yo kuvugana, maze ubone igiciro ako kanya kuri imeyili binyuze mu nzira yihuse.", "about.badge": "Imyaka<br>y'ubwiza", "countries.drc": "DRC", "countries.uganda": "Uganda", "countries.burundi": "Uburundi", "countries.tanzania": "Tanzaniya", "countries.rwanda": "Rwanda", "countries.kenya": "Kenya", "newsletter.placeholder": "wowe@example.com", "newsletter.subscribe": "Iyandikishe", "newsletter.free": "Ubuntu", "newsletter.noSpam": "Nta spam", "newsletter.easyUnsubscribe": "Kwiyandikisha bikurwaho byoroshye", "newsletter.welcome": "URAKAZA!", "newsletter.success": "Ubu wiyandikishije ku ibaruwa yacu y'amakuru.", "newsletter.join": "Yiyunge na", "newsletter.subscribers": "banyamwuga biyandikishije", "careers.fullTime": "Igihe cyose", "careers.multiSite": "Ahantu henshi", "careers.dept4": "Ubuzima, Umutekano n'Ibidukikije", "careers.kenyaRwanda": "Kenya / Rwanda", "footer.countries": "DRC · Uganda · Uburundi<br>Tanzaniya · Rwanda · Kenya", "footer.built": "TWUBAKIWE UBWIZA",
         "hero.tagline": "Ubuyobozi mu Afurika y'Iburasirazuba — Kuva 2014",
         "hero.title": "KUVA <em>ISI</em><br>KUGERA KU MUSARURO",
         "hero.subtitle": "Ubuyobozi mu kubukura amabuye y'agaciro mu burasirazuba bwa Afurika, dutanga ubwiza mu bihugu bitandatu.",
         "hero.cta": "Tangiza Umushinga",
+        "hero.quote": "Saba Igiciro",
         "hero.learnMore": "Menya byinshi",
         "services.eyebrow": "Ibyo dukora",
         "services.title": "<em>IBIKORWA</em> BYACU<br>BY'IKIRENGA",
@@ -2298,7 +2321,32 @@ const translations = {
         "footer.rights": "Uburenganzira bwose burakikijwe."
     }
 };
-let currentLang = 'fr';
+Object.assign(translations.fr, {
+    "nav.menu": "Menu", "contact.sending": "Envoi en cours...", "contact.sent": "✓ Message envoyé", "newsletter.already": "Vous êtes déjà abonné à notre newsletter.", "newsletter.alreadyTitle": "DÉJÀ ABONNÉ",
+    "news.post1.date": "Mars 2025", "news.post2.date": "Février 2025", "news.post3.date": "Janvier 2025"
+});
+Object.assign(translations.en, {
+    "nav.menu": "Menu", "contact.sending": "Sending...", "contact.sent": "✓ Message sent", "newsletter.already": "You are already subscribed to our newsletter.", "newsletter.alreadyTitle": "ALREADY SUBSCRIBED",
+    "news.post1.date": "March 2025", "news.post2.date": "February 2025", "news.post3.date": "January 2025"
+});
+Object.assign(translations.ar, {
+    "nav.menu": "القائمة", "contact.sending": "جارٍ الإرسال...", "contact.sent": "✓ تم إرسال الرسالة", "newsletter.already": "أنت مشترك بالفعل في نشرتنا البريدية.", "newsletter.alreadyTitle": "مشترك بالفعل",
+    "news.post1.date": "مارس 2025", "news.post2.date": "فبراير 2025", "news.post3.date": "يناير 2025"
+});
+Object.assign(translations.zh, {
+    "nav.menu": "菜单", "contact.sending": "正在发送...", "contact.sent": "✓ 消息已发送", "newsletter.already": "您已经订阅了我们的新闻通讯。", "newsletter.alreadyTitle": "已订阅",
+    "news.post1.date": "2025年3月", "news.post2.date": "2025年2月", "news.post3.date": "2025年1月"
+});
+Object.assign(translations.sw, {
+    "nav.menu": "Menyu", "contact.sending": "Inatuma...", "contact.sent": "✓ Ujumbe umetumwa", "newsletter.already": "Tayari umejiunga na jarida letu.", "newsletter.alreadyTitle": "TAYARI UMEJIUNGA",
+    "news.post1.date": "Machi 2025", "news.post2.date": "Februari 2025", "news.post3.date": "Januari 2025"
+});
+Object.assign(translations.kin, {
+    "nav.menu": "Menyu", "contact.sending": "Ohereza...", "contact.sent": "✓ Ubutumwa bwoherejwe", "newsletter.already": "Usanzwe wiyandikishije ku makuru yacu.", "newsletter.alreadyTitle": "USANZWE WIYANDIKISHIJE",
+    "news.post1.date": "Werurwe 2025", "news.post2.date": "Gashyantare 2025", "news.post3.date": "Mutarama 2025"
+});
+const savedLanguage = localStorage.getItem('lang');
+let currentLang = translations[savedLanguage] ? savedLanguage : 'fr';
 
 /* ══ LOADER ══ */
 let loaderProgress = 0;
@@ -2411,18 +2459,34 @@ if (heroStats) counterObserver.observe(heroStats);
 function switchLanguage(lang) {
     if (!translations[lang]) return;
     currentLang = lang;
-    document.querySelectorAll('.lang-btn').forEach((btn, i) => {
-        btn.classList.toggle('active', ['fr','en','ar','zh','sw','kin'][i] === lang);
+    localStorage.setItem('lang', lang);
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
     });
+    const languageSelect = document.querySelector('.lang-select');
+    if (languageSelect) languageSelect.value = lang;
+    document.documentElement.lang = lang;
     document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-translate]').forEach(el => {
-        const t = translations[lang][el.getAttribute('data-translate')];
+        const key = el.getAttribute('data-translate');
+        const t = translations[lang][key] ?? translations.en[key] ?? translations.fr[key];
         if (t === undefined) return;
         if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = t;
         else if (el.tagName === 'OPTION') el.textContent = t;
         else el.innerHTML = t;
     });
+    document.querySelectorAll('[data-translate-aria-label]').forEach(el => {
+        const key = el.getAttribute('data-translate-aria-label');
+        const label = translations[lang][key] ?? translations.en[key] ?? translations.fr[key];
+        if (label !== undefined) el.setAttribute('aria-label', label);
+    });
 }
+
+function indexText(key, fallback = '') {
+    return translations[currentLang]?.[key] ?? translations.en[key] ?? translations.fr[key] ?? fallback;
+}
+
+switchLanguage(currentLang);
 
 /* ══ PARALLAX ══ */
 window.addEventListener('scroll', () => {
@@ -2441,12 +2505,12 @@ if (form) {
         e.preventDefault();
         const btn = form.querySelector('button[type="submit"]');
         const originalHTML = btn.innerHTML;
-        btn.innerHTML = '<span>Envoi en cours...</span>';
+        btn.innerHTML = `<span>${indexText('contact.sending', 'Envoi en cours...')}</span>`;
         btn.style.opacity = '0.7';
         try {
             const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } });
             if (response.ok) {
-                btn.innerHTML = '<span>✓ Message envoyé</span>';
+                btn.innerHTML = `<span>${indexText('contact.sent', '✓ Message envoyé')}</span>`;
                 btn.style.background = '#2d8a4e';
                 form.reset();
             } else { btn.innerHTML = originalHTML; }
@@ -2487,15 +2551,15 @@ if (newsletterForm) {
 
             if (response.ok) {
                 document.getElementById('newsletter-form-wrap').style.display = 'none';
-                document.getElementById('newsletter-success-msg').textContent = 'Vous êtes désormais abonné à notre newsletter.';
+                document.getElementById('newsletter-success-msg').textContent = indexText('newsletter.success', 'Vous êtes désormais abonné à notre newsletter.');
                 const successEl = document.getElementById('newsletter-success');
                 successEl.style.display = 'flex';
 
             } else if (response.status === 409) {
                 document.getElementById('newsletter-form-wrap').style.display = 'none';
-                document.getElementById('newsletter-success-msg').textContent = data.message || 'Vous êtes déjà abonné à notre newsletter.';
+                document.getElementById('newsletter-success-msg').textContent = data.message || indexText('newsletter.already', 'Vous êtes déjà abonné à notre newsletter.');
                 const successEl = document.getElementById('newsletter-success');
-                successEl.querySelector('p:nth-child(2)').textContent = 'DÉJÀ ABONNÉ';
+                successEl.querySelector('p:nth-child(2)').textContent = indexText('newsletter.alreadyTitle', 'DÉJÀ ABONNÉ');
                 successEl.style.display = 'flex';
 
             } else {
@@ -2546,8 +2610,9 @@ async function loadApiArticles() {
 
             const imgSrc = article.imageUrl || fallbackImg;
             const pubDate = article.publishedAt || article.createdAt;
+            const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW' }[currentLang] || 'fr-FR';
             const dateStr = pubDate
-                ? new Date(pubDate).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
+                ? new Date(pubDate).toLocaleDateString(locale, { month: 'long', year: 'numeric' })
                 : '';
             const excerpt = article.excerpt
                 || (article.content ? article.content.replace(/<[^>]+>/g, '').substring(0, 120) + '...' : '');
@@ -2569,7 +2634,7 @@ async function loadApiArticles() {
                     </div>
                     <h3>${escapeHtml(article.title)}</h3>
                     <p>${escapeHtml(excerpt)}</p>
-                    <a href="${escapeHtml(articleUrl)}" class="read-more-link">Lire la suite</a>
+                    <a href="${escapeHtml(articleUrl)}" class="read-more-link">${escapeHtml(indexText('news.readMore', 'Lire la suite'))}</a>
                 </div>`;
 
             grid.appendChild(card);

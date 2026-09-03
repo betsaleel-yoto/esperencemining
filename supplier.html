@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>Devenir Fournisseur(Procurements submission) - Espérence Mining SARL</title>
+    <title data-translate="supplier.metaTitle">Devenir Fournisseur - Espérence Mining SARL</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -77,6 +77,8 @@
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo img { height: 48px; width: auto; filter: brightness(0.95); }
         .nav-controls { display: flex; align-items: center; gap: 1rem; }
+        .site-lang-select { background: transparent; border: 1px solid rgba(0,0,0,0.16); color: var(--light); padding: 7px 9px; font: 600 0.65rem var(--font-body); letter-spacing: 0.08em; cursor: pointer; }
+        .site-lang-select:focus { outline: 1px solid var(--gold); }
         .menu-icon { display: none; cursor: pointer; }
         .pointing-arrow { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.05); padding: 6px 12px; border-radius: 30px; }
         .pointing-arrow span { font-size: 0.7rem; letter-spacing: 0.1em; color: var(--gold); }
@@ -531,13 +533,13 @@
 
 <div id="submissionModal" class="submission-modal-overlay" aria-hidden="true">
     <div class="submission-modal-card" role="status" aria-live="polite" aria-atomic="true">
-        <div class="submission-modal-kicker">Envoi sécurisé</div>
+        <div class="submission-modal-kicker" data-translate="supplier.secure">Envoi sécurisé</div>
         <div class="submission-modal-spinner" aria-hidden="true">
             <div class="submission-modal-core"></div>
         </div>
-        <h2 class="submission-modal-title">Veuillez patienter</h2>
-        <p class="submission-modal-text">Veuillez patienter, le formulaire est en train d'être envoyé. Cela peut prendre quelques minutes, voire plusieurs minutes.</p>
-        <p class="submission-modal-note">Merci de ne pas fermer cette page pendant la transmission du dossier.</p>
+        <h2 class="submission-modal-title" data-translate="supplier.pleaseWait">Veuillez patienter</h2>
+        <p class="submission-modal-text" data-translate="supplier.sending">Veuillez patienter, le formulaire est en train d'être envoyé. Cela peut prendre quelques minutes, voire plusieurs minutes.</p>
+        <p class="submission-modal-note" data-translate="supplier.doNotClose">Merci de ne pas fermer cette page pendant la transmission du dossier.</p>
     </div>
 </div>
 
@@ -550,9 +552,12 @@
             <img src="./images//IMG-20250303-WA0005_2-removebg-preview.png" alt="Espérence Mining Logo">
         </div>
         <div class="nav-controls">
+            <select class="site-lang-select" data-translate-aria-label="nav.language" aria-label="Language">
+                <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option>
+            </select>
             <div class="menu-icon">
                 <div class="pointing-arrow">
-                    <span>Menu</span>
+                    <span data-translate="nav.menu">Menu</span>
                     <svg viewBox="0 0 24 24"><path d="M21.883 12l-7.527 6.235.644.765 9-7.521-9-7.479-.645.764 7.529 6.236h-21.884v1h21.883z"/></svg>
                 </div>
                 <svg class="hamburger" viewBox="0 0 100 100">
@@ -566,10 +571,10 @@
             <div class="close-icon" id="closeNav">
                 <svg viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
             </div>
-            <a href="#home">Accueil</a>
-            <a href="#services">Nos Services</a>
-            <a href="#about">À Propos</a>
-            <a href="#contact">Contact</a>
+            <a href="./index.html#hero" data-translate="nav.home">Accueil</a>
+            <a href="./index.html#services" data-translate="nav.services">Nos Services</a>
+            <a href="./index.html#about" data-translate="nav.about">À Propos</a>
+            <a href="./index.html#contact" data-translate="nav.contact">Contact</a>
         </div>
     </nav>
 </header>
@@ -577,178 +582,178 @@
 <main>
     <section class="supplier-hero">
         <div class="hero-content">
-            <h1>Devenir Fournisseur</h1>
-            <p>Enregistrez votre entreprise et rejoignez notre réseau de partenaires de confiance</p>
+            <h1 data-translate="supplier.title">Devenir Fournisseur</h1>
+            <p data-translate="supplier.subtitle">Enregistrez votre entreprise et rejoignez notre réseau de partenaires de confiance</p>
         </div>
     </section>
 
     <section class="application-form">
         <div class="form-container">
-            <h2>Formulaire de soumission</h2>
-            <p>Veuillez remplir tous les champs. La capacité financière et le RIB bancaire en PDF sont obligatoires pour envoyer le dossier.</p>
+            <h2 data-translate="supplier.formTitle">Formulaire de soumission</h2>
+            <p data-translate="supplier.formIntro">Veuillez remplir tous les champs. La capacité financière et le RIB bancaire en PDF sont obligatoires pour envoyer le dossier.</p>
             <div id="formAlert" class="alert" style="display: none;"></div>
             <form id="supplierForm" class="premium-form" enctype="multipart/form-data">
                 <!-- 1. Informations Générales -->
-                <div class="section-title">Informations Générales</div>
+                <div class="section-title" data-translate="supplier.general">Informations Générales</div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Dénomination sociale *</label>
+                        <label data-translate="supplier.companyName">Dénomination sociale *</label>
                         <input type="text" name="companyName" required>
                     </div>
                     <div class="form-group">
-                        <label>Forme juridique *</label>
-                        <input type="text" name="legalForm" placeholder="SARL, SAS, Établissement..." required>
+                        <label data-translate="supplier.legalForm">Forme juridique *</label>
+                        <input type="text" name="legalForm" data-translate="supplier.legalFormPlaceholder" placeholder="SARL, SAS, Établissement..." required>
                     </div>
                 </div>
                 <div class="form-grid">
                     <div class="form-group">
-                        <label>Catégorie d'activité *</label>
+                        <label data-translate="supplier.activity">Catégorie d'activité *</label>
                         <select name="category" id="category" required>
-                            <option value="">Sélectionnez</option>
-                            <option value="LOGISTICIEN">Logisticien</option>
-                            <option value="INVESTISSEUR">Investisseur</option>
-                            <option value="CHAINE_APPROVISIONNEMENT">Chaîne d'approvisionnement minier</option>
-                            <option value="AUTRE">Autres</option>
+                            <option value="" data-translate="supplier.select">Sélectionnez</option>
+                            <option value="LOGISTICIEN" data-translate="supplier.logistician">Logisticien</option>
+                            <option value="INVESTISSEUR" data-translate="supplier.investor">Investisseur</option>
+                            <option value="CHAINE_APPROVISIONNEMENT" data-translate="supplier.supplyChain">Chaîne d'approvisionnement minier</option>
+                            <option value="AUTRE" data-translate="supplier.other">Autres</option>
                         </select>
                     </div>
                     <div class="form-group" id="categoryOtherGroup" style="display: none;">
-                        <label>Précisez "Autre" *</label>
-                        <input type="text" name="categoryOther" placeholder="Veuillez préciser">
+                        <label data-translate="supplier.specifyOther">Précisez "Autre" *</label>
+                        <input type="text" name="categoryOther" data-translate="supplier.specifyPlaceholder" placeholder="Veuillez préciser">
                     </div>
                 </div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Ville *</label><input type="text" name="city" required></div>
-                    <div class="form-group"><label>Province *</label><input type="text" name="province" required></div>
+                    <div class="form-group"><label data-translate="supplier.city">Ville *</label><input type="text" name="city" required></div>
+                    <div class="form-group"><label data-translate="supplier.province">Province *</label><input type="text" name="province" required></div>
                 </div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Commune *</label><input type="text" name="commune" required></div>
-                    <div class="form-group"><label>Avenue *</label><input type="text" name="avenue" required></div>
+                    <div class="form-group"><label data-translate="supplier.commune">Commune *</label><input type="text" name="commune" required></div>
+                    <div class="form-group"><label data-translate="supplier.avenue">Avenue *</label><input type="text" name="avenue" required></div>
                 </div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Numéro (N°) *</label><input type="text" name="streetNumber" required></div>
-                    <div class="form-group"><label>Site web *</label><input type="url" name="website" placeholder="https://" required></div>
+                    <div class="form-group"><label data-translate="supplier.number">Numéro (N°) *</label><input type="text" name="streetNumber" required></div>
+                    <div class="form-group"><label data-translate="supplier.website">Site web *</label><input type="url" name="website" placeholder="https://" required></div>
                 </div>
 
                 <!-- 2. Identifiants Légaux & Fiscaux -->
-                <div class="section-title">Identifiants Légaux & Fiscaux</div>
+                <div class="section-title" data-translate="supplier.legal">Identifiants Légaux & Fiscaux</div>
                 <!-- RCCM -->
                 <div class="form-group">
-                    <label>Numéro RCCM *</label>
+                    <label data-translate="supplier.rccm">Numéro RCCM *</label>
                     <div class="file-upload-row">
-                        <input type="text" name="rccmNumber" placeholder="Numéro RCCM" required>
+                        <input type="text" name="rccmNumber" data-translate="supplier.rccmPlaceholder" placeholder="Numéro RCCM" required>
                         <div class="file-input-wrapper">
                             <input type="file" name="rccm" accept=".pdf,.jpg,.jpeg,.png" id="rccmFile" required>
-                            <label for="rccmFile" class="file-label"><i class="fas fa-upload"></i> Upload PDF/Image *</label>
+                            <label for="rccmFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.uploadPdfImage">Upload PDF/Image *</span></label>
                             <span class="file-name" id="rccmFileName"></span>
                         </div>
                     </div>
                 </div>
                 <!-- ID NAT -->
                 <div class="form-group">
-                    <label>Numéro d'Identification Nationale (ID NAT) *</label>
+                    <label data-translate="supplier.idNat">Numéro d'Identification Nationale (ID NAT) *</label>
                     <div class="file-upload-row">
-                        <input type="text" name="idNatNumber" placeholder="ID NAT" required>
+                        <input type="text" name="idNatNumber" data-translate="supplier.idNatPlaceholder" placeholder="ID NAT" required>
                         <div class="file-input-wrapper">
                             <input type="file" name="idNat" accept=".pdf,.jpg,.jpeg,.png" id="idNatFile" required>
-                            <label for="idNatFile" class="file-label"><i class="fas fa-upload"></i> Upload *</label>
+                            <label for="idNatFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.upload">Upload *</span></label>
                             <span class="file-name" id="idNatFileName"></span>
                         </div>
                     </div>
                 </div>
                 <!-- NIF -->
                 <div class="form-group">
-                    <label>Numéro Impôt (NIF) *</label>
+                    <label data-translate="supplier.nif">Numéro Impôt (NIF) *</label>
                     <div class="file-upload-row">
                         <input type="text" name="nifNumber" placeholder="NIF" required>
                         <div class="file-input-wrapper">
                             <input type="file" name="nif" accept=".pdf,.jpg,.jpeg,.png" id="nifFile" required>
-                            <label for="nifFile" class="file-label"><i class="fas fa-upload"></i> Upload *</label>
+                            <label for="nifFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.upload">Upload *</span></label>
                             <span class="file-name" id="nifFileName"></span>
                         </div>
                     </div>
                 </div>
                 <!-- ARSP (crucial) -->
                 <div class="form-group">
-                    <label>Attestation ARSP * (sous-traitance)</label>
+                    <label data-translate="supplier.arsp">Attestation ARSP * (sous-traitance)</label>
                     <div class="file-upload-row">
-                        <input type="text" name="arspNumber" placeholder="Numéro ARSP" required>
+                        <input type="text" name="arspNumber" data-translate="supplier.arspPlaceholder" placeholder="Numéro ARSP" required>
                         <div class="file-input-wrapper">
                             <input type="file" name="arsp" accept=".pdf,.jpg,.jpeg,.png" id="arspFile" required>
-                            <label for="arspFile" class="file-label"><i class="fas fa-upload"></i> Obligatoire *</label>
+                            <label for="arspFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.mandatory">Obligatoire *</span></label>
                             <span class="file-name" id="arspFileName"></span>
                         </div>
                     </div>
                 </div>
                 <!-- CNSS + attestation fin de cotisation -->
                 <div class="form-group">
-                    <label>Numéro CNSS *</label>
+                    <label data-translate="supplier.cnss">Numéro CNSS *</label>
                     <div class="file-upload-row">
-                        <input type="text" name="cnssNumber" placeholder="CNSS" required>
+                        <input type="text" name="cnssNumber" data-translate="supplier.cnssPlaceholder" placeholder="CNSS" required>
                         <div class="file-input-wrapper">
                             <input type="file" name="cnss" accept=".pdf,.jpg,.jpeg,.png" id="cnssFile" required>
-                            <label for="cnssFile" class="file-label"><i class="fas fa-upload"></i> Attestation CNSS *</label>
+                            <label for="cnssFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.cnssCertificate">Attestation CNSS *</span></label>
                             <span class="file-name" id="cnssFileName"></span>
                         </div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label>Attestation de fin de cotisation CNSS *</label>
+                    <label data-translate="supplier.endCnss">Attestation de fin de cotisation CNSS *</label>
                     <div class="file-input-wrapper">
                         <input type="file" name="cnssAttestation" accept=".pdf,.jpg,.jpeg,.png" id="cnssAttestFile" required>
-                        <label for="cnssAttestFile" class="file-label"><i class="fas fa-upload"></i> Upload attestation *</label>
+                        <label for="cnssAttestFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.uploadCertificate">Upload attestation *</span></label>
                         <span class="file-name" id="cnssAttestFileName"></span>
                     </div>
                 </div>
 
                 <!-- 3. Informations de Contact -->
-                <div class="section-title">Contact</div>
+                <div class="section-title" data-translate="supplier.contact">Contact</div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Nom du représentant légal *</label><input type="text" name="legalRepresentative" required></div>
-                    <div class="form-group"><label>Email de contact officiel *</label><input type="email" name="contactEmail" required></div>
+                    <div class="form-group"><label data-translate="supplier.representative">Nom du représentant légal *</label><input type="text" name="legalRepresentative" required></div>
+                    <div class="form-group"><label data-translate="supplier.officialEmail">Email de contact officiel *</label><input type="email" name="contactEmail" required></div>
                 </div>
-                <div class="form-group"><label>Téléphone (format international +243...) *</label><input type="tel" name="phone" placeholder="+243 xxx xxx xxx" required></div>
+                <div class="form-group"><label data-translate="supplier.phone">Téléphone (format international +243...) *</label><input type="tel" name="phone" placeholder="+243 xxx xxx xxx" required></div>
 
                 <!-- 4. Capacité financière -->
-                <div class="section-title">Capacité Financière</div>
+                <div class="section-title" data-translate="supplier.financial">Capacité Financière</div>
                 <div class="form-group">
-                    <label>Capacité financière disponible *</label>
+                    <label data-translate="supplier.availableCapacity">Capacité financière disponible *</label>
                     <select name="financialCapacity" id="financialCapacity" required>
-                        <option value="">Sélectionnez une capacité financière</option>
+                        <option value="" data-translate="supplier.selectCapacity">Sélectionnez une capacité financière</option>
                     </select>
-                    <span class="field-note">Choisissez une valeur comprise entre 50.000 $ et 1.000.000.000 $.</span>
+                    <span class="field-note" data-translate="supplier.capacityNote">Choisissez une valeur comprise entre 50.000 $ et 1.000.000.000 $.</span>
                 </div>
 
                 <!-- 5. Informations Bancaires -->
-                <div class="section-title">Coordonnées Bancaires</div>
+                <div class="section-title" data-translate="supplier.banking">Coordonnées Bancaires</div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Nom de la banque *</label><input type="text" name="bankName" required></div>
-                    <div class="form-group"><label>Intitulé du compte *</label><input type="text" name="accountHolder" required></div>
+                    <div class="form-group"><label data-translate="supplier.bank">Nom de la banque *</label><input type="text" name="bankName" required></div>
+                    <div class="form-group"><label data-translate="supplier.accountHolder">Intitulé du compte *</label><input type="text" name="accountHolder" required></div>
                 </div>
                 <div class="form-grid">
-                    <div class="form-group"><label>Numéro de compte (RIB) *</label><input type="text" name="accountNumber" required></div>
-                    <div class="form-group"><label>Code SWIFT/BIC *</label><input type="text" name="swiftBic" required></div>
+                    <div class="form-group"><label data-translate="supplier.accountNumber">Numéro de compte (RIB) *</label><input type="text" name="accountNumber" required></div>
+                    <div class="form-group"><label data-translate="supplier.swift">Code SWIFT/BIC *</label><input type="text" name="swiftBic" required></div>
                 </div>
                 <div class="form-group">
-                    <label>Document RIB bancaire en PDF *</label>
+                    <label data-translate="supplier.ribDocument">Document RIB bancaire en PDF *</label>
                     <div class="file-input-wrapper">
                         <input type="file" name="ribDocument" accept=".pdf,application/pdf" id="ribFile" required>
-                        <label for="ribFile" class="file-label"><i class="fas fa-upload"></i> Joindre le RIB PDF *</label>
+                        <label for="ribFile" class="file-label"><i class="fas fa-upload"></i> <span data-translate="supplier.attachRib">Joindre le RIB PDF *</span></label>
                         <span class="file-name" id="ribFileName"></span>
                     </div>
-                    <span class="field-note">Le RIB bancaire doit être transmis au format PDF.</span>
+                    <span class="field-note" data-translate="supplier.ribNote">Le RIB bancaire doit être transmis au format PDF.</span>
                 </div>
 
                 <!-- Consentement -->
                 <div class="checkbox-group">
                     <label class="checkbox-container">
                         <input type="checkbox" required>
-                        <span>Je certifie l'exactitude des informations fournies et j'accepte le traitement de mon dossier.</span>
+                        <span data-translate="supplier.consent">Je certifie l'exactitude des informations fournies et j'accepte le traitement de mon dossier.</span>
                     </label>
                 </div>
 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-paper-plane"></i>
-                    <span>Soumettre ma candidature</span>
+                    <span data-translate="supplier.submit">Soumettre ma candidature</span>
                 </button>
             </form>
         </div>
@@ -758,21 +763,24 @@
 <footer>
     <div class="footer-content">
         <div class="contact-info">
-            <h3>Contact</h3>
-            <p>Email: esperencesarl@gmail.com</p>
-            <p>Téléphone: +243 999 541 920</p>
+            <h3 data-translate="footer.contact">Contact</h3>
+            <p><span data-translate="footer.emailLabel">Email:</span> esperencesarl@gmail.com</p>
+            <p><span data-translate="footer.phoneLabel">Téléphone:</span> +243 999 541 920</p>
         </div>
         <div class="footer-section">
-            <h4>Nos engagements</h4>
-            <p>Transparence · Intégrité · Développement durable</p>
+            <h4 data-translate="footer.commitments">Nos engagements</h4>
+            <p data-translate="footer.commitmentText">Transparence · Intégrité · Développement durable</p>
         </div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2025 Espérence Mining SARL. Tous droits réservés.</p>
+        <p>&copy; 2025 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
     </div>
 </footer>
 
+<script src="./js/site-i18n.js"></script>
 <script>
+    const t = (key, fallback = '') => window.siteI18n?.get(key) || fallback || key;
+
     // ======================== LOADER ========================
     let progress = 0;
     const loaderNum = document.getElementById('loader-num');
@@ -892,18 +900,18 @@
     function validateRequiredFiles() {
         const arspFile = document.getElementById('arspFile').files[0];
         if (!arspFile) {
-            return 'Le justificatif ARSP est obligatoire.';
+            return t('supplier.arspRequired', 'Le justificatif ARSP est obligatoire.');
         }
 
         const ribFile = document.getElementById('ribFile').files[0];
         if (!ribFile) {
-            return 'Le RIB bancaire en PDF est obligatoire.';
+            return t('supplier.ribRequired', 'Le RIB bancaire en PDF est obligatoire.');
         }
 
         const fileName = ribFile.name.toLowerCase();
         const isPdf = ribFile.type === 'application/pdf' || fileName.endsWith('.pdf');
         if (!isPdf) {
-            return 'Le document RIB doit être fourni au format PDF.';
+            return t('supplier.ribFormatError', 'Le document RIB doit être fourni au format PDF.');
         }
 
         return '';
@@ -948,16 +956,16 @@
                 if (categoryOtherInput) categoryOtherInput.required = false;
                 closeSubmissionModal();
                 await waitForSubmissionModalToDisappear();
-                showAlert('✅ Votre dossier a été soumis avec succès. Un email de confirmation vous parviendra après validation.', 'success');
+                showAlert('✅ ' + t('supplier.success', 'Votre dossier a été soumis avec succès. Un email de confirmation vous parviendra après validation.'), 'success');
             } else {
                 closeSubmissionModal();
-                const errorMsg = data.message || 'Une erreur est survenue. Vérifiez les champs et réessayez.';
+                const errorMsg = data.message || t('supplier.error', 'Une erreur est survenue. Vérifiez les champs et réessayez.');
                 showAlert('❌ ' + errorMsg, 'error');
             }
         } catch (err) {
             console.error(err);
             closeSubmissionModal();
-            showAlert('❌ Erreur de connexion au serveur. Veuillez réessayer plus tard.', 'error');
+            showAlert('❌ ' + t('supplier.connectionError', 'Erreur de connexion au serveur. Veuillez réessayer plus tard.'), 'error');
         } finally {
             submitBtn.disabled = false;
         }

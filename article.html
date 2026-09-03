@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Article — Espérence Mining</title>
-    <meta name="description" content="Actualités minières — Espérence Mining SARL">
+    <title data-translate="article.metaTitle">Article — Espérence Mining</title>
+    <meta name="description" data-translate="article.metaDescription" data-translate-attr="content" content="Actualités minières — Espérence Mining SARL">
     <meta property="og:type" content="article">
     <meta property="og:site_name" content="Espérence Mining">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -63,6 +63,8 @@ body::after { content:''; position:fixed; inset:0; pointer-events:none; z-index:
 .nav-center a::after { content:''; position:absolute; bottom:0; left:50%; right:50%; height:1px; background:var(--gold); transition:left .3s,right .3s; }
 .nav-center a:hover { color:var(--gold); }
 .nav-center a:hover::after { left:18px; right:18px; }
+.site-lang-select { background: transparent; border: 1px solid rgba(0,0,0,.16); color: var(--light); padding: 7px 9px; font: 600 .65rem var(--font-body); letter-spacing: .08em; cursor: pointer; }
+.site-lang-select:focus { outline: 1px solid var(--gold); }
 .nav-back-btn { display:inline-flex; align-items:center; gap:8px; font-family:var(--font-body); font-size:.65rem; font-weight:500; letter-spacing:.15em; text-transform:uppercase; color:rgba(26,26,26,.6); padding:8px 16px; border:1px solid rgba(0,0,0,.12); transition:all .3s; cursor:pointer; background:transparent; }
 .nav-back-btn:hover { color:var(--gold); border-color:rgba(198,163,0,.4); }
 .nav-quote-btn { white-space:nowrap; padding:10px 18px; font-size:.58rem; }
@@ -219,14 +221,14 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
 <div class="cursor-ring" id="cursorRing"></div>
 
 <div class="mobile-nav" id="mobileNav">
-    <a href="./index.html">Accueil</a>
-    <a href="./index.html#services">Services</a>
-    <a href="./index.html#about">À Propos</a>
-    <a href="./index.html#projects">Réalisations</a>
-    <a href="./index.html#partners">Partenaires</a>
-    <a href="./index.html#contact">Contact</a>
-    <a href="./index.html#blog">Actualités</a>
-    <a href="./candidature.html">Recrutement</a>
+    <a href="./index.html" data-translate="nav.home">Accueil</a>
+    <a href="./index.html#services" data-translate="nav.services">Services</a>
+    <a href="./index.html#about" data-translate="nav.about">À Propos</a>
+    <a href="./index.html#projects" data-translate="nav.projects">Réalisations</a>
+    <a href="./index.html#partners" data-translate="nav.partners">Partenaires</a>
+    <a href="./index.html#contact" data-translate="nav.contact">Contact</a>
+    <a href="./index.html#blog" data-translate="nav.news">Actualités</a>
+    <a href="./candidature.html" data-translate="nav.careers">Recrutement</a>
 </div>
 
 <nav class="navbar" id="navbar">
@@ -237,22 +239,25 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
         <span class="nav-logo-fallback">ESPÉRENCE</span>
     </a>
     <div class="nav-center">
-        <a href="./index.html#services">Services</a>
-        <a href="./index.html#about">À Propos</a>
-        <a href="./index.html#projects">Réalisations</a>
-        <a href="./index.html#partners">Partenaires</a>
-        <a href="./index.html#blog">Actualités</a>
-        <a href="./index.html#contact">Contact</a>
+        <a href="./index.html#services" data-translate="nav.services">Services</a>
+        <a href="./index.html#about" data-translate="nav.about">À Propos</a>
+        <a href="./index.html#projects" data-translate="nav.projects">Réalisations</a>
+        <a href="./index.html#partners" data-translate="nav.partners">Partenaires</a>
+        <a href="./index.html#blog" data-translate="nav.news">Actualités</a>
+        <a href="./index.html#contact" data-translate="nav.contact">Contact</a>
     </div>
     <div style="display:flex;align-items:center;gap:.75rem;">
         <button class="nav-back-btn" onclick="goBack()">
-            <i class="fas fa-arrow-left" style="font-size:.65rem;"></i> Retour
+            <i class="fas fa-arrow-left" style="font-size:.65rem;"></i> <span data-translate="article.back">Retour</span>
         </button>
+        <select class="site-lang-select" data-translate-aria-label="nav.language" aria-label="Language">
+            <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option>
+        </select>
         <a href="./quotation.html" class="btn-primary nav-quote-btn">
-            <span>Demander une Cotation</span>
+            <span data-translate="nav.requestQuote">Demander une Cotation</span>
             <i class="fas fa-file-invoice-dollar"></i>
         </a>
-        <button class="hamburger-btn" id="hamburgerBtn" aria-label="Menu">
+        <button class="hamburger-btn" id="hamburgerBtn" data-translate-aria-label="nav.menu" aria-label="Menu">
             <span></span><span></span><span></span>
         </button>
     </div>
@@ -274,17 +279,17 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
             </div>
         </div>
         <div id="hero-real" style="display:none;">
-            <nav class="hero-breadcrumb" aria-label="Fil d'ariane">
-                <a href="./index.html">Accueil</a><span>/</span>
-                <a href="./index.html#blog">Actualités</a><span>/</span>
+            <nav class="hero-breadcrumb" data-translate-aria-label="article.breadcrumb" aria-label="Fil d'ariane">
+                <a href="./index.html" data-translate="nav.home">Accueil</a><span>/</span>
+                <a href="./index.html#blog" data-translate="article.news">Actualités</a><span>/</span>
                 <a href="#" id="breadcrumb-cat"></a>
             </nav>
-            <div class="hero-cat"><span id="article-category">Actualité</span></div>
-            <h1 id="article-title">Chargement…</h1>
+            <div class="hero-cat"><span id="article-category" data-translate="article.defaultCategory">Actualité</span></div>
+            <h1 id="article-title" data-translate="article.loading">Chargement…</h1>
             <div class="hero-meta">
                 <span class="meta-pill"><i class="fas fa-calendar-alt"></i><span id="article-date"></span></span>
                 <span class="meta-pill"><i class="fas fa-clock"></i><span id="article-read-time"></span></span>
-                <span class="meta-pill"><i class="fas fa-user"></i><span id="article-author">Espérence Mining</span></span>
+                <span class="meta-pill"><i class="fas fa-user"></i><span id="article-author" data-translate="article.authorDefault">Espérence Mining</span></span>
                 <span class="meta-id" id="article-id-display"></span>
             </div>
         </div>
@@ -310,40 +315,40 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
             <div class="article-body" id="article-body"></div>
             <div class="article-tags" id="article-tags"></div>
             <div class="share-bar">
-                <span class="share-label"><i class="fas fa-share-alt" style="margin-right:6px;color:var(--gold);"></i>Partager</span>
+                <span class="share-label"><i class="fas fa-share-alt" style="margin-right:6px;color:var(--gold);"></i><span data-translate="article.share">Partager</span></span>
                 <div class="share-btns">
                     <a class="share-btn" id="share-linkedin" href="#" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i> LinkedIn</a>
                     <a class="share-btn" id="share-twitter"  href="#" target="_blank" rel="noopener"><i class="fab fa-x-twitter"></i> Twitter/X</a>
                     <a class="share-btn" id="share-whatsapp" href="#" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                    <button class="share-btn" id="copy-link-btn"><i class="fas fa-link"></i> Copier le lien</button>
+                    <button class="share-btn" id="copy-link-btn"><i class="fas fa-link"></i> <span data-translate="article.copy">Copier le lien</span></button>
                 </div>
             </div>
             <div class="article-nav">
-                <a href="./index.html#blog" class="btn-outline"><i class="fas fa-arrow-left"></i> Tous les articles</a>
-                <a href="./index.html#contact" class="btn-primary"><span>Nous contacter</span><i class="fas fa-arrow-right"></i></a>
+                <a href="./index.html#blog" class="btn-outline"><i class="fas fa-arrow-left"></i> <span data-translate="article.all">Tous les articles</span></a>
+                <a href="./index.html#contact" class="btn-primary"><span data-translate="article.contact">Nous contacter</span><i class="fas fa-arrow-right"></i></a>
             </div>
         </div>
         <div id="body-error" style="display:none;" class="error-wrap">
             <div class="error-icon"><i class="fas fa-exclamation-triangle"></i></div>
-            <h1>ARTICLE INTROUVABLE</h1>
-            <p>Cet article n'existe pas ou a été supprimé.<br>Vérifiez l'URL ou revenez à la liste des actualités.</p>
+            <h1 data-translate="article.notFound">ARTICLE INTROUVABLE</h1>
+            <p data-translate="article.notFoundText" data-translate-html="true">Cet article n'existe pas ou a été supprimé.<br>Vérifiez l'URL ou revenez à la liste des actualités.</p>
             <p class="error-id" id="error-id-display"></p>
-            <a href="./index.html#blog" class="btn-primary"><i class="fas fa-arrow-left"></i><span>Retour aux actualités</span></a>
+            <a href="./index.html#blog" class="btn-primary"><i class="fas fa-arrow-left"></i><span data-translate="article.backNews">Retour aux actualités</span></a>
         </div>
     </main>
     <aside class="article-sidebar">
         <div class="sidebar-card" id="toc-card" style="display:none;">
-            <div class="sidebar-title"><i class="fas fa-list-ul" style="margin-right:7px;"></i>Sommaire</div>
+            <div class="sidebar-title"><i class="fas fa-list-ul" style="margin-right:7px;"></i><span data-translate="article.toc">Sommaire</span></div>
             <ul id="toc-list"></ul>
         </div>
         <div class="sidebar-card reveal">
-            <div class="sidebar-title"><i class="fas fa-user" style="margin-right:7px;"></i>À propos</div>
+            <div class="sidebar-title"><i class="fas fa-user" style="margin-right:7px;"></i><span data-translate="article.about">À propos</span></div>
             <div class="author-avatar" id="author-avatar">EM</div>
-            <div class="author-name" id="sidebar-author">Espérence Mining</div>
-            <p class="author-bio">Leader dans l'industrie minière en Afrique de l'Est depuis 2014. Excellence, intégrité et performance dans six nations africaines.</p>
+            <div class="author-name" id="sidebar-author" data-translate="article.authorDefault">Espérence Mining</div>
+            <p class="author-bio" data-translate="article.authorBio">Leader dans l'industrie minière en Afrique de l'Est depuis 2014. Excellence, intégrité et performance dans six nations africaines.</p>
         </div>
         <div class="sidebar-card reveal">
-            <div class="sidebar-title"><i class="fas fa-newspaper" style="margin-right:7px;"></i>Articles récents</div>
+            <div class="sidebar-title"><i class="fas fa-newspaper" style="margin-right:7px;"></i><span data-translate="article.recent">Articles récents</span></div>
             <div id="related-list">
                 <div class="skeleton" style="height:52px;margin-bottom:8px;"></div>
                 <div class="skeleton" style="height:52px;margin-bottom:8px;"></div>
@@ -351,15 +356,15 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
             </div>
         </div>
         <div class="sidebar-card reveal">
-            <div class="sidebar-title"><i class="fas fa-envelope" style="margin-right:7px;"></i>Newsletter</div>
+            <div class="sidebar-title"><i class="fas fa-envelope" style="margin-right:7px;"></i><span data-translate="newsletter.title">Newsletter</span></div>
             <div class="newsletter-mini" id="newsletter-mini-form">
-                <input type="email" id="sidebar-email" placeholder="votre@email.com" autocomplete="email">
-                <button id="sidebar-subscribe-btn">S'abonner</button>
-                <p>Recevez les dernières actualités minières directement dans votre boîte mail.</p>
+                <input type="email" id="sidebar-email" data-translate="newsletter.placeholder" placeholder="votre@email.com" autocomplete="email">
+                <button id="sidebar-subscribe-btn" data-translate="newsletter.subscribe">S'abonner</button>
+                <p data-translate="article.newsletterDescription">Recevez les dernières actualités minières directement dans votre boîte mail.</p>
             </div>
             <div id="newsletter-mini-success" style="display:none;text-align:center;padding:.5rem 0;">
                 <i class="fas fa-check-circle" style="color:var(--gold);font-size:1.5rem;display:block;margin-bottom:.5rem;"></i>
-                <p style="font-size:.78rem;color:var(--ash);">Inscription réussie !</p>
+                <p style="font-size:.78rem;color:var(--ash);" data-translate="article.newsletterSuccess">Inscription réussie !</p>
             </div>
         </div>
     </aside>
@@ -369,30 +374,32 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
     <div class="footer-top">
         <div class="footer-brand">
             <div class="footer-brand-name">ESPÉRENCE MINING</div>
-            <p>Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité, et performance à travers six nations africaines.</p>
+            <p data-translate="footer.tagline">Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité, et performance à travers six nations africaines.</p>
             <div class="social-links">
                 <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg></a>
                 <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg></a>
                 <a href="#" class="social-link"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg></a>
             </div>
         </div>
-        <div class="footer-col"><h4>Navigation</h4><ul><li><a href="./index.html#services">Services</a></li><li><a href="./index.html#about">À Propos</a></li><li><a href="./index.html#projects">Réalisations</a></li><li><a href="./index.html#partners">Partenaires</a></li><li><a href="./index.html#blog">Actualités</a></li></ul></div>
-        <div class="footer-col"><h4>Services</h4><ul><li><a href="./index.html#services">Logistique</a></li><li><a href="./index.html#services">Main d'Œuvre</a></li><li><a href="./index.html#services">Carburant</a></li><li><a href="./index.html#services">Partenariats</a></li><li><a href="./candidature.html">Recrutement</a></li></ul></div>
-        <div class="footer-col"><h4>Contact</h4><ul><li><a href="mailto:esperencesarl@gmail.com">esperencesarl@gmail.com</a></li><li><a href="tel:+243999541920">+243 999 541 920</a></li></ul><div style="margin-top:1.5rem;font-size:.75rem;color:var(--silver);line-height:1.7;">DRC · Uganda · Burundi<br>Tanzania · Rwanda · Kenya</div></div>
+        <div class="footer-col"><h4 data-translate="footer.navigation">Navigation</h4><ul><li><a href="./index.html#services" data-translate="nav.services">Services</a></li><li><a href="./index.html#about" data-translate="nav.about">À Propos</a></li><li><a href="./index.html#projects" data-translate="nav.projects">Réalisations</a></li><li><a href="./index.html#partners" data-translate="nav.partners">Partenaires</a></li><li><a href="./index.html#blog" data-translate="nav.news">Actualités</a></li></ul></div>
+        <div class="footer-col"><h4 data-translate="footer.services">Services</h4><ul><li><a href="./index.html#services" data-translate="footer.logistics">Logistique</a></li><li><a href="./index.html#services" data-translate="footer.manpower">Main d'Œuvre</a></li><li><a href="./index.html#services" data-translate="footer.fuel">Carburant</a></li><li><a href="./index.html#services" data-translate="footer.partnerships">Partenariats</a></li><li><a href="./candidature.html" data-translate="nav.careers">Recrutement</a></li></ul></div>
+        <div class="footer-col"><h4 data-translate="footer.contact">Contact</h4><ul><li><a href="mailto:esperencesarl@gmail.com">esperencesarl@gmail.com</a></li><li><a href="tel:+243999541920">+243 999 541 920</a></li></ul><div style="margin-top:1.5rem;font-size:.75rem;color:var(--silver);line-height:1.7;" data-translate="footer.countries" data-translate-html="true">RDC · Ouganda · Burundi<br>Tanzanie · Rwanda · Kenya</div></div>
     </div>
     <div class="gold-divider"></div>
     <div class="footer-bottom">
-        <p>© 2024 Espérence Mining SARL. Tous droits réservés.</p>
-        <p style="font-size:.65rem;letter-spacing:.1em;color:rgba(0,0,0,.25);">BUILT FOR EXCELLENCE</p>
+        <p>© 2024 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
+        <p style="font-size:.65rem;letter-spacing:.1em;color:rgba(0,0,0,.25);" data-translate="footer.built">BUILT FOR EXCELLENCE</p>
     </div>
 </footer>
 
+<script src="./js/site-i18n.js"></script>
 <script>
 /* ══════════════════════════════════════
    CONFIG — identique à index.html
 ══════════════════════════════════════ */
 const API_BASE     = 'https://espeback-1q2k.onrender.com/api/v1';
 const FALLBACK_IMG = 'https://images.unsplash.com/photo-1578662996442-48f60103fc96?w=1920&q=80';
+const t = (key, fallback = '') => window.siteI18n?.get(key) || fallback || key;
 
 /* ══════════════════════════════════════
    ESCAPE HTML — identique à index.html
@@ -452,13 +459,14 @@ function getArticleId() {
 ══════════════════════════════════════ */
 function formatDate(d) {
     if (!d) return '';
-    try { return new Date(d).toLocaleDateString('fr-FR',{day:'numeric',month:'long',year:'numeric'}); }
+    const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW' }[document.documentElement.lang] || 'fr-FR';
+    try { return new Date(d).toLocaleDateString(locale,{day:'numeric',month:'long',year:'numeric'}); }
     catch { return ''; }
 }
 function estimateReadTime(c) {
     const text = extractPlainText(c);
-    if (!text) return '3 min de lecture';
-    return Math.max(1, Math.ceil(text.split(/\s+/).length / 220)) + ' min de lecture';
+    const minutes = text ? Math.max(1, Math.ceil(text.split(/\s+/).length / 220)) : 3;
+    return t('article.readTime', '{count} min de lecture').replace('{count}', minutes);
 }
 function extractPlainText(value) {
     if (!value) return '';
@@ -495,13 +503,13 @@ function normalizeSimpleHtml(rawHtml) {
         node.replaceWith(p);
     });
 
-    return wrapper.innerHTML.trim() || '<p>Contenu non disponible.</p>';
+    return wrapper.innerHTML.trim() || `<p>${escapeHtml(t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
 }
 function parseContent(raw) {
-    if (!raw) return '<p>Contenu non disponible.</p>';
+    if (!raw) return `<p>${escapeHtml(t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
     if (Array.isArray(raw)) {
         const parts = raw.map(item => parseContent(item)).filter(Boolean);
-        return parts.join('') || '<p>Contenu non disponible.</p>';
+        return parts.join('') || `<p>${escapeHtml(t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
     }
     if (typeof raw === 'object') {
         if (typeof raw.html === 'string') return parseContent(raw.html);
@@ -511,12 +519,12 @@ function parseContent(raw) {
                 .map(block => extractPlainText(block?.text || block))
                 .filter(Boolean)
                 .map(text => `<p>${escapeHtml(text)}</p>`);
-            return blocks.join('') || '<p>Contenu non disponible.</p>';
+            return blocks.join('') || `<p>${escapeHtml(t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
         }
-        return `<p>${escapeHtml(extractPlainText(raw) || 'Contenu non disponible.')}</p>`;
+        return `<p>${escapeHtml(extractPlainText(raw) || t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
     }
     const rawStr = String(raw).trim();
-    if (!rawStr) return '<p>Contenu non disponible.</p>';
+    if (!rawStr) return `<p>${escapeHtml(t('article.contentUnavailable', 'Contenu non disponible.'))}</p>`;
     if (/<[a-z][\s\S]*>/i.test(rawStr)) return normalizeSimpleHtml(rawStr);
     return rawStr
         .split(/\n{2,}/)
@@ -539,7 +547,7 @@ function normalizeAuthor(author, authorName) {
         if (typeof author.username === 'string' && author.username.trim()) return author.username.trim();
         if (typeof author.email === 'string' && author.email.trim()) return author.email.trim();
     }
-    return 'Espérence Mining';
+    return t('article.authorDefault', 'Espérence Mining');
 }
 function normalizeTags(tags, fallbackCategory) {
     const normalized = Array.isArray(tags)
@@ -559,10 +567,12 @@ function normalizeTags(tags, fallbackCategory) {
 }
 function formatReadTime(readTime, content) {
     if (typeof readTime === 'number' && Number.isFinite(readTime)) {
-        return `${Math.max(1, Math.round(readTime))} min de lecture`;
+        return t('article.readTime', '{count} min de lecture').replace('{count}', Math.max(1, Math.round(readTime)));
     }
     if (typeof readTime === 'string' && readTime.trim()) {
-        return /min/i.test(readTime) ? readTime.trim() : `${readTime.trim()} min de lecture`;
+        return /min|minute|minutes|dakika|iminota|分钟|دقيقة/i.test(readTime)
+            ? readTime.trim()
+            : t('article.readTime', '{count} min de lecture').replace('{count}', readTime.trim());
     }
     return estimateReadTime(content);
 }
@@ -620,10 +630,10 @@ function renderArticle(article) {
     if (!article || typeof article !== 'object') { renderError(null, 'Format de réponse inattendu'); return; }
 
     const id         = article.id       || article._id        || '';
-    const title      = article.title    || 'Sans titre';
-    const cat        = article.category || 'Actualité';
+    const title      = article.title    || t('article.untitled', 'Sans titre');
+    const cat        = article.category || t('article.defaultCategory', 'Actualité');
     const dateStr    = formatDate(article.publishedAt || article.createdAt);
-    const authorName = normalizeAuthor(article.author, article.authorName);
+    const authorName = normalizeAuthor(article.author, article.authorName) || t('article.authorDefault', 'Espérence Mining');
     const imageUrl   = article.imageUrl || article.image      || FALLBACK_IMG;
     const lead       = article.excerpt  || '';
     const body       = parseContent(article.content);
@@ -651,7 +661,7 @@ function renderArticle(article) {
 
     // ── ID affiché ET posé en attribut data-article-id ──
     const idEl = document.getElementById('article-id-display');
-    idEl.textContent = `ID : ${id}`;
+    idEl.textContent = `${t('article.idLabel', 'ID')} : ${id}`;
     idEl.setAttribute('data-article-id', id);
     // Pose l'ID sur l'élément main pour ciblage CSS/JS éventuel
     document.getElementById('articleMain').dataset.articleId = id;
@@ -726,19 +736,19 @@ function buildTOC() {
 function renderRecentArticles(articles) {
     const el = document.getElementById('related-list');
     if (!articles.length) {
-        el.innerHTML = '<p style="font-size:.78rem;color:var(--silver);">Aucun autre article disponible.</p>';
+        el.innerHTML = `<p style="font-size:.78rem;color:var(--silver);">${escapeHtml(t('article.noOther', 'Aucun autre article disponible.'))}</p>`;
         return;
     }
     el.innerHTML = articles.map(a => {
         const artId = a.id || a._id;
         const img   = a.imageUrl || a.image || FALLBACK_IMG;
-        const cat   = a.category || 'Actualité';
+        const cat   = a.category || t('article.defaultCategory', 'Actualité');
         const href  = `./article.html#${encodeURIComponent(String(artId))}`;
         return `
         <a class="related-item" href="${escapeHtml(href)}" id="related-${escapeHtml(String(artId))}">
             <img class="related-thumb" src="${escapeHtml(img)}" alt="${escapeHtml(a.title||'')}" onerror="this.src='${FALLBACK_IMG}'">
             <div>
-                <span class="related-title">${escapeHtml(a.title||'Sans titre')}</span>
+            <span class="related-title">${escapeHtml(a.title || t('article.untitled', 'Sans titre'))}</span>
                 <span class="related-cat">${escapeHtml(cat)}</span>
             </div>
         </a>`;
@@ -754,11 +764,12 @@ function renderError(id, msg) {
     document.getElementById('body-skeleton').style.display = 'none';
     document.getElementById('body-real').style.display     = 'none';
     document.getElementById('body-error').style.display    = 'block';
-    document.getElementById('article-title').textContent   = 'Article introuvable';
+    document.getElementById('article-title').textContent   = t('article.notFoundTitle', 'Article introuvable');
     document.getElementById('heroBg').style.backgroundImage = `url('${FALLBACK_IMG}')`;
     document.getElementById('heroBg').classList.add('loaded');
     document.getElementById('error-id-display').textContent = id
-        ? `Identifiant demandé : ${id}` : 'Aucun identifiant fourni dans l\'URL.';
+        ? `${t('article.requestedId', 'Identifiant demandé')} : ${id}`
+        : t('article.noId', 'Aucun identifiant fourni dans l\'URL.');
     if (msg) console.warn('[article.html] Erreur :', msg);
 }
 
@@ -784,7 +795,7 @@ async function init() {
         renderRecentArticles(recentResult.value);
     } else {
         document.getElementById('related-list').innerHTML =
-            '<p style="font-size:.78rem;color:var(--silver);">Articles indisponibles.</p>';
+            `<p style="font-size:.78rem;color:var(--silver);">${escapeHtml(t('article.unavailable', 'Articles indisponibles.'))}</p>`;
     }
 }
 init();
@@ -809,16 +820,16 @@ document.getElementById('sidebar-subscribe-btn').addEventListener('click', async
             document.getElementById('newsletter-mini-form').style.display    = 'none';
             document.getElementById('newsletter-mini-success').style.display = 'block';
         } else {
-            this.disabled = false; this.textContent = 'Réessayer';
+            this.disabled = false; this.textContent = t('article.retry', 'Réessayer');
         }
-    } catch { this.disabled = false; this.textContent = 'Réessayer'; }
+    } catch { this.disabled = false; this.textContent = t('article.retry', 'Réessayer'); }
 });
 
 /* COPIER LIEN */
 document.getElementById('copy-link-btn').addEventListener('click', function() {
     navigator.clipboard.writeText(window.location.href).then(() => {
         const o = this.innerHTML;
-        this.innerHTML = '<i class="fas fa-check"></i> Copié !';
+        this.innerHTML = `<i class="fas fa-check"></i> ${escapeHtml(t('article.copied', 'Copié !'))}`;
         setTimeout(() => this.innerHTML = o, 2000);
     });
 });

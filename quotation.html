@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Demande de Cotation Automatique - Espérence Mining</title>
-    <meta name="description" content="Demande de cotation automatique pour produits chimiques et équipements logistiques.">
+    <title data-translate="quote.metaTitle">Demande de Cotation Automatique - Espérence Mining</title>
+    <meta name="description" data-translate="quote.metaDescription" data-translate-attr="content" content="Demande de cotation automatique pour produits chimiques et équipements logistiques.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -153,6 +153,8 @@
         .nav-center a:hover { color: var(--gold); }
         .nav-center a:hover::after { left: 18px; right: 18px; }
         .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+        .site-lang-select { background: transparent; border: 1px solid rgba(0,0,0,0.16); color: var(--light); padding: 7px 9px; font: 600 0.65rem var(--font-body); letter-spacing: 0.08em; cursor: pointer; }
+        .site-lang-select:focus { outline: 1px solid var(--gold); }
 
         .btn-primary {
             display: inline-flex;
@@ -856,28 +858,31 @@
             <span class="logo-fallback">ESPÉRENCE</span>
         </a>
         <div class="nav-center">
-            <a href="./index.html#services">Services</a>
-            <a href="./index.html#about">À Propos</a>
-            <a href="./index.html#contact">Contact</a>
+            <a href="./index.html#services" data-translate="nav.services">Services</a>
+            <a href="./index.html#about" data-translate="nav.about">À Propos</a>
+            <a href="./index.html#contact" data-translate="nav.contact">Contact</a>
         </div>
         <div class="nav-actions">
-            <a href="./index.html" class="btn-outline"><i class="fas fa-arrow-left"></i><span>Retour au site</span></a>
+            <select class="site-lang-select" data-translate-aria-label="nav.language" aria-label="Language">
+                <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option>
+            </select>
+            <a href="./index.html" class="btn-outline"><i class="fas fa-arrow-left"></i><span data-translate="nav.backToSite">Retour au site</span></a>
         </div>
     </nav>
 
     <section class="hero">
         <div class="hero-inner">
-            <div class="hero-kicker"><span>Demande de cotation</span></div>
-            <h1>Demande de <em>Cotation</em> Automatique</h1>
-            <p>
+            <div class="hero-kicker"><span data-translate="quote.kicker">Demande de cotation</span></div>
+            <h1 data-translate="quote.title" data-translate-html="true">Demande de <em>Cotation</em> Automatique</h1>
+            <p data-translate="quote.subtitle">
                 Sélectionnez un produit chimique ou un équipement logistique, puis laissez la liste se regrouper par familles ou secteurs selon les données renvoyées par le backend avant d’envoyer votre demande par email.
             </p>
             <div class="hero-actions">
                 <a href="#quotationForm" class="btn-primary">
-                    <span>Commencer</span>
+                    <span data-translate="quote.start">Commencer</span>
                     <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="./index.html#services" class="btn-outline">Voir les services</a>
+                <a href="./index.html#services" class="btn-outline" data-translate="nav.viewServices">Voir les services</a>
             </div>
         </div>
     </section>
@@ -886,13 +891,13 @@
         <div class="quote-layout">
             <aside class="info-stack">
                 <div class="info-card">
-                    <div class="info-kicker">Flux en 4 étapes</div>
-                    <h2>Un parcours rapide et clair</h2>
+                    <div class="info-kicker" data-translate="quote.flow">Flux en 4 étapes</div>
+                    <h2 data-translate="quote.flowTitle">Un parcours rapide et clair</h2>
                     <ul class="info-list">
-                        <li><i class="fas fa-circle-check"></i><span>Choisissez votre type d’article entre produits chimiques et équipements logistiques.</span></li>
-                        <li><i class="fas fa-circle-check"></i><span>Recherchez l’article voulu dans une liste filtrable, regroupée par familles ou secteurs quand le backend les fournit.</span></li>
-                        <li><i class="fas fa-circle-check"></i><span>Indiquez la quantité, l’unité et vos coordonnées de contact.</span></li>
-                        <li><i class="fas fa-circle-check"></i><span>Validez la demande et recevez la cotation officielle par email.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span data-translate="quote.flow1">Choisissez votre type d’article entre produits chimiques et équipements logistiques.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span data-translate="quote.flow2">Recherchez l’article voulu dans une liste filtrable, regroupée par familles ou secteurs quand le backend les fournit.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span data-translate="quote.flow3">Indiquez la quantité, l’unité et vos coordonnées de contact.</span></li>
+                        <li><i class="fas fa-circle-check"></i><span data-translate="quote.flow4">Validez la demande et recevez la cotation officielle par email.</span></li>
                     </ul>
                 </div>
             </aside>
@@ -900,14 +905,14 @@
             <section class="form-card">
                 <div class="form-head">
                     <div>
-                        <div class="section-kicker">Formulaire</div>
-                        <h2>Configurez votre demande</h2>
-                        <p>
+                        <div class="section-kicker" data-translate="quote.form">Formulaire</div>
+                        <h2 data-translate="quote.formTitle">Configurez votre demande</h2>
+                        <p data-translate="quote.formIntro">
                             Renseignez les informations demandées pas à pas. Le champ article s’adapte au type sélectionné et regroupe les résultats par familles ou secteurs quand la source distante les expose.
                         </p>
                     </div>
                     <div class="progress-wrap">
-                        <div class="progress-label" id="progressLabel">Étape 1 / 4</div>
+                        <div class="progress-label" id="progressLabel" data-translate="quote.progress">Étape 1 / 4</div>
                         <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
                     </div>
                 </div>
@@ -919,17 +924,17 @@
                         <div class="step-title">
                             <div class="step-badge">1</div>
                             <div>
-                                <h3>Choix du type</h3>
-                                <p>Sélectionnez directement une famille pour voir les produits et équipements qui lui sont rattachés.</p>
+                                <h3 data-translate="quote.step1Title">Choix du type</h3>
+                                <p data-translate="quote.step1Desc">Sélectionnez directement une famille pour voir les produits et équipements qui lui sont rattachés.</p>
                             </div>
                         </div>
-                        <div id="familyChoices" class="choice-grid" aria-label="Familles d’articles">
-                            <div class="family-empty">Chargement des familles et des produits disponibles...</div>
+                        <div id="familyChoices" class="choice-grid" data-translate-aria-label="quote.familiesAria" aria-label="Familles d’articles">
+                            <div class="family-empty" data-translate="quote.loadingFamilies">Chargement des familles et des produits disponibles...</div>
                         </div>
                         <div class="step-actions">
                             <span></span>
                             <button type="button" class="btn-primary" data-next-step>
-                                <span>Continuer</span>
+                                <span data-translate="quote.continue">Continuer</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
@@ -939,31 +944,31 @@
                         <div class="step-title">
                             <div class="step-badge">2</div>
                             <div>
-                                <h3>Sélection de l’article</h3>
-                                <p>Commencez à taper pour filtrer la liste. Les résultats sont ensuite regroupés par familles ou secteurs quand le backend les fournit.</p>
+                                <h3 data-translate="quote.step2Title">Sélection de l’article</h3>
+                                <p data-translate="quote.step2Desc">Commencez à taper pour filtrer la liste. Les résultats sont ensuite regroupés par familles ou secteurs quand le backend les fournit.</p>
                             </div>
                         </div>
                         <div class="field-group">
-                            <label for="itemSearch">Article *</label>
+                            <label for="itemSearch" data-translate="quote.item">Article *</label>
                             <div class="combobox">
-                                <input type="text" id="itemSearch" class="combobox-input" placeholder="Rechercher un article..." autocomplete="off">
+                                <input type="text" id="itemSearch" class="combobox-input" data-translate="quote.search" placeholder="Rechercher un article..." autocomplete="off">
                                 <input type="hidden" id="itemType" name="itemType" value="CHEMICAL">
                                 <input type="hidden" id="itemName" name="itemName">
-                                <div class="combobox-panel" id="itemPanel" role="listbox" aria-label="Liste des articles"></div>
+                                <div class="combobox-panel" id="itemPanel" role="listbox" data-translate-aria-label="quote.itemsAria" aria-label="Liste des articles"></div>
                             </div>
                             <div class="selected-item-pill" id="selectedItemPill" style="display:none;">
                                 <i class="fas fa-tag"></i>
                                 <span id="selectedItemText"></span>
                             </div>
-                            <p class="field-help" id="itemHint">Les suggestions du type sélectionné apparaissent par défaut. Le catalogue se regroupe automatiquement par familles ou secteurs selon la source distante.</p>
+                            <p class="field-help" id="itemHint" data-translate="quote.itemHint">Les suggestions du type sélectionné apparaissent par défaut. Le catalogue se regroupe automatiquement par familles ou secteurs selon la source distante.</p>
                         </div>
                         <div class="step-actions">
                             <button type="button" class="btn-outline" data-back-step>
                                 <i class="fas fa-arrow-left"></i>
-                                <span>Retour</span>
+                                <span data-translate="quote.back">Retour</span>
                             </button>
                             <button type="button" class="btn-primary" data-next-step>
-                                <span>Continuer</span>
+                                <span data-translate="quote.continue">Continuer</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
@@ -973,34 +978,34 @@
                         <div class="step-title">
                             <div class="step-badge">3</div>
                             <div>
-                                <h3>Quantité et unité</h3>
-                                <p>La quantité doit être strictement supérieure à zéro. L’unité s’adapte automatiquement au type d’article.</p>
+                                <h3 data-translate="quote.step3Title">Quantité et unité</h3>
+                                <p data-translate="quote.step3Desc">La quantité doit être strictement supérieure à zéro. L’unité s’adapte automatiquement au type d’article.</p>
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="field-group">
-                                <label for="quantity">Quantité *</label>
-                                <input type="number" id="quantity" name="quantity" min="0.01" step="0.01" placeholder="Ex : 10" required>
+                                <label for="quantity" data-translate="quote.quantity">Quantité *</label>
+                                <input type="number" id="quantity" name="quantity" min="0.01" step="0.01" data-translate="quote.quantityPlaceholder" placeholder="Ex : 10" required>
                             </div>
                             <div class="field-group">
-                                <label for="unit">Unité *</label>
+                                <label for="unit" data-translate="quote.unit">Unité *</label>
                                 <select id="unit" name="unit" required></select>
                             </div>
                         </div>
                         <div class="summary-box">
-                            <h4>Récapitulatif rapide</h4>
-                            <div class="summary-line"><span>Type</span><strong id="summaryType">Intrants & Produits Chimiques</strong></div>
-                            <div class="summary-line"><span>Article</span><strong id="summaryItem">Aucun article sélectionné</strong></div>
-                            <div class="summary-line"><span>Quantité</span><strong id="summaryQuantity">-</strong></div>
-                            <div class="summary-line"><span>Unité</span><strong id="summaryUnit">-</strong></div>
+                            <h4 data-translate="quote.summary">Récapitulatif rapide</h4>
+                            <div class="summary-line"><span data-translate="quote.type">Type</span><strong id="summaryType" data-translate="quote.chemicalType">Intrants & Produits Chimiques</strong></div>
+                            <div class="summary-line"><span data-translate="quote.article">Article</span><strong id="summaryItem" data-translate="quote.noArticle">Aucun article sélectionné</strong></div>
+                            <div class="summary-line"><span data-translate="quote.quantityLabel">Quantité</span><strong id="summaryQuantity">-</strong></div>
+                            <div class="summary-line"><span data-translate="quote.unitLabel">Unité</span><strong id="summaryUnit">-</strong></div>
                         </div>
                         <div class="step-actions">
                             <button type="button" class="btn-outline" data-back-step>
                                 <i class="fas fa-arrow-left"></i>
-                                <span>Retour</span>
+                                <span data-translate="quote.back">Retour</span>
                             </button>
                             <button type="button" class="btn-primary" data-next-step>
-                                <span>Continuer</span>
+                                <span data-translate="quote.continue">Continuer</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
@@ -1010,37 +1015,37 @@
                         <div class="step-title">
                             <div class="step-badge">4</div>
                             <div>
-                                <h3>Informations du demandeur</h3>
-                                <p>Ces coordonnées servent à l’émission de la cotation officielle et à l’envoi immédiat par email.</p>
+                                <h3 data-translate="quote.step4Title">Informations du demandeur</h3>
+                                <p data-translate="quote.step4Desc">Ces coordonnées servent à l’émission de la cotation officielle et à l’envoi immédiat par email.</p>
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="field-group">
-                                <label for="clientName">Nom complet *</label>
-                                <input type="text" id="clientName" name="clientName" placeholder="Jean Dupont" required>
+                                <label for="clientName" data-translate="quote.fullName">Nom complet *</label>
+                                <input type="text" id="clientName" name="clientName" data-translate="quote.fullNamePlaceholder" placeholder="Jean Dupont" required>
                             </div>
                             <div class="field-group">
-                                <label for="companyName">Nom de l'entreprise</label>
-                                <input type="text" id="companyName" name="companyName" placeholder="Espérance Mining SARL">
+                                <label for="companyName" data-translate="quote.company">Nom de l'entreprise</label>
+                                <input type="text" id="companyName" name="companyName" data-translate="quote.companyPlaceholder" placeholder="Espérance Mining SARL">
                             </div>
                         </div>
                         <div class="form-grid">
                             <div class="field-group">
-                                <label for="clientPhone">Téléphone *</label>
-                                <input type="tel" id="clientPhone" name="clientPhone" placeholder="+243 ..." required>
+                                <label for="clientPhone" data-translate="quote.phone">Téléphone *</label>
+                                <input type="tel" id="clientPhone" name="clientPhone" data-translate="quote.phonePlaceholder" placeholder="+243 ..." required>
                             </div>
                             <div class="field-group">
-                                <label for="clientEmail">Adresse Email *</label>
-                                <input type="email" id="clientEmail" name="clientEmail" placeholder="adresse@domaine.com" required>
+                                <label for="clientEmail" data-translate="quote.email">Adresse Email *</label>
+                                <input type="email" id="clientEmail" name="clientEmail" data-translate="quote.emailPlaceholder" placeholder="adresse@domaine.com" required>
                             </div>
                         </div>
                         <div class="step-actions">
                             <button type="button" class="btn-outline" data-back-step>
                                 <i class="fas fa-arrow-left"></i>
-                                <span>Retour</span>
+                                <span data-translate="quote.back">Retour</span>
                             </button>
                             <button type="submit" class="btn-primary" id="submitBtn">
-                                <span>Valider ma demande</span>
+                                <span data-translate="quote.validate">Valider ma demande</span>
                                 <i class="fas fa-arrow-right"></i>
                             </button>
                         </div>
@@ -1054,19 +1059,19 @@
         <div class="footer-top">
             <div class="footer-brand">
                 <div class="footer-brand-name">ESPÉRENCE MINING</div>
-                <p>Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité et performance à travers six nations africaines.</p>
+                <p data-translate="footer.tagline">Leader dans l'industrie minière en Afrique de l'Est. Excellence, intégrité et performance à travers six nations africaines.</p>
             </div>
             <div class="footer-col">
-                <h4>Navigation</h4>
+                <h4 data-translate="footer.navigation">Navigation</h4>
                 <ul>
-                    <li><a href="./index.html#services">Services</a></li>
-                    <li><a href="./index.html#about">À Propos</a></li>
-                    <li><a href="./index.html#contact">Contact</a></li>
-                    <li><a href="./quotation.html">Cotation</a></li>
+                    <li><a href="./index.html#services" data-translate="nav.services">Services</a></li>
+                    <li><a href="./index.html#about" data-translate="nav.about">À Propos</a></li>
+                    <li><a href="./index.html#contact" data-translate="nav.contact">Contact</a></li>
+                    <li><a href="./quotation.html" data-translate="nav.quote">Cotation</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contact</h4>
+                <h4 data-translate="footer.contact">Contact</h4>
                 <ul>
                     <li><a href="mailto:esperencesarl@gmail.com">esperencesarl@gmail.com</a></li>
                     <li><a href="tel:+243999541920">+243 999 541 920</a></li>
@@ -1074,11 +1079,12 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>© 2026 Espérence Mining SARL. Tous droits réservés.</p>
-            <p style="letter-spacing:0.1em;">BUILT FOR EXCELLENCE</p>
+            <p>© 2026 Espérence Mining SARL. <span data-translate="footer.rights">Tous droits réservés.</span></p>
+            <p style="letter-spacing:0.1em;" data-translate="footer.built">BUILT FOR EXCELLENCE</p>
         </div>
     </footer>
 
+    <script src="./js/site-i18n.js"></script>
     <script>
         const API_BASE = 'https://espeback-1q2k.onrender.com/api/v1';
         const QUOTATION_SUBMIT_URL = `${API_BASE}/quotations/submit`;
@@ -1241,6 +1247,17 @@
         const stepPanels = Array.from(document.querySelectorAll('.quote-step'));
         const backButtons = Array.from(document.querySelectorAll('[data-back-step]'));
         const nextButtons = Array.from(document.querySelectorAll('[data-next-step]'));
+
+        const t = (key, fallback = '') => window.siteI18n?.get(key) || fallback || key;
+        const getTypeLabel = (type) => type === 'CHEMICAL'
+            ? t('quote.chemicalType', TYPE_LABELS.CHEMICAL)
+            : t('quote.equipmentType', TYPE_LABELS.EQUIPMENT);
+        const getDefaultFamily = (type) => type === 'CHEMICAL'
+            ? t('quote.catalogChemical', DEFAULT_FAMILIES.CHEMICAL)
+            : t('quote.catalogEquipment', DEFAULT_FAMILIES.EQUIPMENT);
+        const getTypeHint = (type) => type === 'CHEMICAL'
+            ? t('quote.chemicalExamples', TYPE_HINTS.CHEMICAL)
+            : t('quote.equipmentExamples', TYPE_HINTS.EQUIPMENT);
 
         let loaderProgress = 0;
         let currentStep = 1;
@@ -1428,7 +1445,7 @@
                 });
                 if (!response.ok) return [];
                 const data = await response.json().catch(() => ({}));
-                return extractCatalogEntries(pickCatalogPayload(data), DEFAULT_FAMILIES[type]);
+                return extractCatalogEntries(pickCatalogPayload(data), getDefaultFamily(type));
             } catch {
                 return [];
             }
@@ -1439,7 +1456,7 @@
             entries.forEach((entry) => {
                 const title = String(entry.title || '').trim();
                 if (!title) return;
-                families.set(normalizeText(title), entry.family || DEFAULT_FAMILIES[type]);
+                families.set(normalizeText(title), entry.family || getDefaultFamily(type));
             });
             return families;
         }
@@ -1468,7 +1485,7 @@
             const familyMap = catalogFamilies[type] || new Map();
             const groups = new Map();
             (catalog[type] || []).forEach((item) => {
-                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[type];
+                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(type);
                 if (!groups.has(family)) groups.set(family, []);
                 groups.get(family).push(item);
             });
@@ -1489,9 +1506,9 @@
                 const sectionTitle = document.createElement('div');
                 sectionTitle.className = 'family-section-title';
                 const title = document.createElement('h4');
-                title.textContent = TYPE_LABELS[type];
+                title.textContent = getTypeLabel(type);
                 const count = document.createElement('span');
-                count.textContent = `${groups.size} famille${groups.size > 1 ? 's' : ''}`;
+                count.textContent = `${groups.size} ${groups.size > 1 ? t('quote.families', 'familles') : t('quote.family', 'famille')}`;
                 sectionTitle.append(title, count);
                 section.appendChild(sectionTitle);
 
@@ -1521,7 +1538,7 @@
                     if (items.length > 5) {
                         const more = document.createElement('span');
                         more.className = 'family-product-more';
-                        more.textContent = `+${items.length - 5} autre${items.length - 5 > 1 ? 's' : ''}`;
+                        more.textContent = `+${items.length - 5} ${items.length - 5 > 1 ? t('quote.moreMany', 'autres') : t('quote.moreOne', 'autre')}`;
                         products.appendChild(more);
                     }
                     card.append(icon, heading, products);
@@ -1553,7 +1570,7 @@
                 panel.classList.toggle('active', Number(panel.dataset.step) === currentStep);
             });
             progressFill.style.width = `${(currentStep / 4) * 100}%`;
-            progressLabel.textContent = `Étape ${currentStep} / 4`;
+            progressLabel.textContent = t('quote.progress', 'Étape {step} / 4').replace('{step}', currentStep);
             if (currentStep === 2) {
                 setTimeout(() => itemSearch.focus(), 50);
             }
@@ -1567,23 +1584,24 @@
 
         function updateUnits() {
             const units = UNIT_OPTIONS[currentType] || ['Unités'];
+            const unitKeys = { 'Tonnes': 'quote.units.tonnes', 'Litres': 'quote.units.litres', 'Sacs': 'quote.units.bags', 'IBC': 'quote.units.ibc', 'Unités': 'quote.units.units' };
             unitSelect.innerHTML = '';
             units.forEach((unit) => {
                 const option = document.createElement('option');
                 option.value = unit;
-                option.textContent = unit;
+                option.textContent = t(unitKeys[unit], unit);
                 unitSelect.appendChild(option);
             });
-            summaryType.textContent = TYPE_LABELS[currentType];
+            summaryType.textContent = getTypeLabel(currentType);
             itemTypeInput.value = currentType;
-            itemHint.textContent = TYPE_HINTS[currentType];
+            itemHint.textContent = getTypeHint(currentType);
             itemSearch.placeholder = currentType === 'CHEMICAL'
-                ? 'Rechercher un produit chimique...'
-                : 'Rechercher un équipement...';
+                ? t('quote.chemicalSearch', 'Rechercher un produit chimique...')
+                : t('quote.equipmentSearch', 'Rechercher un équipement...');
         }
 
         function updateSummary() {
-            summaryItem.textContent = selectedItem || 'Aucun article sélectionné';
+            summaryItem.textContent = selectedItem || t('quote.noArticle', 'Aucun article sélectionné');
             summaryQuantity.textContent = quantityInput.value ? quantityInput.value : '-';
             summaryUnit.textContent = unitSelect.value || '-';
         }
@@ -1600,13 +1618,13 @@
             const query = normalizeText(itemSearch.value);
             const familyMap = catalogFamilies[currentType] || new Map();
             const items = (catalog[currentType] || []).filter((item) => {
-                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[currentType];
+                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(currentType);
                 return (!selectedFamily || family === selectedFamily) && normalizeText(item).includes(query);
             });
             const groups = new Map();
 
             items.forEach((item) => {
-                const family = familyMap.get(normalizeText(item)) || DEFAULT_FAMILIES[currentType];
+                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(currentType);
                 if (!groups.has(family)) groups.set(family, []);
                 groups.get(family).push(item);
             });
@@ -1615,7 +1633,7 @@
             if (!items.length) {
                 const empty = document.createElement('div');
                 empty.className = 'combobox-empty';
-                empty.textContent = 'Aucun résultat';
+                empty.textContent = t('quote.noResults', 'Aucun résultat');
                 itemPanel.appendChild(empty);
             } else {
                 groups.forEach((groupItems, family) => {
@@ -1707,12 +1725,19 @@
             resetItemSelection();
             closePanel();
             progressFill.style.width = '25%';
-            progressLabel.textContent = 'Étape 1 / 4';
+            progressLabel.textContent = t('quote.progress', 'Étape {step} / 4').replace('{step}', 1);
             setStep(1);
             renderFamilyChoices();
             renderSuggestions(true);
             updateSummary();
         }
+
+        window.addEventListener('site-language-change', () => {
+            updateUnits();
+            renderFamilyChoices();
+            renderSuggestions(true);
+            updateSummary();
+        });
 
         itemSearch.addEventListener('focus', () => {
             renderSuggestions(true);
@@ -1739,7 +1764,7 @@
         nextButtons.forEach((button) => {
             button.addEventListener('click', () => {
                 if (!validateCurrentStep()) {
-                    showAlert('Veuillez compléter correctement cette étape avant de continuer.', 'error');
+                    showAlert(t('quote.stepIncomplete', 'Veuillez compléter correctement cette étape avant de continuer.'), 'error');
                     return;
                 }
                 clearAlert();
@@ -1758,13 +1783,13 @@
             clearAlert();
 
             if (!validateCurrentStep()) {
-                showAlert('Veuillez compléter toutes les informations obligatoires avant l’envoi.', 'error');
+                showAlert(t('quote.requiredBeforeSend', 'Veuillez compléter toutes les informations obligatoires avant l’envoi.'), 'error');
                 return;
             }
 
             const quantityValue = quantityInput.valueAsNumber;
             if (!(quantityValue > 0)) {
-                showAlert('La quantité doit être strictement supérieure à zéro.', 'error');
+                showAlert(t('quote.quantityError', 'La quantité doit être strictement supérieure à zéro.'), 'error');
                 return;
             }
 
@@ -1773,7 +1798,7 @@
                 if (exact) {
                     selectItem(exact);
                 } else {
-                    showAlert('Veuillez sélectionner un article valide dans la liste.', 'error');
+                    showAlert(t('quote.invalidItem', 'Veuillez sélectionner un article valide dans la liste.'), 'error');
                     return;
                 }
             }
@@ -1789,14 +1814,14 @@
             };
 
             if (!payload.clientName || !payload.clientEmail || !payload.clientPhone) {
-                showAlert('Tous les champs du demandeur sont requis.', 'error');
+                showAlert(t('quote.requesterRequired', 'Tous les champs du demandeur sont requis.'), 'error');
                 return;
             }
 
             const originalHTML = submitBtn.innerHTML;
             submitBtn.disabled = true;
             submitBtn.classList.add('is-loading');
-            submitBtn.innerHTML = '<span>Envoi en cours...</span><i class="fas fa-spinner"></i>';
+            submitBtn.innerHTML = `<span>${t('quote.sending', 'Envoi en cours...')}</span><i class="fas fa-spinner"></i>`;
 
             await new Promise((resolve) => requestAnimationFrame(resolve));
 
@@ -1815,20 +1840,20 @@
                 if (response.ok && (data.success !== false)) {
                     const status = data.data?.status || data.status;
                     const message = status === 'MANUAL_REVIEW'
-                        ? 'Votre demande a bien été reçue. Elle sera examinée par un expert minier.'
-                        : 'Votre demande a été traitée avec succès. Votre cotation officielle vient de vous être envoyée par email !';
+                        ? t('quote.manualSuccess', 'Votre demande a bien été reçue. Elle sera examinée par un expert minier.')
+                        : t('quote.success', 'Votre demande a été traitée avec succès. Votre cotation officielle vient de vous être envoyée par email !');
                     showAlert(message, 'success');
                     resetFormState();
                 } else {
                     const validationMessage = Array.isArray(data.errors)
                         ? data.errors.map((error) => error.message).filter(Boolean).join(' ')
                         : '';
-                    const message = validationMessage || data.message || 'La demande n’a pas pu être envoyée. Veuillez réessayer.';
+                    const message = validationMessage || data.message || t('quote.sendError', 'La demande n’a pas pu être envoyée. Veuillez réessayer.');
                     showAlert(message, 'error');
                 }
             } catch (error) {
                 console.error('Quotation submission error:', error);
-                showAlert('Erreur de connexion au serveur. Veuillez réessayer plus tard.', 'error');
+                showAlert(t('quote.serverError', 'Erreur de connexion au serveur. Veuillez réessayer plus tard.'), 'error');
             } finally {
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('is-loading');
