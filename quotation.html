@@ -1165,10 +1165,10 @@
         };
 
         const UNIT_OPTIONS = {
-            EQUIPMENT: ['Unités'],
-            TRANSPORT: ['Unités'],
-            SUPPLY_CHAIN: ['Unités'],
-            MINES: ['Unités'],
+            EQUIPMENT: ['Tonnes', 'Litres', 'Sacs', 'IBC', 'Unités'],
+            TRANSPORT: ['Tonnes', 'Litres', 'Sacs', 'IBC', 'Unités'],
+            SUPPLY_CHAIN: ['Tonnes', 'Litres', 'Sacs', 'IBC', 'Unités'],
+            MINES: ['Tonnes', 'Litres', 'Sacs', 'IBC', 'Unités'],
             LABOR: ['Personnes', 'Jours', 'Heures']
         };
 
@@ -1527,6 +1527,10 @@
             const units = getCategoryUnits(currentCategory);
             const previousUnit = unitSelect.value;
             const unitKeys = {
+                'Tonnes': 'quote.units.tonnes',
+                'Litres': 'quote.units.litres',
+                'Sacs': 'quote.units.bags',
+                'IBC': 'quote.units.ibc',
                 'Unités': 'quote.units.units',
                 'Personnes': 'quote.units.people',
                 'Jours': 'quote.units.days',
