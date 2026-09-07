@@ -955,7 +955,7 @@
                             <label for="itemSearch" data-translate="quote.item">Article *</label>
                             <div class="combobox">
                                 <input type="text" id="itemSearch" class="combobox-input" data-translate="quote.search" placeholder="Rechercher un article..." autocomplete="off">
-                                <input type="hidden" id="itemType" name="itemType" value="CHEMICAL">
+                                <input type="hidden" id="itemType" name="itemType" value="EQUIPMENT">
                                 <input type="hidden" id="itemName" name="itemName">
                                 <div class="combobox-panel" id="itemPanel" role="listbox" data-translate-aria-label="quote.itemsAria" aria-label="Liste des articles"></div>
                             </div>
@@ -997,7 +997,7 @@
                         </div>
                         <div class="summary-box">
                             <h4 data-translate="quote.summary">Récapitulatif rapide</h4>
-                            <div class="summary-line"><span data-translate="quote.type">Type</span><strong id="summaryType" data-translate="quote.chemicalType">Intrants & Produits Chimiques</strong></div>
+                            <div class="summary-line"><span data-translate="quote.type">Type</span><strong id="summaryType" data-translate="quote.categoryEquipment">Équipement</strong></div>
                             <div class="summary-line"><span data-translate="quote.article">Article</span><strong id="summaryItem" data-translate="quote.noArticle">Aucun article sélectionné</strong></div>
                             <div class="summary-line"><span data-translate="quote.quantityLabel">Quantité</span><strong id="summaryQuantity">-</strong></div>
                             <div class="summary-line"><span data-translate="quote.unitLabel">Unité</span><strong id="summaryUnit">-</strong></div>
@@ -1093,138 +1093,114 @@
         const QUOTATION_SUBMIT_URL = `${API_BASE}/quotations/submit`;
         const QUOTATION_CATALOG_URL = `${API_BASE}/quotations/catalog`;
 
+        const CATEGORY_CONFIG = [
+            {
+                key: 'EQUIPMENT',
+                labelKey: 'quote.categoryEquipment',
+                fallbackLabel: 'Équipement',
+                hintKey: 'quote.categoryEquipmentHint',
+                fallbackHint: 'Exemples : grues, chargeuses, foreuses, groupes électrogènes.',
+                icon: '<i class="fas fa-cogs"></i>'
+            },
+            {
+                key: 'TRANSPORT',
+                labelKey: 'quote.categoryTransport',
+                fallbackLabel: 'Transport',
+                hintKey: 'quote.categoryTransportHint',
+                fallbackHint: 'Exemples : camions, remorques, véhicules de service, porte-engins.',
+                icon: '<i class="fas fa-truck"></i>'
+            },
+            {
+                key: 'SUPPLY_CHAIN',
+                labelKey: 'quote.categorySupplyChain',
+                fallbackLabel: 'Chaîne d’approvisionnement',
+                hintKey: 'quote.categorySupplyChainHint',
+                fallbackHint: 'Exemples : entrepôts, rayonnages, palettes, conteneurs, convoyeurs.',
+                icon: '<i class="fas fa-warehouse"></i>'
+            },
+            {
+                key: 'MINES',
+                labelKey: 'quote.categoryMines',
+                fallbackLabel: 'Mines',
+                hintKey: 'quote.categoryMinesHint',
+                fallbackHint: 'Exemples : pelles, bulldozers, camions miniers, niveleuses.',
+                icon: '<i class="fas fa-industry"></i>'
+            },
+            {
+                key: 'LABOR',
+                labelKey: 'quote.categoryLabor',
+                fallbackLabel: 'Main-d’œuvre',
+                hintKey: 'quote.categoryLaborHint',
+                fallbackHint: 'Exemples : main-d’œuvre qualifiée, opérateurs, manutentionnaires, supervision.',
+                icon: '<i class="fas fa-users"></i>'
+            }
+        ];
+
+        const CATEGORY_BY_KEY = Object.fromEntries(CATEGORY_CONFIG.map((category) => [category.key, category]));
+        const CATEGORY_KEYS = CATEGORY_CONFIG.map((category) => category.key);
+        const DEFAULT_CATEGORY_KEY = CATEGORY_KEYS[0];
+
         const STATIC_CATALOG = {
-            CHEMICAL: [
-                'Acide sulfurique',
-                'Chaux vive',
-                'Chaux hydratée',
-                'Soude caustique',
-                'Carbonate de sodium',
-                'Acide chlorhydrique',
-                'Acide nitrique',
-                'Sulfate de cuivre',
-                'Xanthates',
-                'Dithiophosphates',
-                'MIBC',
-                'Silicate de sodium',
-                'Métabisulfite de sodium',
-                'Sulfure de sodium',
-                'Floculant polymère',
-                'Coagulant',
-                'Peroxyde d’hydrogène',
-                'Hypochlorite de sodium',
-                'Chlorure ferrique',
-                'Sulfate d’aluminium',
-                'Ammoniaque / solution ammoniacale',
-                'Charbon actif',
-                'Solvant d’extraction cuivre',
-                'Diluant organique',
-                'Kérosène / hydrocarbure de procédé',
-                'Acide citrique',
-                'Sulfate ferreux',
-                'Permanganate de potassium',
-                'EDTA',
-                'Éthanol',
-                'Acétone',
-                'Isopropanol',
-                'Acide borique',
-                'Réactifs analytiques',
-                'Réactifs de lixiviation spécialisés'
-            ],
             EQUIPMENT: [
-                'Camion benne',
-                'Camion plateau',
-                'Camion-citerne',
-                'Camion-grue',
-                'Tracteur routier',
-                'Semi-remorque',
-                'Remorque plateau',
-                'Remorque benne',
-                'Camionnette',
-                'Fourgon de transport',
-                'Pick-up 4×4',
-                'Véhicule de service',
-                'Bus / Minibus pour le personnel',
-                'Porte-engins / Porte-char',
-                'Camion frigorifique',
-                'Chariot élévateur (Forklift)',
-                'Transpalette manuel',
-                'Transpalette électrique',
-                'Gerbeur électrique',
-                'Chargeuse sur pneus',
-                'Chargeuse compacte',
                 'Pelle hydraulique',
+                'Chargeuse sur pneus',
                 'Grue mobile',
-                'Grue télescopique (Manitou)',
-                'Nacelle élévatrice',
+                'Groupe électrogène',
+                "Compresseur d'air",
                 'Palan électrique',
                 'Pont roulant',
                 'Treuil',
-                'Convoyeur à bande',
+                'Chariot élévateur'
+            ],
+            TRANSPORT: [
+                'Camion benne',
+                'Camion plateau',
+                'Camion-citerne',
+                'Porte-engins / Porte-char',
+                'Pick-up 4×4',
+                'Véhicule de service',
+                'Bus / Minibus pour le personnel',
+                'Remorque plateau'
+            ],
+            SUPPLY_CHAIN: [
                 'Rayonnage métallique',
                 'Palettes en bois',
                 'Palettes en plastique',
                 'Caisses de stockage',
                 'Bacs industriels',
                 'Conteneurs',
-                'Étagères industrielles',
-                'Armoires de stockage',
-                'Quai de chargement',
-                'Rampe de chargement',
+                'Convoyeur à bande',
                 'Balance industrielle',
-                "Machine d'emballage",
-                'Filmeuse de palettes',
-                'Cerclageuse',
-                'Étiqueteuse',
+                'Quai de chargement',
+                'Rampe de chargement'
+            ],
+            MINES: [
                 'Camion minier / Dumper',
                 'Chargeuse minière',
-                'Pelle hydraulique',
                 'Bulldozer',
                 'Niveleuse (Grader)',
                 'Tracteur à chenilles',
                 'Camion-citerne à eau',
-                'Camion-citerne carburant',
-                'Porte-engins',
-                'Grue mobile',
-                'Chariot élévateur',
-                'Convoyeur',
-                "Véhicule d'inspection",
-                'Pick-up 4×4',
                 'Camion atelier',
-                'Groupe électrogène',
-                "Compresseur d'air",
                 'Station de lavage',
-                'Station de graissage',
-                'Réservoir de carburant',
-                'Pompe à carburant',
-                'Pompe à eau',
-                'Outillage mécanique',
-                'Cric hydraulique',
-                'Équipements de sécurité',
-                'Extincteurs',
-                'GPS / Système de suivi des véhicules',
-                'Système de gestion de flotte'
+                'Station de graissage'
+            ],
+            LABOR: [
+                'Main-d’œuvre qualifiée',
+                'Opérateurs miniers',
+                'Manutentionnaires',
+                'Personnel de sécurité',
+                'Superviseurs de site',
+                'Techniciens de maintenance'
             ]
         };
 
         const UNIT_OPTIONS = {
-            CHEMICAL: ['Tonnes', 'Litres', 'Sacs', 'IBC'],
-            EQUIPMENT: ['Unités']
-        };
-
-        const TYPE_LABELS = {
-            CHEMICAL: 'Intrants & Produits Chimiques',
-            EQUIPMENT: 'Matériels, Logistique & Engins'
-        };
-
-        const DEFAULT_FAMILIES = {
-            CHEMICAL: 'Produits chimiques',
-            EQUIPMENT: 'Équipements'
-        };
-
-        const TYPE_HINTS = {
-            CHEMICAL: 'Exemples: Acide sulfurique, Chaux vive, Xanthates, MIBC. Les résultats sont regroupés par familles ou secteurs si le backend les fournit.',
-            EQUIPMENT: 'Exemples: Camion benne, Grue télescopique, Dumper, Bulldozer. Les résultats sont regroupés par familles ou secteurs si le backend les fournit.'
+            EQUIPMENT: ['Unités'],
+            TRANSPORT: ['Unités'],
+            SUPPLY_CHAIN: ['Unités'],
+            MINES: ['Unités'],
+            LABOR: ['Personnes', 'Jours', 'Heures']
         };
 
         const form = document.getElementById('quotationForm');
@@ -1252,29 +1228,28 @@
         const nextButtons = Array.from(document.querySelectorAll('[data-next-step]'));
 
         const t = (key, fallback = '') => window.siteI18n?.get(key) || fallback || key;
-        const getTypeLabel = (type) => type === 'CHEMICAL'
-            ? t('quote.chemicalType', TYPE_LABELS.CHEMICAL)
-            : t('quote.equipmentType', TYPE_LABELS.EQUIPMENT);
-        const getDefaultFamily = (type) => type === 'CHEMICAL'
-            ? t('quote.catalogChemical', DEFAULT_FAMILIES.CHEMICAL)
-            : t('quote.catalogEquipment', DEFAULT_FAMILIES.EQUIPMENT);
-        const getTypeHint = (type) => type === 'CHEMICAL'
-            ? t('quote.chemicalExamples', TYPE_HINTS.CHEMICAL)
-            : t('quote.equipmentExamples', TYPE_HINTS.EQUIPMENT);
+        const getCategoryConfig = (categoryKey) => CATEGORY_BY_KEY[categoryKey] || CATEGORY_BY_KEY[DEFAULT_CATEGORY_KEY];
+        const getCategoryLabel = (categoryKey) => {
+            const category = getCategoryConfig(categoryKey);
+            return t(category.labelKey, category.fallbackLabel);
+        };
+        const getCategoryHint = (categoryKey) => {
+            const category = getCategoryConfig(categoryKey);
+            return t(category.hintKey, category.fallbackHint);
+        };
+        const getCategoryUnits = (categoryKey) => UNIT_OPTIONS[categoryKey] || UNIT_OPTIONS[DEFAULT_CATEGORY_KEY];
+        const getStaticEntries = (categoryKey) => (STATIC_CATALOG[categoryKey] || []).map((title) => ({
+            title,
+            family: getCategoryLabel(categoryKey)
+        }));
 
         let loaderProgress = 0;
         let currentStep = 1;
-        let currentType = 'CHEMICAL';
-        let selectedFamily = '';
+        let currentCategory = DEFAULT_CATEGORY_KEY;
+        let selectedCategory = '';
         let selectedItem = '';
-        let catalog = {
-            CHEMICAL: [...STATIC_CATALOG.CHEMICAL],
-            EQUIPMENT: [...STATIC_CATALOG.EQUIPMENT]
-        };
-        let catalogFamilies = {
-            CHEMICAL: new Map(),
-            EQUIPMENT: new Map()
-        };
+        let catalog = Object.fromEntries(CATEGORY_KEYS.map((categoryKey) => [categoryKey, [...(STATIC_CATALOG[categoryKey] || [])]]));
+        let catalogFamilies = Object.fromEntries(CATEGORY_KEYS.map((categoryKey) => [categoryKey, new Map()]));
 
         const loaderInterval = setInterval(() => {
             loaderProgress += Math.random() * 15;
@@ -1441,54 +1416,54 @@
             return data;
         }
 
-        async function loadRemoteCatalog(type) {
+        async function loadRemoteCatalog(categoryKey) {
             try {
-                const response = await fetch(`${QUOTATION_CATALOG_URL}?itemType=${encodeURIComponent(type)}`, {
+                const response = await fetch(`${QUOTATION_CATALOG_URL}?itemType=${encodeURIComponent(categoryKey)}`, {
                     headers: { 'Accept': 'application/json' }
                 });
                 if (!response.ok) return [];
                 const data = await response.json().catch(() => ({}));
-                return extractCatalogEntries(pickCatalogPayload(data), getDefaultFamily(type));
+                return extractCatalogEntries(pickCatalogPayload(data), getCategoryLabel(categoryKey));
             } catch {
                 return [];
             }
         }
 
-        function buildCatalogFamilyMap(type, entries) {
+        function buildCatalogFamilyMap(categoryKey, entries) {
             const families = new Map();
             entries.forEach((entry) => {
                 const title = String(entry.title || '').trim();
                 if (!title) return;
-                families.set(normalizeText(title), entry.family || getDefaultFamily(type));
+                families.set(normalizeText(title), entry.family || getCategoryLabel(categoryKey));
             });
             return families;
         }
 
         async function hydrateCatalogs() {
-            const [chemicals, equipment] = await Promise.all([
-                loadRemoteCatalog('CHEMICAL'),
-                loadRemoteCatalog('EQUIPMENT')
-            ]);
+            const remoteCatalogs = await Promise.all(CATEGORY_KEYS.map((categoryKey) => loadRemoteCatalog(categoryKey)));
 
-            catalog.CHEMICAL = dedupeItems([
-                ...STATIC_CATALOG.CHEMICAL,
-                ...chemicals.map((entry) => entry.title)
-            ]);
-            catalog.EQUIPMENT = dedupeItems([
-                ...STATIC_CATALOG.EQUIPMENT,
-                ...equipment.map((entry) => entry.title)
-            ]);
-            catalogFamilies.CHEMICAL = buildCatalogFamilyMap('CHEMICAL', chemicals);
-            catalogFamilies.EQUIPMENT = buildCatalogFamilyMap('EQUIPMENT', equipment);
+            CATEGORY_KEYS.forEach((categoryKey, index) => {
+                const remoteEntries = remoteCatalogs[index] || [];
+                const staticEntries = getStaticEntries(categoryKey);
+                catalog[categoryKey] = dedupeItems([
+                    ...staticEntries.map((entry) => entry.title),
+                    ...remoteEntries.map((entry) => entry.title)
+                ]);
+                catalogFamilies[categoryKey] = buildCatalogFamilyMap(categoryKey, [
+                    ...staticEntries,
+                    ...remoteEntries
+                ]);
+            });
+
             renderFamilyChoices();
             renderSuggestions(true);
         }
 
-        function getFamilyGroups(type) {
-            const familyMap = catalogFamilies[type] || new Map();
+        function getFamilyGroups(categoryKey) {
+            const familyMap = catalogFamilies[categoryKey] || new Map();
             const groups = new Map();
-            (catalog[type] || []).forEach((item) => {
-                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(type);
+            (catalog[categoryKey] || []).forEach((item) => {
+                const family = familyMap.get(normalizeText(item)) || getCategoryLabel(categoryKey);
                 if (!groups.has(family)) groups.set(family, []);
                 groups.get(family).push(item);
             });
@@ -1499,39 +1474,24 @@
             if (!familyChoices) return;
             familyChoices.innerHTML = '';
 
-            ['CHEMICAL', 'EQUIPMENT'].forEach((type) => {
-                const groups = getFamilyGroups(type);
-                if (!groups.size) return;
+            CATEGORY_CONFIG.forEach((category) => {
+                const items = catalog[category.key] || [];
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'choice-card family-card';
+                card.dataset.type = category.key;
+                card.setAttribute('aria-pressed', selectedCategory === category.key ? 'true' : 'false');
 
-                const section = document.createElement('div');
-                section.className = 'family-section';
-
-                const sectionTitle = document.createElement('div');
-                sectionTitle.className = 'family-section-title';
-                const title = document.createElement('h4');
-                title.textContent = getTypeLabel(type);
-                const count = document.createElement('span');
-                count.textContent = `${groups.size} ${groups.size > 1 ? t('quote.families', 'familles') : t('quote.family', 'famille')}`;
-                sectionTitle.append(title, count);
-                section.appendChild(sectionTitle);
-
-                const grid = document.createElement('div');
-                grid.className = 'family-grid';
-                groups.forEach((items, family) => {
-                    const card = document.createElement('button');
-                    card.type = 'button';
-                    card.className = 'choice-card family-card';
-                    card.dataset.type = type;
-                    card.dataset.family = family;
-                    card.setAttribute('aria-pressed', type === currentType && family === selectedFamily ? 'true' : 'false');
-
-                    const icon = document.createElement('div');
-                    icon.className = 'choice-icon';
-                    icon.innerHTML = type === 'CHEMICAL' ? '<i class="fas fa-vial"></i>' : '<i class="fas fa-truck"></i>';
-                    const heading = document.createElement('h4');
-                    heading.textContent = family;
-                    const products = document.createElement('div');
-                    products.className = 'family-products';
+                const icon = document.createElement('div');
+                icon.className = 'choice-icon';
+                icon.innerHTML = category.icon;
+                const heading = document.createElement('h4');
+                heading.textContent = getCategoryLabel(category.key);
+                const description = document.createElement('p');
+                description.textContent = getCategoryHint(category.key);
+                const products = document.createElement('div');
+                products.className = 'family-products';
+                if (items.length) {
                     items.slice(0, 5).forEach((item) => {
                         const product = document.createElement('span');
                         product.className = 'family-product';
@@ -1544,26 +1504,25 @@
                         more.textContent = `+${items.length - 5} ${items.length - 5 > 1 ? t('quote.moreMany', 'autres') : t('quote.moreOne', 'autre')}`;
                         products.appendChild(more);
                     }
-                    card.append(icon, heading, products);
-                    card.addEventListener('click', () => selectFamily(type, family));
-                    grid.appendChild(card);
-                });
-                section.appendChild(grid);
-                familyChoices.appendChild(section);
+                } else {
+                    const empty = document.createElement('span');
+                    empty.className = 'family-product-more';
+                    empty.textContent = t('quote.categoryEmpty', 'Aucune donnée disponible pour le moment.');
+                    products.appendChild(empty);
+                }
+
+                card.append(icon, heading, description, products);
+                card.addEventListener('click', () => selectFamily(category.key));
+                familyChoices.appendChild(card);
             });
 
             syncFamilyVisibility();
         }
 
-        function selectFamily(type, family) {
-            const isSameSelection = currentType === type && selectedFamily === family;
-            currentType = type;
-            selectedFamily = isSameSelection ? '' : family;
-            document.querySelectorAll('.family-card').forEach((card) => {
-                const active = selectedFamily && card.dataset.type === currentType && card.dataset.family === selectedFamily;
-                card.classList.toggle('selected', active);
-                card.setAttribute('aria-pressed', active ? 'true' : 'false');
-            });
+        function selectFamily(categoryKey) {
+            const isSameSelection = selectedCategory === categoryKey;
+            currentCategory = categoryKey;
+            selectedCategory = isSameSelection ? '' : categoryKey;
             updateUnits();
             itemSearch.value = '';
             resetItemSelection();
@@ -1572,23 +1531,10 @@
         }
 
         function syncFamilyVisibility() {
-            const hasSelection = !!selectedFamily;
-
             document.querySelectorAll('.family-card').forEach((card) => {
-                const active = hasSelection && card.dataset.type === currentType && card.dataset.family === selectedFamily;
-                card.hidden = hasSelection && !active;
-                card.setAttribute('aria-hidden', card.hidden ? 'true' : 'false');
-            });
-
-            document.querySelectorAll('.family-section').forEach((section) => {
-                const visibleCards = Array.from(section.querySelectorAll('.family-card')).some((card) => !card.hidden);
-                section.hidden = hasSelection && !visibleCards;
-                section.setAttribute('aria-hidden', section.hidden ? 'true' : 'false');
-
-                const grid = section.querySelector('.family-grid');
-                if (grid) {
-                    grid.classList.toggle('is-filtered', hasSelection && visibleCards);
-                }
+                const active = selectedCategory && card.dataset.type === selectedCategory;
+                card.classList.toggle('selected', active);
+                card.setAttribute('aria-pressed', active ? 'true' : 'false');
             });
         }
 
@@ -1611,8 +1557,13 @@
         }
 
         function updateUnits() {
-            const units = UNIT_OPTIONS[currentType] || ['Unités'];
-            const unitKeys = { 'Tonnes': 'quote.units.tonnes', 'Litres': 'quote.units.litres', 'Sacs': 'quote.units.bags', 'IBC': 'quote.units.ibc', 'Unités': 'quote.units.units' };
+            const units = getCategoryUnits(currentCategory);
+            const unitKeys = {
+                'Unités': 'quote.units.units',
+                'Personnes': 'quote.units.people',
+                'Jours': 'quote.units.days',
+                'Heures': 'quote.units.hours'
+            };
             unitSelect.innerHTML = '';
             units.forEach((unit) => {
                 const option = document.createElement('option');
@@ -1620,12 +1571,10 @@
                 option.textContent = t(unitKeys[unit], unit);
                 unitSelect.appendChild(option);
             });
-            summaryType.textContent = getTypeLabel(currentType);
-            itemTypeInput.value = currentType;
-            itemHint.textContent = getTypeHint(currentType);
-            itemSearch.placeholder = currentType === 'CHEMICAL'
-                ? t('quote.chemicalSearch', 'Rechercher un produit chimique...')
-                : t('quote.equipmentSearch', 'Rechercher un équipement...');
+            summaryType.textContent = getCategoryLabel(currentCategory);
+            itemTypeInput.value = currentCategory;
+            itemHint.textContent = getCategoryHint(currentCategory);
+            itemSearch.placeholder = t('quote.search', 'Rechercher un article...');
         }
 
         function updateSummary() {
@@ -1644,15 +1593,12 @@
 
         function renderSuggestions(preserveOpen = false) {
             const query = normalizeText(itemSearch.value);
-            const familyMap = catalogFamilies[currentType] || new Map();
-            const items = (catalog[currentType] || []).filter((item) => {
-                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(currentType);
-                return (!selectedFamily || family === selectedFamily) && normalizeText(item).includes(query);
-            });
+            const familyMap = catalogFamilies[currentCategory] || new Map();
+            const items = (catalog[currentCategory] || []).filter((item) => normalizeText(item).includes(query));
             const groups = new Map();
 
             items.forEach((item) => {
-                const family = familyMap.get(normalizeText(item)) || getDefaultFamily(currentType);
+                const family = familyMap.get(normalizeText(item)) || getCategoryLabel(currentCategory);
                 if (!groups.has(family)) groups.set(family, []);
                 groups.get(family).push(item);
             });
@@ -1712,12 +1658,12 @@
 
         function validateCurrentStep() {
             if (currentStep === 1) {
-                return !!currentType && !!selectedFamily;
+                return !!selectedCategory;
             }
             if (currentStep === 2) {
                 const candidate = itemSearch.value.trim();
                 if (!candidate) return false;
-                const exact = (catalog[currentType] || []).find((item) => normalizeText(item) === normalizeText(candidate));
+                const exact = (catalog[currentCategory] || []).find((item) => normalizeText(item) === normalizeText(candidate));
                 if (!exact && !selectedItem) return false;
                 if (!selectedItem && exact) selectItem(exact);
                 return true;
@@ -1743,10 +1689,10 @@
 
         function resetFormState() {
             form.reset();
-            currentType = 'CHEMICAL';
-            selectedFamily = '';
+            currentCategory = DEFAULT_CATEGORY_KEY;
+            selectedCategory = '';
             selectedItem = '';
-            itemTypeInput.value = currentType;
+            itemTypeInput.value = currentCategory;
             updateUnits();
             itemSearch.value = '';
             itemNameInput.value = '';
@@ -1822,7 +1768,7 @@
             }
 
             if (!itemNameInput.value) {
-                const exact = (catalog[currentType] || []).find((item) => normalizeText(item) === normalizeText(itemSearch.value.trim()));
+                const exact = (catalog[currentCategory] || []).find((item) => normalizeText(item) === normalizeText(itemSearch.value.trim()));
                 if (exact) {
                     selectItem(exact);
                 } else {
@@ -1835,7 +1781,8 @@
                 clientName: document.getElementById('clientName').value.trim(),
                 clientEmail: document.getElementById('clientEmail').value.trim(),
                 clientPhone: document.getElementById('clientPhone').value.trim(),
-                itemType: currentType,
+                itemType: selectedCategory || currentCategory,
+                category: selectedCategory || currentCategory,
                 itemName: itemNameInput.value.trim(),
                 quantity: quantityValue,
                 unit: unitSelect.value
