@@ -636,6 +636,24 @@
             line-height: 1.6;
             color: var(--silver);
         }
+        .direct-service-search {
+            margin: 0 0 1.25rem;
+            padding: 1rem;
+            border: 1px solid rgba(198,163,0,0.2);
+            background: linear-gradient(135deg, rgba(198,163,0,0.08), rgba(255,255,255,0.96));
+        }
+        .direct-service-search .field-group { margin-bottom: 0; }
+        .direct-search-heading {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.35rem;
+            color: var(--gold);
+            font-family: var(--font-display);
+            font-size: 1rem;
+            letter-spacing: 0.06em;
+        }
+        .direct-search-heading i { font-size: 0.8rem; }
 
         .combobox {
             position: relative;
@@ -932,6 +950,17 @@
                                 <p data-translate="quote.step1Desc">Sélectionnez une catégorie pour voir les produits et services qui lui sont rattachés.</p>
                             </div>
                         </div>
+                        <div class="direct-service-search">
+                            <div class="direct-search-heading"><i class="fas fa-magnifying-glass"></i><span data-translate="quote.directSearchTitle">Recherche directe d’un service</span></div>
+                            <div class="field-group">
+                                <label for="directServiceSearch" data-translate="quote.directSearchLabel">Rechercher un service</label>
+                                <div class="combobox">
+                                    <input type="text" id="directServiceSearch" class="combobox-input" data-translate="quote.directSearchPlaceholder" placeholder="Ex. camion benne, opérateur minier..." autocomplete="off">
+                                    <div class="combobox-panel" id="directServicePanel" role="listbox" data-translate-aria-label="quote.directSearchAria" aria-label="Résultats de recherche de services"></div>
+                                </div>
+                                <p class="field-help" data-translate="quote.directSearchHint">Recherchez dans tous nos services : la catégorie appropriée sera sélectionnée automatiquement.</p>
+                            </div>
+                        </div>
                         <div id="familyChoices" class="choice-grid" data-translate-aria-label="quote.familiesAria" aria-label="Catégories d’articles">
                             <div class="family-empty" data-translate="quote.loadingFamilies">Chargement des catégories et des articles disponibles...</div>
                         </div>
@@ -1178,6 +1207,8 @@
         const submitBtn = document.getElementById('submitBtn');
         const itemSearch = document.getElementById('itemSearch');
         const itemPanel = document.getElementById('itemPanel');
+        const directServiceSearch = document.getElementById('directServiceSearch');
+        const directServicePanel = document.getElementById('directServicePanel');
         const itemTypeInput = document.getElementById('itemType');
         const itemNameInput = document.getElementById('itemName');
         const selectedItemPill = document.getElementById('selectedItemPill');
@@ -1425,6 +1456,7 @@
 
             renderFamilyChoices();
             renderSuggestions(true);
+            renderDirectServiceSuggestions(document.activeElement === directServiceSearch);
         }
 
         function getFamilyGroups(categoryKey) {
@@ -1491,6 +1523,7 @@
             currentCategory = categoryKey;
             selectedCategory = categoryKey;
             updateUnits();
+            directServiceSearch.value = '';
             itemSearch.value = '';
             resetItemSelection();
             renderSuggestions(false);
@@ -1577,6 +1610,83 @@
 
         function closePanel() {
             itemPanel.classList.remove('open');
+        }
+
+        function openDirectServicePanel() {
+            directServicePanel.classList.add('open');
+        }
+
+        function closeDirectServicePanel() {
+            directServicePanel.classList.remove('open');
+        }
+
+        function getDirectServiceMatches(query) {
+            return CATEGORY_CONFIG.flatMap((category) => {
+                const familyMap = catalogFamilies[category.key] || new Map();
+                return (catalog[category.key] || [])
+                    .filter((item) => normalizeText(item).includes(query))
+                    .map((item) => ({
+                        categoryKey: category.key,
+                        item,
+                        family: familyMap.get(normalizeText(item)) || getCategoryLabel(category.key)
+                    }));
+            });
+        }
+
+        function renderDirectServiceSuggestions(preserveOpen = false) {
+            const query = normalizeText(directServiceSearch.value);
+            const matches = getDirectServiceMatches(query);
+            const groups = new Map();
+
+            matches.forEach((match) => {
+                if (!groups.has(match.categoryKey)) groups.set(match.categoryKey, []);
+                groups.get(match.categoryKey).push(match);
+            });
+
+            directServicePanel.innerHTML = '';
+            if (!matches.length) {
+                const empty = document.createElement('div');
+                empty.className = 'combobox-empty';
+                empty.textContent = t('quote.noResults', 'Aucun résultat');
+                directServicePanel.appendChild(empty);
+            } else {
+                groups.forEach((groupMatches, categoryKey) => {
+                    const group = document.createElement('div');
+                    group.className = 'combobox-group';
+
+                    const heading = document.createElement('div');
+                    heading.className = 'combobox-group-label';
+                    heading.textContent = getCategoryLabel(categoryKey);
+                    group.appendChild(heading);
+
+                    groupMatches.forEach(({ item, family }) => {
+                        const button = document.createElement('button');
+                        button.type = 'button';
+                        button.className = 'combobox-option';
+                        button.setAttribute('role', 'option');
+                        button.textContent = family === getCategoryLabel(categoryKey) ? item : `${item} — ${family}`;
+                        button.addEventListener('click', () => selectDirectService(categoryKey, item));
+                        group.appendChild(button);
+                    });
+
+                    directServicePanel.appendChild(group);
+                });
+            }
+
+            if (preserveOpen || document.activeElement === directServiceSearch) {
+                openDirectServicePanel();
+            }
+        }
+
+        function selectDirectService(categoryKey, item) {
+            currentCategory = categoryKey;
+            selectedCategory = categoryKey;
+            directServiceSearch.value = item;
+            updateUnits();
+            syncFamilyVisibility();
+            itemSearch.value = item;
+            closeDirectServicePanel();
+            selectItem(item);
         }
 
         function renderSuggestions(preserveOpen = false) {
@@ -1697,14 +1807,17 @@
             itemTypeInput.value = currentCategory;
             updateUnits();
             itemSearch.value = '';
+            directServiceSearch.value = '';
             itemNameInput.value = '';
             resetItemSelection();
             closePanel();
+            closeDirectServicePanel();
             progressFill.style.width = '25%';
             progressLabel.textContent = t('quote.progress', 'Étape {step} / 4').replace('{step}', 1);
             setStep(1);
             renderFamilyChoices();
             renderSuggestions(true);
+            renderDirectServiceSuggestions(false);
             updateSummary();
         }
 
@@ -1712,6 +1825,7 @@
             updateUnits();
             renderFamilyChoices();
             renderSuggestions(true);
+            renderDirectServiceSuggestions(document.activeElement === directServiceSearch);
             updateSummary();
         });
 
@@ -1730,8 +1844,23 @@
         itemSearch.addEventListener('keydown', (event) => {
             if (event.key === 'Escape') closePanel();
         });
+        directServiceSearch.addEventListener('focus', () => {
+            renderDirectServiceSuggestions(true);
+        });
+        directServiceSearch.addEventListener('input', () => {
+            renderDirectServiceSuggestions(true);
+        });
+        directServiceSearch.addEventListener('click', () => {
+            renderDirectServiceSuggestions(true);
+        });
+        directServiceSearch.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') closeDirectServicePanel();
+        });
         document.addEventListener('click', (event) => {
-            if (!event.target.closest('.combobox')) closePanel();
+            if (!event.target.closest('.combobox')) {
+                closePanel();
+                closeDirectServicePanel();
+            }
         });
 
         quantityInput.addEventListener('input', () => {
@@ -1841,6 +1970,7 @@
         updateSummary();
         renderFamilyChoices();
         renderSuggestions(true);
+        renderDirectServiceSuggestions(false);
         hydrateCatalogs();
         setStep(1);
     </script>
