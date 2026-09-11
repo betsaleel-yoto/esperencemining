@@ -252,7 +252,7 @@ footer { background:#fff; border-top:1px solid rgba(0,0,0,.05); margin-top:6rem;
             <i class="fas fa-arrow-left" style="font-size:.65rem;"></i> <span data-translate="article.back">Retour</span>
         </button>
         <select class="site-lang-select" data-translate-aria-label="nav.language" aria-label="Language">
-            <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option>
+            <option value="fr">FR</option><option value="en">EN</option><option value="ar">عر</option><option value="zh">中</option><option value="sw">SW</option><option value="kin">KIN</option><option value="ur">اردو</option><option value="es">ES</option><option value="la">LA</option>
         </select>
         <a href="./quotation.html" class="btn-primary nav-quote-btn">
             <span data-translate="nav.requestQuote">Demander une Cotation</span>
@@ -460,7 +460,7 @@ function getArticleId() {
 ══════════════════════════════════════ */
 function formatDate(d) {
     if (!d) return '';
-    const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW' }[document.documentElement.lang] || 'fr-FR';
+    const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW', ur: 'ur-PK', es: 'es-ES', la: 'la' }[document.documentElement.lang] || 'fr-FR';
     try { return new Date(d).toLocaleDateString(locale,{day:'numeric',month:'long',year:'numeric'}); }
     catch { return ''; }
 }

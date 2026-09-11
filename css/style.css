@@ -1629,10 +1629,14 @@ html, body {
 }
 
 /* Style pour le texte en arabe */
-[lang="ar"] {
+[lang="ar"], [lang="ur"] {
     direction: rtl;
     text-align: right;
     font-family: 'Noto Sans Arabic', sans-serif;
+}
+
+[lang="ur"] {
+    font-family: 'Noto Nastaliq Urdu', 'Noto Sans Arabic', sans-serif;
 }
 
 /* Style pour le texte en chinois */

@@ -997,6 +997,9 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
             <button onclick="switchLanguage('zh')" class="lang-btn" data-lang="zh">中</button>
             <button onclick="switchLanguage('sw')" class="lang-btn" data-lang="sw">SW</button>
             <button onclick="switchLanguage('kin')" class="lang-btn" data-lang="kin">KIN</button>
+            <button onclick="switchLanguage('ur')" class="lang-btn" data-lang="ur">اردو</button>
+            <button onclick="switchLanguage('es')" class="lang-btn" data-lang="es">ES</button>
+            <button onclick="switchLanguage('la')" class="lang-btn" data-lang="la">LA</button>
         </div>
         <select class="lang-select" onchange="switchLanguage(this.value)">
             <option value="fr">FR</option>
@@ -1005,6 +1008,9 @@ footer { background: #fff; border-top: 1px solid rgba(0,0,0,0.05); }
             <option value="zh">中</option>
             <option value="sw">SW</option>
             <option value="kin">KIN</option>
+            <option value="ur">اردو</option>
+            <option value="es">ES</option>
+            <option value="la">LA</option>
         </select>
         <a href="./quotation.html" class="btn-primary nav-quote-btn" style="padding:12px 18px;font-size:.58rem;letter-spacing:.18em;white-space:nowrap;">
             <span data-translate="hero.quote">Demander une Cotation</span>
@@ -2346,6 +2352,48 @@ Object.assign(translations.kin, {
     "nav.menu": "Menyu", "contact.sending": "Ohereza...", "contact.sent": "✓ Ubutumwa bwoherejwe", "newsletter.already": "Usanzwe wiyandikishije ku makuru yacu.", "newsletter.alreadyTitle": "USANZWE WIYANDIKISHIJE",
     "news.post1.date": "Werurwe 2025", "news.post2.date": "Gashyantare 2025", "news.post3.date": "Mutarama 2025"
 });
+translations.es = {
+    ...translations.en,
+    "meta.title": "Espérence Mining | Excelencia en operaciones mineras", "ui.scroll": "Desplazar",
+    "nav.home": "Inicio", "nav.services": "Servicios", "nav.about": "Nosotros", "nav.projects": "Proyectos", "nav.partners": "Socios", "nav.contact": "Contacto", "nav.news": "Noticias", "nav.careers": "Empleo", "nav.menu": "Menú",
+    "hero.tagline": "Líder en África Oriental — Desde 2014", "hero.subtitle": "Líder en minería en África Oriental, ofreciendo excelencia en seis naciones.", "hero.cta": "Iniciar un proyecto", "hero.quote": "Solicitar presupuesto", "hero.learnMore": "Descubrir",
+    "services.eyebrow": "Lo que hacemos", "services.title": "NUESTROS <em>SERVICIOS</em><br>PREMIUM", "services.logistics.title": "Logística de suministro", "services.manpower.title": "Mano de obra cualificada", "services.fuel.title": "Cadena de suministro fiable y segura", "services.partnerships.title": "Propuesta de asociación minera",
+    "about.eyebrow": "Nuestra historia", "about.title": "SOBRE<br><em>Espérence</em>", "about.description": "Líder del sector minero en África Oriental, Espérence Mining SARL opera en seis países principales: RDC, Uganda, Burundi, Tanzania, Ruanda y Kenia.", "about.expertise": "Nuestra experiencia abarca la logística minera, la contratación especializada, el suministro de combustible y las alianzas estratégicas.", "about.badge": "Años de<br>excelencia",
+    "stats.years": "Años de experiencia", "stats.countries": "Países", "stats.projects": "Proyectos", "stats.partners": "Socios",
+    "projects.eyebrow": "Nuestros proyectos", "projects.title": "REALIZACIONES <em>DESTACADAS</em>", "partners.eyebrow": "Colaboramos", "partners.title": "NUESTROS <em>SOCIOS</em>", "partners.becomePartner.title": "Conviértase en socio", "partners.becomePartner.cta": "Hablemos",
+    "careers.eyebrow": "Oportunidades", "careers.title": "ÚNASE A <em>NUESTRO EQUIPO</em>", "careers.description": "Buscamos profesionales apasionados para afrontar los desafíos de la industria minera en África.", "careers.viewAll": "Ver todas las vacantes", "careers.fullTime": "Tiempo completo", "careers.multiSite": "Varios sitios", "careers.positions.apply": "Solicitar",
+    "news.eyebrow": "Manténgase informado", "news.title": "ÚLTIMAS <em>NOTICIAS</em>", "news.readMore": "Leer más", "contact.eyebrow": "Póngase en contacto", "contact.title": "HABLEMOS DE SU <em>PROYECTO</em>", "contact.formTitle": "Envíenos un mensaje", "contact.name": "Nombre completo", "contact.email": "Correo electrónico", "contact.phone": "Teléfono", "contact.service": "Servicio de interés", "contact.message": "Su mensaje", "contact.send": "Enviar mensaje", "contact.sending": "Enviando…", "contact.sent": "✓ Mensaje enviado",
+    "newsletter.eyebrow": "Manténgase informado", "newsletter.title": "RECIBA NUESTRAS <em>NOTICIAS</em>", "newsletter.sub": "Información minera directamente en su correo.", "newsletter.placeholder": "tu@correo.com", "newsletter.subscribe": "Suscribirse", "newsletter.free": "Gratis", "newsletter.noSpam": "Sin spam", "newsletter.easyUnsubscribe": "Cancelación fácil", "newsletter.welcome": "¡BIENVENIDO!", "newsletter.success": "Ahora está suscrito a nuestro boletín.", "newsletter.already": "Ya está suscrito a nuestro boletín.", "newsletter.alreadyTitle": "YA SUSCRITO",
+    "footer.tagline": "Líder en minería de África Oriental. Excelencia, integridad y rendimiento en seis naciones africanas.", "footer.navigation": "Navegación", "footer.services": "Servicios", "footer.contact": "Contacto", "footer.rights": "Todos los derechos reservados.", "footer.built": "HECHO PARA LA EXCELENCIA"
+};
+translations.ur = {
+    ...translations.en,
+    "meta.title": "Espérence Mining | کان کنی کی کارروائیوں میں عمدگی", "ui.scroll": "اسکرول کریں",
+    "nav.home": "ہوم", "nav.services": "خدمات", "nav.about": "ہمارے بارے میں", "nav.projects": "منصوبے", "nav.partners": "شراکت دار", "nav.contact": "رابطہ", "nav.news": "خبریں", "nav.careers": "ملازمتیں", "nav.menu": "مینو",
+    "hero.tagline": "مشرقی افریقہ میں رہنما — 2014 سے", "hero.subtitle": "مشرقی افریقہ میں کان کنی کا رہنما، چھ ممالک میں عمدگی فراہم کرتا ہے۔", "hero.cta": "پروجیکٹ شروع کریں", "hero.quote": "قیمت کی درخواست", "hero.learnMore": "مزید جانیں",
+    "services.eyebrow": "ہم کیا کرتے ہیں", "services.title": "ہماری <em>اعلیٰ خدمات</em>", "services.logistics.title": "سپلائی لاجسٹکس", "services.manpower.title": "ماہر افرادی قوت", "services.fuel.title": "قابلِ اعتماد اور محفوظ سپلائی چین", "services.partnerships.title": "کان کنی کی شراکت داری کی تجویز",
+    "about.eyebrow": "ہماری کہانی", "about.title": "<em>Espérence</em> کے بارے میں", "about.description": "مشرقی افریقہ میں کان کنی کے شعبے کا رہنما، Espérence Mining SARL چھ اہم ممالک میں کام کرتا ہے۔", "about.expertise": "ہماری مہارت کان کنی لاجسٹکس، خصوصی بھرتی، ایندھن کی فراہمی اور اسٹریٹجک شراکت داری تک پھیلی ہوئی ہے۔", "about.badge": "عمدگی کے<br>سال",
+    "stats.years": "تجربے کے سال", "stats.countries": "ممالک", "stats.projects": "منصوبے", "stats.partners": "شراکت دار",
+    "projects.eyebrow": "ہمارے منصوبے", "projects.title": "نمایاں <em>کامیابیاں</em>", "partners.eyebrow": "ہم مل کر کام کرتے ہیں", "partners.title": "ہمارے <em>شراکت دار</em>", "partners.becomePartner.title": "شراکت دار بنیں", "partners.becomePartner.cta": "آئیے بات کریں",
+    "careers.eyebrow": "مواقع", "careers.title": "ہماری <em>ٹیم میں شامل ہوں</em>", "careers.description": "ہم افریقہ میں کان کنی کی صنعت کے چیلنجوں سے نمٹنے کے لیے پُرجوش ماہرین تلاش کر رہے ہیں۔", "careers.viewAll": "تمام آسامیوں کو دیکھیں", "careers.fullTime": "مکمل وقت", "careers.multiSite": "متعدد مقامات", "careers.positions.apply": "درخواست دیں",
+    "news.eyebrow": "باخبر رہیں", "news.title": "تازہ <em>خبریں</em>", "news.readMore": "مزید پڑھیں", "contact.eyebrow": "رابطہ کریں", "contact.title": "اپنے <em>پروجیکٹ</em> پر بات کریں", "contact.formTitle": "ہمیں پیغام بھیجیں", "contact.name": "پورا نام", "contact.email": "ای میل", "contact.phone": "فون", "contact.service": "دلچسپی کی خدمت", "contact.message": "آپ کا پیغام", "contact.send": "پیغام بھیجیں", "contact.sending": "بھیجا جا رہا ہے…", "contact.sent": "✓ پیغام بھیج دیا گیا",
+    "newsletter.eyebrow": "باخبر رہیں", "newsletter.title": "ہماری <em>خبریں</em> حاصل کریں", "newsletter.sub": "کان کنی کی خبریں براہ راست آپ کی ای میل پر۔", "newsletter.subscribe": "سبسکرائب کریں", "newsletter.free": "مفت", "newsletter.noSpam": "بغیر اسپیم", "newsletter.easyUnsubscribe": "آسان ان سبسکرائب", "newsletter.welcome": "خوش آمدید!", "newsletter.success": "اب آپ ہمارے خبرنامے کے رکن ہیں۔", "newsletter.already": "آپ پہلے ہی ہمارے خبرنامے کے رکن ہیں۔", "newsletter.alreadyTitle": "پہلے سے رکن",
+    "footer.tagline": "مشرقی افریقہ کی کان کنی میں رہنما۔ چھ افریقی ممالک میں عمدگی، دیانت اور کارکردگی۔", "footer.navigation": "رہنمائی", "footer.services": "خدمات", "footer.contact": "رابطہ", "footer.rights": "جملہ حقوق محفوظ ہیں۔", "footer.built": "عمدگی کے لیے بنایا گیا"
+};
+translations.la = {
+    ...translations.en,
+    "meta.title": "Espérence Mining | Excellentia operationum fodinariarum", "ui.scroll": "Volvere",
+    "nav.home": "Initium", "nav.services": "Officia", "nav.about": "De nobis", "nav.projects": "Opera", "nav.partners": "Socii", "nav.contact": "Contactus", "nav.news": "Nuntii", "nav.careers": "Munera", "nav.menu": "Index",
+    "hero.tagline": "Princeps Africae Orientalis — Ab anno 2014", "hero.subtitle": "Princeps fodinarum Africae Orientalis, excellentiam in sex gentibus praestans.", "hero.cta": "Opus incipe", "hero.quote": "Pretium pete", "hero.learnMore": "Inveni",
+    "services.eyebrow": "Quod agimus", "services.title": "OFFICIA <em>PRAESTANTISSIMA</em>", "services.logistics.title": "Rerum suppeditandarum vectura", "services.manpower.title": "Operarii periti", "services.fuel.title": "Catena suppeditandi fidelis et tuta", "services.partnerships.title": "Propositum societatis fodinariae",
+    "about.eyebrow": "Historia nostra", "about.title": "DE<br><em>Espérence</em>", "about.description": "Princeps in regione fodinaria Africae Orientalis, Espérence Mining SARL in sex gentibus maioribus operatur.", "about.expertise": "Peritia nostra a vectura fodinaria ad delectum peritorum, commeatum combustibilis et societates strategicas pertinet.", "about.badge": "Anni<br>excellentiae",
+    "stats.years": "Anni experientiae", "stats.countries": "Gentes", "stats.projects": "Opera", "stats.partners": "Socii",
+    "projects.eyebrow": "Opera nostra", "projects.title": "OPERA <em>INSIGNIA</em>", "partners.eyebrow": "Una laboramus", "partners.title": "SOCIi <em>NOSTRI</em>", "partners.becomePartner.title": "Socius fī", "partners.becomePartner.cta": "Colloquamur",
+    "careers.eyebrow": "Occasiones", "careers.title": "TURMAE <em>NOSTRAE ADIUNGE</em>", "careers.description": "Peritos studiosos quaerimus ad provocationes industriae fodinariae in Africa sustinendas.", "careers.viewAll": "Omnia munera vide", "careers.fullTime": "Pleno tempore", "careers.multiSite": "Pluribus locis", "careers.positions.apply": "Pete",
+    "news.eyebrow": "Certior esto", "news.title": "NUNTII <em>RECENTES</em>", "news.readMore": "Plura lege", "contact.eyebrow": "Nos continge", "contact.title": "DE TUO <em>OPERE</em> COLLOQUAMUR", "contact.formTitle": "Nobis nuntium mitte", "contact.name": "Nomen plenum", "contact.email": "Inscriptio electronica", "contact.phone": "Telephonum", "contact.service": "Officium desideratum", "contact.message": "Nuntius tuus", "contact.send": "Nuntium mitte", "contact.sending": "Mittitur…", "contact.sent": "✓ Nuntius missus",
+    "newsletter.eyebrow": "Certior esto", "newsletter.title": "NUNTIOS <em>NOSTROS</em> ACCIPE", "newsletter.sub": "Nuntii fodinarii directo in inscriptionem tuam electronicam.", "newsletter.subscribe": "Subscribere", "newsletter.free": "Gratuitum", "newsletter.noSpam": "Sine spamma", "newsletter.easyUnsubscribe": "Facilis recessus", "newsletter.welcome": "SALVE!", "newsletter.success": "Nunc epistulae nuntiorum nostrae subscripsisti.", "newsletter.already": "Iam epistulae nuntiorum nostrae subscripsisti.", "newsletter.alreadyTitle": "IAM SUBSCRIPSISTI",
+    "footer.tagline": "Princeps fodinarum Africae Orientalis. Excellentia, integritas et efficacia in sex gentibus Africanis.", "footer.navigation": "Navigatio", "footer.services": "Officia", "footer.contact": "Contactus", "footer.rights": "Omnia iura reservata.", "footer.built": "AD EXCELLENTIAM FACTUM"
+};
 const savedLanguage = localStorage.getItem('lang');
 let currentLang = translations[savedLanguage] ? savedLanguage : 'fr';
 
@@ -2467,7 +2515,7 @@ function switchLanguage(lang) {
     const languageSelect = document.querySelector('.lang-select');
     if (languageSelect) languageSelect.value = lang;
     document.documentElement.lang = lang;
-    document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    document.documentElement.dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
     document.querySelectorAll('[data-translate]').forEach(el => {
         const key = el.getAttribute('data-translate');
         const t = translations[lang][key] ?? translations.en[key] ?? translations.fr[key];
@@ -2611,7 +2659,7 @@ async function loadApiArticles() {
 
             const imgSrc = article.imageUrl || fallbackImg;
             const pubDate = article.publishedAt || article.createdAt;
-            const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW' }[currentLang] || 'fr-FR';
+            const locale = { fr: 'fr-FR', en: 'en-US', ar: 'ar', zh: 'zh-CN', sw: 'sw-TZ', kin: 'rw-RW', ur: 'ur-PK', es: 'es-ES', la: 'la' }[currentLang] || 'fr-FR';
             const dateStr = pubDate
                 ? new Date(pubDate).toLocaleDateString(locale, { month: 'long', year: 'numeric' })
                 : '';

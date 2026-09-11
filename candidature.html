@@ -397,6 +397,9 @@
                     <option value="zh">中</option>
                     <option value="sw">SW</option>
                     <option value="kin">KIN</option>
+                    <option value="ur">اردو</option>
+                    <option value="es">ES</option>
+                    <option value="la">LA</option>
                 </select>
                 <div class="lang-btns-desktop">
                     <button onclick="switchLanguage('fr')" class="lang-btn" data-lang="fr">FR</button>
@@ -405,6 +408,9 @@
                     <button onclick="switchLanguage('zh')" class="lang-btn" data-lang="zh">中</button>
                     <button onclick="switchLanguage('sw')" class="lang-btn" data-lang="sw">SW</button>
                     <button onclick="switchLanguage('kin')" class="lang-btn" data-lang="kin">KIN</button>
+                    <button onclick="switchLanguage('ur')" class="lang-btn" data-lang="ur">اردو</button>
+                    <button onclick="switchLanguage('es')" class="lang-btn" data-lang="es">ES</button>
+                    <button onclick="switchLanguage('la')" class="lang-btn" data-lang="la">LA</button>
                 </div>
             </div>
         </div>
@@ -658,9 +664,32 @@ const translations = {
         "application.submit": "Ohereza Gusaba", "footer.contact": "Twandikire", "footer.phone": "Telefone: +243 999 541 920", "footer.emailLabel": "Imeyili:", "footer.phoneLabel": "Telefone:", "footer.locationsTitle": "Aho dukorera", "footer.locations1": "DRC | Uganda | Uburundi", "footer.locations2": "Tanzaniya | Rwanda | Kenya", "footer.rights": "Uburenganzira bwose burakikijwe."
     }
 };
-    // Pour les langues supplémentaires, on peut dupliquer l'anglais ou laisser le français par défaut.
-    // Mais par souci de complétude, on remplit rapidement (version abrégée).
-    // Liste des langues disponibles (doit correspondre à translations)
+translations.es = {
+    ...translations.en,
+    "meta.title": "Solicitud - Espérence Mining SARL", "ui.sending": "Enviando…", "ui.sent": "✓ Enviado", "nav.menu": "Haga clic aquí",
+    "nav.home": "Inicio", "nav.services": "Nuestros servicios", "nav.about": "Nosotros", "nav.projects": "Proyectos", "nav.partners": "Socios", "nav.contact": "Contacto", "nav.news": "Noticias", "nav.careers": "Empleo",
+    "careers.title": "Únase a nuestro equipo", "careers.positions.description": "Construyamos juntos el futuro de la industria minera en África",
+    "application.title": "Formulario de solicitud", "application.firstName": "Nombre", "application.lastName": "Apellido", "application.email": "Correo electrónico", "application.phone": "Teléfono", "application.position": "Puesto deseado", "application.selectPosition": "Seleccione un puesto", "application.positions.miningEngineer": "Ingeniero de minas", "application.positions.geologist": "Geólogo", "application.positions.projectManager": "Jefe de proyecto", "application.positions.technician": "Técnico", "application.positions.logistics": "Responsable de logística", "application.positions.other": "Otro", "application.experience": "Años de experiencia", "application.selectExperience": "Seleccione su experiencia", "application.experienceRanges.0-2": "0-2 años", "application.experienceRanges.3-5": "3-5 años", "application.experienceRanges.5-10": "5-10 años", "application.experienceRanges.10+": "Más de 10 años", "application.education": "Formación", "application.educationPlaceholder": "Ej.: Máster en Geología", "application.motivation": "Carta de motivación", "application.motivationPlaceholder": "Describa su motivación…", "application.cv": "CV (PDF, DOC, DOCX)", "application.chooseFile": "Elegir un archivo", "application.consent": "Acepto que mis datos se traten para mi solicitud", "application.submit": "Enviar mi solicitud",
+    "footer.contact": "Contacto", "footer.emailLabel": "Correo electrónico:", "footer.phoneLabel": "Teléfono:", "footer.locationsTitle": "Presencia", "footer.rights": "Todos los derechos reservados."
+};
+translations.ur = {
+    ...translations.en,
+    "meta.title": "ملازمت کی درخواست - Espérence Mining SARL", "ui.sending": "بھیجا جا رہا ہے…", "ui.sent": "✓ بھیج دیا گیا", "nav.menu": "یہاں کلک کریں",
+    "nav.home": "ہوم", "nav.services": "ہماری خدمات", "nav.about": "ہمارے بارے میں", "nav.projects": "منصوبے", "nav.partners": "شراکت دار", "nav.contact": "رابطہ", "nav.news": "خبریں", "nav.careers": "ملازمتیں",
+    "careers.title": "ہماری ٹیم میں شامل ہوں", "careers.positions.description": "آئیے مل کر افریقہ میں کان کنی کی صنعت کا مستقبل بنائیں",
+    "application.title": "ملازمت کی درخواست کا فارم", "application.firstName": "پہلا نام", "application.lastName": "خاندانی نام", "application.email": "ای میل", "application.phone": "فون", "application.position": "مطلوبہ عہدہ", "application.selectPosition": "عہدہ منتخب کریں", "application.positions.miningEngineer": "کان کنی انجینئر", "application.positions.geologist": "ماہر ارضیات", "application.positions.projectManager": "پروجیکٹ مینیجر", "application.positions.technician": "ٹیکنیشن", "application.positions.logistics": "لازمیات مینیجر", "application.positions.other": "دیگر", "application.experience": "تجربے کے سال", "application.selectExperience": "اپنا تجربہ منتخب کریں", "application.experienceRanges.0-2": "0-2 سال", "application.experienceRanges.3-5": "3-5 سال", "application.experienceRanges.5-10": "5-10 سال", "application.experienceRanges.10+": "10 سال سے زیادہ", "application.education": "تعلیم", "application.educationPlaceholder": "مثال: ارضیات میں ماسٹر", "application.motivation": "حوصلہ افزائی کا خط", "application.motivationPlaceholder": "اپنی حوصلہ افزائی بیان کریں…", "application.cv": "سی وی (PDF، DOC، DOCX)", "application.chooseFile": "فائل منتخب کریں", "application.consent": "میں اپنی درخواست کے لیے اپنے ڈیٹا کی پروسیسنگ سے متفق ہوں", "application.submit": "میری درخواست بھیجیں",
+    "footer.contact": "رابطہ", "footer.emailLabel": "ای میل:", "footer.phoneLabel": "فون:", "footer.locationsTitle": "موجودگی", "footer.rights": "جملہ حقوق محفوظ ہیں۔"
+};
+translations.la = {
+    ...translations.en,
+    "meta.title": "Petitio muneris - Espérence Mining SARL", "ui.sending": "Mittitur…", "ui.sent": "✓ Missum", "nav.menu": "Hic preme",
+    "nav.home": "Initium", "nav.services": "Officia nostra", "nav.about": "De nobis", "nav.projects": "Opera", "nav.partners": "Socii", "nav.contact": "Contactus", "nav.news": "Nuntii", "nav.careers": "Munera",
+    "careers.title": "Turmam nostram adiunge", "careers.positions.description": "Futurum industriae fodinariae in Africa una construamus",
+    "application.title": "Formula petitionis", "application.firstName": "Praenomen", "application.lastName": "Nomen", "application.email": "Inscriptio electronica", "application.phone": "Telephonum", "application.position": "Munus desideratum", "application.selectPosition": "Munus elige", "application.positions.miningEngineer": "Machinator fodinarum", "application.positions.geologist": "Geologus", "application.positions.projectManager": "Moderator operis", "application.positions.technician": "Technicus", "application.positions.logistics": "Moderator rerum vehendarum", "application.positions.other": "Aliud", "application.experience": "Anni experientiae", "application.selectExperience": "Experientiam elige", "application.experienceRanges.0-2": "0-2 anni", "application.experienceRanges.3-5": "3-5 anni", "application.experienceRanges.5-10": "5-10 anni", "application.experienceRanges.10+": "Plus quam 10 anni", "application.education": "Institutio", "application.educationPlaceholder": "Exempli gratia: Magister geologiae", "application.motivation": "Epistula causae", "application.motivationPlaceholder": "Causam tuam describe…", "application.cv": "Vitae cursus (PDF, DOC, DOCX)", "application.chooseFile": "Fasciculum elige", "application.consent": "Consentio notitias meas ad petitionem meam tractari", "application.submit": "Petitionem mitte",
+    "footer.contact": "Contactus", "footer.emailLabel": "Inscriptio electronica:", "footer.phoneLabel": "Telephonum:", "footer.locationsTitle": "Praesentia", "footer.rights": "Omnia iura reservata."
+};
+
+// Liste des langues disponibles (doit correspondre à translations)
 const availableLanguages = Object.keys(translations);
 
 // Langue par défaut (fallback)
@@ -707,7 +736,7 @@ function switchLanguage(lang) {
     });
 
     // Direction RTL pour arabe
-    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    document.documentElement.dir = (lang === 'ar' || lang === 'ur') ? 'rtl' : 'ltr';
 
     // Traduction du contenu
     document.querySelectorAll('[data-translate]').forEach(el => {
